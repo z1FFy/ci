@@ -19,21 +19,40 @@ class Site extends CI_Controller {
 		 }
 	}
 
-	 function entry() {
-	 	$login = $_POST['login'];
-		$pass  = $_POST['password'];
-	 	$newdata = array(
-                   'login'  => $login,
-                   'password'     => $pass,
-                   'logged_in' => TRUE
-               );
-	 	$this->session->set_userdata($newdata);
-		header ("Location:". $this->config->site_url());
+	
+	function reg() {
+		$this->load->view('reg');
 	}
+	
+	 function entry() {
+		$login = $_POST['login'];
+		$pass  = $_POST['password'];
+        $this->load->model('db_module');
+
+		$this->db_module->connect();
+        $data = $this->db_module->get_user($login);
+		//var_dump($data);
+
+		foreach ($data as $item){ 
+			echo $item -> login;
+		}
+   		$pass_db = $item -> password;
+		if ($pass == $pass_db){
+			echo 'zaebca!!';	 	
+			$newdata = array('logged_in' => TRUE);
+			$this->session->set_userdata($newdata);
+			header ("Location:". $this->config->site_url());
+				}else{
+	 			header ("Location:". $this->config->site_url());
+	 		} 
+	
+
+	}
+	
 	
 	function vyhod() {
 		$this->session->sess_destroy();
-header ("Location:". $this->config->site_url());
+		header ("Location:". $this->config->site_url());
 		}
 }
 

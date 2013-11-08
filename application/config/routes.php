@@ -40,7 +40,7 @@
 
 $route['default_controller'] = "site";
 $route['404_override'] = '';
-//$route['site'] = "index.php/site.php";
+$route['id(:num)'] = "site";
 
 
 /* End of file routes.php */
