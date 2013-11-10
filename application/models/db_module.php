@@ -17,10 +17,12 @@ $config['hostname'] = "localhost";
 $this->load->database($config);
 }
 function get_user($login){
-
-	
 	   $query = $this->db->get_where('users', array('login' => $login));
 	     return $query->result();
 	}
+function get_user_by_id($user_id){
+	 $query = $this->db->get_where('users', array('user_id' => $user_id));
+	     return $query->result();
+}
 	   }
 	   ?>

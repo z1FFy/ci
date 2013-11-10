@@ -15,9 +15,11 @@ class Site extends CI_Controller {
 		 	echo "вы не авторизованы<br>";
 		 	$this->load->view('welcome_message');
 		 } else {
-		 	$this->load->view('userpage');
+		 	$user_id=$this->session->userdata('user_id');
+		 	header ("Location:id$user_id");
 		 }
 	}
+
 
 	
 	function reg() {
@@ -25,21 +27,20 @@ class Site extends CI_Controller {
 	}
 	
 	 function entry() {
-		$login = $_POST['login'];
+	$login = $_POST['login'];
 		$pass  = $_POST['password'];
         $this->load->model('db_module');
 
 		$this->db_module->connect();
         $data = $this->db_module->get_user($login);
-		//var_dump($data);
 
 		foreach ($data as $item){ 
-			echo $item -> login;
+			$user_id=$item->user_id;
 		}
    		$pass_db = $item -> password;
 		if ($pass == $pass_db){
-			echo 'zaebca!!';	 	
-			$newdata = array('logged_in' => TRUE);
+			 	
+			$newdata = array('logged_in' => TRUE, 'user_id' => $user_id);
 			$this->session->set_userdata($newdata);
 			header ("Location:". $this->config->site_url());
 				}else{
