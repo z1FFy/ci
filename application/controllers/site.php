@@ -23,17 +23,23 @@ class Site extends CI_Controller {
 
 	
 	function reg() {
-		$this->load->view('reg');
+			$this->load->view('reg');	
+	}
+	function sendreg() {
+	$this->load->model('db_module');
+	$this->db_module->connect();
+	$this->db_module->regisrtation();
 	}
 	
 	 function entry() {
-	$login = $_POST['login'];
-		$pass  = $_POST['password'];
+		$login = $_POST['login'];
+		$pass  = $_POST['pass'];
         $this->load->model('db_module');
-
 		$this->db_module->connect();
         $data = $this->db_module->get_user($login);
-
+		if ($pass == '') {
+		$pass='0';
+		}
 		foreach ($data as $item){ 
 			$user_id=$item->user_id;
 		}

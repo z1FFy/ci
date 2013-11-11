@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Welcome to UserPage</title>
   <link rel="stylesheet" href="default.css" type="text/css" />
+    <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
 </head>
 <body>
 

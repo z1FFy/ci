@@ -43,5 +43,6 @@ $route['404_override'] = '';
 $route['id(:num)'] = "id";
 
 
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
