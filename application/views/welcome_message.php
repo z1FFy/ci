@@ -37,7 +37,7 @@ $('.btn').click(function() {
 
    function onAjaxSuccess(data)
    {
- 
+ console.log(data);
 	  	  location.reload(true);
    
           };

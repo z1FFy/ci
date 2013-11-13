@@ -4,11 +4,10 @@ class Site extends CI_Controller {
 
 	public function __construct() {
     	parent::__construct();
-    	//code
+    		$this->load->model('db_module');
 	}
 
 	function index() {
-	
 		$this->load->library('session');
 		$logged = $this->session->userdata('logged_in');
 		if ($logged != TRUE) {
@@ -26,16 +25,12 @@ class Site extends CI_Controller {
 			$this->load->view('reg');	
 	}
 	function sendreg() {
-	$this->load->model('db_module');
-	$this->db_module->connect();
 	$this->db_module->regisrtation();
 	}
 	
 	 function entry() {
 		$login = $_POST['login'];
 		$pass  = $_POST['pass'];
-        $this->load->model('db_module');
-		$this->db_module->connect();
         $data = $this->db_module->get_user($login);
 		if ($pass == '') {
 		$pass='0';
@@ -43,17 +38,22 @@ class Site extends CI_Controller {
 		foreach ($data as $item){ 
 			$user_id=$item->user_id;
 		}
+		if ((
+		preg_match('/^[a-z0-9_]{3,20}$/',$item->login)) 
+		&& (preg_match('/^[a-z0-9]{3,20}$/',$item->password))
+		){
+		
    		$pass_db = $item -> password;
 		if ($pass == $pass_db){
 			 	
 			$newdata = array('logged_in' => TRUE, 'user_id' => $user_id);
 			$this->session->set_userdata($newdata);
-			header ("Location:". $this->config->site_url());
+			//header ("Location:". $this->config->site_url());
 				}else{
-	 			header ("Location:". $this->config->site_url());
+	 			//header ("Location:". $this->config->site_url());
 	 		} 
 	
-
+		}else{echo "jopa";}
 	}
 	
 	
