@@ -1,6 +1,6 @@
 	<meta charset="utf-8">
 
-	ФОТОГРАФИИ <br>
+	ФОТОГРАФИИ!!!!!!!!!!!!!!!!!!!!!!!!!!! <br>
 <?php 
 
 		foreach ($user_data as $item){ 
