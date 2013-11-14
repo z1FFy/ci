@@ -1,8 +1,11 @@
 	<meta charset="utf-8">
 
 
-	ФОТОГРАФИИ!!!!!!!!!!!!!!!!!!!!!!!!!!!1111  juujjuj trololo<br>
+	ФОТОГРАФ�?�?!!!!!!!!!!!!!!!!!!!!!!!!!!!1111  juujjuj trololo<br>
 
+=======
+	ФОТОГРАФ�?�?!!!!!!!!!!!!!!!!!!!!!!!!!!! <br>
+>>>>>>> refs/remotes/origin/master2
 <?php 
 
 		foreach ($user_data as $item){ 
