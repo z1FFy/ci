@@ -32,15 +32,15 @@ if (el.is(":focus")){
 
 $('.btn').click(function() { 
 i=0;
-a='';
+spec_user='';
 value='';
     while (i<3) {
      i++;
      option='#p'+i;
      if ( $(option).prop("checked") )  {
-        if (i==1) {a+='Композитор ';};
-        if (i==2) {a+='Дизайнер ';};
-        if (i==3) {a+='Долбаеб ';};
+        if (i==1) {spec_user+='Композитор ';};
+        if (i==2) {spec_user+='Дизайнер ';};
+        if (i==3) {spec_user+='Долбаеб ';};
       }
      }
   login = $("input[name='login']").val();
@@ -50,7 +50,6 @@ value='';
   famil = $("input[name='famil']").val();
   name = $("input[name='name']").val();
   otchestvo = $("input[name='otchestvo']").val();
-  spec_user = a;
   birthday= $("input[name='birthday']").val();
   avatar= $("input[name='avatar']").val();
 	if (login.length >= 3 && pass.length >= 3) {
