@@ -1,10 +1,10 @@
 	<meta charset="utf-8">
 
-	Фото <br>
+	ФОТОГРАФИИ <br>
 <?php 
 
 		foreach ($user_data as $item){ 
-				echo '<img src="uploads/'.$item->url_photo.'">';
+				echo '<img src="'.$this->config->site_url().'uploads/'.$item->url_photo.'" width="400">';
 		}
 ?>
 
