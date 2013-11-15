@@ -29,12 +29,15 @@
 
 <div id="container">
 <?php 
+foreach ($user_data as $item){ 
+			$login=$item->login;
+			$user_id=$item->user_id;
+		}
+		echo $login.' ';
 if ($whopage=='my') {
 $whostring='своей';
 foreach ($user_data as $item){ 
-			$login=$item->login;
 			$podtvr=$item->podtvr;
-			$user_id=$item->user_id;
 		}
 } else {
 	$whostring='чужой';
@@ -44,7 +47,7 @@ foreach ($user_data as $item){
 		 	$exit='';
 		 } else {
 		 	echo "вы авторизованы";
-		 	$exit='<a href="site/vyhod">Exit</a>';
+		 	$exit='<a href="'.$this->config->site_url().'site/vyhod">Exit</a>';
 		 	if ($podtvr == 0) {
 		 		echo '<br style="color:red">Вы не подтвердили ваш Email</br>';
 		 	}

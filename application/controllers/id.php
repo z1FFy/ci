@@ -33,8 +33,12 @@ class Id extends CI_Controller {
                'logged' => $logged,
                'podtvr' => $podtvr
                        );
+	if (!empty($data_user)){
 	$this->load->view('userpage',$data);
-	
+	}
+	else {
+		echo "idinahuj";
+	}
 	//Photo show in page user  //
 	$photo_data = $this->db_module->get_user_photos($url_id);
 	$photo_data_arr = array( 'user_data' => $photo_data );
