@@ -5,6 +5,25 @@
 	<title>Welcome to UserPage</title>
   <link rel="stylesheet" href="/ci/default.css" type="text/css" />
     <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
+      <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.simplemodal.1.4.4.min.js"></script>
+      <script>
+		$(document).ready(function() {
+			$('#upload_foto').click(function() { 
+				var src = "http://localhost/ci/upload";
+				$.modal('<iframe src="' + src + '" height="150" width="230"  scrolling="no" style="border:0">', {
+					closeHTML:"",
+					containerCss:{
+						backgroundColor:"#fff", 
+						borderColor:"#fff", 
+						height:170, 
+						padding:0, 
+						width:250
+					},
+					overlayClose:true
+				});
+			 }); 
+		}); 
+      </script>
 </head>
 <body>
 
@@ -39,7 +58,7 @@ foreach ($user_data as $item){
 ?>
 	<h1>Вы находитесь на <?php echo $whostring;?> cтранице</h1>
 		<?php if ($whopage == 'my') {
-		echo '<a href="'.$this->config->site_url() .'upload">Закачать фотку</a>';
+		echo '<a id="upload_foto">Закачать фотку</a>';
 		echo "<br><a href='".$this->config->site_url() ."id".$user_id."/photos'>Мой Альбом</a>";
 	}
 ?>
