@@ -1,8 +1,24 @@
+<?php
+$whostring_title='';
+foreach ($user_data as $item){ 
+			$login=$item->login;
+			$user_id=$item->user_id;
+		}
+		if ($whopage=='my') {
+$whostring='своей';
+$whostring_title="Моя";
+foreach ($user_data as $item){ 
+			$podtvr=$item->podtvr;
+		}
+} else {
+	$whostring='чужой';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to UserPage</title>
+	<title><?php echo $whostring_title.' Страница - '.  $login; ?></title>
   <link rel="stylesheet" href="/ci/default.css" type="text/css" />
     <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
       <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.simplemodal.1.4.4.min.js"></script>
@@ -29,19 +45,6 @@
 
 <div id="container">
 <?php 
-foreach ($user_data as $item){ 
-			$login=$item->login;
-			$user_id=$item->user_id;
-		}
-		echo $login.' ';
-if ($whopage=='my') {
-$whostring='своей';
-foreach ($user_data as $item){ 
-			$podtvr=$item->podtvr;
-		}
-} else {
-	$whostring='чужой';
-}
 		if ($logged != TRUE) {
 		 	echo "вы не авторизованы<br>";
 		 	$exit='';

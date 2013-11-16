@@ -22,10 +22,9 @@
 	function index() {
 		$url_id= $this->_get_url_id();
 	 	$user_id=$this->session->userdata('user_id');
+	 	$data_user = $this->db_module->get_user_by_id($url_id);
 		$logged = $this->session->userdata('logged_in');
 		$podtvr=0;
-
-		$data_user = $this->db_module->get_user_by_id($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		if ($logged == TRUE) {
 			$podtvr = $this->db_module->get_podtvr($url_id);
@@ -49,6 +48,8 @@
 	}
 
  function photos() {
+ 	$url_id= $this->_get_url_id();
+ 	$data_user = $this->db_module->get_user_by_id($url_id);
 	if (!empty($data_user)){
 	$url_id= $this->_get_url_id();
 	$photo_data = $this->db_module->get_user_photos($url_id);
