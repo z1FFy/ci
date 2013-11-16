@@ -32,17 +32,21 @@ if (el.is(":focus")){
 
 $('.btn').click(function() { 
 i=0;
-spec_user='';
+notnull=0;
+a='';
 value='';
     while (i<3) {
      i++;
      option='#p'+i;
      if ( $(option).prop("checked") )  {
-        if (i==1) {spec_user+='Композитор ';};
-        if (i==2) {spec_user+='Дизайнер ';};
-        if (i==3) {spec_user+='Долбаеб ';};
-      }
+        notnull=1;
+        if (i==1) {a+='Композитор ';};
+        if (i==2) {a+='Дизайнер ';};
+        if (i==3) {a+='Долбаеб ';};
+      } 
+      
      }
+
   login = $("input[name='login']").val();
   email = $("input[name='email']").val();
   pass = $("input[name='pass']").val();
@@ -50,6 +54,7 @@ value='';
   famil = $("input[name='famil']").val();
   name = $("input[name='name']").val();
   otchestvo = $("input[name='otchestvo']").val();
+  spec_user = a;
   birthday= $("input[name='birthday']").val();
   avatar= $("input[name='avatar']").val();
 	if (login.length >= 3 && pass.length >= 3) {
@@ -76,9 +81,13 @@ $('#pad').html('минимальное значение любого поля - 
  } else {
   if (data=='xren') {
      $('#pad').html('символы не те');
-  } else {
+  }else{
+  if(notnull==0){
+      $('#pad').html('Выберите тип страницы.');
+  }else {
      location.href='/ci';
   }
+}
  }
           };
           
