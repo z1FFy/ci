@@ -2,6 +2,7 @@
 class db_module extends CI_Model {
 		public function __construct() {
     	parent::__construct();
+    	$active_group = "default";
 
 $this->load->database("default");
 	}
@@ -19,6 +20,7 @@ function get_user_by_id($user_id){
 	 $query = $this->db->get_where('users', array('user_id' => $user_id));
 	     return $query->result();
 }
+
 
 function get_podtvr() {
 		$this->db->select('podtvr');
@@ -93,6 +95,50 @@ if ($key == 'name_photo') {
 	}
 
 
+	function send_new_albom($albom_name) {
+		$this->albom_name = $albom_name;
+		$this->user_id=$this->session->userdata('user_id');
+		$query = $this->db->insert('albom', $this);
+	    //return $query->result();
+	}
 
-	   }
+	function get_albom_photos($url_id) {
+		 $query = $this->db->get_where('albom', array('user_id' => $url_id));
+	     return $query->result();
+	}
+
+//добавление фото в альбом
+function send_photo_from_albom($albom_id, $photo_id) {
+		$this->id_albom = $albom_id;
+		//$this->photo_id = $photo_id;
+		//var_dump($this->albom_id);
+		//var_dump($photo_id);
+
+		$this->db->where('id_photos', $photo_id);
+		$this->db->update('photos', $this);
+
+
+
+	    //return $query->result();
+	}
+//отображение фото в выбраном альбоме
+function get_photo_from_albom($albom_id) {
+		 $query = $this->db->get_where('photos', array('id_albom' => $albom_id));
+	     return $query->result();
+
+
+
+	    //return $query->result();
+	}
+
+
+
+
+// //для отображения всех фото
+// function get_photo_from_albom1($albom_id) {
+// 		 $query = $this->db->get_where('photo', array('id_albom' => $albom_id));
+// 	     return $query->result();
+
+// 	   }
+	}
 	   ?>
