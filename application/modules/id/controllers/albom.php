@@ -36,7 +36,7 @@ function do_img_to_albom()
 		$this->db_module->send_photo_from_albom($albom_id, $photo_id);
 	}
 
-function do_img_view_albom()
+function photos_in_albom()
 	{
 		//var_dump($this->config->site_url());
 		$albom_id = $_POST['id_albom'];

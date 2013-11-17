@@ -25,7 +25,7 @@ foreach ($user_data as $item){
       <script>
 		$(document).ready(function() {
 			$('#upload_foto').click(function() { 
-				var src = "http://localhost/ci/upload";
+				var src = "http://localhost/ci/id/upload";
 				$.modal('<iframe src="' + src + '" height="150" width="230"  scrolling="no" style="border:0">', {
 					closeHTML:"",
 					containerCss:{
@@ -49,24 +49,25 @@ foreach ($user_data as $item){
 		 	echo "вы не авторизованы<br>";
 		 	$exit='';
 		 } else {
-		 	echo "вы авторизованы";
+		 	echo 'вы авторизованы';
 		 	$exit='<a href="'.$this->config->site_url().'site/vyhod">Exit</a>';
+		 	echo '   '.$exit;
 		 	if ($podtvr == 0) {
-		 		echo '<br style="color:red">Вы не подтвердили ваш Email</br>';
+		 		echo '<p style="color:red">Вы не подтвердили ваш Email</p>';
 		 	}
 		 	else {
 		 		echo '<br style="color:green">Ваш Email подтвержден';
 		 	} 
 		 }
-		 	echo '   '.$exit;
 
-			echo '<br>Имя пользователя этой страницы - '.$login;
+			echo 'Имя пользователя этой страницы - '.$login;
 ?>
 	<h1>Вы находитесь на <?php echo $whostring;?> cтранице</h1>
 		<?php if ($whopage == 'my') {
 		echo '<a id="upload_foto">Закачать фотку</a>';
 		echo "<br><a href='".$this->config->site_url() ."id".$user_id."/photos'>Мой Альбом</a>";
 	}
+	$this->load->view('albom_index',$user_data);
 ?>
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>

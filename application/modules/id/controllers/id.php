@@ -29,23 +29,21 @@
 		if ($logged == TRUE) {
 			$podtvr = $this->db_module->get_podtvr($url_id);
 		}
+		$photo_data = $this->db_module->get_user_photos($url_id);
+		$albom_data = $this->db_module->get_albom_photos($url_id);
 		$data = array(
 	               'user_data' => $data_user,
 	               'whopage' => $whopage,
 	               'logged' => $logged,
-	               'podtvr' => $podtvr
+	               'podtvr' => $podtvr,
+	               'albom_data' => $albom_data,
+	               'photo_data' => $photo_data ,
+	               'url_id' => $url_id
 	                       );
 		if (!empty($data_user)){
+		
 		$this->load->view('userpage',$data);
-
-		//Photo show in page user  //
-		$photo_data = $this->db_module->get_user_photos($url_id);
-		$photo_data_arr = array( 'user_data' => $photo_data );
-		//$this->load->view('photos',$photo_data_arr);
-
-	$albom_data = $this->db_module->get_albom_photos($url_id);
-	$albom_data_arr = array( 'albom_data' => $albom_data, 'photo_data' => $photo_data , 'url_id' => $url_id);
-	$this->load->view('albom_index',$albom_data_arr);
+//	$this->load->view('albom_index',$albom_data_arr);
 	} else {
 			echo "user not found";
 	}
