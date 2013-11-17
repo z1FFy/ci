@@ -5,8 +5,7 @@
 </head>
 <body>
 
-<form action="<?php echo $this->config->site_url() ?>albom/do_albom" method="post" accept-charset="utf-8">
-
+<form action="<?php echo $this->config->site_url() ?>id/albom/do_albom" method="post" accept-charset="utf-8">
 
 <input type="text" name="albom_name" size="20" />
 

@@ -6,12 +6,13 @@
 <body>
 
 	Альбомы <br>
-<!-- 1 -->
-<form action="<?php echo $this->config->site_url() ?>albom/do_img_to_albom" method="post" accept-charset="utf-8">
+<!-- Добавление в альбом -->
+
+<form action="id<?php echo $url_id?>/albom/do_img_to_albom" method="post" accept-charset="utf-8">
 <select name = "id_albom"  size="1">
 <?php 
 
-	foreach ($user_data as $item){  ?>
+	foreach ($albom_data as $item){  ?>
 	<option value="<?php echo $item->id_albom ?>" >
 		<?php 
 		//var_dump($item);
@@ -35,12 +36,11 @@
 </select>
 </form>
 
-<!-- 2 forma -->
-<form action="<?php echo $this->config->site_url() ?>albom/do_img_view_albom" method="post" accept-charset="utf-8">
+<!-- Просмотр  альбома -->
+<form action="id<?php echo $url_id?>/albom/photos_in_albom" method="post" accept-charset="utf-8">
 <select name = "id_albom"  size="1">
 <?php 
-
-	foreach ($user_data as $item){  ?>
+	foreach ($albom_data as $item){  ?>
 	<option value="<?php echo $item->id_albom ?>" >
 		<?php 
 		//var_dump($item);
