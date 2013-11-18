@@ -52,7 +52,7 @@
 
 <!-- vse foto -->
 <?php foreach ($photo_data as $item){ 
-			echo $item->url_photo.'<br><img src="'.$this->config->site_url().'uploads/'.$item->url_photo.'" width="400">';
+			echo $item->url_photo.'<br><img src="'.$this->config->site_url().'uploads/photos/'.$item->url_photo.'" width="400">';
 		}	?>
 
 </body>

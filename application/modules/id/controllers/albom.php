@@ -29,19 +29,14 @@ function do_albom()
 
 function do_img_to_albom()
 	{
-		//var_dump($this->config->site_url());
 		$albom_id = $_POST['id_albom'];
 		$photo_id = $_POST['id_photos'];
-		//$this->load->view($this->config->site_url());
 		$this->db_module->send_photo_from_albom($albom_id, $photo_id);
 	}
 
 function photos_in_albom()
 	{
-		//var_dump($this->config->site_url());
 		$albom_id = $_POST['id_albom'];
-		//$this->load->view($this->config->site_url());
-		//$this->db_module->get_photo_from_albom($albom_id);
 		$albom_data = $this->db_module->get_photo_from_albom($albom_id);
 		$albom_data_arr = array( 'albom_data' => $albom_data);
 		$this->load->view('photos_in_albom',$albom_data_arr);

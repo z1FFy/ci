@@ -21,13 +21,28 @@ function get_user_by_id($user_id){
 	     return $query->result();
 }
 
+function sel_user_ava($user_id){
+	$this->db->select('avatar');
+	$query = $this->db->get_where('users', array('user_id' => $user_id));
+	     return $query->result();
+}
+
+function up_user_ava($user_id,$name_photo){
+		$data = array(
+     'avatar' => $name_photo,
+   );
+
+	$this->db->where('user_id', $user_id);
+		$this->db->update('users',$data);
+	//     echo $query->result();
+	}
 
 function get_podtvr() {
 		$this->db->select('podtvr');
 		$query = $this->db->get('users');
 	    return $query->result();
 }
-	 function regisrtation()
+	 function registration()
     {
 
 

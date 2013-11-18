@@ -5,6 +5,7 @@ class Site extends CI_Controller {
 	public function __construct() {
     	parent::__construct();
     	$this->load->library('session');
+    	$this->load->model('db_module');
 	}
 
 	function index() {
@@ -24,11 +25,10 @@ class Site extends CI_Controller {
 		$this->load->view('reg');	
 	}
 	function sendreg() {
-		$this->db_module->regisrtation();
+		$this->db_module->registration();
 	}
 	
 	function entry() {
-		$this->load->model('db_module');
 		$login = $_POST['login'];
 		$pass  = $_POST['pass'];
 		$pass_db = '';

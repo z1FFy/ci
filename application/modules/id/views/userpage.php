@@ -3,6 +3,7 @@ $whostring_title='';
 foreach ($user_data as $item){ 
 			$login=$item->login;
 			$user_id=$item->user_id;
+			$avatar_url=$item->avatar;
 		}
 		if ($whopage=='my') {
 $whostring='своей';
@@ -25,19 +26,28 @@ foreach ($user_data as $item){
       <script>
 		$(document).ready(function() {
 			$('#upload_foto').click(function() { 
-				var src = "http://localhost/ci/id/upload";
-				$.modal('<iframe src="' + src + '" height="150" width="230"  scrolling="no" style="border:0">', {
+				var src = "http://localhost/ci/id/upload?who=photos";
+				upload(src);
+			 }); 
+			$('#upload_ava').click(function() { 
+				var src = "http://localhost/ci/id/upload?who=avatars";
+				upload(src);
+			 }); 
+
+			function upload (src) {
+					$.modal('<iframe src="' + src + '" height="350" width="430"  scrolling="no" style="border:0">', {
 					closeHTML:"",
 					containerCss:{
 						backgroundColor:"#fff", 
 						borderColor:"#fff", 
-						height:170, 
+						height:470, 
 						padding:0, 
-						width:250
+						width:550
 					},
 					overlayClose:true
 				});
-			 }); 
+			}
+
 		}); 
       </script>
 </head>
@@ -61,10 +71,12 @@ foreach ($user_data as $item){
 		 }
 
 			echo 'Имя пользователя этой страницы - '.$login;
+			echo '<br><img src="'.$this->config->site_url().'uploads/avatars/'.$avatar_url.'" width="300">';
 ?>
 	<h1>Вы находитесь на <?php echo $whostring;?> cтранице</h1>
 		<?php if ($whopage == 'my') {
-		echo '<a id="upload_foto">Закачать фотку</a>';
+		echo '<br>	<a id="upload_ava">Закачать аватар</a>';
+		echo '<br><a id="upload_foto">Закачать фотку</a>';
 		echo "<br><a href='".$this->config->site_url() ."id".$user_id."/photos'>Мой Альбом</a>";
 	}
 	$this->load->view('albom_index',$user_data);

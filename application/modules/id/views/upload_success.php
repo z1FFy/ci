@@ -18,7 +18,9 @@
 		$user_id=$this->session->userdata('user_id');
 
 $name_photo = $upload_data['file_name'];
-	header ("Location:db_upload?user_id=".$user_id."&name=".$name_photo);
+
+
+	header ("Location:db_upload?user_id=".$user_id."&name=".$name_photo."&who=".$who);
 
 ?>
 

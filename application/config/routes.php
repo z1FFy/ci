@@ -41,7 +41,7 @@
 $route['default_controller'] = "site";
 $route['404_override'] = '';
 $route['id(:num)'] = "id";
-$route['site'] = "/";
+//$route['site'] = "/";
 $route['id(:num)/photos'] = "id/photos";
 $route['id(:num)/(:any)'] = "id/$2";
 
