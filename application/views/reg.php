@@ -31,21 +31,21 @@ if (el.is(":focus")){
 
 
 $('.btn').click(function() { 
-i=0;
-notnull=0;
-a='';
-value='';
-    while (i<3) {
-     i++;
-     option='#p'+i;
-     if ( $(option).prop("checked") )  {
-        notnull=1;
-        if (i==1) {a+='Композитор ';};
-        if (i==2) {a+='Дизайнер ';};
-        if (i==3) {a+='Долбаеб ';};
-      } 
+// i=0;
+// notnull=0;
+// a='';
+// value='';
+//     while (i<3) {
+//      i++;
+//      option='#p'+i;
+//      if ( $(option).prop("checked") )  {
+//         notnull=1;
+//         if (i==1) {a+='Композитор ';};
+//         if (i==2) {a+='Дизайнер ';};
+//         if (i==3) {a+='Долбаеб ';};
+//       } 
       
-     }
+//      }
 
   login = $("input[name='login']").val();
   email = $("input[name='email']").val();
@@ -54,7 +54,7 @@ value='';
   famil = $("input[name='famil']").val();
   name = $("input[name='name']").val();
   otchestvo = $("input[name='otchestvo']").val();
-  spec_user = a;
+  spec_user = $("select[name='spec_user']").val();;
   birthday= $("input[name='birthday']").val();
   avatar= $("input[name='avatar']").val();
 	if (login.length >= 3 && pass.length >= 3) {
@@ -82,11 +82,11 @@ $('#pad').html('минимальное значение любого поля - 
   if (data=='xren') {
      $('#pad').html('символы не те');
   }else{
-  if(notnull==0){
-      $('#pad').html('Выберите тип страницы.');
-  }else {
+  // if(notnull==0){
+  //     $('#pad').html('Выберите тип страницы.');
+  // }else {
      location.href='/ci';
-  }
+  // }
 }
  }
           };
@@ -108,11 +108,26 @@ $('#pad').html('минимальное значение любого поля - 
 
 	<div id="body">
 
-<label class="checkbox">
+<!-- <label class="checkbox">
     <input type="checkbox" name="spec_user" id="p1" value="Композитор"> Композитор <br>
     <input type="checkbox" name="spec_user" id="p2" value="Фотограф"> Фотограф <br>
     <input type="checkbox" name="spec_user" id="p3" value="Долбоеб"> Долбоеб <br>
-</label>
+</label> -->
+
+<select name="spec_user" size="1">
+<option value="Менеджмент">Менеджмент</option>
+<option selected="selected" value="Разработка сайтов">Разработка сайтов</option>
+<option value="Дизайн">Дизайн</option>
+<option value="Арт">Арт</option>
+<option value="Программирование">Программирование</option>
+<option value="Поисковая оптимизация SEO">Поисковая оптимизация SEO</option>
+<option value="Полиграфия">Полиграфия</option>
+<option value="Флеш">Флеш</option>
+<option value="Тексты<">Тексты</option>
+<option value="Переводы">Переводы</option>
+<option value="3D Графика">3D Графика</option>
+</select>
+
 
     <input type="text" name ="famil" maxlength="20" class="input-small" placeholder="Фамилия"><br>
     <input type="text" name ="name"  maxlength="20" class="input-small" placeholder="Имя"><br>
