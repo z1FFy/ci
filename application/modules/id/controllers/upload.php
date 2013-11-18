@@ -34,9 +34,9 @@ class Upload extends CI_Controller {
 			$config['upload_path'] = './uploads/avatars/';
 		}
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '1000';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '1068';
+		$config['max_size']	= '3000';
+		$config['max_width']  = '3024';
+		$config['max_height']  = '3068';
 		$config['encrypt_name'] = 'TRUE';
 		$this->load->library('upload', $config);
 
