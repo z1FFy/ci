@@ -27,7 +27,7 @@ function get_podtvr() {
 		$query = $this->db->get('users');
 	    return $query->result();
 }
-	 function regisrtation()
+	 function registration()
     {
 
 
@@ -133,12 +133,5 @@ function get_photo_from_albom($albom_id) {
 
 
 
-
-// //для отображения всех фото
-// function get_photo_from_albom1($albom_id) {
-// 		 $query = $this->db->get_where('photo', array('id_albom' => $albom_id));
-// 	     return $query->result();
-
-// 	   }
 	}
 	   ?>

@@ -24,7 +24,7 @@ class Site extends CI_Controller {
 		$this->load->view('reg');	
 	}
 	function sendreg() {
-		$this->db_module->regisrtation();
+		$this->db_module->registration();
 	}
 	
 	function entry() {
