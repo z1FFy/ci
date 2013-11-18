@@ -36,7 +36,7 @@
 </form>
 
 <!-- Просмотр  альбома -->
-<form action="albom/photos_in_albom" method="post" accept-charset="utf-8">
+<form action="id<?php echo $url_id?>/albom/photos_in_albom" method="post" accept-charset="utf-8">
 <select name = "id_albom"  size="1">
 <?php 
 	foreach ($albom_data as $item){  ?>

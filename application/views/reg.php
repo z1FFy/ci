@@ -82,11 +82,19 @@ $('#pad').html('минимальное значение любого поля - 
   if (data=='xren') {
      $('#pad').html('символы не те');
   }else{
+<<<<<<< 1f83031beabbeba109d679a44febad99f752220c
   // if(notnull==0){
   //     $('#pad').html('Выберите тип страницы.');
   // }else {
      location.href='/ci';
   // }
+=======
+  if(notnull==0){
+      $('#pad').html('Выберите тип страницы.');
+  }else {
+  //   location.href='/ci';
+  }
+>>>>>>> 7ab5e4a5f64d6f2e82cc1bc7a801d9ddeb01b6cb
 }
  }
           };
