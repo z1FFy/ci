@@ -31,6 +31,7 @@
 		}
 		$photo_data = $this->db_module->get_user_photos($url_id);
 		$albom_data = $this->db_module->get_albom_photos($url_id);
+		$profile_data = $this->db_module->get_user_by_id($user_id);
 		$data = array(
 	               'user_data' => $data_user,
 	               'whopage' => $whopage,
@@ -38,7 +39,8 @@
 	               'podtvr' => $podtvr,
 	               'albom_data' => $albom_data,
 	               'photo_data' => $photo_data ,
-	               'url_id' => $url_id
+	               'url_id' => $url_id,
+	               'profile_data' => $profile_data
 	                       );
 		if (!empty($data_user)){
 		
@@ -47,6 +49,14 @@
 	} else {
 			echo "user not found";
 	}
+	}
+
+	function profile() {
+		$user_id=$this->session->userdata('user_id');
+		$profile_data = $this->db_module->get_user_by_id($user_id);
+		$profile_data_arr = array( 'profile_data' => $profile_data);
+		$this->load->view('profile',$profile_data_arr);
+
 	}
 
  

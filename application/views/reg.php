@@ -62,7 +62,7 @@ value='';
 	$.post("sendreg",
      {
      login : login, email : email, pass : pass, famil : famil, name : name,
-       otchestvo : otchestvo, birthday : birthday, avatar : avatar, spec_user : spec_user,     },
+       otchestvo : otchestvo, birthday : birthday, avatar : avatar, spec_user : spec_user, },
      onAjaxSuccess
    );
    } else {
