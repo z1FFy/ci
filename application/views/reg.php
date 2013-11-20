@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="utf-8">
-	<title>Registraition</title>
+  <title>Registraition</title>
+    <meta charset="utf-8">
+
   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
+
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
-  <script> 
+  <script>   
 
  function validate(evt) {
 var el = $('#mail');
 if (el.is(":focus")){
     regex =  /[0-9a-zA-Z_@.]/;
-	 
+   
 } else {
  regex = /[0-9a-zA-Z_]/;
   }
@@ -57,9 +59,9 @@ $('.btn').click(function() {
   spec_user = $("select[name='spec_user']").val();;
   birthday= $("input[name='birthday']").val();
   avatar= $("input[name='avatar']").val();
-	if (login.length >= 3 && pass.length >= 3) {
-	if (pass == pass2) {
-	$.post("sendreg",
+  if (login.length >= 3 && pass.length >= 3) {
+  if (pass == pass2) {
+  $.post("sendreg",
      {
      login : login, email : email, pass : pass, famil : famil, name : name,
        otchestvo : otchestvo, birthday : birthday, avatar : avatar, spec_user : spec_user, },
@@ -75,7 +77,7 @@ $('#pad').html('минимальное значение любого поля - 
 
    function onAjaxSuccess(data)
    {
-     	 
+       
  if (data== 'yzhe') {
  $('#pad').html('такой юзер есть');
  } else {
@@ -101,11 +103,28 @@ $('#pad').html('минимальное значение любого поля - 
   </script>
 </head>
 <body>
+<header>
+<div align="center">
+<a href="<?php echo $this->config->site_url() ?>"><img id="logo" src="
+<?php echo $this->config->site_url() ?>images/logo.png"></a>
+</div>
+</header>
+<div align="center" id="menu">
 
-<div id="container">
-	<h1>Регистрация !</h1>
+  <input type="text" name="login" onkeypress='validate(event)' class="input-small" maxlength="20" placeholder="Email">
+  <input type="password" name ="password" onkeypress='validate(event)' class="input-small"maxlength="20" placeholder="Пароль">
 
-	<div id="body">
+  <button type="submit" class="btn">Войти</button>
+
+
+</div>
+<div id="middle-pol" align="center"><img style="" src="<?php echo $this->config->site_url() ?>images/byd.png"></div>
+
+<div align="center" id="content">
+  
+  <h1>Регистрация !</h1>
+
+  <div id="body">
 
 <!-- <label class="checkbox">
     <input type="checkbox" name="spec_user" id="p1" value="Композитор"> Композитор <br>
@@ -127,7 +146,7 @@ $('#pad').html('минимальное значение любого поля - 
 <option value="3D Графика">3D Графика</option>
 </select>
 
-
+<br>
     <input type="text" name ="famil" maxlength="20" class="input-small" placeholder="Фамилия"><br>
     <input type="text" name ="name"  maxlength="20" class="input-small" placeholder="Имя"><br>
     <input type="text" name ="otchestvo"  maxlength="20" class="input-small" placeholder="Отчество"><br>
@@ -138,16 +157,13 @@ $('#pad').html('минимальное значение любого поля - 
 <input type="text" id="mail"  name="email" onkeypress='validate(event)' maxlength="40" class="input-small" placeholder="Email"><br>
   <input type="password" name ="pass" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Пароль"><br>
     <input type="password" name ="password2" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Повторите Пароль">
-	<div style="margin-left: 30px;
+ <br> <label style="margin-left: 30px;
 height: 20px;
-width: 270px;" id="pad">  </div> 
+width:  170px;" id="pad">  </label> 
 
-  <button  class="btn">Зарегестрироваться</button>
+ <br> <button  class="btn">Зарегестрироваться</button>
 
-	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
-
+<footer> </footer>
 </body>
 </html>

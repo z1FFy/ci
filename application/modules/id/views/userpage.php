@@ -78,8 +78,9 @@ foreach ($user_data as $item){
 		echo '<br>	<a id="upload_ava">Закачать аватар</a>';
 		echo '<br><a id="upload_foto">Закачать фотку</a>';
 		echo "<br><a href='".$this->config->site_url() ."id".$user_id."/photos'>Мой Альбом</a>";
+		$this->load->view('albom_index',$user_data);
 	}
-	$this->load->view('albom_index',$user_data);
+
 ?>
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 

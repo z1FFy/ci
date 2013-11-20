@@ -68,7 +68,7 @@ function get_podtvr() {
 		}
 		//var_dump($this->password);
 		// провеяем логин пароль и имейл на наличие недопустимых символов
-		if ((preg_match('/^[a-z0-9_.]{3,20}$/',$this->login)) && (preg_match('/^[a-z0-9_@-]{3,20}$/',$this->mail)) 
+		if ((preg_match('/^[a-z0-9_.]{3,20}$/',$this->login)) && (preg_match('/^[a-z0-9_.@-]{3,20}$/',$this->mail)) 
 			&& (preg_match('/^[a-z0-9]{3,20}$/',$this->password)) ){
 
 		if ($this->login != $user_login && $this->mail != $user_mail) {

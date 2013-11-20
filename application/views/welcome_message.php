@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="utf-8">
-	<title>PortfioliOnline</title>
+  <title>Portfolio Online</title>
+    <meta charset="utf-8">
 
-	  <link rel="stylesheet" href="default.css" type="text/css" />
-	  <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
+  <link rel="stylesheet" href="default.css" type="text/css" />
+
+  <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
   <script>   
   function validate(evt) {
   var theEvent = evt || window.event;
@@ -22,13 +23,13 @@
 
 
 $('.btn').click(function() { 
-	login = $("input[name='login']").val();
-	pass = $("input[name='password']").val();
+  login = $("input[name='login']").val();
+  pass = $("input[name='password']").val();
 
-		
-	
-	if (login.length >= 3 && pass.length >= 3) {
-	$.post("site/entry",
+    
+  
+  if (login.length >= 3 && pass.length >= 3) {
+  $.post("site/entry",
      {
        login : login, pass : pass,
      },
@@ -45,7 +46,7 @@ $('.btn').click(function() {
           };
     } else {
     $("#pad").html('Длина должна быть больше трех символов');
-	}          
+  }          
 
    
 }); 
@@ -53,8 +54,8 @@ $('.btn').click(function() {
       $("input").keypress(function (e) {
 
       if (e.which == 13) {
-	  $('.btn').click();
-	  }
+    $('.btn').click();
+    }
 
  
  
@@ -63,26 +64,40 @@ $('.btn').click(function() {
   </script>
 </head>
 <body>
+<header>
+<div align="center">
+<a href="<?php echo $this->config->site_url() ?>"><img id="logo" src="
+<?php echo $this->config->site_url() ?>images/logo.png"></a>
 
-<div id="container">
-	<h1>Welcome Portfolionline BETA</h1>
-<h2 style="padding:10px"><b><a href ="site/reg">Регистрация</a></b></h2>
-	<div id="body">
+</div>
+</header>
+<div align="center" id="menu">
 
-<input type="text" name="login" onkeypress='validate(event)' class="input-small" maxlength="20" placeholder="Email">
+  <input type="text" name="login" onkeypress='validate(event)' class="input-small" maxlength="20" placeholder="Email">
   <input type="password" name ="password" onkeypress='validate(event)' class="input-small"maxlength="20" placeholder="Пароль">
-    <div style="margin-left: 30px;
-height: 20px;
-width: 270px;" id="pad">  </div> 
-  <label class="checkbox">
-    <input type="checkbox"> Запомнить меня
-  </label>
+
   <button type="submit" class="btn">Войти</button>
 
-	</div>
 
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
+<div id="middle-pol" align="center"><img style="" src="images/byd.png"></div>
 
+<div align="center" id="content">
+  
+<h2>СЕРВИС ДЛЯ СОЗДАНИЯ БЕСПЛАТНОГО ОНЛАЙН ПОРТФОЛИО</h2>
+<a href="site/reg" class="but"><h1>Регистрация</h1></a>
+<br>
+<br>
+PortfoliOnline.ru - это уникальный сервис для создания бесплатного портфолио.<br>
+Если ты дизайнер, фотограф, модель или музыкант, то ты попал именно по адресу.<br>
+Наша команда специалистов постаралась сделать для тебя простой, удобный
+и полезный сервис.<br>
+Возможность выбора аккаунта, открывает перед тобой безграничные
+возможности сервиса PortfoliOnline.ru!<br>
+Покажи себя всему Миру!<br>
+Общайся онлайн, будь всегда на связи!<br>
+
+</div>
+<footer> </footer>
 </body>
 </html>
