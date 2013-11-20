@@ -27,7 +27,7 @@ $('.btn').click(function() {
 
 		
 	
-	if (login.length >= 3 || pass.length >= 3) {
+	if (login.length >= 3 && pass.length >= 3) {
 	$.post("site/entry",
      {
        login : login, pass : pass,
@@ -38,11 +38,13 @@ $('.btn').click(function() {
    function onAjaxSuccess(data)
    {
  console.log(data);
-	  	  location.reload(true);
+  if (data == 'no_pass') {
+    $("#pad").html('Не правильный пароль');
+  } else { location.reload(true); }
    
           };
     } else {
-	console.log('bolwe davai');
+    $("#pad").html('Длина должна быть больше трех символов');
 	}          
 
    
@@ -69,6 +71,9 @@ $('.btn').click(function() {
 
 <input type="text" name="login" onkeypress='validate(event)' class="input-small" maxlength="20" placeholder="Email">
   <input type="password" name ="password" onkeypress='validate(event)' class="input-small"maxlength="20" placeholder="Пароль">
+    <div style="margin-left: 30px;
+height: 20px;
+width: 270px;" id="pad">  </div> 
   <label class="checkbox">
     <input type="checkbox"> Запомнить меня
   </label>

@@ -4,11 +4,11 @@ class Site extends CI_Controller {
 
 	public function __construct() {
     	parent::__construct();
-    		$this->load->model('db_module');
+    	$this->load->library('session');
+    	$this->load->model('db_module');
 	}
 
 	function index() {
-		$this->load->library('session');
 		$logged = $this->session->userdata('logged_in');
 		if ($logged != TRUE) {
 		 	echo "вы не авторизованы<br>";
@@ -22,38 +22,32 @@ class Site extends CI_Controller {
 
 	
 	function reg() {
-			$this->load->view('reg');	
+		$this->load->view('reg');	
 	}
 	function sendreg() {
-	$this->db_module->regisrtation();
+		$this->db_module->registration();
 	}
 	
-	 function entry() {
+	function entry() {
 		$login = $_POST['login'];
 		$pass  = $_POST['pass'];
+		$pass_db = '';
         $data = $this->db_module->get_user($login);
-		if ($pass == '') {
-		$pass='0';
-		}
+
 		foreach ($data as $item){ 
 			$user_id=$item->user_id;
+			$pass_db = $item->password;
 		}
-		if ((
-		preg_match('/^[a-z0-9_]{3,20}$/',$item->login)) 
-		&& (preg_match('/^[a-z0-9]{3,20}$/',$item->password))
-		){
-		
-   		$pass_db = $item -> password;
-		if ($pass == $pass_db){
-			 	
-			$newdata = array('logged_in' => TRUE, 'user_id' => $user_id);
-			$this->session->set_userdata($newdata);
-			//header ("Location:". $this->config->site_url());
-				}else{
-	 			//header ("Location:". $this->config->site_url());
+		if ((preg_match('/^[a-z0-9_]{3,20}$/',$login)) && (preg_match('/^[a-z0-9]{3,20}$/',$pass))){
+			if ($pass == $pass_db){
+				$newdata = array('logged_in' => TRUE, 'user_id' => $user_id);
+				$this->session->set_userdata($newdata);
+			} else {
+	 			echo "no_pass";
 	 		} 
-	
-		}else{echo "jopa";}
+		} else {
+			echo "no_pass";
+		}
 	}
 	
 	
