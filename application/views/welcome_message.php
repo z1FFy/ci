@@ -26,8 +26,6 @@ $('.btn').click(function() {
   login = $("input[name='login']").val();
   pass = $("input[name='password']").val();
 
-    
-  
   if (login.length >= 3 && pass.length >= 3) {
   $.post("site/entry",
      {
@@ -46,7 +44,9 @@ $('.btn').click(function() {
           };
     } else {
     $("#pad").html('Длина должна быть больше трех символов');
+
   }          
+
 
    
 }); 

@@ -33,7 +33,7 @@ class Upload extends CI_Controller {
 		if ($who == 'avatars') {
 			$config['upload_path'] = './uploads/avatars/';
 		}
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']	= '3000';
 		$config['max_width']  = '3024';
 		$config['max_height']  = '3068';

@@ -111,8 +111,8 @@ $('#pad').html('минимальное значение любого поля - 
 </header>
 <div align="center" id="menu">
 
-  <input type="text" name="login" onkeypress='validate(event)' class="input-small" maxlength="20" placeholder="Email">
-  <input type="password" name ="password" onkeypress='validate(event)' class="input-small"maxlength="20" placeholder="Пароль">
+  <input type="text" name="login-entry" onkeypress='validate(event)' class="input-small" maxlength="20" placeholder="Email">
+  <input type="password" name ="password-entry" onkeypress='validate(event)' class="input-small"maxlength="20" placeholder="Пароль">
 
   <button type="submit" class="btn">Войти</button>
 
@@ -126,11 +126,7 @@ $('#pad').html('минимальное значение любого поля - 
 
   <div id="body">
 
-<!-- <label class="checkbox">
-    <input type="checkbox" name="spec_user" id="p1" value="Композитор"> Композитор <br>
-    <input type="checkbox" name="spec_user" id="p2" value="Фотограф"> Фотограф <br>
-    <input type="checkbox" name="spec_user" id="p3" value="Долбоеб"> Долбоеб <br>
-</label> -->
+
 
 <select name="spec_user" size="1">
 <option value="Менеджмент">Менеджмент</option>
@@ -146,13 +142,7 @@ $('#pad').html('минимальное значение любого поля - 
 <option value="3D Графика">3D Графика</option>
 </select>
 
-<br>
-    <input type="text" name ="famil" maxlength="20" class="input-small" placeholder="Фамилия"><br>
-    <input type="text" name ="name"  maxlength="20" class="input-small" placeholder="Имя"><br>
-    <input type="text" name ="otchestvo"  maxlength="20" class="input-small" placeholder="Отчество"><br>
-    <input type="text" name ="birthday"  maxlength="20" class="input-small" placeholder="Дата рождения"><br>
-    <input type="text" name ="avatar" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Аватар"><br>
-
+ <br>
   <input type="text" name ="login" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Логин" ><br>
 <input type="text" id="mail"  name="email" onkeypress='validate(event)' maxlength="40" class="input-small" placeholder="Email"><br>
   <input type="password" name ="pass" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Пароль"><br>

@@ -59,6 +59,30 @@
 
 	}
 
+	function profile_update_form() {
+		$user_id=$this->session->userdata('user_id');
+		$profile_data = $this->db_module->get_user_by_id($user_id);
+		$profile_data_arr = array( 'profile_data' => $profile_data);
+		$this->load->view('profile_update_form',$profile_data_arr);
+
+	}
+
+
+
+		function profile_update_send(){
+		$famil = $_POST['famil'];
+		$name = $_POST['name'];
+		$otchestvo = $_POST['otchestvo'];
+		$mail = $_POST['mail'];
+		$birthday1 = $_POST['birthday1'];
+		$birthday2 = $_POST['birthday2'];
+		$birthday3 = $_POST['birthday3'];
+		$birthday = $birthday1.'.'.$birthday2.'.'.$birthday3;
+		$spec_user = $_POST['spec_user'];
+		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user);
+
+	}
+
  
 }
 ?>

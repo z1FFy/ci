@@ -147,6 +147,18 @@ function get_photo_from_albom($albom_id) {
 	}
 
 
+//добавление фото в альбом
+function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user) {
+		$this->famil = $famil;
+		$this->name  = $name;
+		$this->otchestvo  = $otchestvo;
+		$this->mail  = $mail;
+		$this->birthday  = $birthday;
+		$this->spec_user  = $spec_user;
+		$user_id = $this->session->userdata('user_id');
+		$this->db->where('user_id', $user_id);
+		$this->db->update('users', $this);
+	}
 
 	}
 	   ?>
