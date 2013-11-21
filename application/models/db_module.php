@@ -51,11 +51,6 @@ function get_podtvr() {
 		$this->login   = $_POST['login']; // please read the below note
         $this->mail = $_POST['email'];
 		$this->password = $_POST['pass'];
-		$this->famil = $_POST['famil'];
-		$this->name = $_POST['name'];
-		$this->otchestvo = $_POST['pass'];
-		$this->birthday = $_POST['birthday'];
-		$this->avatar = $_POST['avatar'];
 		$this->spec_user = $_POST['spec_user'];
 		$this->date  = date("m.d.y");
 		$data = $this->db_module->get_user($this->login);

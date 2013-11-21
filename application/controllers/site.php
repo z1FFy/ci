@@ -11,7 +11,12 @@ class Site extends CI_Controller {
 	function index() {
 		$logged = $this->session->userdata('logged_in');
 		if ($logged != TRUE) {
-		 	$this->load->view('welcome_message');
+			$title='PortfoliOnline DEV / BETA';
+			$page_content = $this->load->view('welcome_message', '', true);
+		 			$page = array(
+	               'title' => $title,
+	               'page_content' => $page_content);
+		 	$this->load->view('template',$page);
 		 } else {
 		 	$user_id=$this->session->userdata('user_id');
 		 	header ("Location:id$user_id");
@@ -21,7 +26,12 @@ class Site extends CI_Controller {
 
 	
 	function reg() {
-		$this->load->view('reg');	
+		$title='Регистрация';
+		$page_content = $this->load->view('reg', '', true);
+				 			$page = array(
+	               'title' => $title,
+	               'page_content' => $page_content);
+		$this->load->view('template',$page);	
 	}
 	function sendreg() {
 		$this->db_module->registration();
@@ -30,7 +40,10 @@ class Site extends CI_Controller {
 	function entry() {
 		$login = $_POST['login'];
 		$pass  = $_POST['pass'];
+		$user_id='';
 		$pass_db = '';
+		$allow='';
+
         $data = $this->db_module->get_user($login);
 
 		foreach ($data as $item){ 
@@ -42,11 +55,15 @@ class Site extends CI_Controller {
 				$newdata = array('logged_in' => TRUE, 'user_id' => $user_id);
 				$this->session->set_userdata($newdata);
 			} else {
-	 			echo "no_pass";
+	 			$allow= "no_pass";
 	 		} 
 		} else {
-			echo "no_pass";
+			$allow= "no_pass";
 		}
+				if ($user_id=='') {
+					$allow= "no_pass";
+				}
+		echo $allow;
 	}
 	
 	
