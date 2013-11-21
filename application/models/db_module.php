@@ -3,9 +3,9 @@ class db_module extends CI_Model {
 		public function __construct() {
     	parent::__construct();
     	$active_group = "default";
-
-$this->load->database("default");
+		$this->load->database("default");
 	}
+
 
 function get_user($login){
 	   $query = $this->db->get_where('users', array('login' => $login));
@@ -28,14 +28,22 @@ function sel_user_ava($user_id){
 }
 
 function up_user_ava($user_id,$name_photo){
+	$logged = $this->session->userdata('logged_in');
+	$result='';
+	if ($logged=TRUE) {
 		$data = array(
      'avatar' => $name_photo,
    );
 
 	$this->db->where('user_id', $user_id);
 		$this->db->update('users',$data);
-	//     echo $query->result();
+	$result='Фото загружено';
+	} else {
+		$result='Фото не загружено, прав нет(';
+
 	}
+	return $result;
+			}
 
 function get_podtvr() {
 		$this->db->select('podtvr');
@@ -83,6 +91,9 @@ function get_podtvr() {
 
 
 function send_user_photos($data) {
+	$logged = $this->session->userdata('logged_in');
+	$result='';
+	if ($logged=TRUE) {
 	$name='';
 	foreach ($data as $key => $value) {
 	if ($key == 'user_id'){
@@ -95,7 +106,11 @@ if ($key == 'name_photo') {
 		$this->id_user   =  $user_id;
         $this->url_photo = $name; 
 		$query = $this->db->insert('photos', $this);
-	    //return $query->result();
+		$result='Фото загружено!';
+	} else {
+		$result='Ошибка загрузки';
+	}
+	return $result;
 	}
 
 
@@ -106,10 +121,17 @@ if ($key == 'name_photo') {
 
 
 	function send_new_albom($albom_name) {
+		$logged = $this->session->userdata('logged_in');
+		$result='';
+		if ($logged=TRUE) {
 		$this->albom_name = $albom_name;
 		$this->user_id=$this->session->userdata('user_id');
 		$query = $this->db->insert('albom', $this);
-	    //return $query->result();
+	    $result = 'Альбом создан';
+	    } else {
+	    	$result='Ошибка прав';
+	    }
+	    return $result;
 	}
 
 	function get_albom_photos($url_id) {
@@ -119,6 +141,9 @@ if ($key == 'name_photo') {
 
 //добавление фото в альбом
 function send_photo_from_albom($albom_id, $photo_id) {
+			$logged = $this->session->userdata('logged_in');
+		$result='';
+		if ($logged=TRUE) {
 		$this->id_albom = $albom_id;
 		//$this->photo_id = $photo_id;
 		//var_dump($this->albom_id);
@@ -126,9 +151,12 @@ function send_photo_from_albom($albom_id, $photo_id) {
 
 		$this->db->where('id_photos', $photo_id);
 		$this->db->update('photos', $this);
+		$result ='Фото добавлено в альбом';
+		} else {
+			$result='Ошибка прав';
+		}
 
-
-
+		return $result;
 	    //return $query->result();
 	}
 //отображение фото в выбраном альбоме
@@ -137,13 +165,15 @@ function get_photo_from_albom($albom_id) {
 	     return $query->result();
 
 
-
 	    //return $query->result();
 	}
 
 
-//добавление фото в альбом
+//обновл профиля
 function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user) {
+		$logged = $this->session->userdata('logged_in');
+		$result='';
+		if ($logged=TRUE) {
 		$this->famil = $famil;
 		$this->name  = $name;
 		$this->otchestvo  = $otchestvo;
@@ -153,6 +183,12 @@ function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user) {
 		$user_id = $this->session->userdata('user_id');
 		$this->db->where('user_id', $user_id);
 		$this->db->update('users', $this);
+		$result='Профиль обновлен';
+	}
+		else {
+			$result='Ошибка';
+		}
+		return $result;
 	}
 
 	}

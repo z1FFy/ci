@@ -24,14 +24,16 @@ class Albom extends CI_Controller {
 function do_albom()
 	{
 		$albom_name = $_POST['albom_name'];
-		$this->db_module->send_new_albom($albom_name);
+		$res=$this->db_module->send_new_albom($albom_name);
+		echo $res;
 	}
 
 function do_img_to_albom()
 	{
 		$albom_id = $_POST['id_albom'];
 		$photo_id = $_POST['id_photos'];
-		$this->db_module->send_photo_from_albom($albom_id, $photo_id);
+		$res=$this->db_module->send_photo_from_albom($albom_id, $photo_id);
+		echo $res;
 	}
 
 function photos_in_albom()

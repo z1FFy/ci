@@ -72,9 +72,8 @@ class Upload extends CI_Controller {
 
 							
 $data_user = $this->db_module->up_user_ava($user_id,$name_photo);
-echo $data_user;
 			}
-				echo "Фото загружено";
+				echo $data_user;
 			}
 		}
 

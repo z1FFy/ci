@@ -23,7 +23,6 @@ class Site extends CI_Controller {
 		 }
 	}
 
-
 	
 	function reg() {
 		$title='Регистрация';
