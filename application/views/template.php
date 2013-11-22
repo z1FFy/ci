@@ -19,21 +19,22 @@
 </div>
 </header>
 <div align="center" id="menu">
-
-  <input type="text" name="login-entry" onkeypress='validate(event)' class="auth" maxlength="20" placeholder="Email">
-  <input type="password" name ="password-entry" onkeypress='validate(event)' class="auth"maxlength="20" placeholder="Пароль">
+   <?php if ($logged != TRUE) { ?>
+  <input type="text" name="login-entry"  onkeypress='validate(event)' class="auth" maxlength="20" placeholder="Email">
+  <input type="password" name ="password-entry"  onkeypress='validate(event)' class="auth"maxlength="20" placeholder="Пароль">
 
   <button type="submit" class="btn_entry">Войти</button>
-
+<?php } else {
+    echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a>';
+  }
+  ?>
 
 </div>
 <div id="middle-pol" align="center"><img style="" src="<?php echo $this->config->site_url() ?>images/byd.png"></div>
-
-<div align="center" id="content">
-
+<div  id="content">
 <?php echo $page_content; ?>
-
 </div>
+
 <footer> </footer>
 </body>
 </html>

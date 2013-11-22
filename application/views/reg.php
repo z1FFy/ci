@@ -1,6 +1,30 @@
+<style>	#content {
+padding-left: 20%;
+padding-right: 20%;
+text-align: left;
+padding-top: 1px;
+padding-bottom: 40px;
+background: #336aa8; /* Old browsers */
+background: -moz-linear-gradient(top, #336aa8 0%, #054e7c 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#336aa8), color-stop(100%,#054e7c)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #336aa8 0%,#054e7c 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #336aa8 0%,#054e7c 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #336aa8 0%,#054e7c 100%); /* IE10+ */
+background: linear-gradient(to bottom, #336aa8 0%,#054e7c 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#336aa8', endColorstr='#054e7c',GradientType=0 ); /* IE6-9 */
 
-  
-  <h1>Регистрация !</h1>
+	}
+	#middle-pol {
+		padding-top: 0px;
+		width: 100%;
+		height: 0px;
+		background-image: url('images/middle-bg.png');
+		visibility: hidden;
+
+	}
+</style>  
+<div align="center">
+  <p style="font-size:30px;color:#fff">Регистрация </p>
 
 <select name="spec_user" size="1">
 <option value="Менеджмент">Менеджмент</option>
@@ -26,4 +50,4 @@ height: 20px;
 width:  170px;" id="pad">  </label> 
 
  <br> <button  class="btn">Зарегестрироваться</button>
-
+</div>

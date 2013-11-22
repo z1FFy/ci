@@ -10,26 +10,36 @@ class Site extends CI_Controller {
 
 	function index() {
 		$logged = $this->session->userdata('logged_in');
-		if ($logged != TRUE) {
-			$title='PortfoliOnline DEV / BETA';
-			$page_content = $this->load->view('welcome_message', '', true);
-		 			$page = array(
-	               'title' => $title,
-	               'page_content' => $page_content);
-		 	$this->load->view('template',$page);
-		 } else {
+		$user_id='';
+		if ($logged == TRUE) {
 		 	$user_id=$this->session->userdata('user_id');
-		 	header ("Location:id$user_id");
 		 }
+		$title='PortfoliOnline DEV / BETA';
+		$page_content = $this->load->view('welcome_message', '', true);
+		$page = array(
+       'title' => $title,
+       'page_content' => $page_content,
+       'logged' => $logged,
+       'user_id' => $user_id
+       );
+		$this->load->view('template',$page);
 	}
 
 	
 	function reg() {
 		$title='Регистрация';
 		$page_content = $this->load->view('reg', '', true);
-				 			$page = array(
-	               'title' => $title,
-	               'page_content' => $page_content);
+		$logged = $this->session->userdata('logged_in');
+		$user_id='';
+		if ($logged == TRUE) {
+		 	$user_id=$this->session->userdata('user_id');
+		 }
+		$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id
+         );
 		$this->load->view('template',$page);	
 	}
 	function sendreg() {

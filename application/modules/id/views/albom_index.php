@@ -7,7 +7,7 @@
 <br>
 	<h1>Альбомы</h1>
 <br>
-	
+	<?php if ($whopage=='my') { ?>
 <!-- Добавление в альбом -->
 <form action="<?php echo $this->config->site_url()?>id<?php echo $url_id?>/albom/do_img_to_albom" method="post" accept-charset="utf-8">
 <select name = "id_albom"  size="1">
@@ -34,7 +34,7 @@
 <p><input type="submit" class="btn" value="добавить в альбом"></p>
 </select>
 </form>
-
+<?php }?>
 <!-- Просмотр  альбома -->
 <form action="<?php echo $this->config->site_url()?>id<?php echo $url_id?>/albom/photos_in_albom" method="post" accept-charset="utf-8">
 <select name = "id_albom"  size="1">

@@ -1,4 +1,4 @@
- function validate(evt) {
+function validate(evt) {
 var el = $('#mail');
 if (el.is(":focus")){
     regex =  /[0-9a-zA-Z_@.]/;
@@ -13,13 +13,12 @@ if (el.is(":focus")){
     theEvent.returnValue = false;
     if(theEvent.preventDefault) theEvent.preventDefault();
   }
-}
+} 
 
 
   
   $(document).ready(function() {
  
-
 //Reg
 $('.btn').click(function() { 
   login = $("input[name='login']").val();
@@ -68,8 +67,9 @@ $('#pad').html('минимальное значение любого поля - 
 $('.btn_entry').click(function() { 
   login = $("input[name='login-entry']").val();
   pass = $("input[name='password-entry']").val();
-
-  if (login.length >= 3 && pass.length >= 3) {
+  login_length=login.length;
+  pass_length=pass.length;
+  if (login_length >= 3 && pass_length >= 3) {
   $.post("http://localhost/ci/site/entry",
      {
        login : login, pass : pass,

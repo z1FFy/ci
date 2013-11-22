@@ -32,7 +32,9 @@
 		$photo_data = $this->db_module->get_user_photos($url_id);
 		$albom_data = $this->db_module->get_albom_photos($url_id);
 		$profile_data = $this->db_module->get_user_by_id($user_id);
-		$data = array(
+
+		$title='userpage';
+				$data = array(
 	               'user_data' => $data_user,
 	               'whopage' => $whopage,
 	               'logged' => $logged,
@@ -40,12 +42,16 @@
 	               'albom_data' => $albom_data,
 	               'photo_data' => $photo_data ,
 	               'url_id' => $url_id,
-	               'profile_data' => $profile_data
+	               'user_id' => $user_id,
+	               'profile_data' => $profile_data,
 	                       );
+				$page_content = $this->load->view('userpage', $data, true);
+				$data['page_content'] = $page_content;
+				$data['title'] = $title;
+	                       
 		if (!empty($data_user)){
 		
-		$this->load->view('userpage',$data);
-//	$this->load->view('albom_index',$albom_data_arr);
+		$this->load->view('template',$data);
 	} else {
 			echo "user not found";
 	}
