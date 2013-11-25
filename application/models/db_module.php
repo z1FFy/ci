@@ -51,11 +51,6 @@ function get_podtvr() {
 		$this->login   = $_POST['login']; // please read the below note
         $this->mail = $_POST['email'];
 		$this->password = $_POST['pass'];
-		$this->famil = $_POST['famil'];
-		$this->name = $_POST['name'];
-		$this->otchestvo = $_POST['pass'];
-		$this->birthday = $_POST['birthday'];
-		$this->avatar = $_POST['avatar'];
 		$this->spec_user = $_POST['spec_user'];
 		$this->date  = date("m.d.y");
 		$data = $this->db_module->get_user($this->login);
@@ -68,7 +63,7 @@ function get_podtvr() {
 		}
 		//var_dump($this->password);
 		// провеяем логин пароль и имейл на наличие недопустимых символов
-		if ((preg_match('/^[a-z0-9_.]{3,20}$/',$this->login)) && (preg_match('/^[a-z0-9_@-]{3,20}$/',$this->mail)) 
+		if ((preg_match('/^[a-z0-9_.]{3,20}$/',$this->login)) && (preg_match('/^[a-z0-9_.@-]{3,20}$/',$this->mail)) 
 			&& (preg_match('/^[a-z0-9]{3,20}$/',$this->password)) ){
 
 		if ($this->login != $user_login && $this->mail != $user_mail) {
@@ -159,6 +154,39 @@ function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user) {
 		$this->db->where('user_id', $user_id);
 		$this->db->update('users', $this);
 	}
+
+function send_message($id_photos, $messages, $user_id){
+	$this->photos_id = $id_photos;
+	$this->messages = $messages;
+	$this->user_id = $user_id;
+	$query = $this->db->insert('chat_photos', $this); 
+
+}
+
+function view_message($id_photos){
+	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
+	$this->db->select('*');
+	$this->db->from('users','chat_photos');
+	$this->db->join('chat_photos', 'chat_photos.user_id = users.user_id');
+	$this->db->where('chat_photos.photos_id', $id_photos); 
+	$query = $this->db->get();
+
+
+	 return $query->result();
+
+}
+
+
+function get_chat_user($message_data){
+		foreach ($message_data as $item){ 
+			$id_user = $item->user_id;
+		}
+
+	 $query = $this->db->get_where('users', array('user_id' => $user_id));
+	     return $query->result();
+}
+
+
 
 
 

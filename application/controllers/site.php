@@ -11,7 +11,6 @@ class Site extends CI_Controller {
 	function index() {
 		$logged = $this->session->userdata('logged_in');
 		if ($logged != TRUE) {
-		 	echo "вы не авторизованы<br>";
 		 	$this->load->view('welcome_message');
 		 } else {
 		 	$user_id=$this->session->userdata('user_id');
