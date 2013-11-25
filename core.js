@@ -113,8 +113,15 @@ $('.btn_entry').click(function() {
         upload(src);
        }); 
 
+       $('.photo').click(function() { 
+        photo = $(this).attr("link");
+        // alert(photo);
+        var src = photo;
+        upload(src);
+       }); 
+
       function upload (src) {
-          $.modal('<iframe src="' + src + '" height="350" width="430"  scrolling="no" style="border:0">', {
+          $.modal('<iframe src="' + src + '" height="500" width="100%"  scrolling="auto" style="border:0">', {
           closeHTML:"",
           containerCss:{
             backgroundColor:"#fff", 
