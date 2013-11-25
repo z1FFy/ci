@@ -23,6 +23,9 @@
 		height: 41px;
 		background-image: url('images/menu-bg.png');
 	}
+	#menu a {
+		color: #fff;
+	}
 
 	#middle-pol {
 		padding-top: 1px;
@@ -32,13 +35,13 @@
 	}
 
 	#content {
-padding-left: 20%;
-padding-right: 20%;
-margin-bottom: 2px;
-text-align: left;
-padding-top: 1px;
-padding-bottom: 40px;
-background: #fff;
+		padding-left: 20%;
+		padding-right: 20%;
+		margin-bottom: 2px;
+		text-align: left;
+		padding-top: 1px;
+		padding-bottom: 40px;
+		background: #fff;
 	}
 
 .but {

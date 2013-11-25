@@ -43,12 +43,17 @@ class Site extends CI_Controller {
 		$this->load->view('template',$page);	
 	}
 	function sendreg() {
+		if (!empty($_POST)){
 		$this->db_module->registration();
+		} else {
+			header ("Location:". $this->config->site_url());
+		}
 	}
 	
 	function entry() {
-		$login = $_POST['login'];
-		$pass  = $_POST['pass'];
+		if (!empty($_POST)){
+			$login = $_POST['login'];
+			$pass  = $_POST['pass'];
 		$user_id='';
 		$pass_db = '';
 		$allow='';
@@ -73,6 +78,9 @@ class Site extends CI_Controller {
 					$allow= "no_pass";
 				}
 		echo $allow;
+		} else {
+			header ("Location:". $this->config->site_url());
+		}
 	}
 	
 	
