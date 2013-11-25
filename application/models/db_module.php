@@ -3,7 +3,7 @@ class db_module extends CI_Model {
 		public function __construct() {
     	parent::__construct();
     	$active_group = "default";
-		$this->load->database("default");
+$this->load->database("default");
 	}
 
 
@@ -190,6 +190,41 @@ function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user) {
 		}
 		return $result;
 	}
+
+function send_message($id_photos, $messages, $user_id){
+	$this->photos_id = $id_photos;
+	$this->messages = $messages;
+	$this->user_id = $user_id;
+	$query = $this->db->insert('chat_photos', $this); 
+
+}
+
+function view_message($id_photos){
+	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
+	$this->db->select('*');
+	$this->db->from('users','chat_photos');
+	$this->db->join('chat_photos', 'chat_photos.user_id = users.user_id');
+	$this->db->where('chat_photos.photos_id', $id_photos); 
+	$query = $this->db->get();
+
+
+	 return $query->result();
+
+}
+
+
+function get_chat_user($message_data){
+		foreach ($message_data as $item){ 
+			$id_user = $item->user_id;
+		}
+
+	 $query = $this->db->get_where('users', array('user_id' => $user_id));
+	     return $query->result();
+}
+
+
+
+
 
 	}
 	   ?>
