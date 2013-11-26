@@ -121,12 +121,12 @@ $('.btn_entry').click(function() {
        }); 
 
       function upload (src) {
-          $.modal('<iframe src="' + src + '" height="500" width="100%"  scrolling="auto" style="border:0">', {
+          $.modal('<iframe src="' + src + '" height="600" width="100%"  scrolling="auto" style="border:0">', {
           closeHTML:"",
           containerCss:{
             backgroundColor:"#fff", 
             borderColor:"#fff", 
-            height:470, 
+             
             padding:0, 
             width:550
           },
