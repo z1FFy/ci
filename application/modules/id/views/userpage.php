@@ -1,3 +1,13 @@
+<style>
+    #middle-pol {
+    padding-top: 0px;
+    width: 100%;
+    height: 0px;
+    visibility: hidden;
+
+  }
+</style>
+
 <?php
 $whostring_title='';
 foreach ($user_data as $item){ 

@@ -18,7 +18,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#336aa8', end
 		padding-top: 0px;
 		width: 100%;
 		height: 0px;
-		background-image: url('images/middle-bg.png');
 		visibility: hidden;
 
 	}
@@ -65,6 +64,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#336aa8', end
  <br> <label style="margin-left: 30px;
 height: 20px;
 width:  170px;" id="pad">  </label> 
-
+<br><div id="sogl"><a style="color:white" href="#">Пользовательское соглашение</a></div>
  <br> <button  class="btn">Зарегестрироваться</button>
 </div>

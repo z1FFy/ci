@@ -42,6 +42,9 @@ class Site extends CI_Controller {
          );
 		$this->load->view('template',$page);	
 	}
+	function licension () {
+		$this->load->view('licension');
+	}
 	function sendreg() {
 		if (!empty($_POST)){
 		$this->db_module->registration();

@@ -22,6 +22,9 @@
 	function index() {
 		$url_id= $this->_get_url_id();
 	 	$user_id=$this->session->userdata('user_id');
+	 	if ($this->uri->segment(1) == 'id') {
+	 		$url_id=$user_id;
+	 	}
 	 	$data_user = $this->db_module->get_user_by_id($url_id);
 		$logged = $this->session->userdata('logged_in');
 		$podtvr=0;
@@ -50,8 +53,11 @@
 				$data['title'] = $title;
 	                       
 		if (!empty($data_user)){
-		
+		if ($url_id == 'id') {
+			header ("Location:". $this->config->site_url().'id'.$user_id); 
+		} else {
 		$this->load->view('template',$data);
+	}
 	} else {
 			echo "user not found";
 	}

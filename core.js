@@ -18,6 +18,26 @@ if (el.is(":focus")){
 
   
   $(document).ready(function() {
+//Include====================
+var javascripts = [];
+function includeJS (path) {
+  //alert('пробуем подключить'+path);
+  for (var i=0; i<javascripts.length; i++) {
+    if(path == javascripts[i]){
+      // alert('JavaScript: ['+path+'] уже был подключен ранее!');
+      return false;
+    }
+  }
+  javascripts.push(path);
+  $.ajax({
+     url: path,
+     dataType: "script",// при типе script, JS сам инклюдится и воспроизводится
+     async: false
+   });
+}
+includeJS('/ci/config.js');
+///////////////////////////
+
   $(window).on('resize', function(e) {
   var cssObj = {
         'width' : '60%' ,  'height' : '80%'
@@ -58,7 +78,7 @@ $('#pad').html('минимальное значение любого поля - 
      $('#pad').html('символы не те');
   }else{
 
-     location.href='/ci';
+     location.href='/'+site;
 
 
 }
@@ -76,7 +96,7 @@ $('.btn_entry').click(function() {
   login_length=login.length;
   pass_length=pass.length;
   if (login_length >= 3 && pass_length >= 3) {
-  $.post("http://localhost/ci/site/entry",
+  $.post(site_full+"/site/entry",
      {
        login : login, pass : pass,
      },
@@ -89,7 +109,7 @@ $('.btn_entry').click(function() {
   if (data == 'no_pass') {
    alert('Вы не правильно ввели данные');
   } else { 
-   window.location.replace("/ci");
+   window.location.replace(site_full+"/id");
      }
    
           };
@@ -107,15 +127,19 @@ $('.btn_entry').click(function() {
 
  //Upload
     $('#upload_foto').click(function() { 
-        var src = "http://localhost/ci/id/upload?who=photos";
+        var src = site_full+"/id/upload?who=photos";
         upload(src);
        }); 
       $('#upload_ava').click(function() { 
-        var src = "http://localhost/ci/id/upload?who=avatars";
+        var src = site_full+"/id/upload?who=avatars";
         upload(src);
        }); 
       $('#red-prof').click(function() { 
-        var src = "http://localhost/ci/id/profile_update_form";
+        var src = site_full+"/id/profile_update_form";
+        upload(src);
+       }); 
+            $('#sogl').click(function() { 
+        var src = site_full+"/site/licension";
         upload(src);
        }); 
 

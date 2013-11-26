@@ -1,6 +1,10 @@
- body {
+body {
  	margin: 0px;
  	font-family: Verdana;
+ 	background-color: #054E7C;
+ 	}
+ 	a {
+ 		color: #054E7C;
  	}
  	.title {
 		margin-right: -20%;
@@ -113,5 +117,5 @@ footer {
 }
 
 #simplemodal-overlay {background-color:#000;}
-#simplemodal-container {background-color:#333; border:8px solid #444; padding:12px;width:60%;height:80%;min-height: 400px;}
-#simplemodal-container{}
+#simplemodal-container {background-color:#333; border:8px solid #444; padding:12px;width:60%;height:100%;min-height: 400px;}
+#simplemodal-data {height: 99%}

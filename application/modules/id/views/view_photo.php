@@ -11,7 +11,7 @@
 	$photo = $_GET['photo'];
 	$id_photos = $_GET['id_photos'];
 	$id_user = $_GET['id_user'];
-	echo '<div align="center"><img src="'.$this->config->site_url().'uploads/photos/'.$photo.'" width="60%" height="60%"></div>'; 
+	echo '<div align="center"><img src="'.$this->config->site_url().'uploads/photos/'.$photo.'" width="70%"></div>'; 
 	?>
 <br>
 <?php 
