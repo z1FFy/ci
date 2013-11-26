@@ -102,9 +102,13 @@ function send_user_photos($data) {
 if ($key == 'name_photo') {
 	$name=$value;
 }
+if ($key == 'photos_name') {
+	$photos_name=$value;
+}
 	}
 		$this->id_user   =  $user_id;
-        $this->url_photo = $name; 
+        $this->url_photo = $name;
+        $this->photos_name = $photos_name; 
 		$query = $this->db->insert('photos', $this);
 		$result='Фото загружено!';
 	} else {
@@ -195,6 +199,7 @@ function send_message($id_photos, $messages, $user_id){
 	$this->photos_id = $id_photos;
 	$this->messages = $messages;
 	$this->user_id = $user_id;
+	$this->message_date  = date("m.d.y");
 	$query = $this->db->insert('chat_photos', $this); 
 
 }
@@ -211,17 +216,6 @@ function view_message($id_photos){
 	 return $query->result();
 
 }
-
-
-function get_chat_user($message_data){
-		foreach ($message_data as $item){ 
-			$id_user = $item->user_id;
-		}
-
-	 $query = $this->db->get_where('users', array('user_id' => $user_id));
-	     return $query->result();
-}
-
 
 
 
