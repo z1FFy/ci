@@ -4,6 +4,7 @@
 		public function __construct() {
     	parent::__construct();
     		$this->load->model('db_module');
+    		$this->load->library('session');
 	}
 
 

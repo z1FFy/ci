@@ -32,7 +32,7 @@
 		$photo_data = $this->db_module->get_user_photos($url_id);
 		$albom_data = $this->db_module->get_albom_photos($url_id);
 		$profile_data = $this->db_module->get_user_by_id($user_id);
-
+		$message_data = $this->db_module->view_message($id_photos);
 		$title='userpage';
 				$data = array(
 	               'user_data' => $data_user,
@@ -44,6 +44,7 @@
 	               'url_id' => $url_id,
 	               'user_id' => $user_id,
 	               'profile_data' => $profile_data,
+	               'message_data' => $message_data,
 	                       );
 				$page_content = $this->load->view('userpage', $data, true);
 				$data['page_content'] = $page_content;
