@@ -27,6 +27,8 @@ class Upload extends CI_Controller {
 		$logged = $this->session->userdata('logged_in');
 		if ($logged == TRUE) {
 			$who = $_POST['who'];
+			$photos_name = $_POST['photos_name'];
+
 		if ($who == 'photos') {
 			$config['upload_path'] = './uploads/photos/';
 		}
@@ -48,7 +50,7 @@ class Upload extends CI_Controller {
 		}
 		else
 		{
-			$data = array('upload_data' => $this->upload->data(),'who' => $who);
+			$data = array('upload_data' => $this->upload->data(),'who' => $who,'photos_name' => $photos_name);
 
 			$this->load->view('upload_success', $data);
 		}
@@ -60,11 +62,12 @@ class Upload extends CI_Controller {
 			if ($logged == TRUE) {
 			$user_id=$this->session->userdata('user_id');
 			$name_photo  = $_GET['name'];
-
+			$photos_name = $_GET['photos_name'];
 			if ($who == 'photos') {
 				$data = array(
 	               'user_id' => $user_id,
-	               'name_photo' => $name_photo
+	               'name_photo' => $name_photo,
+	               'photos_name'=> $photos_name
 	                       );
 				$data_user = $this->db_module->send_user_photos($data);
 			}

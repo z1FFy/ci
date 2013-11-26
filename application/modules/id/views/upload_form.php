@@ -11,7 +11,7 @@ $who = $_GET['who'];
 
 <form action="<?php echo $this->config->site_url() ?>id/upload/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
-
+<input type="text" name="photos_name" size="20" />
 <input type="file" name="userfile" size="20" />
  <input type="hidden" name="who" value="<?php echo $who; ?>">
 <br /><br />

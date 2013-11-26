@@ -102,9 +102,13 @@ function send_user_photos($data) {
 if ($key == 'name_photo') {
 	$name=$value;
 }
+if ($key == 'photos_name') {
+	$photos_name=$value;
+}
 	}
 		$this->id_user   =  $user_id;
-        $this->url_photo = $name; 
+        $this->url_photo = $name;
+        $this->photos_name = $photos_name; 
 		$query = $this->db->insert('photos', $this);
 		$result='Фото загружено!';
 	} else {
