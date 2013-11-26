@@ -18,7 +18,13 @@ if (el.is(":focus")){
 
   
   $(document).ready(function() {
- 
+  $(window).on('resize', function(e) {
+  var cssObj = {
+        'width' : '60%' ,  'height' : '80%'
+      }
+      $('#simplemodal-container').css(cssObj);
+});
+
 //Reg
 $('.btn').click(function() { 
   login = $("input[name='login']").val();
@@ -120,15 +126,17 @@ $('.btn_entry').click(function() {
         upload(src);
        }); 
 
+
+
       function upload (src) {
-          $.modal('<iframe src="' + src + '" height="500" width="100%"  scrolling="auto" style="border:0">', {
+          $.modal('<iframe src="' + src + '" height="100%" width="100%"  scrolling="auto" style="border:0">', {
           closeHTML:"",
           containerCss:{
             backgroundColor:"#fff", 
             borderColor:"#fff", 
-            height:470, 
-            padding:0, 
-            width:550
+            height:'80%', 
+            padding:10, 
+            width:'60%'
           },
           overlayClose:true
         });
