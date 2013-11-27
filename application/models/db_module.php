@@ -142,7 +142,10 @@ if ($key == 'photos_name') {
 		 $query = $this->db->get_where('albom', array('user_id' => $url_id));
 	     return $query->result();
 	}
-
+	function get_photos_by_id($photo_id) {
+		 $query = $this->db->get_where('photos', array('id_photos' => $photo_id));
+	     return $query->result();
+	}
 //добавление фото в альбом
 function send_photo_from_albom($albom_id, $photo_id) {
 			$logged = $this->session->userdata('logged_in');

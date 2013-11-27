@@ -10,7 +10,7 @@ if (el.is(":focus")){
   var key = theEvent.keyCode || theEvent.which;
   key = String.fromCharCode( key );
   if( !regex.test(key) ) {
-    theEvent.returnValue = false;
+    theEvent.preventDefault = false;
     if(theEvent.preventDefault) theEvent.preventDefault();
   }
 } 
@@ -136,6 +136,11 @@ $('.btn_entry').click(function() {
        }); 
       $('#red-prof').click(function() { 
         var src = site_full+"/id/profile_update_form";
+        upload(src);
+       }); 
+            $('#prof').click(function() { 
+        prof = $(this).attr("link");
+        var src = prof;
         upload(src);
        }); 
             $('#sogl').click(function() { 

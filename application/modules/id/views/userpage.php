@@ -6,71 +6,66 @@
     visibility: hidden;
 
   }
+  #content {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
 </style>
+<script>
+    $(window).load(function() {
+      var ava = $("#ava");
+      ava_w=parseInt(ava.width());
 
+      ava_h=parseInt(ava.height());
+      //alert(ava_h);
+      if (ava_h>ava_w) {
+        $('#ava').attr('height', '');
+      } else {
+        $('#ava').attr('height', '200');
+                $('#ava').attr('width', '150%');
+      }
+ });
+</script>
 <?php
 $whostring_title='';
 foreach ($user_data as $item){ 
-			$login=$item->login;
+			$name=$item->name;
 			$user_id=$item->user_id;
 			$avatar_url=$item->avatar;
 		}
 		if ($whopage=='my') {
-$whostring='своей';
+$whostring='Я';
 $whostring_title="Моя";
 foreach ($user_data as $item){ 
-			$podtvr=$item->podtvr;
 		}
 } else {
-	$whostring='чужой';
+	$whostring='';
 }
-
+echo '<div id="left_user">';
     if ($logged != TRUE) {
-      echo 'вы не авторизованы<br>';
+     // echo 'вы не авторизованы<br>';
       ?>
-      <a href="site/reg" class="but"><h1>Регистрация</h1></a><br> <?php
+     <!--  <a href="site/reg">Регистрация</a><br>  -->
+
+     <?php
+
       $exit='';
-     } else {
-      echo 'вы авторизованы';
-      $exit='<a href="'.$this->config->site_url().'site/vyhod">Exit</a>';
-      echo '   '.$exit;
-      if ($podtvr == 0) {
-        echo '<br>Вы не подтвердили ваш Email';
-      }
-    if($podtvr == 1) {
-        echo '<br>Ваш Email подтвержден';
-      } 
      }
 
-      echo '<br>Имя пользователя этой страницы - '.$login;
-      echo '<br><div class="frame"><img  width="200" src="'.$this->config->site_url().'uploads/avatars/'.$avatar_url.'" ></div>';
+      echo '<br>'.$whostring.' '.$name;
+      echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/'.$avatar_url.'" ></div>';
 ?>
-  <h1>Вы находитесь на <?php echo $whostring;?> cтранице</h1>
- <br>Профиль <br>
-
-<ul>
-<?php foreach ($profile_data as $item):?>
 
 
-  <li>Фамилия: <?php echo $item->famil;?></li>  
-  <li>Имя: <?php echo $item->name;?> </li>
-  <li>Отчество: <?php echo $item->otchestvo;?></li>
-  <li>Почта: <?php echo $item->mail;?></li>
-  <li>Дата Рождения: <?php echo $item->birthday;?></li>
-  <li>Дата регистрации: <?php echo $item->date;?></li>
-  <li>Специализация: <?php echo $item->spec_user;?></li>
-
-<?php endforeach; ?>
-</ul>
 
     <?php if ($whopage == 'my') {
     echo '<br>  <a id="upload_ava">Закачать аватар</a>';
     echo '<br><a id="upload_foto">Закачать фотку</a>';
-    echo "<br><a href='".$this->config->site_url() ."id".$user_id."/photos'>Мой Альбом</a>";
-    echo "<br><a href='".$this->config->site_url() ."id".$user_id."/profile'>Профиль</a>";
-    echo "<br><a id='red-prof' >Редактировать профиль</a>";
+    echo "<br><a id='prof' link='".$this->config->site_url() ."id".$user_id."/profile'>Профиль</a>";
+
 
 }
+echo '</div>';
    $this->load->view('albom_index',$user_data); 
 ?>
 <!-- Профиль! -->

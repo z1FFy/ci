@@ -6,7 +6,7 @@
 
 <meta charset="utf-8">
 
-	Профиль <br>
+	<p>Редактирование профиля</p> <br>
 
 <form action="<?php echo $this->config->site_url() ?>id/profile_update_send" method="post" accept-charset="utf-8">
 	

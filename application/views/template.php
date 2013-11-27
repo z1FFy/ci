@@ -26,6 +26,7 @@
   <button type="submit" class="btn_entry">Войти</button>
 <?php } else {
     echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a>';
+     echo '<a style="margin-left: 10px;" href="'.$this->config->site_url().'site/vyhod">Exit</a>';
   }
   ?>
 

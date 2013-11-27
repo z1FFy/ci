@@ -96,14 +96,7 @@
 	}
 
 
-	function view_photo(){
-		
-		$id_photos = $_GET['id_photos'];
-		$message_data = $this->db_module->view_message($id_photos);
-		$message_data_arr = array( 'message_data' => $message_data);
-		$this->load->view('view_photo',$message_data_arr);
-		
-	}
+
 
  
 }

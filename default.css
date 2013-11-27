@@ -48,6 +48,20 @@ body {
 		background: #fff;
 	}
 
+	#left_user {
+		float: left;
+		width: 250px;
+	}
+	#polosa {
+		position: absolute;
+		height: 100%;
+		width: 2px;
+		background-color: #054E7C;
+		margin-left: 220px;
+	}
+	#right_user {
+		width: 90%;
+	}
 .but {
 	-moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #dcecfb;
@@ -117,7 +131,8 @@ footer {
 }
 
 #simplemodal-overlay {background-color:#000;}
-#simplemodal-container {background-color:#333; border:8px solid #444; padding:12px;width:60%;height:100%;min-height: 400px;}
+#simplemodal-container {box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+   background-color:#333; border:8px solid #444; padding:12px;/*width:60%;height:100%;*/min-height: 400px;}
 #simplemodal-data {height: 99%}
 .frame{
     display:inline-block;

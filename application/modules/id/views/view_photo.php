@@ -2,6 +2,37 @@
 <head>
 	<title>Фото:</title>
 <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script> 
+<style>
+	.frame{
+    display:inline-block;
+    position:relative;
+    overflow:hidden;
+    width: 60px;
+    height: 60px;
+}
+.frame>img{
+    vertical-align:top;
+}
+.frame, .frame:before{
+    -moz-border-radius:100em;
+    border-radius:100em;
+    
+}
+.frame>img{
+    -webkit-border-radius:100em;   
+}
+.frame:before{
+    content:'';
+    display:block;
+    position:absolute;
+    left:0;
+    right:0;
+    width:100%;
+    height:100%;
+    margin:-10em;
+    border:10em solid #333;
+}
+</style>
 <script>
 $(document).ready(function() {
  
@@ -33,24 +64,47 @@ function onAjaxSuccess(data)
 
 });
 
+
+    $(window).load(function() {
+      var photo = $("#photo");
+      photo_w=parseInt(photo.width());
+      r_photo_w=$('#photo').attr('r_width');
+      photo_h=parseInt(photo.height());
+      r_photo_h=$('#photo').attr('r_height');
+      if (photo_w>r_photo_w) {
+        $('#photo').attr('width', r_photo_w);
+    }
+      // } else {
+      //   $('#ava').attr('height', '200');
+      // }
+ });
+
+
 </script>
 </head>
 <body>
 <div class="block3">
 <meta charset="utf-8">
 	<?php 
+	foreach ($photos_data as $item){ 
+	$photos_name=$item->photos_name;
+	}
 	$photo = $_GET['photo'];
 	$id_photos = $_GET['id_photos'];
 	$id_user = $_GET['id_user'];
-
-	echo '<div width="500px" align="center"><img style="max-width:100%;max-height:100%" src="'.$this->config->site_url().'uploads/photos/'.$photo.'" width="80%"></div>'; 
+	$img_path = $this->config->site_url().'uploads/photos/'.$photo;
+	$arr = GetImageSize($img_path);
+	$width=$arr[0]; // ширина
+	$height=$arr[1]; // высота
+	echo $photos_name;
+	echo '<div  width="500px" align="center"><img r_width="'.$width.'"r_height="'.$height.'" id="photo" style="" src="'.$img_path.'" width="80%"></div>'; 
 	?>
 <br>
 <?php 
 //var_dump($this->session);
 		foreach ($message_data as $item){ 
-			
-			 echo '<div class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" width="100"></div><div class="block2">'.$item->famil.' '; echo $item->name.' - ';echo $item->messages.' : '; echo $item->message_date;
+
+			 echo '<div class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame" width="100"><br></div><div class="block2">'.$item->famil.' '; echo $item->name.' - ';echo $item->messages.' : '; echo $item->message_date;
 
 			?> </div><br>  
 			<?php
