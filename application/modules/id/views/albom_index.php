@@ -1,9 +1,4 @@
-<html>
-<head>
-<title>Форма загрузки</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-</head>
-<body>
+
 <br>
 	<h1>Альбомы</h1>
 <br>
@@ -52,14 +47,10 @@
 
 <!-- vse foto -->
 <?php foreach ($photo_data as $item){ 
-			echo $item->url_photo.'<br><a class="photo" link="'.$this->config->site_url().'id/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'">
-			<img src="'.$this->config->site_url().'uploads/photos/'.$item->url_photo.'" width="400"></a>';
+			echo $item->photos_name.'<a class="photo" link="'.$this->config->site_url().'id/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'">
+			<img src="'.$this->config->site_url().'uploads/photos/'.$item->url_photo.'" width="200"></a>';
 		}	?>
 
 
 
 
-
-
-</body>
-</html>

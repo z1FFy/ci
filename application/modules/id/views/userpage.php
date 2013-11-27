@@ -43,7 +43,7 @@ foreach ($user_data as $item){
      }
 
       echo '<br>Имя пользователя этой страницы - '.$login;
-      echo '<br><img src="'.$this->config->site_url().'uploads/avatars/'.$avatar_url.'" width="300">';
+      echo '<br><div class="frame"><img  width="200" src="'.$this->config->site_url().'uploads/avatars/'.$avatar_url.'" ></div>';
 ?>
   <h1>Вы находитесь на <?php echo $whostring;?> cтранице</h1>
  <br>Профиль <br>
