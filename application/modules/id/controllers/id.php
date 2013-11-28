@@ -68,8 +68,10 @@
 
 	function profile() {
 		$user_id=$this->session->userdata('user_id');
-		$profile_data = $this->db_module->get_user_by_id($user_id);
-		$profile_data_arr = array( 'profile_data' => $profile_data);
+		$url_id= $this->_get_url_id();
+		$whopage= $this->_get_whopage($url_id,$user_id);
+		$profile_data = $this->db_module->get_user_by_id($url_id);
+		$profile_data_arr = array( 'profile_data' => $profile_data, 'whopage' => $whopage);
 		$this->load->view('profile',$profile_data_arr);
 
 	}

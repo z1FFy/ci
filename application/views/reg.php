@@ -60,10 +60,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#336aa8', end
   <input type="text" name ="login" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Логин" ><br>
 <input type="text" id="mail"  name="email" onkeypress='validate(event)' maxlength="40" class="input-small" placeholder="Email"><br>
   <input type="password" name ="pass" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Пароль"><br>
-    <input type="password" name ="password2" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Повторите Пароль">
+    <input type="password" name ="password2" onkeypress='validate(event)' maxlength="20" class="input-small" style="margin-left: 13px;" placeholder="Повторите Пароль">
  <br> <label style="margin-left: 30px;
 height: 20px;
 width:  170px;" id="pad">  </label> 
 <br><div id="sogl"><a style="color:white" href="#">Пользовательское соглашение</a></div>
- <br> <button  class="btn">Зарегестрироваться</button>
+ <br> <button  class="btn">Зарегистрироваться</button>
 </div>

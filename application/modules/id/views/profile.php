@@ -28,7 +28,10 @@ $podtvr=$item->spec_user;
 	<li>Специализация: <?php echo $item->spec_user;?></li>
 
 <?php
+
+if ($whopage == 'my') {
  echo "<br><a id='red-prof' link='".$this->config->site_url() ."id".$user_id."/profile' >Редактировать профиль</a>";
+
 
 if ($podtvr == 0) {
         echo '<br>Вы не подтвердили ваш Email';
@@ -37,6 +40,7 @@ if ($podtvr == 0) {
         echo '<br>Ваш Email подтвержден';
       } 
 
+}
 }
 ?>
 </ul>

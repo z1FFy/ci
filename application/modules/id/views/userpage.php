@@ -10,6 +10,12 @@
     padding-left: 10%;
     padding-right: 10%;
   }
+  #menu {
+    height: 39px;
+  }
+  body {
+    background-color: #fff;
+  }
 </style>
 <script>
     $(window).load(function() {
@@ -60,10 +66,10 @@ echo '<div id="left_user">';
     <?php if ($whopage == 'my') {
     echo '<br>  <a id="upload_ava">Закачать аватар</a>';
     echo '<br><a id="upload_foto">Закачать фотку</a>';
-    echo "<br><a id='prof' link='".$this->config->site_url() ."id".$user_id."/profile'>Профиль</a>";
+  
 
 
-}
+}  echo "<br><a id='prof' link='".$this->config->site_url() ."id".$url_id."/profile'>Профиль</a>";
 echo '</div>';
    $this->load->view('albom_index',$user_data); 
 ?>

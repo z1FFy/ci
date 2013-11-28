@@ -1,8 +1,10 @@
+
 body {
  	margin: 0px;
  	font-family: Verdana;
- 	background-color: #054E7C;
+ 	background-color: #054E7C;height: 100%;
  	}
+ 	html {height: 100%}
  	a {
  		color: #054E7C;
  	}
@@ -24,7 +26,7 @@ body {
 	#menu {
 		padding-top: 15px;
 		width: 100%;
-		height: 39px;
+		height: 42px;
 		background-image: url('images/menu-bg.png');
 	}
 	#menu a {
@@ -47,6 +49,7 @@ body {
 		padding-bottom: 40px;
 		background: #fff;
 		min-height: 400px;
+		height: 100%;
 	}
 
 	#left_user {
@@ -54,12 +57,15 @@ body {
 		width: 250px;
 	}
 	#polosa {
-		position: absolute;
-		height: 100%;
-		width: 2px;
-		background-color: #054E7C;
-		margin-left: 220px;
-		margin-top: -2px;
+position: absolute;
+width: 2px;
+background-color: #054E7C;
+margin-right: 10px;
+margin-top: -2px;
+float: left;
+bottom: -150px;
+top: 185px;
+margin-left: 220px;
 	}
 	#right_user {
 		width: 80%;
@@ -125,12 +131,16 @@ select{
 	margin-left: 40px;
 }
 
-footer {
+#footer {
 	width: 100%;
 	background-color: #054E7C;
-	height: 190px;
-	 position: relative;
 	 border-style: 1px solid #fff;
+	 color: #fff;
+	 padding-top: 70px;
+	 position: relative;  
+ height: 80px;  
+ margin-top: -80px;  
+
 }
 
 #simplemodal-overlay {background-color:#000;}
