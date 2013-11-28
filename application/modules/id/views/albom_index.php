@@ -46,7 +46,9 @@
 
 			echo '<a class="photo" link="'.$this->config->site_url().'id/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'">
 			<img style="border:4px solid #a9d5f2" src="'.$this->config->site_url().'uploads/photos/'.$item->url_photo.'" width="" height="150"></a>';
-			echo '<a class="like_photos" link='.$item->id_photos.'>LIKE</a> Понравилось: '.$item->like_photos.'<br>';
+			echo '<a class="like_photos" link='.$item->id_photos.'>LIKE</a> Понравилось: '.$item->like_photos.
+			'  <a class="delete_photos" link='.$item->id_photos.'>Удалить</a>'.
+			'<br>';
 
 		}	?>
 
