@@ -155,6 +155,33 @@ $('.btn_entry').click(function() {
         upload(src);
        }); 
 
+       $('.like_photos').click(function() { 
+        like_photos = $(this).attr("link");
+      $.post(site_full+"/id/like_photos",
+         { like_photos : like_photos,
+              },
+         onAjaxSuccess
+         );
+      });
+
+      function onAjaxSuccess(data)
+      {
+
+    location.reload();
+    //alert("Like добавлен!");
+
+      };
+
+
+
+
+    
+
+
+
+
+
+
 
 
       function upload (src) {

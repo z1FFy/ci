@@ -1,3 +1,10 @@
+<script>
+  $(document).ready(function() {
+ 	$('#soglchek').click(function() {
+ 		$('#reg').removeAttr('disabled');
+ 	});
+  });
+</script>
 <style>	#content {
 padding-left: 20%;
 padding-right: 20%;
@@ -64,6 +71,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#336aa8', end
  <br> <label style="margin-left: 30px;
 height: 20px;
 width:  170px;" id="pad">  </label> 
-<br><div id="sogl"><a style="color:white" href="#">Пользовательское соглашение</a></div>
- <br> <button  class="btn">Зарегистрироваться</button>
+<br> <div id="sogl"><a style="color:white" href="#">Пользовательское соглашение</a><br></div><input id="soglchek" type="checkbox">С правилами ознакомлен(а)
+ <br> <button disabled="true" id="reg"  class="btn">Зарегистрироваться</button>
 </div>

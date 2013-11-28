@@ -48,8 +48,8 @@ body {
 		padding-top: 1px;
 		padding-bottom: 40px;
 		background: #fff;
-		min-height: 400px;
-		height: 100%;
+		min-height: 550px;
+
 	}
 
 	#left_user {
@@ -63,12 +63,12 @@ background-color: #054E7C;
 margin-right: 10px;
 margin-top: -2px;
 float: left;
-bottom: -150px;
+height: 90%;
 top: 185px;
 margin-left: 220px;
+min-height: 510px;
 	}
 	#right_user {
-		width: 80%;
 		margin-left: 250px;
 	}
 .but {
@@ -139,7 +139,7 @@ select{
 	 padding-top: 70px;
 	 position: relative;  
  height: 80px;  
- margin-top: -80px;  
+/* margin-top: -91px;  */
 
 }
 

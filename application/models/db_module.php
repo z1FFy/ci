@@ -221,6 +221,39 @@ function view_message($id_photos){
 }
 
 
+function send_like($like_photos, $like_num, $like_num_true){
+	if($like_num_true == '1')
+	{
+		$this->like_photos = $like_num-'1';
+	}else
+	{
+		$this->like_photos = $like_num+'1';
+		$this1->user_id = $this->session->userdata('user_id');
+		$this1->photo_id = $like_photos;
+		$this->db->where('photo_id', $like_photos);
+		$this->db->insert('like_photo', $this1);
+	}
+	$this->db->where('id_photos', $like_photos);
+	$this->db->update('photos', $this);
+	
+}
+
+function view_like($like_photos){
+
+	$query = $this->db->get_where('photos', array('id_photos' => $like_photos));
+    return $query->result();
+
+}
+
+function view_like_user($like_photos){
+	$query = $this->db->get_where('like_photo', array('photo_id' => $like_photos));
+    return $query->result();
+}
+
+function dell_like($like_photos){
+	$user_id = $this->session->userdata('user_id');
+	$this->db->delete('like_photo', array('photo_id' => $like_photos, 'user_id'=>$user_id));
+}
 
 
 	}
