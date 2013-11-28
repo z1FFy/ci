@@ -1,4 +1,5 @@
 <style>
+
     #middle-pol {
     padding-top: 0px;
     width: 100%;
@@ -13,9 +14,7 @@
   #menu {
     height: 39px;
   }
-  body {
-    background-color: #fff;
-  }
+
 </style>
 <script>
     $(window).load(function() {

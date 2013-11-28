@@ -2,7 +2,8 @@
 body {
  	margin: 0px;
  	font-family: Verdana;
- 	background-color: #054E7C;height: 100%;
+ 	background-color: #054E7C;
+ 	height: 100%;
  	}
  	html {height: 100%}
  	a {
@@ -48,7 +49,7 @@ body {
 		padding-top: 1px;
 		padding-bottom: 40px;
 		background: #fff;
-		min-height: 550px;
+		min-height: 350px;
 
 	}
 
@@ -124,7 +125,7 @@ min-height: 510px;
 }
 
 select{
-	border: 1px;
+	border: 0px;
 	height: 30px;
 	margin-bottom: 10px;
 	width: 240px;
