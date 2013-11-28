@@ -255,6 +255,11 @@ function dell_like($like_photos){
 	$this->db->delete('like_photo', array('photo_id' => $like_photos, 'user_id'=>$user_id));
 }
 
+function delete_photos($delete_photos){
+	$user_id = $this->session->userdata('user_id');
+	$this->db->delete('photos', array('id_photos' => $delete_photos));
+}
+
 
 	}
 	   ?>

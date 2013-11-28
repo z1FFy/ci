@@ -131,6 +131,12 @@
 		
 	}
 
+	function delete_photos()
+	{
+		$delete_photos = $_POST['delete_photos'];
+		$this->db_module->delete_photos($delete_photos);
+	}
+
  
 }
 ?>

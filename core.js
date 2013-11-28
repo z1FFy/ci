@@ -163,6 +163,15 @@ $('.btn_entry').click(function() {
          onAjaxSuccess
          );
       });
+       //delete photo
+       $('.delete_photos').click(function() { 
+        delete_photos = $(this).attr("link");
+      $.post(site_full+"/id/delete_photos",
+         { delete_photos : delete_photos,
+              },
+         onAjaxSuccess
+         );
+      });
 
       function onAjaxSuccess(data)
       {
