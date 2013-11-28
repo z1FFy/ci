@@ -47,10 +47,11 @@
 
 <!-- vse foto -->
 <?php foreach ($photo_data as $item){ 
-			echo $item->photos_name.'<a class="photo" link="'.$this->config->site_url().'id/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'">
-			<img src="'.$this->config->site_url().'uploads/photos/'.$item->url_photo.'" width="200"></a>';
+	        //var_dump($item);
+			echo 'Название фотографии:'.$item->photos_name.'<br><a class="photo" link="'.$this->config->site_url().'id/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'">
+			<img src="'.$this->config->site_url().'uploads/photos/'.$item->url_photo.'" width="200"></a><br>
+			<a class="like_photos" link='.$item->id_photos.'>LIKE</a> Понравилось: '.$item->like_photos.'<br>';
 		}	?>
-
 
 
 

@@ -42,7 +42,7 @@ function onAjaxSuccess(data)
 	$photo = $_GET['photo'];
 	$id_photos = $_GET['id_photos'];
 	$id_user = $_GET['id_user'];
-
+	
 	echo '<div width="500px" align="center"><img style="max-width:100%;max-height:100%" src="'.$this->config->site_url().'uploads/photos/'.$photo.'" width="80%"></div>'; 
 	?>
 <br>

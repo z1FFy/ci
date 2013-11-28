@@ -105,6 +105,34 @@
 		
 	}
 
+	function like_photos(){
+		
+		$like_photos = $_POST['like_photos'];
+
+		$like_data = $this->db_module->view_like($like_photos);
+		foreach ($like_data as $item) {
+			$like_num = $item->like_photos;
+		}
+		
+		$arr_like_data = $this->db_module->view_like_user($like_photos);
+		foreach ($arr_like_data as $item) {
+			if($item->user_id == $this->session->userdata('user_id'))
+			{
+				$like_num_true = '1';
+				$this->db_module->dell_like($like_photos, $like_num, $like_num_true);
+			}else
+			{
+				$like_num_true = '0';
+				$this->db_module->send_like($like_photos, $like_num, $like_num_true);
+			}
+		}
+		
+		$this->db_module->send_like($like_photos, $like_num, $like_num_true);
+		
+		//$this->load->view('view_photo',$message_data_arr);
+		
+	}
+
  
 }
 ?>
