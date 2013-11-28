@@ -2,6 +2,7 @@
 <head>
 	<title>Фото:</title>
 <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script> 
+  <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
 <style>
 	.frame{
     display:inline-block;
@@ -38,7 +39,7 @@ $(document).ready(function() {
  
 
 
-$('.btn').click(function() { 
+$('.send_com').click(function() { 
     messages = $("#messages").val();
     id_photos= $("input[name ='id_photos']").val();
     id_user= $("input[name ='id_user']").val();
@@ -46,7 +47,7 @@ $('.btn').click(function() {
 
 
 
-	$.post("chat/send_messages",
+	$.post(site_full+"/id/chat/send_messages",
      { messages : messages, id_photos : id_photos,
           },
      onAjaxSuccess
@@ -121,7 +122,7 @@ function onAjaxSuccess(data)
 
 <br /><br />
 
-<input type="submit" class="btn" value="Отправить" />
+<input type="submit" class="send_com" value="Отправить" />
 
 <!-- </form> -->
 </div>

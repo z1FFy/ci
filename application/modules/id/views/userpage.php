@@ -15,14 +15,13 @@
     $(window).load(function() {
       var ava = $("#ava");
       ava_w=parseInt(ava.width());
-
       ava_h=parseInt(ava.height());
-      //alert(ava_h);
-      if (ava_h>ava_w) {
+      if (ava_h>=ava_w) {
         $('#ava').attr('height', '');
       } else {
         $('#ava').attr('height', '200');
-                $('#ava').attr('width', '150%');
+        $('#ava').attr('width', '150%');
+        $('#ava').css('margin-left',"-20%");
       }
  });
 </script>

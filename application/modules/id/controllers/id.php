@@ -22,11 +22,16 @@
 	function index() {
 		$url_id= $this->_get_url_id();
 	 	$user_id=$this->session->userdata('user_id');
+	 	$logged = $this->session->userdata('logged_in');
 	 	if ($this->uri->segment(1) == 'id') {
-	 		$url_id=$user_id;
+	 		if ($logged == TRUE){
+	 		//$url_id=$user_id;
+	 		header ("Location:". $this->config->site_url().'id'.$user_id); 
+	 		} else {
+	 				header ("Location:". $this->config->site_url()); 
+	 		}
 	 	}
 	 	$data_user = $this->db_module->get_user_by_id($url_id);
-		$logged = $this->session->userdata('logged_in');
 		$podtvr=0;
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		if ($logged == TRUE) {
@@ -34,9 +39,11 @@
 		}
 		$photo_data = $this->db_module->get_user_photos($url_id);
 		$albom_data = $this->db_module->get_albom_photos($url_id);
-		$profile_data = $this->db_module->get_user_by_id($user_id);
-
+		$profile_data = $this->db_module->get_user_by_id($url_id);
 		$title='userpage';
+		foreach ($profile_data as $item){ 
+			$title=$item->name.' '.$item->famil.' / PortfolioOnline';
+		}
 				$data = array(
 	               'user_data' => $data_user,
 	               'whopage' => $whopage,
@@ -52,15 +59,11 @@
 				$data['page_content'] = $page_content;
 				$data['title'] = $title;
 	                       
-		if (!empty($data_user)){
-		if ($url_id == 'id') {
-			header ("Location:". $this->config->site_url().'id'.$user_id); 
-		} else {
-		$this->load->view('template',$data);
-	}
-	} else {
+		if (empty($data_user)){
 			echo "user not found";
-	}
+		} else {
+			$this->load->view('template',$data);
+		}
 	}
 
 	function profile() {

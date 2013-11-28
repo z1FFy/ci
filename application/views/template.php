@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 
   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
-
+<link rel="shortcut icon" href="<?php echo $this->config->site_url() ?>/favicon.ico"></link>
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.simplemodal.1.4.4.min.js"></script>
