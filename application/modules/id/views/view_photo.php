@@ -3,7 +3,12 @@
 	<title>Фото:</title>
 <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script> 
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
+  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
+
 <style>
+body {
+	background-color: #fff;
+}
 	.frame{
     display:inline-block;
     position:relative;
@@ -99,6 +104,9 @@ function onAjaxSuccess(data)
 	$height=$arr[1]; // высота
 	echo $photos_name;
 	echo '<div  width="500px" align="center"><img r_width="'.$width.'"r_height="'.$height.'" id="photo" style="" src="'.$img_path.'" width="80%"></div>'; 
+					echo '<br><a class="like_photos" link='.$item->id_photos.'>LIKE</a>  '.$item->like_photos.'';
+			echo '  <a class="delete_photos" link='.$item->id_photos.'>Удалить</a>';
+
 	?>
 <br>
 <?php 
