@@ -12,6 +12,7 @@
         <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.simplemodal.1.4.4.min.js"></script>
 </head>
 <body>
+<div id="wrapper">
 <header>
 <div align="center">
 <a href="<?php echo $this->config->site_url() ?>"><img id="logo" src="
@@ -35,7 +36,8 @@
 <div  id="content">
 <?php echo $page_content; ?>
 </div>
-
+     
+</div>
 <div id="footer">
 <p style="text-align:center">copyright 2013 PortfoliOnline.ru<br>
 <small>Авторские права на все материалы опубликованные

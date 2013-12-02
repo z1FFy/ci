@@ -1,5 +1,7 @@
 <style>
-
+  body {
+    background-color: #fff;
+  }
     #middle-pol {
     padding-top: 0px;
     width: 100%;
@@ -17,18 +19,18 @@
 
 </style>
 <script>
-    $(window).load(function() {
-      var ava = $("#ava");
-      ava_w=parseInt(ava.width());
-      ava_h=parseInt(ava.height());
-      if (ava_h>=ava_w) {
-        $('#ava').attr('height', '');
-      } else {
-        $('#ava').attr('height', '200');
-        $('#ava').attr('width', '150%');
-        $('#ava').css('margin-left',"-20%");
-      }
- });
+ //    $(window).load(function() {
+ //      var ava = $("#ava");
+ //      ava_w=parseInt(ava.width());
+ //      ava_h=parseInt(ava.height());
+ //      if (ava_h>=ava_w) {
+ //        $('#ava').attr('height', '');
+ //      } else {
+ //        $('#ava').attr('height', '200');
+ //        $('#ava').attr('width', '150%');
+ //        $('#ava').css('margin-left',"-20%");
+ //      }
+ // });
 </script>
 <?php
 $whostring_title='';
@@ -57,18 +59,15 @@ echo '<div id="left_user">';
      }
 
       echo '<br>'.$whostring.' '.$name;
-      echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/'.$avatar_url.'" ></div>';
+      echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
 ?>
 
 
 
     <?php if ($whopage == 'my') {
-    echo '<br>  <a id="upload_ava">Закачать аватар</a>';
-    echo '<br><a id="upload_foto">Закачать фотку</a>';
-  
-
-
-}  echo "<br><a id='prof' link='".$this->config->site_url() ."id".$url_id."/profile'>Профиль</a>";
+    echo '<br>  <a id="upload_ava">Загрузить аватар</a>';
+    echo '<br><a id="upload_foto">Загрузить фотку</a>';
+}  echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
 echo '</div>';
    $this->load->view('albom_index',$user_data); 
 ?>

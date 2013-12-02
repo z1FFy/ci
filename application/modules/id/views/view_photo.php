@@ -1,11 +1,27 @@
-<html>
-<head>
-	<title>Фото:</title>
+
 <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script> 
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
-  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
+<!--   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" /> -->
 
 <style>
+
+    #middle-pol {
+    padding-top: 0px;
+    width: 100%;
+    height: 0px;
+    visibility: hidden;
+
+  }
+  #content {
+    padding-left: 10%;
+    padding-right: 10%;
+    width: 80%;
+    padding-top: 10px;
+
+  }
+  #menu {
+    height: 39px;
+  }
 body {
 	background-color: #fff;
 }
@@ -88,9 +104,7 @@ function onAjaxSuccess(data)
 
 </script>
 </head>
-<body>
-<div class="block3">
-<meta charset="utf-8">
+
 	<?php 
 	foreach ($photos_data as $item){ 
 	$photos_name=$item->photos_name;
@@ -105,15 +119,19 @@ function onAjaxSuccess(data)
 	echo $photos_name;
 	echo '<div  width="500px" align="center"><img r_width="'.$width.'"r_height="'.$height.'" id="photo" style="" src="'.$img_path.'" width="80%"></div>'; 
 					echo '<br><a class="like_photos" link='.$item->id_photos.'>LIKE</a>  '.$item->like_photos.'';
-			echo '  <a class="delete_photos" link='.$item->id_photos.'>Удалить</a>';
-
+  if ($whopage=='my') {
+    if ($logged==TRUE) {
+  		echo '  <a class="delete_photos" link='.$item->id_photos.'>Удалить</a>';
+    }
+}
 	?>
+
 <br>
 <?php 
 //var_dump($this->session);
 		foreach ($message_data as $item){ 
 
-			 echo '<div class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame" width="100"><br></div><div class="block2">'.$item->famil.' '; echo $item->name.' - ';echo $item->messages.' : '; echo $item->message_date;
+			 echo '<div class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/small/'.$item->avatar.'" class="frame" width="100"><br></div><div class="block2">'.$item->famil.' '; echo $item->name.' - ';echo $item->messages.' : '; echo $item->message_date;
 
 			?> </div><br>  
 			<?php
@@ -133,5 +151,3 @@ function onAjaxSuccess(data)
 <input type="submit" class="send_com" value="Отправить" />
 
 <!-- </form> -->
-</div>
-</body></html>

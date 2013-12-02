@@ -2,12 +2,15 @@
 body {
  	margin: 0px;
  	font-family: Verdana;
- 	background-color: #054E7C;
+ 	background-color: #fff;
  	height: 100%;
  	}
  	html {height: 100%}
  	a {
  		color: #054E7C;
+ 	}
+ 	p {
+ 		margin:0;
  	}
  	.title {
 		margin-right: -20%;
@@ -44,33 +47,29 @@ body {
 	#content {
 		padding-left: 20%;
 		padding-right: 20%;
-		margin-bottom: 2px;
-		text-align: left;
-		padding-top: 1px;
-		padding-bottom: 40px;
-		background: #fff;
-		min-height: 350px;
 
+		text-align: left;
+		background: #fff;
+		min-height: 100%;
+   display: table;
+   margin-top: -1px;
 	}
 
 	#left_user {
-		float: left;
 		width: 250px;
 	}
 	#polosa {
-position: absolute;
-width: 2px;
-background-color: #054E7C;
-margin-right: 10px;
-margin-top: -2px;
-float: left;
-height: 90%;
-top: 185px;
-margin-left: 220px;
-min-height: 510px;
+		display:table-cell;
+
+		width: 2px;
+		background-color: #054E7C;
+		margin-right: 10px;
+		height: 100%;
+
 	}
 	#right_user {
-		margin-left: 250px;
+		margin-left: 20px;
+		height: 540px;
 	}
 .but {
 	-moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
@@ -124,25 +123,45 @@ min-height: 510px;
 	margin: 7px;
 }
 
-select{
+ #regsel{
 	border: 0px;
 	height: 30px;
 	margin-bottom: 10px;
 	width: 240px;
 	margin-left: 40px;
 }
+#wrapper {
+	width: 100%;
+	min-height: 100%;
+	height: auto !important;
+}
 
 #footer {
 	width: 100%;
+	margin: 0px auto 0;
 	background-color: #054E7C;
 	 border-style: 1px solid #fff;
 	 color: #fff;
 	 padding-top: 70px;
 	 position: relative;  
  height: 80px;  
-/* margin-top: -91px;  */
+
 
 }
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 0 -100px 0; /* отрицательный нижний отступ на высоту футера */
+    padding: 0;
+}
+.footer-push, .footer {
+    height: 100px;
+    margin: 0;
+    padding: 0;
+}
+
 
 #simplemodal-overlay {background-color:#000;}
 #simplemodal-container {box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
@@ -176,4 +195,17 @@ select{
     height:100%;
     margin:-10em;
     border:10em solid #333;
+}
+
+
+.modal-close {
+
+    width:25px;
+    height:29px;
+    display:inline;
+    z-index:3200;
+    position:absolute;
+    top:0px;
+    right:7px;
+    cursor:pointer;
 }

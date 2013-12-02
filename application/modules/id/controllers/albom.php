@@ -13,6 +13,13 @@ class Albom extends CI_Controller {
 		$url_id = trim($url_id, " \id.");
 		return $url_id;
 	}
+		private function _get_whopage($url_id,$user_id) {
+		$whopage='none';
+			if ($user_id == $url_id) {
+				$whopage='my';
+			}
+			return $whopage;
+	}
 
 	function index()
 	{
@@ -46,13 +53,19 @@ function photos_in_albom()
 	}	
 
 	function view_photo(){
-		
+		$url_id= $this->_get_url_id();
+	 	$user_id=$this->session->userdata('user_id');
+	 	$logged = $this->session->userdata('logged_in');
+		$whopage= $this->_get_whopage($url_id,$user_id);		
 		$id_photos = $_GET['id_photos'];
 		$photos_data = $this->db_module->get_photos_by_id($id_photos);
 		$message_data = $this->db_module->view_message($id_photos);
-		$message_data_arr = array( 'message_data' => $message_data, 'photos_data' => $photos_data);
-		$this->load->view('view_photo',$message_data_arr);
-		
+		$message_data_arr = array( 'message_data' => $message_data, 'photos_data' => $photos_data,'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id,);
+		$page_content=$this->load->view('view_photo',$message_data_arr,true);
+		$title="Просмотр фото";
+		$data['page_content'] = $page_content;
+		$data['title'] = $title;
+		$this->load->view('template',$data);		
 	}
 
 

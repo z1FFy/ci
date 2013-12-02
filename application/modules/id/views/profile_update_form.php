@@ -1,6 +1,12 @@
 <html>
 <head>
 	<title></title>
+	  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
+<style>
+	body {
+		background-color: #fff;
+	}
+</style>
 </head>
 <body>
 

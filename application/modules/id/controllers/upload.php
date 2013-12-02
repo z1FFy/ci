@@ -27,10 +27,10 @@ class Upload extends CI_Controller {
 		$logged = $this->session->userdata('logged_in');
 		if ($logged == TRUE) {
 			$who = $_POST['who'];
-			$photos_name = $_POST['photos_name'];
 
 		if ($who == 'photos') {
 			$config['upload_path'] = './uploads/photos/';
+			$photos_name = $_POST['photos_name'];
 		}
 		if ($who == 'avatars') {
 			$config['upload_path'] = './uploads/avatars/';
@@ -50,10 +50,40 @@ class Upload extends CI_Controller {
 		}
 		else
 		{
-			$data = array('upload_data' => $this->upload->data(),'who' => $who,'photos_name' => $photos_name);
-
+			$data = array('upload_data' => $this->upload->data(),'who' => $who);
+			if ($who == 'photos') {
+				$data['photos_name']=$photos_name;
+			}
 			$this->load->view('upload_success', $data);
 		}
+		}
+	}
+	function small_ava() {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST')
+		{
+			//var_dump($_POST);
+			$targ_w = 200;
+			$targ_h = 200;
+			$jpeg_quality = 100;
+			$full_path=$_POST['full_path'];
+			$file_path=$_POST['file_path'];
+			$name_photo=$_POST['name_photo'];
+			$src = $this->config->site_url().'uploads/avatars/'.$name_photo;
+			$img_r = imagecreatefromjpeg($src);
+			$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+			imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'],
+			$targ_w,$targ_h,$_POST['w'],$_POST['h']);
+
+
+			$name_photo=$_POST['name_photo'];
+			$path=$file_path.'small/'.$name_photo;
+			$img =imagejpeg($dst_r,$path,$jpeg_quality);
+			$who='avatars';
+header ("Location:db_upload?user_id=".$user_id."&name=".$name_photo."&who=".$who."&photos_name=".$photos_name);
+
+
+
+			
 		}
 	}
 	function db_upload() {
@@ -76,7 +106,6 @@ class Upload extends CI_Controller {
 							
 $data_user = $this->db_module->up_user_ava($user_id,$name_photo);
 			}
-				echo $data_user;
 			}
 		}
 

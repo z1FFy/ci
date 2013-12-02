@@ -67,12 +67,28 @@
 	}
 
 	function profile() {
+
+		$title='Профиль';
 		$user_id=$this->session->userdata('user_id');
 		$url_id= $this->_get_url_id();
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$profile_data = $this->db_module->get_user_by_id($url_id);
 		$profile_data_arr = array( 'profile_data' => $profile_data, 'whopage' => $whopage);
-		$this->load->view('profile',$profile_data_arr);
+		$page_content = $this->load->view('profile', $profile_data_arr, true);
+
+		$logged = $this->session->userdata('logged_in');
+		$user_id='';
+		if ($logged == TRUE) {
+		 	$user_id=$this->session->userdata('user_id');
+		 }
+		$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id
+         );
+		$this->load->view('template',$page);	
+	
 
 	}
 

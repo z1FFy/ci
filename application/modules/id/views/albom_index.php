@@ -1,4 +1,4 @@
-<div id="polosa"></div>
+<div id="polosa"><br></div>
 <div id="right_user">
 	<p style="font-size:19px">Мои работы</p>
 	<?php if ($whopage=='my') { ?>
@@ -42,16 +42,17 @@
 <br>
 
 <!-- vse foto -->
-
+<div>
 <?php $i=0; foreach ($photo_data as $item){ 
 $i++;
-			echo '<a class="photo" link="'.$this->config->site_url().'id/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'">
-			<img style="border:4px solid #EDF7FD" src="'.$this->config->site_url().'uploads/photos/'.$item->url_photo.'" width="150" height="150"></a>';
-if ($i == 4) {
-echo "<br>";
-}
+			echo '<a class="phot" href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'">
+<div style="border:4px solid #EDF7FD;float:left;background-size: cover;background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.'); width:150px; height:150px"></div></a>';
+// if ($i == 4) {
+// 	echo "<br>";
+// }
 
 		}	?>
-
+		
+</div>
 </div>
 

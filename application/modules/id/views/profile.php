@@ -1,16 +1,44 @@
- <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
-  <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
-        <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.simplemodal.1.4.4.min.js"></script>
-<link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
 <style>
 body{
 background-color:#fff;
 }
+
+
+    #middle-pol {
+    padding-top: 0px;
+    width: 100%;
+    height: 0px;
+    visibility: hidden;
+
+  }
+  #content {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  #menu {
+    height: 39px;
+  }
+
 </style>
-<meta charset="utf-8">
 
-	Профиль <br>
 
+<?php
+$whostring_title='';
+
+		if ($whopage=='my') {
+$whostring='Я';
+$whostring_title="Моя";
+}
+echo '<div id="left_user">';
+   foreach ($profile_data as $item) {
+   				$avatar_url=$item->avatar;
+   			}
+      echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
+?>
+</div>
+<div id="polosa"></div>
+<div id="right_user">
+	<p style="font-size:19px">Профиль</p> <br>
 <ul>
 <?php 
    foreach ($profile_data as $item) {
@@ -44,3 +72,5 @@ if ($podtvr == 0) {
 }
 ?>
 </ul>
+<br><br><br><br><br><br><br><br><br><br>
+</div>

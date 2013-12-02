@@ -195,17 +195,17 @@ $('.btn_entry').click(function() {
 
       function upload (src) {
           $.modal('<iframe src="' + src + '" height="100%" width="100%"  scrolling="auto" style="border:0">', {
-          closeHTML:"",
+          closeHTML: "<a href='#' title='Close' class='modal-close'>x</a>",
           containerCss:{
             backgroundColor:"#fff", 
             borderColor:"#fff", 
             height:'80%', 
             padding:10, 
-            width:'60%'
+            width:'60%',
+
           },
           overlayClose:true
         });
       }
 
- 
  });
