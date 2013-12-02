@@ -46,18 +46,27 @@ includeJS('/ci/config.js');
 });
 
 //Reg
-$('.btn').click(function() { 
+
+
+$('.btn').click(function() {
+  famil = $("input[name='famil']").val();
+  name = $("input[name='name']").val(); 
   login = $("input[name='login']").val();
   email = $("input[name='email']").val();
   pass = $("input[name='pass']").val();
   pass2 = $("input[name='password2']").val();
     spec_user = $("select[name='spec_user']").val();
+  if (spec_user == 'Другое'){
+    alert(spec_user);
+    spec_user = $("input[name='spec_user1']").val();
+  }
+
 
   if (login.length >= 3 && pass.length >= 3) {
   if (pass == pass2) {
   $.post("sendreg",
      {
-     login : login, email : email, pass : pass, spec_user : spec_user, },
+     famil : famil, name : name, login : login, email : email, pass : pass, spec_user : spec_user, },
      onAjaxSuccess
    );
    } else {
@@ -175,15 +184,24 @@ $('.btn_entry').click(function() {
 
       function onAjaxSuccess(data)
       {
-
     location.reload();
     //alert("Like добавлен!");
-
       };
 
 
-
-
+   $('#friends').click(function() { 
+        friend_id = $(this).attr("link");
+        //alert(friend_id);
+      $.post(site_full+"/id/friends_insert",
+         { friend_id : friend_id,
+              },
+         onAjaxSuccess
+         );
+      });
+ $('#friends_view').click(function() { 
+        var src = site_full+"/id/friends_view";
+        upload(src);
+       }); 
     
 
 

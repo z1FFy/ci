@@ -67,7 +67,15 @@ echo '<div id="left_user">';
     <?php if ($whopage == 'my') {
     echo '<br>  <a id="upload_ava">Загрузить аватар</a>';
     echo '<br><a id="upload_foto">Загрузить фотку</a>';
-}  echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
+  echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
+
+    echo "<br><a id='friends_view'>Посмотреть друганов</a>";
+
+
+
+}else{    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
+echo "<br><a id='friends' link='".$url_id."'>Добавить в друганы</a>";}
+
 echo '</div>';
    $this->load->view('albom_index',$user_data); 
 ?>

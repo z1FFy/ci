@@ -131,7 +131,12 @@ function onAjaxSuccess(data)
 //var_dump($this->session);
 		foreach ($message_data as $item){ 
 
-			 echo '<div class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/small/'.$item->avatar.'" class="frame" width="100"><br></div><div class="block2">'.$item->famil.' '; echo $item->name.' - ';echo $item->messages.' : '; echo $item->message_date;
+      if($item->name == ''){
+        $name = $item->login;
+      }else{
+        $name = $item->name.' '.$item->famil;
+      }
+			 echo '<div class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame" width="100"><br></div><div class="block2">'.$name.' - ';echo $item->messages.' : '; echo $item->message_date;
 
 			?> </div><br>  
 			<?php
