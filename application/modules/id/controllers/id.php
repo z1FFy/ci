@@ -137,6 +137,31 @@
 		$this->db_module->delete_photos($delete_photos);
 	}
 
+	function friends_insert()
+	{
+		$friend_id = $_POST['friend_id'];
+		$user_id = $this->session->userdata('user_id');
+		$friends_data = $this->db_module->friends_view($user_id);
+		foreach ($friends_data as $item) {
+			if($item->friend_id == $friend_id && $item->user_id == $user_id)
+			{
+				$lal='1';	
+			}
+		}
+		if($lal != '1'){
+			$this->db_module->friends_insert($friend_id, $user_id);
+
+		}
+	}
+
+	function friends_view()
+	{
+		$user_id = $this->session->userdata('user_id');
+		$friends_data = $this->db_module->friends_view($user_id);
+		$friends_data_arr = array( 'friends_data' => $friends_data);
+		$this->load->view('friends_view_form',$friends_data_arr);
+	}
+
  
 }
 ?>

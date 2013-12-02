@@ -45,6 +45,7 @@ function up_user_ava($user_id,$name_photo){
 	return $result;
 			}
 
+
 function get_podtvr() {
 		$this->db->select('podtvr');
 		$query = $this->db->get('users');
@@ -56,6 +57,9 @@ function get_podtvr() {
 
     	$user_login='';
     	$user_mail='';
+    	if($_POST['famil']!='' && $_POST['name'] != ''){
+    	$this->famil   = $_POST['famil'];
+    	$this->name   = $_POST['name'];}
 		$this->login   = $_POST['login']; // please read the below note
         $this->mail = $_POST['email'];
 		$this->password = $_POST['pass'];
@@ -258,6 +262,53 @@ function dell_like($like_photos){
 function delete_photos($delete_photos){
 	$user_id = $this->session->userdata('user_id');
 	$this->db->delete('photos', array('id_photos' => $delete_photos));
+}
+
+function friends_insert($friend_id, $user_id){
+	$this->friend_id = $friend_id;
+	$this->user_id = $user_id;
+
+	$query = $this->db->insert('friends', $this); 
+
+}
+
+function friends_view($user_id){
+	$this->db->select('*');
+	$this->db->from('users','friends');
+	$this->db->join('friends', 'friends.friend_id = users.user_id');
+	$this->db->where('friends.user_id', $user_id); 
+	$query = $this->db->get();
+
+
+	 return $query->result();
+}
+
+function send_chat_friends($user_id, $friend_id, $messages, $avatar){
+	$this->user_id = $user_id;
+	$this->adresat = $friend_id;
+	$this->messages = $messages;
+	$this->avatar = $avatar;
+	$this->message_date  = date("m.d.y");
+	$query = $this->db->insert('chat_friends', $this); 
+
+}
+
+function view_friend_message($friend_id, $user_id){
+	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
+	$this->db->select('*');
+	$this->db->from('users','chat_friends');
+	$this->db->join('chat_friends', 'chat_friends.user_id = users.user_id');
+	$this->db->where('chat_friends.adresat', $friend_id); 
+	$this->db->where('chat_friends.user_id', $user_id);
+
+	$this->db->or_where('chat_friends.adresat', $user_id); 
+	$this->db->where('chat_friends.user_id', $friend_id);
+
+	$query = $this->db->get();
+
+
+	 return $query->result();
+
 }
 
 

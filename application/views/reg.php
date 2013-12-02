@@ -32,7 +32,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#336aa8', end
 <div align="center">
   <p style="font-size:30px;color:#fff">Регистрация </p>
 
-<select name="spec_user" size="1">
+<script language ="JavaScript"> 
+
+function selChange(seln) { 
+selNum = seln.spec_user.selectedIndex; 
+Isel = seln.spec_user.options[selNum].text; 
+//alert("Выбрано: "+Isel);
+
+if (Isel == 'Другое'){
+ //document.getElementById("div1").innerHTML="<input type="text" name ="spec_user" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Введите свою специализацию" ><br>";
+document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1" onkeypress="validate(event)" maxlength="20" class="input-small" placeholder="Введите свою специализацию" ><br>';
+}
+
+
+} 
+ 
+</script> 
+
+<form> 
+<select name="spec_user" onChange="selChange(this.form)"> 
 <option value="Менеджмент">Менеджмент</option>
 <option selected="selected" value="Разработка сайтов">Разработка сайтов</option>
 <option value="Дизайн">Дизайн</option>
@@ -62,8 +80,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#336aa8', end
 <option value="Репетиторы/Преподаватели">Репетиторы/Преподаватели</option>
 <option value="Другое">Другое</option>
 </select>
+<div id="div1">
+
+ </div>
+</form> 
 
  <br>
+ 
+
+ <input type="text" name ="famil" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Фамилия" ><br>
+  <input type="text" name ="name" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Имя" ><br>
+
   <input type="text" name ="login" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Логин" ><br>
 <input type="text" id="mail"  name="email" onkeypress='validate(event)' maxlength="40" class="input-small" placeholder="Email"><br>
   <input type="password" name ="pass" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Пароль"><br>

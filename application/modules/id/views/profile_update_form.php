@@ -60,7 +60,7 @@
 	 --><br>
 	Специализация: 
 
-<select name="spec_user" size="1">
+<select name="spec_user"> 
 <option value="Менеджмент">Менеджмент</option>
 <option selected="selected" value="Разработка сайтов">Разработка сайтов</option>
 <option value="Дизайн">Дизайн</option>
@@ -72,6 +72,22 @@
 <option value="Тексты<">Тексты</option>
 <option value="Переводы">Переводы</option>
 <option value="3D Графика">3D Графика</option>
+<option value="Анимация/Мультипликация">Анимация/Мультипликация</option>
+<option value="Фотография">Фотография</option>
+<option value="Аудио/Видео">Аудио/Видо</option>
+<option value="Реклама/Маркейтинг">Реклама/Маркейтинг</option>
+<option value="Разработка игр">Разработка игр</option>
+<option value="Арихитектура/Интерьер">Арихитектура/Интерьер</option>
+<option value="Инжиниринг">Инжиниринг</option>
+<option value="Консалтинг">Консалтинг</option>
+<option value="Обучение">Обучение</option>
+<option value="Мобильные приложения">Мобильные приложения</option>
+<option value="Сети и информационные системы">Сети и информационные системы</option>
+<option value="Обслуживание клиентов">Обслуживание клиентов</option>
+<option value="Маркейтинг и продажи">Маркейтинг и продажи</option>
+<option value="Бизнес-услуги">Бизнес-услуги</option>
+<option value="Административная поддержка">Административная поддержка</option>
+<option value="Репетиторы/Преподаватели">Репетиторы/Преподаватели</option>
 </select>
 
 <!-- 	<input type="text" name="spec_user" size="20"  value="<?php echo $item->spec_user;?>" />
