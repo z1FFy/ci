@@ -58,7 +58,16 @@ body {
 <script>
 $(document).ready(function() {
  
-
+$('.like_photos').click(function() { 
+        like_photos = $(this).attr("link");
+         //$(this).toggleClass("highlight");
+         $(".like_photos1").removeClass("like_photos");
+      $.post(site_full+"/id/like_photos",
+         { like_photos : like_photos
+              },
+         onAjaxSuccess
+         );
+      });
 
 $('.send_com').click(function() { 
     messages = $("#messages").val();
@@ -77,7 +86,7 @@ $('.send_com').click(function() {
 
 function onAjaxSuccess(data)
    {
-     	 
+  $('.like_photos1').addClass('.like_photos');   	 
 //alert("ololo");
 	location.reload();
 
@@ -118,7 +127,7 @@ function onAjaxSuccess(data)
 	$height=$arr[1]; // высота
 	echo $photos_name;
 	echo '<div  width="500px" align="center"><img r_width="'.$width.'"r_height="'.$height.'" id="photo" style="" src="'.$img_path.'" width="80%"></div>'; 
-					echo '<br><a class="like_photos" link='.$item->id_photos.'>LIKE</a>  '.$item->like_photos.'';
+					echo '<br><a class="like_photos like_photos1" link='.$item->id_photos.'>LIKE</a>  '.$item->like_photos.'';
   if ($whopage=='my') {
     if ($logged==TRUE) {
   		echo '  <a class="delete_photos" link='.$item->id_photos.'>Удалить</a>';

@@ -121,29 +121,34 @@
 
 	function like_photos(){
 		
-		$like_photos = $_POST['like_photos'];
+		 $like_photos = $_POST['like_photos'];
 
+		$like_num=0;
 		$like_data = $this->db_module->view_like($like_photos);
 		foreach ($like_data as $item) {
 			$like_num = $item->like_photos;
 		}
 		
+		
 		$arr_like_data = $this->db_module->view_like_user($like_photos);
 		foreach ($arr_like_data as $item) {
-			if($item->user_id == $this->session->userdata('user_id'))
+			$user_id = $item->user_id;
+		}
+			
+			if($user_id == $this->session->userdata('user_id'))
 			{
-				$like_num_true = '1';
-				$this->db_module->dell_like($like_photos, $like_num, $like_num_true);
+				$like_num=$like_num-1;
+				$this->db_module->dell_like($like_photos);
 			}else
 			{
-				$like_num_true = '0';
-				$this->db_module->send_like($like_photos, $like_num, $like_num_true);
+				$like_num=$like_num+1;
+				$this->db_module->send_like_photos($like_photos);
+				
 			}
-		}
 		
-		$this->db_module->send_like($like_photos, $like_num, $like_num_true);
 		
-		//$this->load->view('view_photo',$message_data_arr);
+		$this->db_module->send_like($like_photos, $like_num);
+		
 		
 	}
 
@@ -153,28 +158,22 @@
 		$this->db_module->delete_photos($delete_photos);
 	}
 
-	function friends_insert()
+	function friends_view()
 	{
-		$friend_id = $_POST['friend_id'];
+		$i=0;
 		$user_id = $this->session->userdata('user_id');
 		$friends_data = $this->db_module->friends_view($user_id);
 		foreach ($friends_data as $item) {
-			if($item->friend_id == $friend_id && $item->user_id == $user_id)
-			{
-				$lal='1';	
+			if($item->friend_id == $user_id){
+			$friend_id[$i] = $item->user_id;
+			}else{
+				$friend_id[$i] = $item->friend_id;
 			}
-		}
-		if($lal != '1'){
-			$this->db_module->friends_insert($friend_id, $user_id);
+			$i++;
 
 		}
-	}
-
-	function friends_view()
-	{
-		$user_id = $this->session->userdata('user_id');
-		$friends_data = $this->db_module->friends_view($user_id);
-		$friends_data_arr = array( 'friends_data' => $friends_data);
+		  $friends_data_friend = $this->db_module->get_users_by_id($friend_id);
+		$friends_data_arr = array('friends_data_friend' => $friends_data_friend);
 		$this->load->view('friends_view_form',$friends_data_arr);
 	}
 

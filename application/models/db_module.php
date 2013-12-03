@@ -225,21 +225,19 @@ function view_message($id_photos){
 }
 
 
-function send_like($like_photos, $like_num, $like_num_true){
-	if($like_num_true == '1')
-	{
-		$this->like_photos = $like_num-'1';
-	}else
-	{
-		$this->like_photos = $like_num+'1';
-		$this1->user_id = $this->session->userdata('user_id');
-		$this1->photo_id = $like_photos;
-		$this->db->where('photo_id', $like_photos);
-		$this->db->insert('like_photo', $this1);
-	}
+function send_like($like_photos, $like_num){
+	$this1->like_photos = $like_num;
 	$this->db->where('id_photos', $like_photos);
-	$this->db->update('photos', $this);
+	$this->db->update('photos', $this1);
 	
+}
+
+function send_like_photos($like_photos){
+		$this->user_id = $this->session->userdata('user_id');
+		$this->photo_id = $like_photos;
+		//$this->db->where('photo_id', $like_photos);
+		$this->db->insert('like_photo', $this);
+
 }
 
 function view_like($like_photos){
@@ -265,23 +263,32 @@ function delete_photos($delete_photos){
 }
 
 function friends_insert($friend_id, $user_id){
-	$this->friend_id = $friend_id;
-	$this->user_id = $user_id;
+	$friends->friend_id = $friend_id;
+	$friends->user_id = $user_id;
 
-	$query = $this->db->insert('friends', $this); 
+	$query = $this->db->insert('friends', $friends); 
 
 }
 
 function friends_view($user_id){
 	$this->db->select('*');
-	$this->db->from('users','friends');
-	$this->db->join('friends', 'friends.friend_id = users.user_id');
-	$this->db->where('friends.user_id', $user_id); 
+	$this->db->from('users', 'friends');
+	 $this->db->join('friends', 'users.user_id = friends.friend_id');
 	$query = $this->db->get();
+	 return $query->result();
+}
 
+
+function get_users_by_id($user_id){
+	$this->db->select('*');
+	$this->db->from('users');
+	$this->db->where_in('user_id', $user_id);
+	$query = $this->db->get();
 
 	 return $query->result();
 }
+
+
 
 function send_chat_friends($user_id, $friend_id, $messages, $avatar){
 	$this->user_id = $user_id;
@@ -290,7 +297,27 @@ function send_chat_friends($user_id, $friend_id, $messages, $avatar){
 	$this->avatar = $avatar;
 	$this->message_date  = date("m.d.y");
 	$query = $this->db->insert('chat_friends', $this); 
+}
 
+
+function view_friends($friend_id, $user_id){
+	$this->db->select('*');
+	$this->db->from('friends');
+	$this->db->where('friends.user_id', $user_id); 
+	$this->db->where('friends.friend_id', $friend_id);
+	$query = $this->db->get();
+	return $query->result();
+
+}
+
+function view_friends1($friend_id, $user_id){
+
+	$this->db->select('*');
+	$this->db->from('friends');
+	$this->db->where('friends.user_id', $friend_id); 
+	$this->db->where('friends.friend_id', $user_id);
+	$query = $this->db->get();
+	return $query->result();
 }
 
 function view_friend_message($friend_id, $user_id){

@@ -164,14 +164,14 @@ $('.btn_entry').click(function() {
         upload(src);
        }); 
 
-       $('.like_photos').click(function() { 
-        like_photos = $(this).attr("link");
-      $.post(site_full+"/id/like_photos",
-         { like_photos : like_photos,
-              },
-         onAjaxSuccess
-         );
-      });
+      //  $('.like_photos').click(function() { 
+      //   like_photos = $(this).attr("link");
+      // $.post(site_full+"/id/like_photos",
+      //    { like_photos : like_photos
+      //         },
+      //    onAjaxSuccess
+      //    );
+      // });
        //delete photo
        $('.delete_photos').click(function() { 
         delete_photos = $(this).attr("link");
@@ -184,7 +184,7 @@ $('.btn_entry').click(function() {
 
       function onAjaxSuccess(data)
       {
-    location.reload();
+        location.reload();
     //alert("Like добавлен!");
       };
 
