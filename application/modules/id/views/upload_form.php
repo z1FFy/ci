@@ -5,8 +5,11 @@
 </head>
 <body>
 
-<?php echo $error;
-$who = $_GET['who'];
+<?php
+
+$who = $_GET['who']; 
+echo $error;
+
 ?>
 
 <form action="<?php echo $this->config->site_url() ?>id/upload/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">

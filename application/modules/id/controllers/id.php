@@ -116,7 +116,11 @@
 
 	}
 
+	function profile_podtvr() {
+		$user_id=$this->session->userdata('user_id');
+		echo $this->db_module->up_podtvr($user_id);
 
+	}
 
 
 	function like_photos(){

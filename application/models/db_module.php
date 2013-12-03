@@ -79,13 +79,14 @@ function get_podtvr() {
 			&& (preg_match('/^[a-z0-9]{3,20}$/',$this->password)) ){
 
 		if ($this->login != $user_login && $this->mail != $user_mail) {
-       		$this->db->insert('users', $this);
     	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 			$randstring = '';
     		for ($i = 0; $i <= 10; $i++) {
         		$randstring.= $characters[rand(0, strlen($characters) -1)];
     		}
- 		echo $randstring;
+ 		$this->podtvr = $randstring;
+       		$this->db->insert('users', $this);
+
 
 	} else {
 	echo 'yzhe';

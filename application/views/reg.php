@@ -37,7 +37,7 @@ body {
 <div align="center">
   <p style="font-size:30px;color:#fff">Регистрация </p>
 
-<select id="regsel" name="spec_user" size="1">
+<!-- <select id="regsel" name="spec_user" size="1"> </select> -->
 <script language ="JavaScript"> 
 
 function selChange(seln) { 

@@ -46,7 +46,7 @@ $friend_id = $_GET['friend_id'];
 				$name = $item->name.' '.$item->famil;
 			}
 			//var_dump($item);
-			echo '<img src="'.$this->config->site_url().'uploads/avatars/'.$item->avatar.'" width="50"/>'
+			echo '<img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
 			.$name.' - '.$item->messages.' '.$item->message_date;
 			//$friend_id = $item->adresat;
 			?> <br>  
