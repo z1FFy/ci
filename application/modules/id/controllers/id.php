@@ -194,6 +194,10 @@
 		$this->load->view('friends_view_form',$friends_data_arr);
 	}
 
+	function support(){
+		$this->load->view('support');
+	}
+
  
 }
 ?>
