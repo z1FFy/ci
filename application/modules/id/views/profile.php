@@ -119,7 +119,7 @@ echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->si
 	<li>Имя: <?php echo $item->name;?> </li>
 	<li>Отчество: <?php echo $item->otchestvo;?></li>
 	<li>Почта: <?php echo $item->mail;?></li>
-  <li>Почта: <?php echo $item->sex;?></li>
+  <li>Пол: <?php echo $item->sex;?></li>
 	<li>Дата Рождения: <?php echo $item->birthday;?></li>
 	<li>Дата регистрации: <?php echo $item->date;?></li>
 	<li>Специализация: <?php echo $item->spec_user;?></li>

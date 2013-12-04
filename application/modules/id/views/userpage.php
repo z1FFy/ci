@@ -64,7 +64,6 @@ echo '<div id="left_user">';
 
 }else{    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
 
-echo "<br><a id='friends' link='".$url_id."'>Добавить в друганы</a>";
 
   if ($logged == TRUE) {
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends?friend_id=".$url_id."'>Отправить сообщение</a>";
