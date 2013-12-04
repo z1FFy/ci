@@ -89,8 +89,7 @@ class Upload extends CI_Controller {
 			$path=$file_path.'small/'.$raw_name;
 			$img =imagejpeg($dst_r,$path,$jpeg_quality);
 			$who='avatars';
-header ("Location:db_upload?user_id=".$user_id."&name=".$raw_name."&who=".$who);
-
+			header ("Location:db_upload?user_id=".$user_id."&name=".$raw_name."&who=".$who);
 
 
 			
@@ -117,9 +116,9 @@ header ("Location:db_upload?user_id=".$user_id."&name=".$raw_name."&who=".$who);
 				$data_user = $this->db_module->send_user_photos($data);
 			}
 			if ($who == 'avatars') {
-
-							
-$data_user = $this->db_module->up_user_ava($user_id,$name_photo);
+						
+			$data_user = $this->db_module->up_user_ava($user_id,$name_photo);
+			echo $data_user;
 			}
 			}
 		}

@@ -20,7 +20,7 @@ body {
  	}
  	.title {
 		margin-right: -20%;
-		font-size: 30px;
+		font-size: 24px;
 		margin-left: -20%;
 		text-align: center;
  	}
@@ -80,7 +80,6 @@ body {
 		height: 540px;
 	}
 .but {
-	-moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #dcecfb;
 	box-shadow:inset 0px 1px 0px 0px #dcecfb;
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1d5b99), color-stop(1, #4097ed) );
@@ -88,16 +87,12 @@ body {
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3678ba', endColorstr='#4097ed');
 	background-color:#3678ba;
 	-webkit-border-top-left-radius:15px;
-	-moz-border-radius-topleft:15px;
 	border-top-left-radius:15px;
 	-webkit-border-top-right-radius:15px;
-	-moz-border-radius-topright:15px;
 	border-top-right-radius:15px;
 	-webkit-border-bottom-right-radius:15px;
-	-moz-border-radius-bottomright:15px;
 	border-bottom-right-radius:15px;
 	-webkit-border-bottom-left-radius:15px;
-	-moz-border-radius-bottomleft:15px;
 	border-bottom-left-radius:15px;
 	text-indent:0;
 	border:1px solid #84bbf3;

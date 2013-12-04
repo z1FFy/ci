@@ -29,6 +29,7 @@ function sel_user_ava($user_id){
 
 function up_user_ava($user_id,$name_photo){
 	$logged = $this->session->userdata('logged_in');
+	$user_id=$this->session->userdata('user_id');
 	$result='';
 	if ($logged=TRUE) {
 		$data = array(
@@ -38,6 +39,8 @@ function up_user_ava($user_id,$name_photo){
 	$this->db->where('user_id', $user_id);
 		$this->db->update('users',$data);
 	$result='Фото загружено';
+
+	header ("Location:". $this->config->site_url().'id'.$user_id); 
 	} else {
 		$result='Фото не загружено, прав нет(';
 
@@ -133,6 +136,8 @@ if ($key == 'photos_name') {
         $this->photos_name = $photos_name; 
 		$query = $this->db->insert('photos', $this);
 		$result='Фото загружено!';
+			$user_id=$this->session->userdata('user_id');
+	header ("Location:". $this->config->site_url().'id'.$user_id); 
 	} else {
 		$result='Ошибка загрузки';
 	}

@@ -52,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
   $send_key=$_POST['send_key'];
 if ($send_key == '1') {
+  $podtvr=$this->config->site_url() .'id/profile?key="'.$podtvr;
   echo send_mime_mail('PortfoliOnline.ru',
                'about@portfolionline.ru',
                'Получатель',
@@ -136,7 +137,10 @@ echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->si
 <?php
 
 if ($whopage == 'my') {
-if ($podtvr == 0) {
+      if($podtvr == 'yes') {
+        echo '<br>Ваш Email подтвержден';
+      } else {
+        echo "<br>Ваш email не подтвержден";
 ?>
   <form action="profile" method="post" >
       <input type="hidden" id="send_key" value="1" name="send_key" />
@@ -153,9 +157,7 @@ if ($podtvr == 0) {
 
 }
 
-    if($podtvr == 'yes') {
-        echo '<br>Ваш Email подтвержден';
-      } 
+
 
 
 ?>

@@ -137,11 +137,11 @@ $('.btn_entry').click(function() {
  //Upload
     $('.upload_foto').click(function() { 
         var src = site_full+"/id/upload?who=photos";
-        upload(src,'',310,310);
+        upload(src,'nof',310,310);
        }); 
       $('#upload_ava').click(function() { 
         var src = site_full+"/id/upload?who=avatars";
-        upload(src,'ava');
+        upload(src,'nof');
        }); 
       $('#red-prof').click(function() { 
         var src = site_full+"/id/profile_update_form";
@@ -211,7 +211,7 @@ $('.btn_entry').click(function() {
 
 
       function upload (src,type,w,h) {
-        if (type == 'ava') {
+        if (type == 'nof') {
               $.get(src,
          onAjaxSuccess
          );
@@ -232,7 +232,7 @@ $('.btn_entry').click(function() {
 
       function onAjaxSuccess(data)
       {
-      if (type == 'ava') { src=data; }
+      if (type == 'nof') { src=data; }
           $.modal(src, {
           closeHTML: "<a href='#' title='Close' class='modal-close'></a>",
           containerCss:{

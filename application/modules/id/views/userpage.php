@@ -47,7 +47,7 @@ echo '<div id="left_user">';
      }
 
       echo $whostring.' '.$name.' '.$famil;
-           echo '      <a style="margin-left: 15px;" href="'.$this->config->site_url().'site/vyhod">выйти</a>';
+        if ($whopage=='my') {   echo '      <a style="margin-left: 15px;" href="'.$this->config->site_url().'site/vyhod">выйти</a>'; }
       echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
 ?>
 
@@ -64,7 +64,6 @@ echo '<div id="left_user">';
 
 }else{    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
 
-echo "<br><a id='friends' link='".$url_id."'>Добавить в друганы</a>";
 
   if ($logged == TRUE) {
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends?friend_id=".$url_id."'>Отправить сообщение</a>";
