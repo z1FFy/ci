@@ -25,6 +25,7 @@ class Upload extends CI_Controller {
 	function do_upload()
 	{
 		$logged = $this->session->userdata('logged_in');
+		$user_id=$this->session->userdata('user_id');
 		if ($logged == TRUE) {
 			$who = $_POST['who'];
 
@@ -54,7 +55,15 @@ class Upload extends CI_Controller {
 			if ($who == 'photos') {
 				$data['photos_name']=$photos_name;
 			}
-			$this->load->view('upload_success', $data);
+			$page_content=$this->load->view('upload_success', $data,TRUE);
+			$title="Загрузка фото";
+					$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id
+         );
+		$this->load->view('template',$page);
 		}
 		}
 	}

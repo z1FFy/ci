@@ -18,24 +18,12 @@
   }
 
 </style>
-<script>
- //    $(window).load(function() {
- //      var ava = $("#ava");
- //      ava_w=parseInt(ava.width());
- //      ava_h=parseInt(ava.height());
- //      if (ava_h>=ava_w) {
- //        $('#ava').attr('height', '');
- //      } else {
- //        $('#ava').attr('height', '200');
- //        $('#ava').attr('width', '150%');
- //        $('#ava').css('margin-left',"-20%");
- //      }
- // });
-</script>
+
 <?php
 $whostring_title='';
 foreach ($user_data as $item){ 
 			$name=$item->name;
+      $famil=$item->famil;
 			$user_id=$item->user_id;
 			$avatar_url=$item->avatar;
 		}
@@ -58,23 +46,26 @@ echo '<div id="left_user">';
       $exit='';
      }
 
-      echo '<br>'.$whostring.' '.$name;
+      echo $whostring.' '.$name.' '.$famil;
+           echo '      <a style="margin-left: 15px;" href="'.$this->config->site_url().'site/vyhod">выйти</a>';
       echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
 ?>
 
 
 
     <?php if ($whopage == 'my') {
-    echo '<br>  <a id="upload_ava">Загрузить аватар</a>';
-    echo '<br><a id="upload_foto">Загрузить фотку</a>';
-  echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
+    echo '<br>  <a id="upload_ava">Изменить аватар</a><br>';
+    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
+    echo "<br><a id='friends_view' link='".$url_id."'>Мои сообщения</a>";
+    echo '<br><a class="upload_foto">Загрузить работу</a>';
 
-    echo "<br><a id='friends_view'>Посмотреть друганов</a>";
 
 
 
 }else{    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
-echo "<br><a id='friends' link='".$url_id."'>Добавить в друганы</a>";}
+echo "<br><a id='friends' link='".$url_id."'>Добавить в друганы</a>";
+echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends?friend_id=".$url_id."'>Отправить сообщение</a>";
+}
 
 echo '</div>';
    $this->load->view('albom_index',$user_data); 

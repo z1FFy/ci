@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 
   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
-<link rel="shortcut icon" href="<?php echo $this->config->site_url() ?>/favicon.ico"></link>
+<link rel="shortcut icon" href="<?php echo $this->config->site_url() ?>favicon.ico"></link>
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.simplemodal.1.4.4.min.js"></script>
@@ -26,8 +26,10 @@
 
   <button type="submit" class="btn_entry">Войти</button>
 <?php } else {
-    echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a>';
-     echo '<a style="margin-left: 10px;" href="'.$this->config->site_url().'site/vyhod">Exit</a>';
+      echo '<a href="'.$this->config->site_url().'"">Главная</a>   ';
+    echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a> ';
+       echo '<a href="'.$this->config->site_url().'id'.$user_id.'/profile"">Настройки</a>';
+
   }
   ?>
 

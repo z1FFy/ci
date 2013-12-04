@@ -22,13 +22,13 @@
  		$this->load->view('chat_friends_form', $messages_data_arr);	
 	}
 
-	function send_messages(){
-		$id_photos = $_POST['id_photos'];
-		$messages = $_POST['messages'];
-		$user_id=$this->session->userdata('user_id');
-		$this->db_module->send_message($id_photos, $messages, $user_id);
+	// function send_messages(){
+	// 	$id_photos = $_POST['id_photos'];
+	// 	$messages = $_POST['messages'];
+	// 	$user_id=$this->session->userdata('user_id');
+	// 	$this->db_module->send_message($id_photos, $messages, $user_id);
 
-	}
+	// }
 
 	function chat_friends()
 		{
@@ -43,20 +43,38 @@
 		foreach ($user_data as $item) {
 			$avatar = $item->avatar;
 		}
-
 		$this->db_module->send_chat_friends($user_id, $friend_id, $messages, $avatar);
+		// извлекаю из базы значение "отправлял ли пользователь сообщение этому адресату когда либо"
+		$friend_data = $this->db_module->view_friends($friend_id, $user_id); 
+		foreach ($friend_data as $item) {
+			
+			$id_user = $item->user_id;
+			$id_friend = $item->friend_id;
+		}
+
+		// извлекаю из базы значение "отправлял ли адресат сообщение пользователю когда либо"
+		$friend_data1 = $this->db_module->view_friends1($friend_id, $user_id); 
+		foreach ($friend_data1 as $item1) {
+			$id_user1 = $item1->user_id;
+			$id_friend1 = $item1->friend_id;
+		}
+		// если по запросам в базе ничего не вывелось
+		if($id_user == '' && $id_friend == ''){	
+			$lal = '1';	
+			}
+
+		if($id_user1 == '' && $id_friend1 == ''){	
+			$lal1 = '1';	
+			}
+
+		// заносим в базу айди пользователя и адресата для дальнейшего извлечения сообщений
+		if($lal == '1' && $lal1 == '1'){
+		$this->db_module->friends_insert($friend_id, $user_id); 
+		}
 
 	}
 
-function view_photo1231(){
-		
-		$id_photos = $_GET['id_photos'];
-		$photos_data = $this->db_module->get_photos_by_id($id_photos);
-		$message_data = $this->db_module->view_message($id_photos);
-		$message_data_arr = array( 'message_data' => $message_data, 'photos_data' => $photos_data);
-		$this->load->view('view_photo',$message_data_arr);
-		
-	}
+
 
 }
 ?>

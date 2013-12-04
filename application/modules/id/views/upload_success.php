@@ -2,10 +2,30 @@
 <script type="text/javascript" src="<?php echo $this->config->site_url() ?>crop/js/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->site_url() ?>crop/js/jquery.Jcrop.js"></script>
   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>crop/css/jquery.Jcrop.css" type="text/css" />
+<style>
+  #target {
+    background-color: #ccc;
+    width: 500px;
+    height: 330px;
+    font-size: 24px;
+    display: block;
+
+  }
+      #middle-pol {
+    padding-top: 0px;
+    width: 100%;
+    height: 0px;
+    visibility: hidden;
+
+  }
+  #content {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+</style>
 <script type="text/javascript">
 
   $(function(){
-
     $('#cropbox').Jcrop({
       aspectRatio: 1,
        bgFade:     true,
@@ -31,25 +51,10 @@
   };
 
 </script>
-<style type="text/css">
-  #target {
-    background-color: #ccc;
-    width: 500px;
-    height: 330px;
-    font-size: 24px;
-    display: block;
-  }
-</style>
 
 
 
-<!-- 
-<ul>
-<?php foreach ($upload_data as $item => $value):?>
-<li><?php echo $item;?>: <?php echo $value;?></li>
-<?php endforeach; ?>
-</ul>
- -->
+
 
 <?php
 class picture {
@@ -207,10 +212,10 @@ $new_image->image_type='jpeg';
 $new_image->imagesave($new_image->image_type, $file_path.'/'.$raw_name);
 
 $filename = $full_path;
-echo $full_path;
 unlink($filename);  
 
 $new_image->imageout();
+
 echo "<h3>Выберите область фотографии для аватара</h3><br>";
 echo '<img id="cropbox" src="'.$this->config->site_url().'uploads/avatars/'.$raw_name.'" >';
 echo '<form action="'.$this->config->site_url().'id/upload/small_ava'.'" method="post" onsubmit="return checkCoords();">
@@ -223,7 +228,7 @@ echo '<form action="'.$this->config->site_url().'id/upload/small_ava'.'" method=
             <input type="hidden" value="'.$file_path.'" id="file_path" name="file_path" />
              <input type="hidden" value="'.$raw_name.'" id="raw_name" name="raw_name" />
 
-            <input type="submit" value="Crop Image" class="btn btn-large btn-inverse" />
+            <input type="submit" style="font-size:18px" value="Сохранить" class="btn btn-large btn-inverse" />
         </form>
 ';
 }
@@ -253,7 +258,3 @@ echo '<form action="'.$this->config->site_url().'id/upload/small_ava'.'" method=
 
 
 
-
-
-</body>
-</html>

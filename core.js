@@ -38,12 +38,12 @@ function includeJS (path) {
 includeJS('/ci/config.js');
 ///////////////////////////
 
-  $(window).on('resize', function(e) {
-  var cssObj = {
-        'width' : '60%' ,  'height' : '80%'
-      }
-      $('#simplemodal-container').css(cssObj);
-});
+//   $(window).on('resize', function(e) {
+//   var cssObj = {
+//         'width' : '60%' ,  'height' : '80%'
+//       }
+//       $('#simplemodal-container').css(cssObj);
+// });
 
 //Reg
 
@@ -135,17 +135,17 @@ $('.btn_entry').click(function() {
   });  
 
  //Upload
-    $('#upload_foto').click(function() { 
+    $('.upload_foto').click(function() { 
         var src = site_full+"/id/upload?who=photos";
-        upload(src);
+        upload(src,'',310,310);
        }); 
       $('#upload_ava').click(function() { 
         var src = site_full+"/id/upload?who=avatars";
-        upload(src);
+        upload(src,'ava');
        }); 
       $('#red-prof').click(function() { 
         var src = site_full+"/id/profile_update_form";
-        upload(src);
+        upload(src,'',410,610);
        }); 
             $('#prof').click(function() { 
         prof = $(this).attr("link");
@@ -154,7 +154,7 @@ $('.btn_entry').click(function() {
        }); 
             $('#sogl').click(function() { 
         var src = site_full+"/site/licension";
-        upload(src);
+        upload(src,'',440,600);
        }); 
 
        $('.photo').click(function() { 
@@ -164,14 +164,14 @@ $('.btn_entry').click(function() {
         upload(src);
        }); 
 
-       $('.like_photos').click(function() { 
-        like_photos = $(this).attr("link");
-      $.post(site_full+"/id/like_photos",
-         { like_photos : like_photos,
-              },
-         onAjaxSuccess
-         );
-      });
+      //  $('.like_photos').click(function() { 
+      //   like_photos = $(this).attr("link");
+      // $.post(site_full+"/id/like_photos",
+      //    { like_photos : like_photos
+      //         },
+      //    onAjaxSuccess
+      //    );
+      // });
        //delete photo
        $('.delete_photos').click(function() { 
         delete_photos = $(this).attr("link");
@@ -184,8 +184,7 @@ $('.btn_entry').click(function() {
 
       function onAjaxSuccess(data)
       {
-    location.reload();
-    //alert("Like добавлен!");
+  window.location.replace(site_full+"/id");
       };
 
 
@@ -200,7 +199,7 @@ $('.btn_entry').click(function() {
       });
  $('#friends_view').click(function() { 
         var src = site_full+"/id/friends_view";
-        upload(src);
+        upload(src,'',400,500);
        }); 
     
 
@@ -211,19 +210,45 @@ $('.btn_entry').click(function() {
 
 
 
-      function upload (src) {
-          $.modal('<iframe src="' + src + '" height="100%" width="100%"  scrolling="auto" style="border:0">', {
-          closeHTML: "<a href='#' title='Close' class='modal-close'>x</a>",
+      function upload (src,type,w,h) {
+        if (type == 'ava') {
+              $.get(src,
+         onAjaxSuccess
+         );
+      } else {
+            $.modal('<iframe src="' + src + '" height="100%" width="100%"  scrolling="auto" style="border:0">', {
+          closeHTML: "<a href='#' title='Close' class='modal-close'></a>",
           containerCss:{
             backgroundColor:"#fff", 
             borderColor:"#fff", 
-            height:'80%', 
+            height:h, 
             padding:10, 
-            width:'60%',
+            width:w,
 
           },
           overlayClose:true
         });
       }
+
+      function onAjaxSuccess(data)
+      {
+      if (type == 'ava') { src=data; }
+          $.modal(src, {
+          closeHTML: "<a href='#' title='Close' class='modal-close'></a>",
+          containerCss:{
+            backgroundColor:"#fff", 
+            borderColor:"#fff", 
+            width:300,
+            padding:10, 
+            height:300,
+
+          },
+          overlayClose:true
+        });   
+      };
+       } 
+  
+
+      
 
  });

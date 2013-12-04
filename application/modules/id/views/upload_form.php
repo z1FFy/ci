@@ -9,7 +9,12 @@
 
 $who = $_GET['who']; 
 echo $error;
-
+if ($who == 'avatars') {
+	echo "<p style='font-size:17px'>Выберите фотографию для аватара</p>";
+}
+if ($who == 'photos') {
+	echo "<p style='font-size:17px'>Выберите работу с жесткого диска</p>";
+}
 ?>
 
 <form action="<?php echo $this->config->site_url() ?>id/upload/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">

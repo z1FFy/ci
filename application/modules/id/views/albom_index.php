@@ -1,6 +1,7 @@
 <div id="polosa"><br></div>
 <div id="right_user">
-	<p style="font-size:19px">Мои работы</p>
+	<p style="font-size:19px">Мои работы  
+<!-- 	<?php if($whopage == "my") { echo '<a class="upload_foto">Загрузить фотку</a><br>';} ?> --></p>
 	<?php if ($whopage=='my') { ?>
 <!-- Добавление в альбом -->
 <!-- <form action="<?php echo $this->config->site_url()?>id<?php echo $url_id?>/albom/do_img_to_albom" method="post" accept-charset="utf-8">
@@ -33,9 +34,10 @@
 
 
 <?php 
+
 	echo "Альбомы:  ";
 	foreach ($albom_data as $item){ 
-	echo '<a href="'.$this->config->site_url().'id'.$url_id.'/albom/photos_in_albom?id_albom='.$item->id_albom.'">'.$item->albom_name.'</a>  ,  ';
+	echo '<a href="'.$this->config->site_url().'id'.$url_id.'/albom/photos_in_albom?id_albom='.$item->id_albom.'">'.$item->albom_name.'</a>  ';
 } ?>
 
 <br>
