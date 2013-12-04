@@ -25,12 +25,18 @@
 	Отчество: <input type="text" name="otchestvo"  size="20" maxlength="20"  value="<?php echo $item->otchestvo;?>"/>
 	<br>
 	Почта: <input type="text" name="mail" size="20" maxlength="50" value="<?php echo $item->mail;?>"/><br>
-
+	<?php 
+	$sel='';
+	$sel1='';
+	if($item->sex == 'Мужской'){$sel='selected';}
+	if($item->sex == 'Женский'){$sel1='selected';}
+	
+	 ?>
 	Пол:
 	<select name="sex"> 
-	<option selected="selected" value="не выбран">не выбран</option>
-	<option value="Мужской">Мужской</option>
-	<option value="Женский">Женский</option>
+	<option value="не выбран">не выбран</option>
+	<option <?php echo $sel; ?> value="Мужской">Мужской</option>
+	<option <?php echo $sel1; ?> value="Женский">Женский</option>
 	</select>
 	<br>
 	Дата Рождения: 
@@ -75,8 +81,9 @@
 	Специализация: 
 
 <select name="spec_user"> 
+<option value="<?php echo $item->spec_user; ?>"><?php echo $item->spec_user; ?></option>
 <option value="Менеджмент">Менеджмент</option>
-<option selected="selected" value="Разработка сайтов">Разработка сайтов</option>
+<option value="Разработка сайтов">Разработка сайтов</option>
 <option value="Дизайн">Дизайн</option>
 <option value="Арт">Арт</option>
 <option value="Программирование">Программирование</option>
@@ -108,7 +115,8 @@
 <h4>Образование:</h4>
 Уровень 
 <select name="education_level"> 
-<option selected="selected" value="Высшее">Высшее</option>
+<option value="<?php echo $item->education_level; ?>"><?php echo $item->education_level; ?></option>
+<option value="Высшее">Высшее</option>
 <option value="Бакалавр">Бакалавр</option>
 <option value="Магистр">Магистр</option>
 <option value="Кандидат наук">Кандидат наук</option>
@@ -123,8 +131,8 @@
 <br>Год окончания 
 <select name="education_end" size="1">
 	<?php for ($i = 1900; $i <= 2015; $i++){
-	if ($i<10){
-	echo '<option value="0'.$i.'">0' .$i.' </option>';
+	if ($i== $item->education_end){
+	echo '<option selected value="'.$i.'">' .$i.' </option>';
 	}else{
 
 		echo '<option value="'.$i.'">' .$i.' </option>';

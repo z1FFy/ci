@@ -58,7 +58,7 @@ echo '<div id="left_user">';
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
     echo "<br><a id='friends_view' link='".$url_id."'>Мои сообщения</a>";
     echo '<br><a class="upload_foto">Загрузить работу</a>';
-
+    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/support'>Сообщить об ошибке</a>";
 
 
 
