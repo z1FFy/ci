@@ -1,7 +1,7 @@
 <div id="polosa"><br></div>
 <div id="right_user">
 	<p style="font-size:19px">Мои работы  
-<!-- 	<?php if($whopage == "my") { echo '<a class="upload_foto">Загрузить фотку</a><br>';} ?> --></p>
+	<?php if($whopage == "my") { echo '<button class="upload_foto">Загрузить фотку</button><br>';} ?> </p>
 	<?php if ($whopage=='my') { ?>
 <!-- Добавление в альбом -->
 <!-- <form action="<?php echo $this->config->site_url()?>id<?php echo $url_id?>/albom/do_img_to_albom" method="post" accept-charset="utf-8">
@@ -46,9 +46,13 @@
 <!-- vse foto -->
 <div>
 <?php $i=0; foreach ($photo_data as $item){ 
+		$photos_name=$item->photos_name;
+if ($photos_name=='""') {
+	$photos_name='';
+}
 $i++;
-			echo '<a class="phot" href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'">
-<div style="border:4px solid #EDF7FD;float:left;background-size: cover;background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.'); width:150px; height:150px"></div></a>';
+			echo '<div class="block_photo"><a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'">
+<div class="photo" style="background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');"><div class="pod_photo">'.$photos_name.'</div></div></a></div>';
 // if ($i == 4) {
 // 	echo "<br>";
 // }

@@ -41,7 +41,8 @@
      
 </div>
 <div id="footer">
-<p style="text-align:center">copyright 2013 PortfoliOnline.ru<br>
+  <?php echo "<br><a id='teh' href='".$this->config->site_url() ."id/support'>Тех. Поддержка</a>";
+?><p style="text-align:center">copyright 2013 PortfoliOnline.ru<br>
 <small>Авторские права на все материалы опубликованные
 на сайте принадлежат их авторам.</small></p>
  </div>

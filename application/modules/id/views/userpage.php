@@ -26,49 +26,33 @@ foreach ($user_data as $item){
       $famil=$item->famil;
 			$user_id=$item->user_id;
 			$avatar_url=$item->avatar;
+      $spec=$item->spec_user;
 		}
 		if ($whopage=='my') {
-$whostring='Я';
-$whostring_title="Моя";
-foreach ($user_data as $item){ 
-		}
-} else {
-	$whostring='';
-}
-echo '<div id="left_user">';
-    if ($logged != TRUE) {
-     // echo 'вы не авторизованы<br>';
-      ?>
-     <!--  <a href="site/reg">Регистрация</a><br>  -->
+      $whostring='Я';
+      $whostring_title="Моя";
+      $exit='<a href="'.$this->config->site_url().'site/vyhod">выйти</a>';
 
-     <?php
-
-      $exit='';
-     }
-
-      echo $whostring.' '.$name.' '.$famil;
-        if ($whopage=='my') {   echo '      <a style="margin-left: 15px;" href="'.$this->config->site_url().'site/vyhod">выйти</a>'; }
-      echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
-?>
+    } else {
+  	   $whostring='';
+    }
+      echo '<div id="left_user">';
+      echo '<p style="text-align:center">'.$whostring.' '.$name.' '.$famil.'</p>'.'<p style="font-size:13px;text-align:center">( '.$spec.' )</p>';
+      echo '<br><div style="margin-left:23px" class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
 
 
-
-    <?php if ($whopage == 'my') {
+echo '<p style="padding-left:30px">';
+    if ($whopage == 'my') {
     echo '<br>  <a id="upload_ava">Изменить аватар</a><br>';
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
     echo "<br><a id='friends_view' link='".$url_id."'>Мои сообщения</a>";
     echo '<br><a class="upload_foto">Загрузить работу</a>';
-    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/support'>Сообщить об ошибке</a>";
-
-
-
-}else{    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
-
-
-  if ($logged == TRUE) {
-    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends?friend_id=".$url_id."'>Отправить сообщение</a>";
-  }
-
+    echo '<br>'.$exit;
+    }else{    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
+      if ($logged == TRUE) {
+        echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends?friend_id=".$url_id."'>Отправить сообщение</a>";
+      }
+echo '</p>';
 
 }
 

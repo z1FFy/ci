@@ -58,7 +58,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 </script> 
 
 <form> 
-<select name="spec_user" onChange="selChange(this.form)">
+<select class="batn" id="regsel" name="spec_user" onChange="selChange(this.form)">
 
 <option value="Менеджмент">Менеджмент</option>
 <option selected="selected" value="Разработка сайтов">Разработка сайтов</option>

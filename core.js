@@ -157,7 +157,7 @@ $('.btn_entry').click(function() {
         upload(src,'',440,600);
        }); 
 
-       $('.photo').click(function() { 
+       $('.photo_up').click(function() { 
         photo = $(this).attr("link");
         // alert(photo);
         var src = photo;
