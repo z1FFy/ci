@@ -1,7 +1,9 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-<?php 
-//var_dump($this->session);
+<?php
+		if(!$friends_data_friend){
+			echo 'Вы не с кем не переписывались!';
+		}
 		foreach ($friends_data_friend as $item){ 
 			if($item->name == '' || $item->famil == ''){
 				$name = $item->login;

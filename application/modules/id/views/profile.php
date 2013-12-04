@@ -47,6 +47,7 @@ $podtvr=$item->podtvr;
       $user_id=$item->user_id;
       $avatar_url=$item->avatar;
       $email=$item->mail;
+      }
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
   $send_key=$_POST['send_key'];
@@ -113,14 +114,25 @@ echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->si
 <div id="right_user">
   <p style="font-size:19px">Профиль</p> <br>
 <ul>
-  <li>Фамилия: <?php echo $item->famil;?></li>  
-  <li>Имя: <?php echo $item->name;?> </li>
-  <li>Отчество: <?php echo $item->otchestvo;?></li>
-  <li>Почта: <?php echo $item->mail;?></li>
-  <li>Дата Рождения: <?php echo $item->birthday;?></li>
-  <li>Дата регистрации: <?php echo $item->date;?></li>
-  <li>Специализация: <?php echo $item->spec_user;?></li>
 
+	<li>Фамилия: <?php echo $item->famil;?></li>  
+	<li>Имя: <?php echo $item->name;?> </li>
+	<li>Отчество: <?php echo $item->otchestvo;?></li>
+	<li>Почта: <?php echo $item->mail;?></li>
+  <li>Почта: <?php echo $item->sex;?></li>
+	<li>Дата Рождения: <?php echo $item->birthday;?></li>
+	<li>Дата регистрации: <?php echo $item->date;?></li>
+	<li>Специализация: <?php echo $item->spec_user;?></li>
+  <li>Образование:</li>
+  <ul>
+  <li>Уровень образования: <?php echo $item->education_level;?></li>
+  <li>Наименование учебного заведения: <?php echo $item->education_basic;?></li>
+  <li>Факультет: <?php echo $item->facultet;?></li>
+  <li>Закончил: <?php echo $item->education_end;?></li>
+  <li>Гражданство: <?php echo $item->citizenship;?></li>
+  <li>Разрешено работать: <?php echo $item->work_permit;?></li>
+  <li>Знание языков: <?php echo $item->language;?></li>
+  </ul>
 <?php
 
 if ($whopage == 'my') {
@@ -134,20 +146,18 @@ if ($podtvr == 0) {
 
 
 <?php
-
+} 
 
  echo "<br><a id='red-prof' link='".$this->config->site_url() ."id".$user_id."/profile' >Редактировать профиль</a>";
 
 
+}
 
-
-      }
-    if($podtvr == 1) {
+    if($podtvr == 'yes') {
         echo '<br>Ваш Email подтвержден';
       } 
 
-}
-}
+
 ?>
 </ul>
 <br><br><br><br><br><br><br><br><br><br>

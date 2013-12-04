@@ -37,7 +37,7 @@ body {
 <div align="center">
   <p style="font-size:30px;color:#fff">Регистрация </p>
 
-<!-- <select id="regsel" name="spec_user" size="1"> </select> -->
+
 <script language ="JavaScript"> 
 
 function selChange(seln) { 
@@ -48,6 +48,8 @@ Isel = seln.spec_user.options[selNum].text;
 if (Isel == 'Другое'){
  //document.getElementById("div1").innerHTML="<input type="text" name ="spec_user" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Введите свою специализацию" ><br>";
 document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1" onkeypress="validate(event)" maxlength="20" class="input-small" placeholder="Введите свою специализацию" ><br>';
+}else{
+	document.getElementById('div1').innerHTML='';
 }
 
 
@@ -57,6 +59,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 
 <form> 
 <select name="spec_user" onChange="selChange(this.form)">
+
 <option value="Менеджмент">Менеджмент</option>
 <option selected="selected" value="Разработка сайтов">Разработка сайтов</option>
 <option value="Дизайн">Дизайн</option>
@@ -85,7 +88,9 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <option value="Административная поддержка">Административная поддержка</option>
 <option value="Репетиторы/Преподаватели">Репетиторы/Преподаватели</option>
 <option value="Другое">Другое</option>
+
 </select>
+
 <div id="div1">
 
  </div>

@@ -199,7 +199,7 @@ function get_photo_from_albom($albom_id) {
 
 
 //обновл профиля
-function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user) {
+function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $citizenship, $work_permit, $language) {
 		$logged = $this->session->userdata('logged_in');
 		$result='';
 		if ($logged=TRUE) {
@@ -209,6 +209,14 @@ function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user) {
 		$this->mail  = $mail;
 		$this->birthday  = $birthday;
 		$this->spec_user  = $spec_user;
+		$this->sex  = $sex;
+		$this->education_level  = $education_level;
+		$this->education_basic  = $education_basic;
+		$this->facultet  = $facultet;
+		$this->education_end  = $education_end;
+		$this->citizenship  = $citizenship;
+		$this->work_permit  = $work_permit;
+		$this->language  = $language;
 		$user_id = $this->session->userdata('user_id');
 		$this->db->where('user_id', $user_id);
 		$this->db->update('users', $this);
@@ -292,6 +300,8 @@ function friends_view($user_id){
 	$this->db->select('*');
 	$this->db->from('users', 'friends');
 	 $this->db->join('friends', 'users.user_id = friends.friend_id');
+	 $this->db->where('friends.user_id', $user_id); 
+	$this->db->or_where('friends.friend_id', $user_id);
 	$query = $this->db->get();
 	 return $query->result();
 }
@@ -308,14 +318,15 @@ function get_users_by_id($user_id){
 
 
 
-function send_chat_friends($user_id, $friend_id, $messages, $avatar){
+
+function send_chat_friends($user_id, $friend_id, $messages){
 	$this->user_id = $user_id;
 	$this->adresat = $friend_id;
 	$this->messages = $messages;
-	$this->avatar = $avatar;
 	$this->message_date  = date("m.d.y");
 	$query = $this->db->insert('chat_friends', $this); 
 }
+
 
 
 function view_friends($friend_id, $user_id){
@@ -327,6 +338,7 @@ function view_friends($friend_id, $user_id){
 	return $query->result();
 
 }
+
 
 function view_friends1($friend_id, $user_id){
 
