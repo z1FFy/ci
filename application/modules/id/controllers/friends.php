@@ -39,11 +39,7 @@
 		$messages = $_POST['messages'];
 		$friend_id = $_POST['friend_id'];
 		$user_id=$this->session->userdata('user_id');
-		$user_data = $this->db_module->get_user_by_id($user_id); 
-		foreach ($user_data as $item) {
-			$avatar = $item->avatar;
-		}
-		$this->db_module->send_chat_friends($user_id, $friend_id, $messages, $avatar);
+		$this->db_module->send_chat_friends($user_id, $friend_id, $messages);
 		// извлекаю из базы значение "отправлял ли пользователь сообщение этому адресату когда либо"
 		$friend_data = $this->db_module->view_friends($friend_id, $user_id); 
 		foreach ($friend_data as $item) {

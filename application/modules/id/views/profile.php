@@ -51,10 +51,20 @@ $podtvr=$item->spec_user;
 	<li>Имя: <?php echo $item->name;?> </li>
 	<li>Отчество: <?php echo $item->otchestvo;?></li>
 	<li>Почта: <?php echo $item->mail;?></li>
+  <li>Почта: <?php echo $item->sex;?></li>
 	<li>Дата Рождения: <?php echo $item->birthday;?></li>
 	<li>Дата регистрации: <?php echo $item->date;?></li>
 	<li>Специализация: <?php echo $item->spec_user;?></li>
-
+  <li>Образование:</li>
+  <ul>
+  <li>Уровень образования: <?php echo $item->education_level;?></li>
+  <li>Наименование учебного заведения: <?php echo $item->education_basic;?></li>
+  <li>Факультет: <?php echo $item->facultet;?></li>
+  <li>Закончил: <?php echo $item->education_end;?></li>
+  <li>Гражданство: <?php echo $item->citizenship;?></li>
+  <li>Разрешено работать: <?php echo $item->work_permit;?></li>
+  <li>Знание языков: <?php echo $item->language;?></li>
+  </ul>
 <?php
 
 if ($whopage == 'my') {

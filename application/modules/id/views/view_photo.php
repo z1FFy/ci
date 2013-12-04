@@ -127,13 +127,14 @@ function onAjaxSuccess(data)
 	$height=$arr[1]; // высота
 	echo $photos_name;
 	echo '<div  width="500px" align="center"><img r_width="'.$width.'"r_height="'.$height.'" id="photo" style="" src="'.$img_path.'" width="80%"></div>'; 
-					echo '<br><a class="like_photos like_photos1" link='.$item->id_photos.'>LIKE</a>  '.$item->like_photos.'';
+					
   if ($whopage=='my') {
     if ($logged==TRUE) {
+      echo '<br><a class="like_photos like_photos1" link='.$item->id_photos.'>LIKE</a>  '.$item->like_photos.'';
   		echo '  <a class="delete_photos" link='.$item->id_photos.'>Удалить</a>';
     }
 }
-	?>
+if ($logged == TRUE) {?>
 
 <br>
 <?php 
@@ -163,5 +164,5 @@ function onAjaxSuccess(data)
 <br /><br />
 
 <input type="submit" class="send_com" value="Отправить" />
-
+<?php } ?>
 <!-- </form> -->

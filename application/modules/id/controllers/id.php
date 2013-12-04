@@ -112,7 +112,16 @@
 		$birthday3 = $_POST['birthday3'];
 		$birthday = $birthday1.'.'.$birthday2.'.'.$birthday3;
 		$spec_user = $_POST['spec_user'];
-		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user);
+		$sex = $_POST['sex'];
+		$education_level = $_POST['education_level'];
+		$education_basic = $_POST['education_basic'];
+		$facultet = $_POST['facultet'];
+		$education_end = $_POST['education_end'];
+		$citizenship = $_POST['citizenship'];
+		$work_permit = $_POST['work_permit'];
+		$language = $_POST['language'];
+
+		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $citizenship, $work_permit, $language);
 
 	}
 
@@ -161,9 +170,11 @@
 	function friends_view()
 	{
 		$i=0;
+		$friend_id = '';
 		$user_id = $this->session->userdata('user_id');
 		$friends_data = $this->db_module->friends_view($user_id);
 		foreach ($friends_data as $item) {
+			//var_dump($item);
 			if($item->friend_id == $user_id){
 			$friend_id[$i] = $item->user_id;
 			}else{
@@ -173,6 +184,7 @@
 
 		}
 		  $friends_data_friend = $this->db_module->get_users_by_id($friend_id);
+
 		$friends_data_arr = array('friends_data_friend' => $friends_data_friend);
 		$this->load->view('friends_view_form',$friends_data_arr);
 	}
