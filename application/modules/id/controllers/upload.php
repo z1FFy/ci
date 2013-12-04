@@ -67,19 +67,20 @@ class Upload extends CI_Controller {
 			$jpeg_quality = 100;
 			$full_path=$_POST['full_path'];
 			$file_path=$_POST['file_path'];
+			$raw_name=$_POST['raw_name'];
 			$name_photo=$_POST['name_photo'];
-			$src = $this->config->site_url().'uploads/avatars/'.$name_photo;
+			$src = $this->config->site_url().'uploads/avatars/'.$raw_name;
 			$img_r = imagecreatefromjpeg($src);
 			$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 			imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'],
 			$targ_w,$targ_h,$_POST['w'],$_POST['h']);
 
-
+			$user_id=$this->session->userdata('user_id');
 			$name_photo=$_POST['name_photo'];
-			$path=$file_path.'small/'.$name_photo;
+			$path=$file_path.'small/'.$raw_name;
 			$img =imagejpeg($dst_r,$path,$jpeg_quality);
 			$who='avatars';
-header ("Location:db_upload?user_id=".$user_id."&name=".$name_photo."&who=".$who."&photos_name=".$photos_name);
+header ("Location:db_upload?user_id=".$user_id."&name=".$raw_name."&who=".$who);
 
 
 
@@ -91,8 +92,13 @@ header ("Location:db_upload?user_id=".$user_id."&name=".$name_photo."&who=".$who
 			$logged = $this->session->userdata('logged_in');
 			if ($logged == TRUE) {
 			$user_id=$this->session->userdata('user_id');
+			if ($who=='avatars'){
+			$name_photo  = $_GET['name'];
+			$photos_name = '';	
+			} else {
 			$name_photo  = $_GET['name'];
 			$photos_name = $_GET['photos_name'];
+			}
 			if ($who == 'photos') {
 				$data = array(
 	               'user_id' => $user_id,

@@ -42,7 +42,7 @@
 </style>
 
 
-<h3>Выберите область фотографии для аватара</h3>
+
 <!-- 
 <ul>
 <?php foreach ($upload_data as $item => $value):?>
@@ -176,39 +176,59 @@ class picture {
 }
 
 
-var_dump($upload_data);
+if ($who== 'photos') {
+    $user_id=$this->session->userdata('user_id');
+    $name_photo = $upload_data['file_name'];
+    header ("Location:db_upload?user_id=".$user_id."&name=".$name_photo."&who=".$who.'&photos_name="'.$photos_name.'"');
 
-foreach ($upload_data as $item => $value) {
-	if ($item=='file_path') {
-		$file_path = $value;
-	}
+    echo "Фотография загружена";
+}
+
+
+if ($who == 'avatars'){
+    foreach ($upload_data as $item => $value) {
+    if ($item=='file_path') {
+        $file_path = $value;
+    }
 }
 $user_id=$this->session->userdata('user_id');
+$image_width = $upload_data['image_width'];
 $full_path = $upload_data['full_path'];
 $name_photo = $upload_data['file_name'];
-$image_width = $upload_data['image_width'];
-if ($who == 'avatars'){
-if ($image_width >= 600){
+
+$raw_name = $upload_data['raw_name'];
+$raw_name.='.jpeg';
 $new_image = new picture($this->config->site_url().'uploads/avatars/'.$name_photo);
-$new_image->imageresizewidth(600);
-$new_image->imagesave($new_image->image_type, $file_path.'/'.$name_photo);
-$new_image->imageout();
+if ($image_width >= 600){
+    $new_image->imageresizewidth(600);
 }
-echo '<img id="cropbox" src="'.$this->config->site_url().'uploads/avatars/'.$name_photo.'" >';
+$new_image->image_type='jpeg';
+
+$new_image->imagesave($new_image->image_type, $file_path.'/'.$raw_name);
+
+$filename = $full_path;
+echo $full_path;
+unlink($filename);  
+
+$new_image->imageout();
+echo "<h3>Выберите область фотографии для аватара</h3><br>";
+echo '<img id="cropbox" src="'.$this->config->site_url().'uploads/avatars/'.$raw_name.'" >';
 echo '<form action="'.$this->config->site_url().'id/upload/small_ava'.'" method="post" onsubmit="return checkCoords();">
-			<input type="hidden" id="x" name="x" />
-			<input type="hidden" id="y" name="y" />
-			<input type="hidden" id="w" name="w" />
-			<input type="hidden" id="h" name="h" />
-			<input type="hidden" value="'.$name_photo.'" id="name_photo" name="name_photo" />
-			<input type="hidden" value="'.$full_path.'" id="full_path" name="full_path" />
-			<input type="hidden" value="'.$file_path.'" id="file_path" name="file_path" />
-			<input type="submit" value="Crop Image" class="btn btn-large btn-inverse" />
-		</form>
+            <input type="hidden" id="x" name="x" />
+            <input type="hidden" id="y" name="y" />
+            <input type="hidden" id="w" name="w" />
+            <input type="hidden" id="h" name="h" />
+            <input type="hidden" value="'.$name_photo.'" id="name_photo" name="name_photo" />
+            <input type="hidden" value="'.$full_path.'" id="full_path" name="full_path" />
+            <input type="hidden" value="'.$file_path.'" id="file_path" name="file_path" />
+             <input type="hidden" value="'.$raw_name.'" id="raw_name" name="raw_name" />
+
+            <input type="submit" value="Crop Image" class="btn btn-large btn-inverse" />
+        </form>
 ';
 }
 
-	
+    
 ?>
 
 
