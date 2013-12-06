@@ -96,6 +96,8 @@ padding: 4px;
 box-shadow: 0 0 1px rgba(0,0,0,0.5);
 border-radius: 6px;
 background-color: #fff;
+font-weight: bold;
+margin: 2px;
 }
 button:hover, .batn:hover, input:hover {
 		border: 0px solid #000;
@@ -181,7 +183,6 @@ border-radius: 6px;
 /*	background-color: #336AA8;	*/
 	color:#fff;
 	box-shadow: 0 0 7px rgba(0,0,0,0.5);
-	background-color: #fff;
 }
 
 .pod_photo {

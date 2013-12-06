@@ -48,7 +48,7 @@ includeJS('/ci/config.js');
 //Reg
 
 
-$('.btn').click(function() {
+$('#reg').click(function() {
   famil = $("input[name='famil']").val();
   name = $("input[name='name']").val(); 
   login = $("input[name='login']").val();

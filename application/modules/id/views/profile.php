@@ -137,7 +137,7 @@ echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->si
 <?php
 
 if ($whopage == 'my') {
-      if($podtvr == 'yes') {
+      if($podtvr == 'okay') {
         echo '<br>Ваш Email подтвержден';
       } else {
         echo "<br>Ваш email не подтвержден";

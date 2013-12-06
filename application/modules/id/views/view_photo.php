@@ -112,29 +112,49 @@ function onAjaxSuccess(data)
 
 
 </script>
-</head>
 
 	<?php 
-	foreach ($photos_data as $item){ 
-	$photos_name=$item->photos_name;
-	}
-	$photo = $_GET['photo'];
-	$id_photos = $_GET['id_photos'];
-	$id_user = $_GET['id_user'];
-	$img_path = $this->config->site_url().'uploads/photos/'.$photo;
-	$arr = GetImageSize($img_path);
-	$width=$arr[0]; // ширина
-	$height=$arr[1]; // высота
-	echo $photos_name;
-	echo '<div  width="500px" align="center"><img r_width="'.$width.'"r_height="'.$height.'" id="photo" style="" src="'.$img_path.'" width="80%"></div>'; 
+  $id=$_GET['id'];
+    $count=count($photos_data);
+    if ($id>$count) {
+    $id=1;
+  
+  }
 
+  $i=0;
+  $id=$id-1;
+        $url_id = $this->uri->segment(1);
+    $url_id = trim($url_id, " \id.");
+  	foreach ($photos_data  as $key => $item){
+  $i++;
+  if ($key == $id){
+    
+	$photos_name=$item->photos_name;
+
+$photo =$item->url_photo;
+  $id_photos = $_GET['id_photos'];
+  $id_user = $_GET['id_user'];
+  $img_path = $this->config->site_url().'uploads/photos/'.$photo;
+  $arr = GetImageSize($img_path);
+  $width=$arr[0]; // ширина
+  $height=$arr[1]; // высота
+  $i=$i+1;
+echo '<p style="text-align:center">'.$photos_name.'<br><a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'&id='.$i.'">next</a></p>';
+
+   echo '<div  width="500px" align="center"><img r_width="'.$width.'"r_height="'.$height.'" id="photo" style="" src="'.$img_path.'" width="80%"></div>'; 
+
+ echo '<p style="text-align:center"><a class="batn" href="'.$img_path.'">на полный экран</a>';
+
+}
+	}
+	
   if ($whopage=='my') {
     if ($logged==TRUE) {
-        		echo '  <a class="delete_photos" link='.$item->id_photos.'>Удалить</a>';
+        		echo '  <a class="delete_photos batn" link='.$item->id_photos.'>Удалить</a>';
     }
 }
 if ($logged == TRUE) {
-echo '<br><a class="like_photos like_photos1" link='.$item->id_photos.'>LIKE</a>  '.$item->like_photos.'';
+echo ' <a class="like_photos like_photos1 batn" link='.$item->id_photos.'>LIKE</a>  '.$item->like_photos.'';
 
 ?>
 
@@ -157,7 +177,6 @@ echo '<br><a class="like_photos like_photos1" link='.$item->id_photos.'>LIKE</a>
 		}?>
 <br>
 
-<!-- <form action="<?php echo $this->config->site_url() ?>id/chat/send_messages" method="post" accept-charset="utf-8"> -->
 
 <input type="hidden" name="id_photos" value="<?php echo $id_photos; ?>">
 <input type="hidden" name="id_user" value="<?php echo $id_user; ?>">
@@ -166,5 +185,7 @@ echo '<br><a class="like_photos like_photos1" link='.$item->id_photos.'>LIKE</a>
 <br /><br />
 
 <input type="submit" class="send_com" value="Отправить" />
-<?php } ?>
-<!-- </form> -->
+<?php }
+echo "</p>";
+ ?>
+
