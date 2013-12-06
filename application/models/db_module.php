@@ -84,7 +84,7 @@ function up_podtvr($user_id) {
         $this->mail = $_POST['email'];
 		$this->password = $_POST['pass'];
 		$this->spec_user = $_POST['spec_user'];
-		$this->date  = date("m.d.y");
+		$this->date  = date("m.d.y h:i:s");
 		$data = $this->db_module->get_user($this->login);
 		$data_mail = $this->db_module->get_user_by_email($this->mail);
 		foreach ($data as $item){ 
@@ -237,7 +237,7 @@ function send_message($id_photos, $messages, $user_id){
 	$this->photos_id = $id_photos;
 	$this->messages = $messages;
 	$this->user_id = $user_id;
-	$this->message_date  = date("m.d.y");
+	$this->message_date  = date("m.d.y h:i:s");
 	$query = $this->db->insert('chat_photos', $this); 
 
 }
@@ -371,6 +371,25 @@ function view_friend_message($friend_id, $user_id){
 
 	 return $query->result();
 
+}
+
+function seach($mas){
+	$this->db->select('*');
+	$this->db->from('users');
+	$this->db->where_in('name', $mas); 
+	$this->db->where_in('famil', $mas);
+	$this->db->where_in('otchestvo', $mas);
+
+	$this->db->or_where_in('name', $mas); 
+	$this->db->where_in('famil', $mas);	
+	
+	$this->db->or_where_in('name', $mas);
+	$this->db->or_where_in('famil', $mas); 
+	$this->db->or_where_in('otchestvo', $mas); 
+	//$this->db->or_where_in('login', $mas); //надо ли это??
+	
+	$query = $this->db->get();
+	 return $query->result();
 }
 
 

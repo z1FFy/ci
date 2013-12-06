@@ -134,6 +134,7 @@ echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->si
   <li>Разрешено работать: <?php echo $item->work_permit;?></li>
   <li>Знание языков: <?php echo $item->language;?></li>
   </ul>
+  
 <?php
 
 if ($whopage == 'my') {

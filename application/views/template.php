@@ -29,6 +29,7 @@
       echo '<a href="'.$this->config->site_url().'"">Главная</a>   ';
     echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a> ';
        echo '<a href="'.$this->config->site_url().'id'.$user_id.'/profile"">Настройки</a>';
+       echo ' <a href="'.$this->config->site_url().'id'.$user_id.'/seach"">Найти человека</a>';
 
   }
   ?>

@@ -198,6 +198,26 @@
 		$this->load->view('support');
 	}
 
+	function seach(){
+		$this->load->view('seach');
+	}
+
+	function seach_user(){
+		$seach = $_POST['seach'];
+		$mas = explode(" ",$seach);
+		$text ='';
+		$seach_data ='';
+		if (strlen($seach) <= 3) {
+            $text = '<p>Слишком короткий поисковый запрос.</p>';
+        } else if (strlen($seach) > 128) {
+            $text = '<p>Слишком длинный поисковый запрос.</p>';
+        } else {
+		$seach_data = $this->db_module->seach($mas);
+		}
+		$seach_data_arr = array('seach_data' => $seach_data, 'text' => $text);
+		$this->load->view('seach', $seach_data_arr);
+		
+	}
  
 }
 ?>

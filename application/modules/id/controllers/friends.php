@@ -22,14 +22,6 @@
  		$this->load->view('chat_friends_form', $messages_data_arr);	
 	}
 
-	// function send_messages(){
-	// 	$id_photos = $_POST['id_photos'];
-	// 	$messages = $_POST['messages'];
-	// 	$user_id=$this->session->userdata('user_id');
-	// 	$this->db_module->send_message($id_photos, $messages, $user_id);
-
-	// }
-
 	function chat_friends()
 		{
 			$this->load->view('chat_friends_form');	
