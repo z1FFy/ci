@@ -84,7 +84,7 @@ function up_podtvr($user_id) {
         $this->mail = $_POST['email'];
 		$this->password = $_POST['pass'];
 		$this->spec_user = $_POST['spec_user'];
-		$this->date  = date("m.d.y");
+		$this->date  = date("d.m.y h:i:s");
 		$data = $this->db_module->get_user($this->login);
 		$data_mail = $this->db_module->get_user_by_email($this->mail);
 		foreach ($data as $item){ 
@@ -237,7 +237,7 @@ function send_message($id_photos, $messages, $user_id){
 	$this->photos_id = $id_photos;
 	$this->messages = $messages;
 	$this->user_id = $user_id;
-	$this->message_date  = date("m.d.y");
+	$this->message_date  = date("d.m.y h:i:s");
 	$query = $this->db->insert('chat_photos', $this); 
 
 }
@@ -328,7 +328,7 @@ function send_chat_friends($user_id, $friend_id, $messages){
 	$this->user_id = $user_id;
 	$this->adresat = $friend_id;
 	$this->messages = $messages;
-	$this->message_date  = date("m.d.y");
+	$this->message_date  = date("d.m.y h:i:s");
 	$query = $this->db->insert('chat_friends', $this); 
 }
 
@@ -355,7 +355,8 @@ function view_friends1($friend_id, $user_id){
 	return $query->result();
 }
 
-function view_friend_message($friend_id, $user_id){
+function view_friend_message($friend_id, $user_id,$kol){
+	if ($kol != 1) {
 	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
 	$this->db->select('*');
 	$this->db->from('users','chat_friends');
@@ -365,12 +366,40 @@ function view_friend_message($friend_id, $user_id){
 
 	$this->db->or_where('chat_friends.adresat', $user_id); 
 	$this->db->where('chat_friends.user_id', $friend_id);
-
 	$query = $this->db->get();
 
 
 	 return $query->result();
+}
+else 
+{
+		$this->db->select('*');
+	$this->db->from('chat_friends');
+	$this->db->where('adresat', $user_id);
+	$this->db->order_by('id_chat_friends', 'desc'); 
+	//	 $this->db->limit(1);
+	$query = $this->db->get();
+		 return $query->result();
+}
+}
 
+function seach($mas){
+	$this->db->select('*');
+	$this->db->from('users');
+	$this->db->where_in('name', $mas); 
+	$this->db->where_in('famil', $mas);
+	$this->db->where_in('otchestvo', $mas);
+
+	$this->db->or_where_in('name', $mas); 
+	$this->db->where_in('famil', $mas);	
+	
+	$this->db->or_where_in('name', $mas);
+	$this->db->or_where_in('famil', $mas); 
+	$this->db->or_where_in('otchestvo', $mas); 
+	//$this->db->or_where_in('login', $mas); //надо ли это??
+	
+	$query = $this->db->get();
+	 return $query->result();
 }
 
 

@@ -29,6 +29,9 @@
       echo '<a href="'.$this->config->site_url().'"">Главная</a>   ';
     echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a> ';
        echo '<a href="'.$this->config->site_url().'id'.$user_id.'/profile"">Настройки</a>';
+       echo ' <a href="'.$this->config->site_url().'id'.$user_id.'/seach"">Найти человека</a>';
+             $exit='<a href="'.$this->config->site_url().'site/vyhod">выйти</a>';
+    echo ' '.$exit;
 
   }
   ?>
@@ -41,7 +44,8 @@
      
 </div>
 <div id="footer">
-  <?php echo "<br><a id='teh' href='".$this->config->site_url() ."id/support'>Тех. Поддержка</a>";
+  <?php echo '<img style="margin-top: -5px;
+position: absolute;" src="'.$this->config->site_url().'/images/help.png"><a id="teh" >Техническая Поддержка</a>';
 ?><p style="text-align:center">copyright 2013 PortfoliOnline.ru<br>
 <small>Авторские права на все материалы опубликованные
 на сайте принадлежат их авторам.</small></p>

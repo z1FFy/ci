@@ -201,6 +201,11 @@ $('.btn_entry').click(function() {
         var src = site_full+"/id/friends_view";
         upload(src,'',400,500);
        }); 
+
+  $('#teh').click(function() { 
+        var src = site_full+"/id/support";
+        upload(src,'',400,500);
+       }); 
     
 
 

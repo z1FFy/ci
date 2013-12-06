@@ -170,6 +170,9 @@
 		$delete_photos = $_POST['delete_photos'];
 		$this->db_module->delete_photos($delete_photos);
 	}
+function get_last_msg() {
+
+}
 
 	function friends_view()
 	{
@@ -189,8 +192,26 @@
 			$i++;
 
 		}
-		  $friends_data_friend = $this->db_module->get_users_by_id($friend_id);
-		$friends_data_arr = array('friends_data_friend' => $friends_data_friend);
+		$friends_data_friend = $this->db_module->get_users_by_id($friend_id);
+		$last_msg=$this->db_module->view_friend_message($friend_id,$user_id,1);
+		$last_msg2=$last_msg;
+		$kal=0;
+foreach($last_msg as $item)
+{
+    foreach($last_msg2 as $key => $item2)
+    {
+        if($item->user_id == $item2->user_id)
+        	$kal++;
+        {	
+        	if ($kal==2){
+            unset($last_msg2[$key]);
+        }
+        }
+    }
+}
+
+
+		$friends_data_arr = array('friends_data_friend' => $friends_data_friend,'last_msg' => $last_msg2);
 		$this->load->view('friends_view_form',$friends_data_arr);
 	}
 
@@ -198,6 +219,26 @@
 		$this->load->view('support');
 	}
 
+	function seach(){
+		$this->load->view('seach');
+	}
+
+	function seach_user(){
+		$seach = $_POST['seach'];
+		$mas = explode(" ",$seach);
+		$text ='';
+		$seach_data ='';
+		if (strlen($seach) <= 3) {
+            $text = '<p>Слишком короткий поисковый запрос.</p>';
+        } else if (strlen($seach) > 128) {
+            $text = '<p>Слишком длинный поисковый запрос.</p>';
+        } else {
+		$seach_data = $this->db_module->seach($mas);
+		}
+		$seach_data_arr = array('seach_data' => $seach_data, 'text' => $text);
+		$this->load->view('seach', $seach_data_arr);
+		
+	}
  
 }
 ?>

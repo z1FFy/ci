@@ -47,9 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   $message=$_POST['support_message'];
   $mail = $_POST['support_mail'];
   $message = $message.'  '.$mail;
-echo $message;
 
-  echo send_mime_mail('PortfoliOnline.ru',
+echo "Ваше сообщение отправлено, мы обязательно Вам ответим";
+   send_mime_mail('PortfoliOnline.ru',
                'about@portfolionline.ru',
                'Получатель',
                'tailz440@mail.ru',

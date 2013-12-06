@@ -17,18 +17,10 @@
 	function index() {
 		$friend_id = $_GET['friend_id'];
 		$user_id=$this->session->userdata('user_id');
-		$messages_data = $this->db_module->view_friend_message($friend_id, $user_id);
+		$messages_data = $this->db_module->view_friend_message($friend_id, $user_id,0);
 		$messages_data_arr = array( 'messages_data' => $messages_data);
  		$this->load->view('chat_friends_form', $messages_data_arr);	
 	}
-
-	// function send_messages(){
-	// 	$id_photos = $_POST['id_photos'];
-	// 	$messages = $_POST['messages'];
-	// 	$user_id=$this->session->userdata('user_id');
-	// 	$this->db_module->send_message($id_photos, $messages, $user_id);
-
-	// }
 
 	function chat_friends()
 		{
