@@ -19,6 +19,9 @@ body {
  		margin:0;
  		padding: 0;
  	}
+ 	.titl {
+ 		font-size:19px;
+ 	}
  	.title {
 		margin-right: -20%;
 		font-size: 24px;
@@ -29,8 +32,8 @@ body {
 		text-decoration: none;
 		cursor: pointer;
 		position: absolute;
-		margin-left: 35px;
 		color: #fff;
+		margin-top: 40px;
  	}
 	header {
 		background-color: #336AA8;
@@ -64,10 +67,7 @@ body {
 
 		text-align: left;
 		background: #fff;
-		min-height: 100%;
-   display: table;
    margin-top: -1px;
-   position: absolute;
 	}
 
 	#left_user {
@@ -87,7 +87,8 @@ body {
 		padding-top: 10px;
 		margin-left: 20px;
 height: 100%;
-min-height: 530px;
+min-height: 600px;
+margin-bottom: 40px;
 	}
 
 button, .batn, input {
@@ -97,7 +98,7 @@ padding: 4px;
 box-shadow: 0 0 1px rgba(0,0,0,0.5);
 border-radius: 6px;
 background-color: #fff;
-font-weight: bold;
+/*font-weight: bold;*/
 margin: 2px;
 }
 button:hover, .batn:hover, input:hover {
@@ -171,6 +172,14 @@ border-radius: 6px;
 	margin-top: 10px;
 	box-shadow: 0 0 1px rgba(0,0,0,0.5);
 }
+
+.friend_block {
+	background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);width: 350px;
+}
+.friend_text {
+	margin-left: 60px;margin-top: -40px;position: absolute;
+}
+
 .phot {
 	
 }
@@ -201,7 +210,7 @@ text-align: center;
 
 #footer {
 	width: 100%;
-	margin: 100px auto 0;
+	margin: 0px auto 0;
 	background-color: #054E7C;
 	 border-style: 1px solid #fff;
 	 color: #fff;

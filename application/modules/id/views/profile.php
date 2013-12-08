@@ -41,7 +41,7 @@ function mime_header_encode($str, $data_charset, $send_charset) {
 
 
 <?php
-   foreach ($profile_data as $item) {
+   foreach ($user_data as $item) {
 $podtvr=$item->podtvr;
       $login=$item->login;
       $user_id=$item->user_id;
@@ -52,14 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
   $send_key=$_POST['send_key'];
 if ($send_key == '1') {
-  $podtvr=$this->config->site_url() .'id/profile?key="'.$podtvr;
-  echo send_mime_mail('PortfoliOnline.ru',
+  $podtvr=$this->config->site_url() .'id'.$user_id.'/profile?key='.$podtvr;
+   send_mime_mail('PortfoliOnline.ru',
                'about@portfolionline.ru',
                'Получатель',
                $email,
                'UTF-8',"CP1251", // кодировка, в которой будет отправлено письмо
                "PortfoliOnline.ru / Подтверждение email",
                $podtvr);
+   echo 'Подтверждение отправлено на ваш email';
 }
 
 }
@@ -92,6 +93,7 @@ background-color:#fff;
   #content {
     padding-left: 10%;
     padding-right: 10%;
+    display: table;
   }
   #menu {
     height: 39px;
@@ -101,19 +103,12 @@ background-color:#fff;
 
 
 <?php
-$whostring_title='';
+       $this->load->view('left_user',$user_data); 
+   ?>
 
-    if ($whopage=='my') {
-$whostring='Я';
-$whostring_title="Моя";
-}
-echo '<div id="left_user">';
-echo '<br><div class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
-?>
-</div>
 <div id="polosa"></div>
 <div id="right_user">
-  <p style="font-size:19px">Профиль</p> <br>
+  <p class="titl">Профиль</p> <br>
 <ul>
 
 	<li>Фамилия: <?php echo $item->famil;?></li>  
@@ -163,5 +158,5 @@ if ($whopage == 'my') {
 
 ?>
 </ul>
-<br><br><br><br><br><br><br><br><br><br>
+
 </div>

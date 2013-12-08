@@ -1,8 +1,21 @@
-<html>
-<head>
-<title>Форма Чата</title>
+<style>
+    #middle-pol {
+    padding-top: 0px;
+    width: 100%;
+    height: 0px;
+    visibility: hidden;
+
+  }
+  #content {
+    padding-left: 20%;
+    padding-right: 20%;
+
+  }
+  #menu {
+    height: 39px;
+  }
+  </style>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
 
 <script>
 $(document).ready(function() {
@@ -32,8 +45,6 @@ function onAjaxSuccess(data)
 
 </script>
 
-</head>
-<body>
 
 
 <?php 
@@ -46,10 +57,10 @@ $friend_id = $_GET['friend_id'];
 				$name = $item->name.' '.$item->famil;
 			}
 			//var_dump($item);
-			echo '<img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
+			echo '<div style="background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);"<img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
 			.$name.' - '.$item->messages.' '.$item->message_date;
 			//$friend_id = $item->adresat;
-			?> <br>  
+			?></div> <br>  
 			<?php
 
 		
@@ -65,8 +76,3 @@ $friend_id = $_GET['friend_id'];
 
 
 <input type="submit" class="btn" value="Отправить" />
-
-<!-- </form>
- -->
-</body>
-</html>

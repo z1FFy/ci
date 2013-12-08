@@ -15,11 +15,28 @@
 	}
 
 	function index() {
+
 		$friend_id = $_GET['friend_id'];
 		$user_id=$this->session->userdata('user_id');
 		$messages_data = $this->db_module->view_friend_message($friend_id, $user_id,0);
 		$messages_data_arr = array( 'messages_data' => $messages_data);
- 		$this->load->view('chat_friends_form', $messages_data_arr);	
+
+ 		$page_content = $this->load->view('chat_friends_form',$messages_data_arr,true);
+		$title= 'Сообщения / PortfolioOnline';
+		$logged = $this->session->userdata('logged_in');
+		$user_id='';
+		if ($logged == TRUE) {
+		 	$user_id=$this->session->userdata('user_id');
+		 }
+		$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id
+         );
+		$this->load->view('template',$page);
+
+
 	}
 
 	function chat_friends()

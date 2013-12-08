@@ -87,7 +87,7 @@ $('#pad').html('минимальное значение любого поля - 
      $('#pad').html('символы не те');
   }else{
 
-     location.href='/'+site;
+     location.href=site_full+'/site/reg_sucess';
 
 
 }

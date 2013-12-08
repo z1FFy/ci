@@ -1,6 +1,6 @@
 <div id="polosa"><br></div>
 <div id="right_user">
-	<p style="font-size:19px">Мои работы  
+	<p class="titl">Мои работы  
 	<?php if($whopage == "my") { echo '<button class="upload_foto">Загрузить работу</button><br>';} ?> </p>
 	<?php if ($whopage=='my') { ?>
 <!-- Добавление в альбом -->

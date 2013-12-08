@@ -72,9 +72,9 @@
 		$user_id=$this->session->userdata('user_id');
 		$url_id= $this->_get_url_id();
 		$whopage= $this->_get_whopage($url_id,$user_id);
-		$profile_data = $this->db_module->get_user_by_id($url_id);
-		$profile_data_arr = array( 'profile_data' => $profile_data, 'whopage' => $whopage);
-		$page_content = $this->load->view('profile', $profile_data_arr, true);
+		$user_data = $this->db_module->get_user_by_id($url_id);
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,);
+		$page_content = $this->load->view('profile', $user_data_arr, true);
 
 		$logged = $this->session->userdata('logged_in');
 		$user_id='';
@@ -85,7 +85,8 @@
            'title' => $title,
            'page_content' => $page_content,
            'logged' => $logged,
-           'user_id' => $user_id
+           'user_id' => $user_id,
+           'url_id' => $url_id,
          );
 		$this->load->view('template',$page);	
 	
@@ -128,6 +129,8 @@
 	function profile_podtvr() {
 		$user_id=$this->session->userdata('user_id');
 		echo $this->db_module->up_podtvr($user_id);
+		  header ('Location:'.$this->config->site_url() .'id'.$user_id.'/profile');
+
 
 	}
 
@@ -177,9 +180,11 @@ function get_last_msg() {
 	function friends_view()
 	{
 		$i=0;
-
+	 	$user_id=$this->session->userdata('user_id');
+	 	$url_id= $this->_get_url_id();
+		$whopage= $this->_get_whopage($url_id,$user_id);
+	 	$user_data = $this->db_module->get_user_by_id($user_id);
 		$friend_id = '';
-		$user_id = $this->session->userdata('user_id');
 		$friends_data = $this->db_module->friends_view($user_id);
 		foreach ($friends_data as $item) {
 			//var_dump($item);
@@ -201,6 +206,7 @@ foreach($last_msg as $item)
     foreach($last_msg2 as $key => $item2)
     {
         if($item->user_id == $item2->user_id)
+        	
         	$kal++;
         {	
         	if ($kal==2){
@@ -210,9 +216,24 @@ foreach($last_msg as $item)
     }
 }
 
+	$logged = $this->session->userdata('logged_in');
+		$friends_data_arr = array('friends_data_friend' => $friends_data_friend,'last_msg' => $last_msg2,           'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged);
 
-		$friends_data_arr = array('friends_data_friend' => $friends_data_friend,'last_msg' => $last_msg2);
-		$this->load->view('friends_view_form',$friends_data_arr);
+		$page_content = $this->load->view('friends_view_form',$friends_data_arr,true);
+		$title= 'Сообщения / PortfolioOnline';
+	
+		$user_id='';
+		if ($logged == TRUE) {
+		 	$user_id=$this->session->userdata('user_id');
+		 }
+		$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id,
+         );
+		$this->load->view('template',$page);
+	
 	}
 
 	function support(){

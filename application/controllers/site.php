@@ -53,6 +53,17 @@ class Site extends CI_Controller {
 		}
 	}
 	
+		function reg_sucess () {
+	// 	$title='Вход : PortfoliOnline';
+	// 			$logged = $this->session->userdata('logged_in');
+	// $page_content = $this->load->view('reg_sucess', '', true);
+	// $page = array(
+ //           'title' => $title,
+ //           'page_content' => $page_content
+ //                     , 'logged' => $logged);
+		$this->load->view('reg_sucess');
+	}
+
 	function entry() {
 		if (!empty($_POST)){
 			$login = $_POST['login'];
