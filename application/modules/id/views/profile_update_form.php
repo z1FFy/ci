@@ -75,22 +75,42 @@
 	}?>
 	</select>
 
+<br>Город <input type="text" name="sity" size="20" maxlength="20" value="<?php echo $item->sity;?>"/> 
 
 	<!-- <input type="text" name="birthday" size="20"  value="<?php echo $item->birthday;?> " />
 	 --><br>
 	Специализация: 
 
-<select name="spec_user"> 
-<option value="<?php echo $item->spec_user; ?>"><?php echo $item->spec_user; ?></option>
+<script language ="JavaScript"> 
+
+function selChange(seln) { 
+selNum = seln.spec_user.selectedIndex; 
+Isel = seln.spec_user.options[selNum].text; 
+//alert("Выбрано: "+Isel);
+
+if (Isel == 'Другое'){
+ //document.getElementById("div1").innerHTML="<input type="text" name ="spec_user" onkeypress='validate(event)' maxlength="20" class="input-small" placeholder="Введите свою специализацию" ><br>";
+document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1" onkeypress="validate(event)" maxlength="20" placeholder="Введите свою специализацию" ><br>';
+}else{
+	document.getElementById('div1').innerHTML='';
+}
+
+
+} 
+ 
+</script> 
+
+<select class="batn" id="regsel" name="spec_user" onChange="selChange(this.form)">
+
 <option value="Менеджмент">Менеджмент</option>
-<option value="Разработка сайтов">Разработка сайтов</option>
+<option selected="selected" value="Разработка сайтов">Разработка сайтов</option>
 <option value="Дизайн">Дизайн</option>
 <option value="Арт">Арт</option>
 <option value="Программирование">Программирование</option>
 <option value="Поисковая оптимизация SEO">Поисковая оптимизация SEO</option>
 <option value="Полиграфия">Полиграфия</option>
 <option value="Флеш">Флеш</option>
-<option value="Тексты">Тексты</option>
+<option value="Тексты<">Тексты</option>
 <option value="Переводы">Переводы</option>
 <option value="3D Графика">3D Графика</option>
 <option value="Анимация/Мультипликация">Анимация/Мультипликация</option>
@@ -109,8 +129,29 @@
 <option value="Бизнес-услуги">Бизнес-услуги</option>
 <option value="Административная поддержка">Административная поддержка</option>
 <option value="Репетиторы/Преподаватели">Репетиторы/Преподаватели</option>
+<option value="Другое">Другое</option>
+
 </select>
+
+<div id="div1">
+ 
+ </div>
+
 <br>
+
+
+<h4>Контакты:</h4>
+Телефон <input type="text" name="telephone" size="20" maxlength="20" value="<?php echo $item->telephone;?>"/> 
+<br>Дополнительный телефон <input type="text" name="dop_telephone" size="20" maxlength="80" value="<?php echo $item->dop_telephone;?>"/> 
+<br>Skype <input type="text" name="skype" size="20" maxlength="20" value="<?php echo $item->skype;?>"/> 
+<br>Личный сайт <input type="text" name="website" size="30" maxlength="40" value="<?php echo $item->website;?>"/> 
+
+
+
+
+
+
+
 
 <h4>Образование:</h4>
 Уровень 
@@ -145,10 +186,9 @@
 <br>Знание языков <input type="text" name="language" size="20" maxlength="80" value="<?php echo $item->language;?>"/> 
 
 <h4>Гражданство:</h4>
-<br>Гражданство <input type="text" name="citizenship" size="20" maxlength="80" value="<?php echo $item->citizenship;?>"/> 
+Гражданство <input type="text" name="citizenship" size="20" maxlength="80" value="<?php echo $item->citizenship;?>"/> 
 <br>Разрешение на работу: <input type="text" name="work_permit" size="20" maxlength="80" value="<?php echo $item->citizenship;?>"/> 
-<!-- 	<input type="text" name="spec_user" size="20"  value="<?php echo $item->spec_user;?>" />
-  -->
+
 <?php endforeach; ?>
 
 <br><input type="submit" value="Сохранить" />

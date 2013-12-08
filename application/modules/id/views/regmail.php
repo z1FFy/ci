@@ -43,22 +43,25 @@ function mime_header_encode($str, $data_charset, $send_charset) {
 }
 
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-   $message=$_POST['support_message'];
-   $mail = $_POST['support_mail'];
-  $message = $message.'  '.$mail;
-echo $message;
 
-echo send_mime_mail('PortfoliOnline.ru',
-               'about@portfolionline.ru',
-               'Получатель',
-               'tailz440@mail.ru',
-               'UTF-8',"CP1251", // кодировка, в которой будет отправлено письмо
-               "PortfoliOnline.ru / Подтверждение email",
-               $message);
+  $body1='Ваше портфолио создано и его можно посмотреть перейдя по ссылке:'.$this->config->site_url().'id'.$user_id.'<br> Подтверждение регистрации:'.$this->config->site_url().'id/regmail?key='.$body;
+  echo send_mime_mail($name_from,
+$email_from,
+$name_to,
+$email_to,
+$data_charset,
+$send_charset,
+$subject,
+$body1);
 
+}
+
+if (isset($_GET['key'])) {
+  $key=$_GET['key'];
+if ($key == $body) {
+  header ("Location:profile_podtvr");
 }
 ?>
 

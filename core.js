@@ -86,9 +86,18 @@ $('#pad').html('минимальное значение любого поля - 
   if (data=='xren') {
      $('#pad').html('символы не те');
   }else{
+$.post(site_full+"/id/regmail",
+     {
+        login : login,
+     },
+     onAjaxSuccess
+   );
 
-     location.href='/'+site;
+ function onAjaxSuccess(data)
+   {
+      location.href='/'+site;
 
+   }
 
 }
  }
@@ -96,6 +105,8 @@ $('#pad').html('минимальное значение любого поля - 
    
    
 }); 
+
+
  
 
           //Auth
@@ -147,6 +158,7 @@ $('.btn_entry').click(function() {
         var src = site_full+"/id/profile_update_form";
         upload(src,'',410,610);
        }); 
+
             $('#prof').click(function() { 
         prof = $(this).attr("link");
         var src = prof;
@@ -199,11 +211,6 @@ $('.btn_entry').click(function() {
       });
  $('#friends_view').click(function() { 
         var src = site_full+"/id/friends_view";
-        upload(src,'',400,500);
-       }); 
-
-  $('#teh').click(function() { 
-        var src = site_full+"/id/support";
         upload(src,'',400,500);
        }); 
     

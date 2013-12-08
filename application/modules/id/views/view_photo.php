@@ -139,15 +139,11 @@ $photo =$item->url_photo;
   $width=$arr[0]; // ширина
   $height=$arr[1]; // высота
   $i=$i+1;
-  $nazad=$i-2;
-  if ($nazad == 0) {
-    $nazad=$count;
-  }
-echo '<p style="text-align:center"><a  style="font-size:25px" href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'&id='.$nazad.'"> < </a> '.$photos_name.' <a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'&id='.$i.'"></p>';
+echo '<p style="text-align:center">'.$photos_name.'<br><a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'&id='.$i.'">next</a></p>';
 
-   echo '<div  width="500px" align="center"><img r_width="'.$width.'"r_height="'.$height.'" id="photo" style="" src="'.$img_path.'" width="80%"></div></a>'; 
+   echo '<div  width="500px" align="center"><img r_width="'.$width.'"r_height="'.$height.'" id="photo" style="" src="'.$img_path.'" width="80%"></div>'; 
 
- echo '<p style="margin-top:10px;text-align:center"><a class="batn" href="'.$img_path.'">на полный экран</a>';
+ echo '<p style="text-align:center"><a class="batn" href="'.$img_path.'">на полный экран</a>';
 
 }
 	}
