@@ -21,15 +21,18 @@
  echo '<p style="text-align:center">'.$whostring.' '.$name.' '.$famil.'</p>'.'<p style="font-size:13px;text-align:center">( '.$spec.' )</p>';
      
 
-echo '<p style="padding-left:30px">';
+echo '<p style="padding-left:45px">';
     if ($whopage == 'my') {
     echo '<br>  <a id="upload_ava">Изменить аватар</a><br>';
+   echo "<br><a  href='".$this->config->site_url() ."id".$url_id."'>Мои работы</a>";
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
     echo '<br><a href="'.$this->config->site_url() ."id".$url_id.'/friends_view">Мои контакты</a>';
     echo '<br><a class="upload_foto">Загрузить работу</a>';
     echo '<br>'.$exit;
-    echo '<p style="font-size:12px;text-align:center"><br><br>Ссылка на ваше портфолио:<br><i><a href="'.$this->config->site_url() .'id'.$url_id.'">'.$this->config->site_url() ."id".$url_id.'</i></a></p>';
-    }else{    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
+    echo '<p style="font-size:12px;text-align:center"><br><br>Ссылка на портфолио:<br><i><a href="'.$this->config->site_url() .'id'.$url_id.'">'.$this->config->site_url() ."id".$url_id.'</i></a></p>';
+    }else{    
+   echo "<br><a  href='".$this->config->site_url() ."id".$url_id."'>Мои работы</a>";
+      echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
       if ($logged == TRUE) {
         echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends?friend_id=".$url_id."'>Отправить сообщение</a>";
       }

@@ -108,7 +108,9 @@ background-color:#fff;
 
 <div id="polosa"></div>
 <div id="right_user">
-  <p class="titl">Профиль</p> <br>
+  <p class="titl"><?php if ($whopage=='my') {
+    echo "Мой ";
+  } ?>Профиль</p> <br>
 <ul>
 
 	<li>Фамилия: <?php echo $item->famil;?></li>  

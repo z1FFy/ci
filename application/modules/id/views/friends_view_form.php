@@ -22,7 +22,7 @@
         $this->load->view('left_user',$user_data); ?>
         <div id="polosa"></div>
 <div id="right_user">
-<p class="titl">Контакты:</p><br>
+<p class="titl">Мои контакты:</p><br>
 <?php
 		if(!$friends_data_friend){
 			echo 'Вы не с кем не переписывались!';

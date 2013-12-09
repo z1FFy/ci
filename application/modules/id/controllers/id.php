@@ -72,11 +72,11 @@
 		$user_id=$this->session->userdata('user_id');
 		$url_id= $this->_get_url_id();
 		$whopage= $this->_get_whopage($url_id,$user_id);
+		$logged = $this->session->userdata('logged_in');
 		$user_data = $this->db_module->get_user_by_id($url_id);
-		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,);
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged);
 		$page_content = $this->load->view('profile', $user_data_arr, true);
 
-		$logged = $this->session->userdata('logged_in');
 		$user_id='';
 		if ($logged == TRUE) {
 		 	$user_id=$this->session->userdata('user_id');
