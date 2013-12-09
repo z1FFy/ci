@@ -69,7 +69,42 @@ class Site extends CI_Controller {
  //           'title' => $title,
  //           'page_content' => $page_content
  //                     , 'logged' => $logged);
-		$this->load->view('reg_sucess');
+			if (isset($_GET['login'])) {
+					$login = $_GET['login'];
+		$user_data = $this->db_module->get_user($login);
+		foreach ($user_data as $item) {
+			$email_to = $item->mail;
+			$name_to = $item->login;
+			$body = $item->podtvr;
+			$user_id = $item->user_id;
+			
+		}
+		$name_from = 'PortfoliOnline.ru';
+		$email_from = 'about@portfolionline.ru';
+		//$name_to = 'Получатель';
+		//$email_to = 'tailz440@mail.ru';
+		$data_charset = 'UTF-8';
+		$send_charset = "CP1251";
+		$subject = "PortfoliOnline.ru / Подтверждение регистрации";
+		
+
+		$regmail_data = array(
+						'name_from' => $name_from, // имя отправителя
+                        'email_from' => $email_from, // email отправителя
+                        'name_to' => $name_to, // имя получателя
+                        'email_to' => $email_to, // email получателя
+                        'data_charset' => $data_charset, // кодировка переданных данных
+                        'send_charset' => $send_charset, // кодировка письма
+                        'subject' => $subject, // тема письма
+                        'body' => $body, // текст письма
+                        'user_id' => $user_id,
+			);
+
+
+		$this->load->view('reg_sucess', $regmail_data);
+	} else {
+		echo "You not a reg";
+	}
 	}
 
 	function entry() {

@@ -41,6 +41,8 @@ function mime_header_encode($str, $data_charset, $send_charset) {
 
 
 <?php
+  $logged = $this->session->userdata('logged_in');
+
    foreach ($user_data as $item) {
 $podtvr=$item->podtvr;
       $login=$item->login;
@@ -65,12 +67,16 @@ if ($send_key == '1') {
 
 }
 if (isset($_GET['key'])) {
+  if ($logged!=TRUE) {
+    echo 'Авторизируйтесь, на сайте';
+  }
+  else {
   $key=$_GET['key'];
 if ($key == $podtvr) {
   header ("Location:profile_podtvr");
 }
 }
-
+}
 
 
 ?>
