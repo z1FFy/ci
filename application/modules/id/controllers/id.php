@@ -112,7 +112,12 @@
 		$birthday2 = $_POST['birthday2'];
 		$birthday3 = $_POST['birthday3'];
 		$birthday = $birthday1.'.'.$birthday2.'.'.$birthday3;
-		$spec_user = $_POST['spec_user'];
+		if($_POST['spec_user'] == 'Другое'){
+			$spec_user = $_POST['spec_user1'];	
+		}else{
+			$spec_user = $_POST['spec_user'];
+		}
+
 		$sex = $_POST['sex'];
 		$education_level = $_POST['education_level'];
 		$education_basic = $_POST['education_basic'];
@@ -121,8 +126,16 @@
 		$citizenship = $_POST['citizenship'];
 		$work_permit = $_POST['work_permit'];
 		$language = $_POST['language'];
+		$sity = $_POST['sity'];
+		$telephone = $_POST['telephone'];
+		$dop_telephone = $_POST['dop_telephone'];
+		$skype = $_POST['skype'];
+		$website = $_POST['website'];
+		
 
-		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $citizenship, $work_permit, $language);
+		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level,
+		 $education_basic, $facultet, $education_end, $citizenship, $work_permit, $language, 
+		 $sity, $telephone, $dop_telephone, $skype, $website);
 
 	}
 
@@ -133,6 +146,7 @@
 
 
 	}
+
 
 
 	function like_photos(){
@@ -173,9 +187,6 @@
 		$delete_photos = $_POST['delete_photos'];
 		$this->db_module->delete_photos($delete_photos);
 	}
-function get_last_msg() {
-
-}
 
 	function friends_view()
 	{
@@ -259,6 +270,53 @@ foreach($last_msg as $item)
 		$seach_data_arr = array('seach_data' => $seach_data, 'text' => $text);
 		$this->load->view('seach', $seach_data_arr);
 		
+	}
+
+	function regmail(){
+		$login = $_POST['login'];
+		$user_data = $this->db_module->get_user($login);
+		foreach ($user_data as $item) {
+			$email_to = $item->mail;
+			$name_to = $item->login;
+			$body = $item->podtvr;
+			$user_id = $item->user_id;
+			
+		}
+		$name_from = 'PortfoliOnline.ru';
+		$email_from = 'about@portfolionline.ru';
+		//$name_to = 'Получатель';
+		//$email_to = 'tailz440@mail.ru';
+		$data_charset = 'UTF-8';
+		$send_charset = "CP1251";
+		$subject = "PortfoliOnline.ru / Подтверждение регистрации";
+		
+
+		$regmail_data = array(
+						'name_from' => $name_from, // имя отправителя
+                        'email_from' => $email_from, // email отправителя
+                        'name_to' => $name_to, // имя получателя
+                        'email_to' => $email_to, // email получателя
+                        'data_charset' => $data_charset, // кодировка переданных данных
+                        'send_charset' => $send_charset, // кодировка письма
+                        'subject' => $subject, // тема письма
+                        'body' => $body, // текст письма
+                        'user_id' => $user_id,
+			);
+
+
+		$this->load->view('regmail', $regmail_data);
+		
+	}
+
+	function dell_form(){
+		$this->load->view('dell_form');
+	}
+
+	function dell_user(){
+		$user_id=$this->session->userdata('user_id');
+		$this->db_module->dell_user($user_id);
+		$this->session->sess_destroy();
+		header ("Location:". $this->config->site_url());
 	}
  
 }

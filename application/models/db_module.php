@@ -71,6 +71,8 @@ function up_podtvr($user_id) {
 	}
 		return $result;
 }
+
+
 	 function registration()
     {
 
@@ -84,7 +86,7 @@ function up_podtvr($user_id) {
         $this->mail = $_POST['email'];
 		$this->password = $_POST['pass'];
 		$this->spec_user = $_POST['spec_user'];
-		$this->date  = date("d.m.y h:i:s");
+		$this->date  = date("m.d.y h:i:s");
 		$data = $this->db_module->get_user($this->login);
 		$data_mail = $this->db_module->get_user_by_email($this->mail);
 		foreach ($data as $item){ 
@@ -204,7 +206,7 @@ function get_photo_from_albom($albom_id) {
 
 
 //обновл профиля
-function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $citizenship, $work_permit, $language) {
+function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $citizenship, $work_permit, $language, $sity, $telephone, $dop_telephone, $skype, $website) {
 		$logged = $this->session->userdata('logged_in');
 		$result='';
 		if ($logged=TRUE) {
@@ -222,6 +224,11 @@ function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex,
 		$this->citizenship  = $citizenship;
 		$this->work_permit  = $work_permit;
 		$this->language  = $language;
+		$this->sity = $sity;
+		$this->telephone = $telephone;
+		$this->dop_telephone = $dop_telephone;
+		$this->skype = $skype;
+		$this->website = $website;
 		$user_id = $this->session->userdata('user_id');
 		$this->db->where('user_id', $user_id);
 		$this->db->update('users', $this);
@@ -237,7 +244,7 @@ function send_message($id_photos, $messages, $user_id){
 	$this->photos_id = $id_photos;
 	$this->messages = $messages;
 	$this->user_id = $user_id;
-	$this->message_date  = date("d.m.y h:i:s");
+	$this->message_date  = date("m.d.y h:i:s");
 	$query = $this->db->insert('chat_photos', $this); 
 
 }
@@ -328,7 +335,7 @@ function send_chat_friends($user_id, $friend_id, $messages){
 	$this->user_id = $user_id;
 	$this->adresat = $friend_id;
 	$this->messages = $messages;
-	$this->message_date  = date("d.m.y h:i:s");
+	$this->message_date  = date("m.d.y");
 	$query = $this->db->insert('chat_friends', $this); 
 }
 
@@ -355,8 +362,7 @@ function view_friends1($friend_id, $user_id){
 	return $query->result();
 }
 
-function view_friend_message($friend_id, $user_id,$kol){
-	if ($kol != 1) {
+function view_friend_message($friend_id, $user_id){
 	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
 	$this->db->select('*');
 	$this->db->from('users','chat_friends');
@@ -366,21 +372,12 @@ function view_friend_message($friend_id, $user_id,$kol){
 
 	$this->db->or_where('chat_friends.adresat', $user_id); 
 	$this->db->where('chat_friends.user_id', $friend_id);
+
 	$query = $this->db->get();
 
 
 	 return $query->result();
-}
-else 
-{
-		$this->db->select('*');
-	$this->db->from('chat_friends');
-	$this->db->where('adresat', $user_id);
-	$this->db->order_by('id_chat_friends', 'desc'); 
-	//	 $this->db->limit(1);
-	$query = $this->db->get();
-		 return $query->result();
-}
+
 }
 
 function seach($mas){
@@ -400,6 +397,11 @@ function seach($mas){
 	
 	$query = $this->db->get();
 	 return $query->result();
+}
+
+function dell_user($user_id){
+$this->db->delete('users', array('user_id' => $user_id));
+
 }
 
 

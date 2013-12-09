@@ -87,8 +87,7 @@ $('#pad').html('минимальное значение любого поля - 
      $('#pad').html('символы не те');
   }else{
 
-     location.href=site_full+'/site/reg_sucess';
-
+     location.href=site_full+'/site/reg_sucess?login='+login;
 
 }
  }
@@ -96,6 +95,8 @@ $('#pad').html('минимальное значение любого поля - 
    
    
 }); 
+
+
  
 
           //Auth
@@ -147,6 +148,7 @@ $('.btn_entry').click(function() {
         var src = site_full+"/id/profile_update_form";
         upload(src,'',410,610);
        }); 
+
             $('#prof').click(function() { 
         prof = $(this).attr("link");
         var src = prof;

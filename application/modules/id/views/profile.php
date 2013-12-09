@@ -112,25 +112,71 @@ background-color:#fff;
     echo "Мой ";
   } ?>Профиль</p> <br>
 <ul>
-
-	<li>Фамилия: <?php echo $item->famil;?></li>  
-	<li>Имя: <?php echo $item->name;?> </li>
-	<li>Отчество: <?php echo $item->otchestvo;?></li>
-	<li>Почта: <?php echo $item->mail;?></li>
+  
+  <?php if($item->famil != ''){ ?>
+	<li>Фамилия: <?php echo $item->famil;?></li>  <?php } ?>
+   
+   <?php if($item->name != ''){ ?>
+	<li>Имя: <?php echo $item->name;?> </li> <?php } ?>
+	 
+   <?php if($item->otchestvo != ''){ ?>
+  <li>Отчество: <?php echo $item->otchestvo;?></li><?php } ?>
+   
+   <?php if($item->mail != ''){ ?>
+	<li>Почта: <?php echo $item->mail;?></li><?php } ?>
+  
   <li>Пол: <?php echo $item->sex;?></li>
 	<li>Дата Рождения: <?php echo $item->birthday;?></li>
 	<li>Дата регистрации: <?php echo $item->date;?></li>
-	<li>Специализация: <?php echo $item->spec_user;?></li>
+  
+   <?php if($item->sity != ''){ ?>
+  <li>Родной город: <?php echo $item->sity;?></li><?php } ?>
+
+  <?php if(($item->telephone != '') || ($item->dop_telephone != '') || ($item->skype != '') || ($item->website != '')){ ?>  
+  <li>Контакты:</li> <?php } ?>
+    <ul>
+    
+     <?php if($item->telephone != ''){ ?>  
+    <li>Мобильный телефон: <?php echo $item->telephone;?></li> <?php } ?>
+
+     <?php if($item->dop_telephone != ''){ ?>
+    <li>Дополнительный телефон: <?php echo $item->dop_telephone;?></li><?php } ?>
+
+     <?php if($item->skype != ''){ ?>
+    <li>Skype: <?php echo $item->skype;?></li><?php } ?>
+
+     <?php if($item->website != ''){ ?>
+    <li>Личный сайт: <?php echo '<a href="'.$item->website.'">'.$item->website.'</a>'; ?></li> <?php } ?>
+    </ul>
   <li>Образование:</li>
-  <ul>
-  <li>Уровень образования: <?php echo $item->education_level;?></li>
-  <li>Наименование учебного заведения: <?php echo $item->education_basic;?></li>
-  <li>Факультет: <?php echo $item->facultet;?></li>
-  <li>Закончил: <?php echo $item->education_end;?></li>
-  <li>Гражданство: <?php echo $item->citizenship;?></li>
-  <li>Разрешено работать: <?php echo $item->work_permit;?></li>
-  <li>Знание языков: <?php echo $item->language;?></li>
-  </ul>
+    <ul>
+    <li>Уровень образования: <?php echo $item->education_level;?></li>
+    
+    <?php if($item->education_basic != ''){ ?>
+    <li>Наименование учебного заведения: <?php echo $item->education_basic;?></li><?php } ?>
+    
+    <?php if($item->facultet != ''){ ?>
+    <li>Факультет: <?php echo $item->facultet;?></li><?php } ?>
+
+    <li>Закончил: <?php echo $item->education_end;?></li>
+
+    <?php if($item->language != ''){ ?>
+     <li>Знание языков: <?php echo $item->language;?></li><?php } ?>
+    </ul>
+     
+     <?php if(($item->citizenship != '') || ($item->work_permit != '')){ ?>  
+     <li>Гражданство:</li> <?php } ?>
+    <ul>
+     <?php if($item->citizenship != ''){ ?>
+     <li>Гражданство: <?php echo $item->citizenship;?></li><?php } ?>
+
+     <?php if($item->work_permit != ''){ ?>
+     <li>Разрешено работать: <?php echo $item->work_permit;?></li><?php } ?>
+
+    </ul> 
+    
+    <li>Специализация: <?php echo $item->spec_user;?></li>
+
   
 <?php
 
@@ -151,6 +197,8 @@ if ($whopage == 'my') {
 } 
 
  echo "<br><a id='red-prof' link='".$this->config->site_url() ."id".$user_id."/profile' >Редактировать профиль</a>";
+
+ echo "<br><a href='".$this->config->site_url() ."id".$user_id."/dell_form' >Удалить страницу</a>";
 
 
 }
