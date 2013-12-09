@@ -209,26 +209,10 @@
 
 		}
 		$friends_data_friend = $this->db_module->get_users_by_id($friend_id);
-		$last_msg=$this->db_module->view_friend_message($friend_id,$user_id,1);
-		$last_msg2=$last_msg;
-		$kal=0;
-foreach($last_msg as $item)
-{
-    foreach($last_msg2 as $key => $item2)
-    {
-        if($item->user_id == $item2->user_id)
-        	
-        	$kal++;
-        {	
-        	if ($kal==2){
-            unset($last_msg2[$key]);
-        }
-        }
-    }
-}
+
 
 	$logged = $this->session->userdata('logged_in');
-		$friends_data_arr = array('friends_data_friend' => $friends_data_friend,'last_msg' => $last_msg2,           'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged);
+		$friends_data_arr = array('friends_data_friend' => $friends_data_friend,         'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged);
 
 		$page_content = $this->load->view('friends_view_form',$friends_data_arr,true);
 		$title= 'Сообщения / PortfolioOnline';
