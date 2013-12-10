@@ -49,8 +49,11 @@ $send_charset,
 $subject,
 $body1);
 
-
+header ('Location:'.$this->config->site_url() .'site/entry?login='.$login.'&pass='.$pass);
 ?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,6 +80,9 @@ $body1);
 <a href="<?php echo $this->config->site_url() ?>"><img id="logo" src="
 <?php echo $this->config->site_url() ?>images/logo.png"></a>
 </div>
+
+
+
 </header>
 
 <div  id="content">

@@ -2,29 +2,66 @@
 <head>
 	<title></title>
 	  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
 <style>
-	body {
-		background-color: #fff;
-	}
+body{
+background-color:#fff;
+}
+
+
+    #middle-pol {
+    padding-top: 0px;
+    width: 100%;
+    height: 0px;
+    visibility: hidden;
+
+  }
+  #content {
+    padding-left: 10%;
+    padding-right: 10%;
+    display: table;
+  }
+  #menu {
+    height: 39px;
+  }
+
 </style>
 </head>
 <body>
 
-<meta charset="utf-8">
 
-	<p>Редактирование профиля</p> <br>
+<?php
+$logged = $this->session->userdata('logged_in');
+foreach ($user_data as $item) {
+      $login=$item->login;
+      $user_id=$item->user_id;
+      $avatar_url=$item->avatar;
+      $email=$item->mail;
+      }
 
+
+       $this->load->view('left_user',$user_data); 
+   ?>
+
+<div id="polosa"></div>
+<div id="right_user">
+  <p class="titl"><?php if ($whopage=='my') {
+    echo "Мое ";
+  } ?>Редактирование профиля</p> <br>
+	
 <form action="<?php echo $this->config->site_url() ?>id/profile_update_send" method="post" accept-charset="utf-8">
 	
 
-<?php foreach ($profile_data as $item):?>
+<?php foreach ($user_data as $item):?>
 
-
-	Фамилия: <input type="text" name="famil" size="20" maxlength="20" value="<?php echo $item->famil;?>"/> <br>
-	Имя: <input type="text" name="name" size="20" maxlength="20" value="<?php echo $item->name;?>"/> <br>
-	Отчество: <input type="text" name="otchestvo"  size="20" maxlength="20"  value="<?php echo $item->otchestvo;?>"/>
-	<br>
-	Почта: <input type="text" name="mail" size="20" maxlength="50" value="<?php echo $item->mail;?>"/><br>
+<ul>
+	<li>Фамилия: <input type="text" name="famil" size="20" maxlength="20" value="<?php echo $item->famil;?>"/> <br>
+	</li><li>Имя: <input type="text" name="name" size="20" maxlength="20" value="<?php echo $item->name;?>"/> <br>
+	</li><li>Отчество: <input type="text" name="otchestvo"  size="20" maxlength="20"  value="<?php echo $item->otchestvo;?>"/>
+	</li><br>
+	<li>Почта: <input type="text" name="mail" size="20" maxlength="50" value="<?php echo $item->mail;?>"/><br>
+	</li>
 	<?php 
 	$sel='';
 	$sel1='';
@@ -32,13 +69,13 @@
 	if($item->sex == 'Женский'){$sel1='selected';}
 	
 	 ?>
-	Пол:
+	<li>Пол:
 	<select name="sex"> 
 	<option value="не выбран">не выбран</option>
 	<option <?php echo $sel; ?> value="Мужской">Мужской</option>
 	<option <?php echo $sel1; ?> value="Женский">Женский</option>
 	</select>
-	<br>
+	<br></li><li>
 	Дата Рождения: 
 
 
@@ -75,11 +112,11 @@
 	}?>
 	</select>
 
-<br>Город <input type="text" name="sity" size="20" maxlength="20" value="<?php echo $item->sity;?>"/> 
+<br></li><li>Город <input type="text" name="sity" size="20" maxlength="20" value="<?php echo $item->sity;?>"/> 
 
 	<!-- <input type="text" name="birthday" size="20"  value="<?php echo $item->birthday;?> " />
 	 --><br>
-	Специализация: 
+	</li><li>Специализация: 
 
 <script language ="JavaScript"> 
 
@@ -137,23 +174,23 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
  
  </div>
 
-<br>
+<br></li><li>
 
 
-<h4>Контакты:</h4>
-Телефон <input type="text" name="telephone" size="20" maxlength="20" value="<?php echo $item->telephone;?>"/> 
-<br>Дополнительный телефон <input type="text" name="dop_telephone" size="20" maxlength="80" value="<?php echo $item->dop_telephone;?>"/> 
-<br>Skype <input type="text" name="skype" size="20" maxlength="20" value="<?php echo $item->skype;?>"/> 
-<br>Личный сайт <input type="text" name="website" size="30" maxlength="40" value="<?php echo $item->website;?>"/> 
+<h4>Контакты:</h4></li><ul><li>
+Телефон: <input type="text" name="telephone" size="20" maxlength="20" value="<?php echo $item->telephone;?>"/> 
+<br></li><li>Дополнительный телефон: <input type="text" name="dop_telephone" size="20" maxlength="80" value="<?php echo $item->dop_telephone;?>"/> 
+<br></li><li>Skype: <input type="text" name="skype" size="20" maxlength="20" value="<?php echo $item->skype; ?>"/> 
+<br></li><li>Личный сайт: <input type="text" name="website" size="30" maxlength="40" value="<?php echo $item->website;?>"/> 
 
-
-
-
-
+</li></ul>
 
 
 
-<h4>Образование:</h4>
+
+
+
+<li><h4>Образование:</h4></li><ul><li>
 Уровень 
 <select name="education_level"> 
 <option value="<?php echo $item->education_level; ?>"><?php echo $item->education_level; ?></option>
@@ -167,9 +204,9 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <option value="Среднее">Среднее</option>
 </select>
 
-<br>Наименование учебного заведения <input type="text" name="education_basic" size="20" maxlength="80" value="<?php echo $item->education_basic;?>"/> 
-<br>Факультет <input type="text" name="facultet" size="20"  value="<?php echo $item->facultet;?>"/> 
-<br>Год окончания 
+<br></li><li>Наименование учебного заведения <input type="text" name="education_basic" size="20" maxlength="80" value="<?php echo $item->education_basic;?>"/> 
+<br></li><li>Факультет <input type="text" name="facultet" size="20"  value="<?php echo $item->facultet;?>"/> 
+<br></li><li>Год окончания 
 <select name="education_end" size="1">
 	<?php for ($i = 1900; $i <= 2015; $i++){
 	if ($i== $item->education_end){
@@ -183,17 +220,18 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 	</select>
 
 
-<br>Знание языков <input type="text" name="language" size="20" maxlength="80" value="<?php echo $item->language;?>"/> 
+<br></li><li>Знание языков <input type="text" name="language" size="20" maxlength="80" value="<?php echo $item->language;?>"/> 
+</li></ul>
+<li>Интересы: <br>
+<textarea name="interests" cols="40" rows = "10" maxlength = "250"> <?php echo $item->interests; ?> </textarea> <br>
 
-<h4>Гражданство:</h4>
-Гражданство <input type="text" name="citizenship" size="20" maxlength="80" value="<?php echo $item->citizenship;?>"/> 
-<br>Разрешение на работу: <input type="text" name="work_permit" size="20" maxlength="80" value="<?php echo $item->citizenship;?>"/> 
-
+</li>
+</ul>
 <?php endforeach; ?>
 
-<br><input type="submit" value="Сохранить" />
+<br><input type="submit" id="prof-upd" value="Сохранить" />
 
 </form>
-
+</div>
 </body>
 </html>

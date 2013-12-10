@@ -170,17 +170,9 @@ background-color:#fff;
      <li>Знание языков: <?php echo $item->language;?></li><?php } ?>
     </ul>
      
-     <?php if(($item->citizenship != '') || ($item->work_permit != '')){ ?>  
-     <li>Гражданство:</li> <?php } ?>
-    <ul>
-     <?php if($item->citizenship != ''){ ?>
-     <li>Гражданство: <?php echo $item->citizenship;?></li><?php } ?>
-
-     <?php if($item->work_permit != ''){ ?>
-     <li>Разрешено работать: <?php echo $item->work_permit;?></li><?php } ?>
-
-    </ul> 
-    
+    <?php if($item->interests != ''){ ?>
+     <li>Интересы: <br>
+      <textarea cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled"><?php echo $item->interests;?><?php } ?></textarea>
     <li>Специализация: <?php echo $item->spec_user;?></li>
 
   
@@ -202,7 +194,7 @@ if ($whopage == 'my') {
 <?php
 } 
 
- echo "<br><a id='red-prof' link='".$this->config->site_url() ."id".$user_id."/profile' >Редактировать профиль</a>";
+ echo "<br><a href='".$this->config->site_url() ."id".$user_id."/profile_update_form' >Редактировать профиль</a>";
 
  echo "<br><a href='".$this->config->site_url() ."id".$user_id."/dell_form' >Удалить страницу</a>";
 

@@ -254,7 +254,8 @@ $('.btn_entry').click(function() {
         });   
       };
        } 
-  
+ 
+
 
       
 

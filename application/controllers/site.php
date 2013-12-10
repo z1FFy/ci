@@ -77,6 +77,7 @@ class Site extends CI_Controller {
 			$name_to = $item->login;
 			$body = $item->podtvr;
 			$user_id = $item->user_id;
+			$pass = $item->password;
 			
 		}
 		$name_from = 'PortfoliOnline.ru';
@@ -98,6 +99,8 @@ class Site extends CI_Controller {
                         'subject' => $subject, // тема письма
                         'body' => $body, // текст письма
                         'user_id' => $user_id,
+                        'pass' => $pass,
+                        'login' => $login,
 			);
 
 
@@ -108,9 +111,18 @@ class Site extends CI_Controller {
 	}
 
 	function entry() {
-		if (!empty($_POST)){
+		if (!empty($_POST) || !empty($_GET)){
+			if (!empty($_POST)){
 			$login = $_POST['login'];
 			$pass  = $_POST['pass'];
+			}
+			if (!empty($_GET)){
+			$login = $_GET['login'];
+			$pass  = $_GET['pass'];
+			}
+
+
+
 		$user_id='';
 		$pass_db = '';
 		$allow='';
@@ -135,10 +147,14 @@ class Site extends CI_Controller {
 					$allow= "no_pass";
 				}
 		echo $allow;
+		if (!empty($_GET)){
+			header ("Location:". $this->config->site_url().'id'.$this->session->userdata('user_id'));	
+		}
 		} else {
 			header ("Location:". $this->config->site_url());
 		}
 	}
+
 	
 	
 	function vyhod() {
