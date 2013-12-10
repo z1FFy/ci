@@ -94,10 +94,29 @@
 	}
 
 	function profile_update_form() {
+		$title='Редактировать профиль';
 		$user_id=$this->session->userdata('user_id');
-		$profile_data = $this->db_module->get_user_by_id($user_id);
-		$profile_data_arr = array( 'profile_data' => $profile_data);
-		$this->load->view('profile_update_form',$profile_data_arr);
+		$url_id= $this->_get_url_id();
+		$whopage= $this->_get_whopage($url_id,$user_id);
+		$logged = $this->session->userdata('logged_in');
+		$user_data = $this->db_module->get_user_by_id($url_id);
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged);
+		$page_content = $this->load->view('profile_update_form', $user_data_arr, true);
+
+		$user_id='';
+		if ($logged == TRUE) {
+		 	$user_id=$this->session->userdata('user_id');
+		 }
+		$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id,
+           'url_id' => $url_id,
+         );
+		$this->load->view('template',$page);	
+
+
 
 	}
 
@@ -123,19 +142,22 @@
 		$education_basic = $_POST['education_basic'];
 		$facultet = $_POST['facultet'];
 		$education_end = $_POST['education_end'];
-		$citizenship = $_POST['citizenship'];
-		$work_permit = $_POST['work_permit'];
 		$language = $_POST['language'];
 		$sity = $_POST['sity'];
 		$telephone = $_POST['telephone'];
 		$dop_telephone = $_POST['dop_telephone'];
 		$skype = $_POST['skype'];
 		$website = $_POST['website'];
+		$interests = $_POST['interests'];
 		
 
 		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level,
-		 $education_basic, $facultet, $education_end, $citizenship, $work_permit, $language, 
-		 $sity, $telephone, $dop_telephone, $skype, $website);
+		 $education_basic, $facultet, $education_end, $language, 
+		 $sity, $telephone, $dop_telephone, $skype, $website, $interests);
+		$user_id=$this->session->userdata('user_id');
+		header ('Location:'.$this->config->site_url() .'id'.$user_id.'/profile');
+
+
 
 	}
 
@@ -236,11 +258,42 @@
 	}
 
 	function seach(){
-		$this->load->view('seach');
+		$title='Найти человека';
+		$user_id=$this->session->userdata('user_id');
+		$url_id= $this->_get_url_id();
+		$whopage= $this->_get_whopage($url_id,$user_id);
+		$logged = $this->session->userdata('logged_in');
+		$user_data = $this->db_module->get_user_by_id($url_id);
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged);
+		$page_content = $this->load->view('seach', $user_data_arr, true);
+
+		$user_id='';
+		if ($logged == TRUE) {
+		 	$user_id=$this->session->userdata('user_id');
+		 }
+		$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id,
+           'url_id' => $url_id,
+         );
+		$this->load->view('template',$page);	
+		//$this->load->view('seach');
 	}
 
 	function seach_user(){
+
+		$title='Найти человека';
+		$user_id=$this->session->userdata('user_id');
+		$url_id= $this->_get_url_id();
+		$whopage= $this->_get_whopage($url_id,$user_id);
+		$logged = $this->session->userdata('logged_in');
+		$user_data = $this->db_module->get_user_by_id($url_id);
+		//
 		$seach = $_POST['seach'];
+		$seach = trim($seach, " ");//чтоб наверняка
+		$seach = preg_replace('/\s\s+/', ' ', $seach);
 		$mas = explode(" ",$seach);
 		$text ='';
 		$seach_data ='';
@@ -249,10 +302,27 @@
         } else if (strlen($seach) > 128) {
             $text = '<p>Слишком длинный поисковый запрос.</p>';
         } else {
+        	//var_dump($mas);
 		$seach_data = $this->db_module->seach($mas);
 		}
-		$seach_data_arr = array('seach_data' => $seach_data, 'text' => $text);
-		$this->load->view('seach', $seach_data_arr);
+		
+		//
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'seach_data' => $seach_data, 'text' => $text);
+		$page_content = $this->load->view('seach', $user_data_arr, true);
+
+		$user_id='';
+		if ($logged == TRUE) {
+		 	$user_id=$this->session->userdata('user_id');
+		 }
+		$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id,
+           'url_id' => $url_id,
+         );
+		$this->load->view('template',$page);	
+
 		
 	}
 

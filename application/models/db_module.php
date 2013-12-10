@@ -204,7 +204,7 @@ function get_photo_from_albom($albom_id) {
 
 
 //обновл профиля
-function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $citizenship, $work_permit, $language) {
+function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $language, $sity, $telephone, $dop_telephone, $skype, $website, $interests) {
 		$logged = $this->session->userdata('logged_in');
 		$result='';
 		if ($logged=TRUE) {
@@ -219,9 +219,13 @@ function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex,
 		$this->education_basic  = $education_basic;
 		$this->facultet  = $facultet;
 		$this->education_end  = $education_end;
-		$this->citizenship  = $citizenship;
-		$this->work_permit  = $work_permit;
 		$this->language  = $language;
+		$thus->sity = $sity;
+		$this->telephone = $telephone;
+		$this->dop_telephone = $dop_telephone;
+		$this->skype = $skype;
+		$this->website = $website;
+		$this->interests = $interests;
 		$user_id = $this->session->userdata('user_id');
 		$this->db->where('user_id', $user_id);
 		$this->db->update('users', $this);
@@ -376,18 +380,22 @@ function view_friend_message($friend_id, $user_id){
 function seach($mas){
 	$this->db->select('*');
 	$this->db->from('users');
+	if(count($mas) == 3){
 	$this->db->where_in('name', $mas); 
 	$this->db->where_in('famil', $mas);
-	$this->db->where_in('otchestvo', $mas);
-
-	$this->db->or_where_in('name', $mas); 
-	$this->db->where_in('famil', $mas);	
-	
-	$this->db->or_where_in('name', $mas);
+	$this->db->where_in('otchestvo', $mas);}
+if(count($mas) == 2){
+	$this->db->where_in('name', $mas); 
+	$this->db->where_in('famil', $mas);	}
+	if(count($mas) == 1){
+	$this->db->where_in('name', $mas);
 	$this->db->or_where_in('famil', $mas); 
-	$this->db->or_where_in('otchestvo', $mas); 
+	$this->db->or_where_in('otchestvo', $mas); }
+	if(count($mas) > 3){
+		$this->db->where_in('login', 'ррр');
+	}
 	//$this->db->or_where_in('login', $mas); //надо ли это??
-	
+	$this->db->limit(10);
 	$query = $this->db->get();
 	 return $query->result();
 }
