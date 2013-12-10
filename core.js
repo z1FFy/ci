@@ -206,12 +206,70 @@ $('.btn_entry').click(function() {
 
   $('#teh').click(function() { 
         var src = site_full+"/id/support";
-        upload(src,'',400,500);
+        upload(src,'nof',400,500);
        }); 
     
 
 
 
+$('.like_photos').click(function() { 
+        like_photos = $(this).attr("link");
+         //$(this).toggleClass("highlight");
+         $(".like_photos1").removeClass("like_photos");
+      $.post(site_full+"/id/like_photos",
+         { like_photos : like_photos
+              },
+         onAjaxSuccess
+         );
+      });
+
+// $('.phota').click(function() { 
+//     link = $(this).attr("link");
+//       $.post(link,onAjaxSuccess);
+//   function onAjaxSuccess(data)
+//    {
+//     $('#show_img').html(data);
+//     };
+//   });
+
+    var photo = $("#photo");
+      photo_w=parseInt(photo.width());
+      r_photo_w=$('#photo').attr('r_width');
+      photo_h=parseInt(photo.height());
+      r_photo_h=$('#photo').attr('r_height');
+      if (photo_w>r_photo_w) {
+        $('#photo').attr('width', r_photo_w);
+    }
+    $('#show_com').click(function() { 
+      $('#comments').css('display' , 'block');
+    });
+    $('.send_com').click(function() { 
+    messages = $("#messages").val();
+    id_photos= $("input[name ='id_photos']").val();
+    id_user= $("input[name ='id_user']").val();
+   //alert(messages);
+
+
+
+  $.post(site_full+"/id/chat/send_messages",
+     { messages : messages, id_photos : id_photos,
+          },
+     onAjaxSuccess
+   );
+  function onAjaxSuccess(data)
+   {
+    // alert(data);
+      location.reload();
+   };
+ });
+
+function onAjaxSuccess(data)
+   {
+  $('.like_photos1').addClass('.like_photos');     
+//alert("ololo");
+  location.reload();
+
+          };
 
 
 

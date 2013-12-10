@@ -1,8 +1,3 @@
-
-<script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script> 
-  <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
-<!--   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" /> -->
-
 <style>
 
     #middle-pol {
@@ -13,11 +8,10 @@
 
   }
   #content {
-    padding-left: 10%;
-    padding-right: 10%;
-    width: 80%;
-    padding-top: 10px;
-
+ padding-left: 0px;
+padding-right: 0px;
+width: 100%;
+display: table;
   }
   #menu {
     height: 39px;
@@ -25,132 +19,95 @@
 body {
 	background-color: #fff;
 }
-	.frame{
-    display:inline-block;
-    position:relative;
-    overflow:hidden;
-    width: 60px;
-    height: 60px;
+#polosa {
+  background-color: #fff;
 }
-.frame>img{
-    vertical-align:top;
+#left_user{
+  position: absolute;
+  padding-top: 30px;
+
 }
-.frame, .frame:before{
-    -moz-border-radius:100em;
-    border-radius:100em;
-    
+#right_user {
+  padding-top: 10px;
+height: 100%;
+min-height: 600px;
+margin-bottom: 40px;
 }
-.frame>img{
-    -webkit-border-radius:100em;   
-}
-.frame:before{
-    content:'';
-    display:block;
-    position:absolute;
-    left:0;
-    right:0;
-    width:100%;
-    height:100%;
-    margin:-10em;
-    border:10em solid #333;
+.frame_com {
+  height: 50px;
+  width: 50px;
 }
 </style>
-<script>
-$(document).ready(function() {
- 
-$('.like_photos').click(function() { 
-        like_photos = $(this).attr("link");
-         //$(this).toggleClass("highlight");
-         $(".like_photos1").removeClass("like_photos");
-      $.post(site_full+"/id/like_photos",
-         { like_photos : like_photos
-              },
-         onAjaxSuccess
-         );
-      });
-
-$('.send_com').click(function() { 
-    messages = $("#messages").val();
-    id_photos= $("input[name ='id_photos']").val();
-    id_user= $("input[name ='id_user']").val();
-   //alert(messages);
-
-
-
-	$.post(site_full+"/id/chat/send_messages",
-     { messages : messages, id_photos : id_photos,
-          },
-     onAjaxSuccess
-   );
- });
-
-function onAjaxSuccess(data)
-   {
-  $('.like_photos1').addClass('.like_photos');   	 
-//alert("ololo");
-	location.reload();
-
-          };
-
-
-});
-
-
-    $(window).load(function() {
-      var photo = $("#photo");
-      photo_w=parseInt(photo.width());
-      r_photo_w=$('#photo').attr('r_width');
-      photo_h=parseInt(photo.height());
-      r_photo_h=$('#photo').attr('r_height');
-      if (photo_w>r_photo_w) {
-        $('#photo').attr('width', r_photo_w);
-    }
-      // } else {
-      //   $('#ava').attr('height', '200');
-      // }
- });
-
-
-</script>
-
 	<?php 
+       $this->load->view('left_user',$user_data); 
   $id=$_GET['id'];
+
+    $user_id=$this->session->userdata('user_id');
     $count=count($photos_data);
-    if ($id>$count) {
-    $id=1;
-  
+      if ($id!=0){
+      $id=$id-1;
+    }
+$count=$count-1;
+
+        $idn=$id+1;
+      if ($id==$count) {
+    $id=$count;
+    $idn=0;
   }
 
+    $idp=$id-1; 
+
+         if ($idp<0) {
+      $idp=$count;
+    }
+        if ($idn>$count) {
+      $idn=1;
+    }
   $i=0;
-  $id=$id-1;
+
         $url_id = $this->uri->segment(1);
     $url_id = trim($url_id, " \id.");
-  	foreach ($photos_data  as $key => $item){
-  $i++;
-  if ($key == $id){
-    
-	$photos_name=$item->photos_name;
 
+
+  	foreach ($photos_data  as $key => $item){
+        $i++;
+    if ($key == $idn) {
+  $photo_n =$item->url_photo;
+  $img_path_n = $this->config->site_url().'uploads/photos/'.$photo_n;
+  $idnext=$idn+1;
+  $id_photos_n = $item->id_photos;
+  }
+
+  if ($key == $idp) {
+  $idprev=$idp+1;
+  $photo_p =$item->url_photo;
+  $img_path_p = $this->config->site_url().'uploads/photos/'.$photo_p;
+  $id_photos_p = $item->id_photos;
+  }
+
+  if ($key == $id){
+	$photos_name=$item->photos_name;
+$id_photos = $item->id_photos;
 $photo =$item->url_photo;
-  $id_photos = $_GET['id_photos'];
-  $id_user = $_GET['id_user'];
   $img_path = $this->config->site_url().'uploads/photos/'.$photo;
   $arr = GetImageSize($img_path);
   $width=$arr[0]; // ширина
   $height=$arr[1]; // высота
   $i=$i+1;
-  $nazad=$i-2;
-  if ($nazad == 0) {
-    $nazad=$count;
-  }
-echo '<p style="text-align:center"><a  style="font-size:25px" href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'&id='.$nazad.'"> < </a> '.$photos_name.' <a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'&id='.$i.'"></p>';
-
-   echo '<div  width="500px" align="center"><img r_width="'.$width.'"r_height="'.$height.'" id="photo" style="" src="'.$img_path.'" width="80%"></div></a>'; 
-
- echo '<p style="margin-top:10px;text-align:center"><a class="batn" href="'.$img_path.'">на полный экран</a>';
-
 }
+
 	}
+  echo '<div id="polosa"><br></div>';
+echo '<div align="center" id="right_user">
+<p style="text-align:center;padding: 10px">'.$photos_name.' </p>
+<a href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idprev.'&id_orig='.$id_photos_p.'"><div id="ph_prev" ></div></a>'; 
+//<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
+   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'" style="" src="'.$img_path.'" width="55%"></div></a>'; 
+echo '<a href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><div id="ph_next" ></div></a>'; 
+//<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
+ echo '<p style="margin-top:10px;text-align:center;padding:10px"><a class="batn" href="'.$img_path.'">на полный экран</a>';
+
+
 	
   if ($whopage=='my') {
     if ($logged==TRUE) {
@@ -163,8 +120,11 @@ echo ' <a class="like_photos like_photos1 batn" link='.$item->id_photos.'>LIKE</
 ?>
 
 <br>
+<div align="center">
+<a id="show_com" class="batn" style="display: block;width: 300px;">Комментрии(показать)</a></div>
+<div id="comments" style="display:none">
 <?php 
-//var_dump($this->session);
+
 		foreach ($message_data as $item){ 
 
       if($item->name == ''){
@@ -172,9 +132,9 @@ echo ' <a class="like_photos like_photos1 batn" link='.$item->id_photos.'>LIKE</
       }else{
         $name = $item->name.' '.$item->famil;
       }
-			 echo '<div class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame" width="100"><br></div><div class="block2">'.$name.' - ';echo $item->messages.' : '; echo $item->message_date;
+			 echo '<div><div style="display:inline" class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame_com" width="100"></div><div style="display:inline" class="block2">'.$name.' - ';echo $item->messages.' : '; echo $item->message_date.'</div>';
 
-			?> </div><br>  
+			?> </div> 
 			<?php
 
 		
@@ -183,13 +143,13 @@ echo ' <a class="like_photos like_photos1 batn" link='.$item->id_photos.'>LIKE</
 
 
 <input type="hidden" name="id_photos" value="<?php echo $id_photos; ?>">
-<input type="hidden" name="id_user" value="<?php echo $id_user; ?>">
+<input type="hidden" name="id_user" value="<?php echo $user_id; ?>">
 <textarea name="messages" id="messages" maxlength="200"></textarea>
 
 <br /><br />
 
 <input type="submit" class="send_com" value="Отправить" />
 <?php }
-echo "</p>";
+echo "</p></div></div>";
  ?>
 

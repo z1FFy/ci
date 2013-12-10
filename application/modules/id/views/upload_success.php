@@ -237,24 +237,3 @@ echo '<form action="'.$this->config->site_url().'id/upload/small_ava'.'" method=
 ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

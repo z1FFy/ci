@@ -195,6 +195,48 @@ border-radius: 6px;
 	box-shadow: 0 0 7px rgba(0,0,0,0.5);
 }
 
+#ph_prev {
+    top: -200px;
+    left: 20px;
+    z-index: 1;
+    position: relative;
+    display: inline;
+    height: 1px;
+    padding: 60px;
+    background-image: url("images/prev.png");
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+#ph_prev:hover {
+opacity: 0.8;
+	}
+#ph_main {
+	z-index: 222;position: relative;display: inline;	
+}
+
+#ph_next {
+z-index: 1;
+position: relative;
+display: inline;
+height: 1px;
+top: -200px;
+right: 15px;
+padding: 60px;
+background-image: url("images/next.png");
+background-repeat: no-repeat;
+background-position: 30px center;
+opacity: 0.5;
+
+}
+#ph_next:hover {
+opacity: 0.8;
+	}
+.pn_photo {
+	opacity:0.5
+}
+.pn_photo:hover {
+	opacity: 0.8;
+}
 .pod_photo {
 width: 100%;
 /*color:#EDF7FD;*/

@@ -45,13 +45,14 @@
  -->
 <!-- vse foto -->
 <div>
+<!-- <div id="show_img"></div> -->
 <?php $i=0; foreach ($photo_data as $item){ 
 		$photos_name=$item->photos_name;
 if ($photos_name=='""') {
 	$photos_name='';
 }
 $i++;
-			echo '<div class="block_photo"><a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?photo='.$item->url_photo.'&id_photos='.$item->id_photos.'&id_user='.$item->id_user.'&id='.$i.'">
+			echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$i.'&id_orig='.$item->id_photos.'">
 <div class="photo" style="background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');"><div class="pod_photo">'.$photos_name.'</div></div></a></div>';
 // if ($i == 4) {
 // 	echo "<br>";
