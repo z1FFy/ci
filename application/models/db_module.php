@@ -377,27 +377,40 @@ function view_friend_message($friend_id, $user_id){
 
 }
 
-function seach($mas){
+function seach($mas, $birthday, $spec_user){
 	$this->db->select('*');
 	$this->db->from('users');
+	if ($spec_user !== '') {
+		$this->db->where_in('spec_user', $spec_user);
+	}
+	if($birthday !== ''){
+		$this->db->where_in('birthday', $birthday);
+	}
 	if(count($mas) == 3){
 	$this->db->where_in('name', $mas); 
 	$this->db->where_in('famil', $mas);
-	$this->db->where_in('otchestvo', $mas);}
+	$this->db->where_in('otchestvo', $mas);
+}
+
 if(count($mas) == 2){
 	$this->db->where_in('name', $mas); 
-	$this->db->where_in('famil', $mas);	}
-	if(count($mas) == 1){
+	$this->db->where_in('famil', $mas);
+	$this->db->where_in('spec_user', $spec_user);	
+}
+
+	if(count($mas) == 1 && $mas['0'] !== ''){
 	$this->db->where_in('name', $mas);
 	$this->db->or_where_in('famil', $mas); 
-	$this->db->or_where_in('otchestvo', $mas); }
+	$this->db->or_where_in('otchestvo', $mas); 
+}
+
 	if(count($mas) > 3){
 		$this->db->where_in('login', 'ррр');
-	}
-	//$this->db->or_where_in('login', $mas); //надо ли это??
-	$this->db->limit(10);
+}
+	//$res = $this->db->count_all_results();
+	//$this->db->limit(10);
 	$query = $this->db->get();
-	 return $query->result();
+	 return $query->result(); 
 }
 
 

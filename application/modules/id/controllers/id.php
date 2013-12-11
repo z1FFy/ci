@@ -130,7 +130,12 @@
 		$birthday1 = $_POST['birthday1'];
 		$birthday2 = $_POST['birthday2'];
 		$birthday3 = $_POST['birthday3'];
+		if($birthday1 == 'day' || $birthday2 == 'month' || $birthday3 == 'year'){
+			$birthday = '';
+		}else{
+		
 		$birthday = $birthday1.'.'.$birthday2.'.'.$birthday3;
+		}
 		if($_POST['spec_user'] == 'Другое'){
 			$spec_user = $_POST['spec_user1'];	
 		}else{
@@ -292,18 +297,31 @@
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		//
 		$seach = $_POST['seach'];
+		
+		$birthday1 = $_POST['birthday1'];
+		$birthday2 = $_POST['birthday2'];
+		$birthday3 = $_POST['birthday3'];
+		if($birthday1 == 'day' || $birthday2 == 'month' || $birthday3 == 'year'){
+			$birthday = '';
+		}else{
+		
+		$birthday = $birthday1.'.'.$birthday2.'.'.$birthday3;
+		}
+
+		$spec_user = $_POST['spec_user'];
+		if ($spec_user == 'Другое') {
+			$spec_user = $_POST['spec_user1'];
+		}
 		$seach = trim($seach, " ");//чтоб наверняка
 		$seach = preg_replace('/\s\s+/', ' ', $seach);
 		$mas = explode(" ",$seach);
 		$text ='';
 		$seach_data ='';
-		if (strlen($seach) <= 3) {
-            $text = '<p>Слишком короткий поисковый запрос.</p>';
-        } else if (strlen($seach) > 128) {
+		if (strlen($seach) > 128) {
             $text = '<p>Слишком длинный поисковый запрос.</p>';
         } else {
         	//var_dump($mas);
-		$seach_data = $this->db_module->seach($mas);
+		$seach_data = $this->db_module->seach($mas, $birthday, $spec_user);
 		}
 		
 		//
@@ -326,41 +344,41 @@
 		
 	}
 
-	function regmail(){
-		$login = $_POST['login'];
-		$user_data = $this->db_module->get_user($login);
-		foreach ($user_data as $item) {
-			$email_to = $item->mail;
-			$name_to = $item->login;
-			$body = $item->podtvr;
-			$user_id = $item->user_id;
+	// function regmail(){
+	// 	$login = $_POST['login'];
+	// 	$user_data = $this->db_module->get_user($login);
+	// 	foreach ($user_data as $item) {
+	// 		$email_to = $item->mail;
+	// 		$name_to = $item->login;
+	// 		$body = $item->podtvr;
+	// 		$user_id = $item->user_id;
 			
-		}
-		$name_from = 'PortfoliOnline.ru';
-		$email_from = 'about@portfolionline.ru';
-		//$name_to = 'Получатель';
-		//$email_to = 'tailz440@mail.ru';
-		$data_charset = 'UTF-8';
-		$send_charset = "CP1251";
-		$subject = "PortfoliOnline.ru / Подтверждение регистрации";
+	// 	}
+	// 	$name_from = 'PortfoliOnline.ru';
+	// 	$email_from = 'about@portfolionline.ru';
+	// 	//$name_to = 'Получатель';
+	// 	//$email_to = 'tailz440@mail.ru';
+	// 	$data_charset = 'UTF-8';
+	// 	$send_charset = "CP1251";
+	// 	$subject = "PortfoliOnline.ru / Подтверждение регистрации";
 		
 
-		$regmail_data = array(
-						'name_from' => $name_from, // имя отправителя
-                        'email_from' => $email_from, // email отправителя
-                        'name_to' => $name_to, // имя получателя
-                        'email_to' => $email_to, // email получателя
-                        'data_charset' => $data_charset, // кодировка переданных данных
-                        'send_charset' => $send_charset, // кодировка письма
-                        'subject' => $subject, // тема письма
-                        'body' => $body, // текст письма
-                        'user_id' => $user_id,
-			);
+	// 	$regmail_data = array(
+	// 					'name_from' => $name_from, // имя отправителя
+ //                        'email_from' => $email_from, // email отправителя
+ //                        'name_to' => $name_to, // имя получателя
+ //                        'email_to' => $email_to, // email получателя
+ //                        'data_charset' => $data_charset, // кодировка переданных данных
+ //                        'send_charset' => $send_charset, // кодировка письма
+ //                        'subject' => $subject, // тема письма
+ //                        'body' => $body, // текст письма
+ //                        'user_id' => $user_id,
+	// 		);
 
 
-		$this->load->view('regmail', $regmail_data);
+	// 	$this->load->view('regmail', $regmail_data);
 		
-	}
+	// }
 
 	function dell_form(){
 		$this->load->view('dell_form');

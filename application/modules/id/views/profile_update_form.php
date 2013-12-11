@@ -80,6 +80,7 @@ foreach ($user_data as $item) {
 
 
 	<select name="birthday1" size="1">
+	<option value="day">день</option>
 	<?php for ($i = 1; $i <= 31; $i++){
 	if ($i<10){
 	echo '<option value="0'.$i.'">0' .$i.' </option>';
@@ -94,6 +95,7 @@ foreach ($user_data as $item) {
 
 
 	<select name="birthday2" size="1">
+		<option value="month">месяц</option>
 	<?php for ($i = 1; $i <= 12; $i++){
 	if ($i<10){
 	echo '<option value="0'.$i.'">0' .$i.' </option>';
@@ -107,6 +109,7 @@ foreach ($user_data as $item) {
 
 
 	<select name="birthday3" size="1">
+		<option value="year">год</option>
 	<?php for ($i = 1800; $i <= 2015; $i++){
 	echo '<option value="'.$i.'">' .$i.' </option>';
 	}?>

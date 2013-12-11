@@ -132,7 +132,8 @@ background-color:#fff;
 	<li>Почта: <?php echo $item->mail;?></li><?php } ?>
   
   <li>Пол: <?php echo $item->sex;?></li>
-	<li>Дата Рождения: <?php echo $item->birthday;?></li>
+   <?php if($item->birthday != ''){ ?>
+	<li>Дата Рождения: <?php echo $item->birthday;?></li><?php } ?>
 	<li>Дата регистрации: <?php echo $item->date;?></li>
   
    <?php if($item->sity != ''){ ?>
