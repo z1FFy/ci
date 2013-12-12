@@ -73,6 +73,19 @@ body {
 	#left_user {
 		width: 250px;
 		padding-top: 10px;
+		z-index: 444;
+	}
+
+	#showmenu{
+		position: absolute;
+		top: 150px;
+		left: 50px;
+		background-color: #EDF7FD;
+		box-shadow: 0 0 3px rgba(255, 255, 255, 1);
+		padding-top: 7px;
+		padding-bottom: 7px;
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 	#polosa {
 		display:table-cell;

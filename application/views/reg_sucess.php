@@ -1,5 +1,4 @@
 <?php
-
 function send_mime_mail($name_from, // имя отправителя
                         $email_from, // email отправителя
                         $name_to, // имя получателя
@@ -38,7 +37,6 @@ function mime_header_encode($str, $data_charset, $send_charset) {
 
 
 
-
   $body1='Ваше портфолио создано и его можно посмотреть перейдя по ссылке:'.$this->config->site_url().'id'.$user_id.'<br> Подтверждение регистрации:'.$this->config->site_url().'id'.$user_id.'/profile?key='.$body;
    send_mime_mail($name_from,
 $email_from,
@@ -51,9 +49,6 @@ $body1);
 
 header ('Location:'.$this->config->site_url() .'site/entry?login='.$login.'&pass='.$pass);
 ?>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,9 +75,6 @@ header ('Location:'.$this->config->site_url() .'site/entry?login='.$login.'&pass
 <a href="<?php echo $this->config->site_url() ?>"><img id="logo" src="
 <?php echo $this->config->site_url() ?>images/logo.png"></a>
 </div>
-
-
-
 </header>
 
 <div  id="content">

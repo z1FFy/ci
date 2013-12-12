@@ -40,7 +40,6 @@ function do_img_to_albom()
 		$albom_id = $_POST['id_albom'];
 		$photo_id = $_POST['id_photos'];
 		$res=$this->db_module->send_photo_from_albom($albom_id, $photo_id);
-		echo $res;
 	}
 
 function photos_in_albom()
@@ -69,7 +68,13 @@ function photos_in_albom()
 		$this->load->view('template',$data);		
 	}
 
-
+	function red_photo() {
+		$id_photo=$_GET['id_photo'];
+		$user_id=$this->session->userdata('user_id');
+		$albom_data = $this->db_module->get_albom_photos($user_id);
+		$data=array( 'albom_data' => $albom_data,'user_id'=>$user_id,'id_photo'=>$id_photo);
+		$this->load->view('red_photo',$data);
+	}
 
 
 }

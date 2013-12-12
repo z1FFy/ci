@@ -99,6 +99,8 @@ $('#pad').html('минимальное значение любого поля - 
 
  
 
+
+
           //Auth
 $('.btn_entry').click(function() { 
   login = $("input[name='login-entry']").val();
@@ -176,6 +178,7 @@ $('.btn_entry').click(function() {
       // });
        //delete photo
        $('.delete_photos').click(function() { 
+          console.log('ee');
         delete_photos = $(this).attr("link");
       $.post(site_full+"/id/delete_photos",
          { delete_photos : delete_photos,
@@ -187,7 +190,15 @@ $('.btn_entry').click(function() {
       function onAjaxSuccess(data)
       {
   window.location.replace(site_full+"/id");
+  alert(data);
       };
+
+             $('.red_photo').click(function() { 
+        id_photo = $(this).attr("link");
+       var src = site_full+"/id/albom/red_photo?id_photo="+id_photo;
+        upload(src,'nof',400,500);
+      });
+
 
 
    $('#friends').click(function() { 
@@ -232,16 +243,8 @@ $('.like_photos').click(function() {
 //     };
 //   });
 
-    var photo = $("#photo");
-      photo_w=parseInt(photo.width());
-      r_photo_w=$('#photo').attr('r_width');
-      photo_h=parseInt(photo.height());
-      r_photo_h=$('#photo').attr('r_height');
-      if (photo_w>r_photo_w) {
-        $('#photo').attr('width', r_photo_w);
-    }
-    $('#show_com').click(function() { 
-      $('#comments').css('display' , 'block');
+     $('#show_com').click(function() { 
+     $('#comments').css('display' , 'block');
     });
     $('.send_com').click(function() { 
     messages = $("#messages").val();
@@ -272,6 +275,17 @@ function onAjaxSuccess(data)
           };
 
 
+  $('#showmenu').mouseover(function() { 
+
+  $('#left_user').slideDown("slow");
+
+ $('#left_user').mouseleave(function() { 
+
+$('#left_user').slideUp("fast");
+
+
+       }); 
+       }); 
 
 
 
@@ -312,8 +326,7 @@ function onAjaxSuccess(data)
         });   
       };
        } 
- 
-
+  
 
       
 

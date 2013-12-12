@@ -23,8 +23,11 @@ body {
   background-color: #fff;
 }
 #left_user{
-  position: absolute;
-  padding-top: 30px;
+position: absolute;
+
+top: 183px;
+background-color: #EDF7FD;
+box-shadow: 0 0 3px rgba(0,0,0,5);
 
 }
 #right_user {
@@ -38,6 +41,31 @@ margin-bottom: 40px;
   width: 50px;
 }
 </style>
+<script>
+  $(document).ready(function() {
+     $('#left_user').hide();
+
+  });
+  window.onload = function() {
+        var photo = $("#photo");
+      photo_w=parseInt(photo.width());
+      r_photo_w=$('#photo').attr('r_width');
+      photo_h=parseInt(photo.height());
+      // p_ph_h=-photo_h/100*50;
+      // $('#ph_prev,#ph_next').css({'top': p_ph_h});
+      r_photo_h=$('#photo').attr('r_height');
+      if (photo_w>r_photo_w) {
+        $('#photo').attr('width', r_photo_w);
+      }
+  }
+</script>
+<?php
+foreach ($user_data as $item){ 
+      $name=$item->name;
+      $famil=$item->famil;
+    }
+      ?>
+<div id="showmenu"><?php echo $name.' '.$famil; ?></div>
 	<?php 
        $this->load->view('left_user',$user_data); 
   $id=$_GET['id'];
@@ -93,35 +121,63 @@ $photo =$item->url_photo;
   $arr = GetImageSize($img_path);
   $width=$arr[0]; // ширина
   $height=$arr[1]; // высота
+  //  $proc=$width/100*55;
+  // $proc=$width-$proc;
+  // echo $proc;
+  //  if ($width<700) {
+
+  // $p_h=-$height/100*50; }
   $i=$i+1;
 }
 
 	}
   echo '<div id="polosa"><br></div>';
 echo '<div align="center" id="right_user">
-<p style="text-align:center;padding: 10px">'.$photos_name.' </p>
-<a href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idprev.'&id_orig='.$id_photos_p.'"><div id="ph_prev" ></div></a>'; 
+<div style="position: relative;margin-bottom: -45px;"><a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idprev.'&id_orig='.$id_photos_p.'"><img src="'.$this->config->site_url().'images/prev.png"></a>
+<a style="margin-left: 435px" href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img src="'.$this->config->site_url().'images/next.png"></a>
+</div><p style="text-align:center;padding: 10px">'.$photos_name.' </p>
+'; 
+ 
+
 //<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
-   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'" style="" src="'.$img_path.'" width="55%"></div></a>'; 
-echo '<a href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><div id="ph_next" ></div></a>'; 
+   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="" src="'.$img_path.'" width="55%"></div></a>'; 
 //<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
  echo '<p style="margin-top:10px;text-align:center;padding:10px"><a class="batn" href="'.$img_path.'">на полный экран</a>';
 
 
 	
-  if ($whopage=='my') {
-    if ($logged==TRUE) {
-        		echo '  <a class="delete_photos batn" link='.$item->id_photos.'>Удалить</a>';
-    }
-}
+
 if ($logged == TRUE) {
 echo ' <a class="like_photos like_photos1 batn" link='.$item->id_photos.'>LIKE</a>  '.$item->like_photos.'';
+}  if ($whopage=='my') {
+    if ($logged==TRUE) {
+          //  echo '  <a class="delete_photos batn" link='.$item->id_photos.'>Удалить</a>';
+              echo '  <a class="red_photo batn" link='.$item->id_photos.'>Редактировать</a>';
 
+    }
+}
 ?>
+<div style="display:inline-block">
+<?php
+$i=0; foreach ($photos_data as $item){ 
+    $photos_name=$item->photos_name;
+$i++;
+$sel='';
+if ($i==$id+1) {
+  $sel='background-color:#386E8F;';
+}
+      echo '<div style="height: 100px;'.$sel.'" class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$i.'&id_orig='.$item->id_photos.'">
+<div class="photo" style="height: 100px;width:100px;background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');"></div></a></div>';
+// if ($i == 4) {
+//  echo "<br>";
+// }
 
+    } 
+?>
+</div>
 <br>
 <div align="center">
-<a id="show_com" class="batn" style="display: block;width: 300px;">Комментрии(показать)</a></div>
+<a id="show_com" class="batn" style="display: block;width: 300px;">Комментарии(показать)</a></div>
 <div id="comments" style="display:none">
 <?php 
 
@@ -136,9 +192,9 @@ echo ' <a class="like_photos like_photos1 batn" link='.$item->id_photos.'>LIKE</
 
 			?> </div> 
 			<?php
-
+}
 		
-		}?>
+		?>
 <br>
 
 
@@ -149,7 +205,7 @@ echo ' <a class="like_photos like_photos1 batn" link='.$item->id_photos.'>LIKE</
 <br /><br />
 
 <input type="submit" class="send_com" value="Отправить" />
-<?php }
+<?php 
 echo "</p></div></div>";
  ?>
 

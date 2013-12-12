@@ -1,62 +1,49 @@
 <div id="polosa"><br></div>
 <div id="right_user">
 	<p class="titl">Мои работы  
-	<?php if($whopage == "my") { echo '<button class="upload_foto">Загрузить работу</button><br>';} ?> </p>
-	<?php if ($whopage=='my') { ?>
-<!-- Добавление в альбом -->
-<!-- <form action="<?php echo $this->config->site_url()?>id<?php echo $url_id?>/albom/do_img_to_albom" method="post" accept-charset="utf-8">
-<select name = "id_albom"  size="1">
+	<?php if($whopage == "my") { echo '<button class="upload_foto">Загрузить работу</button><br>';} ?> </p> 
 <?php 
-	foreach ($albom_data as $item){  ?>
-	<option value="<?php echo $item->id_albom ?>" >
-		<?php 
-		//var_dump($item);
-		 echo $item->albom_name; ?>
-	</option>
-	<?php } ?>
-</select>
-<select name="id_photos"  size="1">
-
-	<?php 
-	foreach ($photo_data as $item){  ?>
-	<option value="<?php echo $item->id_photos ?>">
-		<?php 
-		//var_dump($item);
-		 echo $item->url_photo; ?>
-	</option>
-	<?php } ?>
-
-<p><input type="submit" class="btn" value="добавить в альбом"></p>
-</select>
-</form> -->
-<?php }?>
-<!-- Просмотр  альбома -->
-
-<!-- 
-<?php 
-
+$id_al='';
+	$sel='';
+	if (isset($_GET['id_albom'])) {
+$id_al = $_GET['id_albom'];
+	}
 	echo "Альбомы:  ";
-	foreach ($albom_data as $item){ 
-	echo '<a href="'.$this->config->site_url().'id'.$url_id.'/albom/photos_in_albom?id_albom='.$item->id_albom.'">'.$item->albom_name.'</a>  ';
-} ?>
+	echo '<select onchange="top.location=this.value">';
+	echo '<option value="'.$this->config->site_url().'id'.$url_id.'">Все</a> </option> ';
 
+	$i=0;
+	foreach ($albom_data as $item){ 
+		$i++;
+		if ($i==$id_al) {
+				$sel='selected';
+		}else {
+			$sel='';
+		}
+	echo '<option '.$sel.' value="'.$this->config->site_url().'id'.$url_id.'/?id_albom='.$item->id_albom.'">'.$item->albom_name.'</a> </option> ';
+} ?>
+</select>
 <br>
 <br>
- -->
+
 <!-- vse foto -->
 <div>
 <!-- <div id="show_img"></div> -->
 <?php $i=0; foreach ($photo_data as $item){ 
 		$photos_name=$item->photos_name;
-if ($photos_name=='""') {
-	$photos_name='';
-}
-$i++;
+		$id_albom=$item->id_albom;
+
+		$i++;
+		if (empty($id_al)) {
 			echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$i.'&id_orig='.$item->id_photos.'">
-<div class="photo" style="background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');"><div class="pod_photo">'.$photos_name.'</div></div></a></div>';
-// if ($i == 4) {
-// 	echo "<br>";
-// }
+			<div class="photo" style="background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');"><div class="pod_photo">'.$photos_name.'</div></div></a></div>';
+} else {
+	if ($id_al==$id_albom) {
+		echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$i.'&id_orig='.$item->id_photos.'">
+			<div class="photo" style="background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');"><div class="pod_photo">'.$photos_name.'</div></div></a></div>';
+
+	}
+}
 
 		}	?>
 		
