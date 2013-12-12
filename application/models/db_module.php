@@ -84,6 +84,7 @@ function up_podtvr($user_id) {
         $this->mail = $_POST['email'];
 		$this->password = $_POST['pass'];
 		$this->spec_user = $_POST['spec_user'];
+		$this->avatar  = 'f04d67ae61e74e96a1e25f226c4379a7.jpeg';
 		$this->date  = date("d.m.y h:i:s");
 		$data = $this->db_module->get_user($this->login);
 		$data_mail = $this->db_module->get_user_by_email($this->mail);
@@ -121,6 +122,9 @@ function send_user_photos($data) {
 	if ($logged=TRUE) {
 	$name='';
 	foreach ($data as $key => $value) {
+	if ($key == 'photo_data'){
+	$photo_data=$value;
+}	
 	if ($key == 'user_id'){
 	$user_id=$value;
 }
@@ -131,13 +135,19 @@ if ($key == 'photos_name') {
 	$photos_name=$value;
 }
 	}
+	if($photo_data <= 30){
 		$this->id_user   =  $user_id;
         $this->url_photo = $name;
         $this->photos_name = $photos_name; 
 		$query = $this->db->insert('photos', $this);
 		$result='Фото загружено!';
-			$user_id=$this->session->userdata('user_id');
+		$user_id=$this->session->userdata('user_id');
 	header ("Location:". $this->config->site_url().'id'.$user_id); 
+	}else{
+		$result='Достигнут лимит фотографий для вашего аккаунта!';
+		$user_id=$this->session->userdata('user_id');
+		header ("Location:". $this->config->site_url().'id'.$user_id); 
+	}
 	} else {
 		$result='Ошибка загрузки';
 	}
@@ -148,6 +158,11 @@ if ($key == 'photos_name') {
 	function get_user_photos($url_id) {
 		 $query = $this->db->get_where('photos', array('id_user' => $url_id));
 	     return $query->result();
+	}
+
+	function get_num_user_photos($url_id) {
+		 $query = $this->db->get_where('photos', array('id_user' => $url_id));
+	     return $query->num_rows();
 	}
 
 
@@ -394,8 +409,7 @@ function seach($mas, $birthday, $spec_user){
 
 if(count($mas) == 2){
 	$this->db->where_in('name', $mas); 
-	$this->db->where_in('famil', $mas);
-	$this->db->where_in('spec_user', $spec_user);	
+	$this->db->where_in('famil', $mas);	
 }
 
 	if(count($mas) == 1 && $mas['0'] !== ''){

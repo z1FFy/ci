@@ -184,10 +184,13 @@ class picture {
 if ($who== 'photos') {
     $user_id=$this->session->userdata('user_id');
     $name_photo = $upload_data['file_name'];
-    header ("Location:db_upload?user_id=".$user_id."&name=".$name_photo."&who=".$who.'&photos_name='.$photos_name);
-
-    echo "Фотография загружена";
-}
+    header ("Location:db_upload?user_id=".$user_id."&name=".$name_photo."&who=".$who.'&photos_name='.$photos_name.'&photo_data='.$photo_data);
+    if($photo_data >= 30){
+        echo "Достигнут лимит в 30 фотографий";
+    }else{
+        echo "Фотография загружена";
+    }
+    }
 
 
 if ($who == 'avatars'){
