@@ -121,7 +121,7 @@ echo ' <a class="like_photos like_photos1 batn" link='.$item->id_photos.'>LIKE</
 
 <br>
 <div align="center">
-<a id="show_com" class="batn" style="display: block;width: 300px;">Комментрии(показать)</a></div>
+<a id="show_com" class="batn" style="display: block;width: 300px;">Коментрии(показать)</a></div>
 <div id="comments" style="display:none">
 <?php 
 

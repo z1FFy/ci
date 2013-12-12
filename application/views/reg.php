@@ -4,6 +4,8 @@
 
 
 <script>
+
+
   $(document).ready(function() {
  	$('#soglchek').click(function() {
  		$('#reg').removeAttr('disabled');
@@ -78,7 +80,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <option value="3D Графика">3D Графика</option>
 <option value="Анимация/Мультипликация">Анимация/Мультипликация</option>
 <option value="Фотография">Фотография</option>
-<option value="Аудио/Видео">Аудио/Видо</option>
+<option value="Аудио/Видео">Аудио/Видео</option>
 <option value="Реклама/Маркейтинг">Реклама/Маркейтинг</option>
 <option value="Разработка игр">Разработка игр</option>
 <option value="Арихитектура/Интерьер">Арихитектура/Интерьер</option>

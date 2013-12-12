@@ -32,6 +32,7 @@ class Upload extends CI_Controller {
 		if ($who == 'photos') {
 			$config['upload_path'] = './uploads/photos/';
 			$photos_name = $_POST['photos_name'];
+			$photo_data = $this->db_module->get_num_user_photos($user_id);
 		}
 		if ($who == 'avatars') {
 			$config['upload_path'] = './uploads/avatars/';
@@ -42,6 +43,7 @@ class Upload extends CI_Controller {
 		$config['max_height']  = '3068';
 		$config['encrypt_name'] = 'TRUE';
 		$this->load->library('upload', $config);
+			
 
 		if ( ! $this->upload->do_upload())
 		{
@@ -51,7 +53,7 @@ class Upload extends CI_Controller {
 		}
 		else
 		{
-			$data = array('upload_data' => $this->upload->data(),'who' => $who);
+			$data = array('upload_data' => $this->upload->data(),'who' => $who, 'photo_data' => $photo_data);
 			if ($who == 'photos') {
 				$data['photos_name']=$photos_name;
 			}
@@ -97,6 +99,7 @@ class Upload extends CI_Controller {
 	}
 	function db_upload() {
 			$who  = $_GET['who'];
+			$photo_data = $_GET['photo_data'];
 			$logged = $this->session->userdata('logged_in');
 			if ($logged == TRUE) {
 			$user_id=$this->session->userdata('user_id');
@@ -111,7 +114,8 @@ class Upload extends CI_Controller {
 				$data = array(
 	               'user_id' => $user_id,
 	               'name_photo' => $name_photo,
-	               'photos_name'=> $photos_name
+	               'photos_name'=> $photos_name,
+	               'photo_data' => $photo_data
 	                       );
 				$data_user = $this->db_module->send_user_photos($data);
 			}

@@ -6,8 +6,11 @@
 <body>
 
 <?php
-
+$who = '';
+if ($_SERVER['REQUEST_METHOD'] == 'GET')
+{
 $who = $_GET['who']; 
+}
 echo $error;
 if ($who == 'avatars') {
 	echo "<p style='font-size:17px'>Выберите фотографию для аватара</p>";
