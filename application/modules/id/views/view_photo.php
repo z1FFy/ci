@@ -132,27 +132,32 @@ $photo =$item->url_photo;
 
 	}
   echo '<div id="polosa"><br></div>';
+  $em='';
+  if (empty($photos_name)) {
+    $em='height:71px';
+  }
 echo '<div align="center" id="right_user">
-<div style="position: relative;margin-bottom: -45px;"><a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idprev.'&id_orig='.$id_photos_p.'"><img src="'.$this->config->site_url().'images/prev.png"></a>
+<div style="position: relative;margin-bottom: -45px;'.$em.'"><a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idprev.'&id_orig='.$id_photos_p.'"><img src="'.$this->config->site_url().'images/prev.png"></a>
 <a style="margin-left: 435px" href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img src="'.$this->config->site_url().'images/next.png"></a>
-</div><p style="text-align:center;padding: 10px">'.$photos_name.' </p>
+</div><p style="text-align:center;padding: 10px"> '.$photos_name.' </p>
 '; 
  
 
 //<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
    echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="" src="'.$img_path.'" width="55%"></div></a>'; 
 //<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
- echo '<p style="margin-top:10px;text-align:center;padding:10px"><a class="batn" href="'.$img_path.'">на полный экран</a>';
+ echo '<p style="margin-top:10px;text-align:center;padding:10px">
+ <input type="button" class="batn styler" href="'.$img_path.'" value="на полный экран">';
 
 
 	
 
 if ($logged == TRUE) {
-echo ' <a class="like_photos like_photos1 batn" link='.$item->id_photos.'>LIKE</a>  '.$item->like_photos.'';
+echo ' <input type="button" class="like_photos like_photos1 batn styler" value="LIKE '.$item->like_photos.'" link='.$item->id_photos.'>  ';
 }  if ($whopage=='my') {
     if ($logged==TRUE) {
           //  echo '  <a class="delete_photos batn" link='.$item->id_photos.'>Удалить</a>';
-              echo '  <a class="red_photo batn" link='.$item->id_photos.'>Редактировать</a>';
+              echo '  <input type="button" class="red_photo batn styler" link='.$item->id_photos.' value="Редактировать">';
 
     }
 }

@@ -56,11 +56,11 @@ foreach ($user_data as $item) {
 <?php foreach ($user_data as $item):?>
 
 <ul>
-	<li>Фамилия: <input type="text" name="famil" size="20" maxlength="20" value="<?php echo $item->famil;?>"/> <br>
-	</li><li>Имя: <input type="text" name="name" size="20" maxlength="20" value="<?php echo $item->name;?>"/> <br>
-	</li><li>Отчество: <input type="text" name="otchestvo"  size="20" maxlength="20"  value="<?php echo $item->otchestvo;?>"/>
+	<li>Фамилия: <input class="styler" type="text" name="famil" size="20" maxlength="20" value="<?php echo $item->famil;?>"/> <br>
+	</li><li>Имя: <input class="styler" type="text" name="name" size="20" maxlength="20" value="<?php echo $item->name;?>"/> <br>
+	</li><li>Отчество: <input class="styler" type="text" name="otchestvo"  size="20" maxlength="20"  value="<?php echo $item->otchestvo;?>"/>
 	</li><br>
-	<li>Почта: <input type="text" name="mail" size="20" maxlength="50" value="<?php echo $item->mail;?>"/><br>
+	<li>Почта: <input class="styler" type="text" name="mail" size="20" maxlength="50" value="<?php echo $item->mail;?>"/><br>
 	</li>
 	<?php 
 	$sel='';
@@ -70,7 +70,7 @@ foreach ($user_data as $item) {
 	
 	 ?>
 	<li>Пол:
-	<select name="sex"> 
+	<select style="width: 100px;" name="sex"> 
 	<option value="не выбран">не выбран</option>
 	<option <?php echo $sel; ?> value="Мужской">Мужской</option>
 	<option <?php echo $sel1; ?> value="Женский">Женский</option>
@@ -79,7 +79,7 @@ foreach ($user_data as $item) {
 	Дата Рождения: 
 
 
-	<select name="birthday1" size="1">
+	<select style="width: 100px;" name="birthday1" >
 	<option value="day">день</option>
 	<?php for ($i = 1; $i <= 31; $i++){
 	if ($i<10){
@@ -94,7 +94,7 @@ foreach ($user_data as $item) {
 	</select>
 
 
-	<select name="birthday2" size="1">
+	<select style="width: 100px;" name="birthday2" >
 		<option value="month">месяц</option>
 	<?php for ($i = 1; $i <= 12; $i++){
 	if ($i<10){
@@ -108,14 +108,14 @@ foreach ($user_data as $item) {
 	</select>
 
 
-	<select name="birthday3" size="1">
+	<select style="width: 100px;" name="birthday3" >
 		<option value="year">год</option>
 	<?php for ($i = 1800; $i <= 2015; $i++){
 	echo '<option value="'.$i.'">' .$i.' </option>';
 	}?>
 	</select>
 
-<br></li><li>Город <input type="text" name="sity" size="20" maxlength="20" value="<?php echo $item->sity;?>"/> 
+<br></li><li>Город <input class="styler" type="text" name="sity" size="20" maxlength="20" value="<?php echo $item->sity;?>"/> 
 
 	<!-- <input type="text" name="birthday" size="20"  value="<?php echo $item->birthday;?> " />
 	 --><br>
@@ -181,10 +181,10 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 
 
 <h4>Контакты:</h4></li><ul><li>
-Телефон: <input type="text" name="telephone" size="20" maxlength="20" value="<?php echo $item->telephone;?>"/> 
-<br></li><li>Дополнительный телефон: <input type="text" name="dop_telephone" size="20" maxlength="80" value="<?php echo $item->dop_telephone;?>"/> 
-<br></li><li>Skype: <input type="text" name="skype" size="20" maxlength="20" value="<?php echo $item->skype; ?>"/> 
-<br></li><li>Личный сайт: <input type="text" name="website" size="30" maxlength="40" value="<?php echo $item->website;?>"/> 
+Телефон: <input class="styler" type="text" name="telephone" size="20" maxlength="20" value="<?php echo $item->telephone;?>"/> 
+<br></li><li>Дополнительный телефон: <input class="styler" type="text" name="dop_telephone" size="20" maxlength="80" value="<?php echo $item->dop_telephone;?>"/> 
+<br></li><li>Skype: <input class="styler" type="text" name="skype" size="20" maxlength="20" value="<?php echo $item->skype; ?>"/> 
+<br></li><li>Личный сайт: <input class="styler" type="text" name="website" size="30" maxlength="40" value="<?php echo $item->website;?>"/> 
 
 </li></ul>
 
@@ -207,10 +207,10 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <option value="Среднее">Среднее</option>
 </select>
 
-<br></li><li>Наименование учебного заведения <input type="text" name="education_basic" size="20" maxlength="80" value="<?php echo $item->education_basic;?>"/> 
-<br></li><li>Факультет <input type="text" name="facultet" size="20"  value="<?php echo $item->facultet;?>"/> 
+<br></li><li>Наименование учебного заведения <input class="styler" type="text" name="education_basic" size="20" maxlength="80" value="<?php echo $item->education_basic;?>"/> 
+<br></li><li>Факультет <input class="styler" type="text" name="facultet" size="20"  value="<?php echo $item->facultet;?>"/> 
 <br></li><li>Год окончания 
-<select name="education_end" size="1">
+<select name="education_end" style="width: 100px;">
 	<?php for ($i = 1900; $i <= 2015; $i++){
 	if ($i== $item->education_end){
 	echo '<option selected value="'.$i.'">' .$i.' </option>';
@@ -223,16 +223,16 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 	</select>
 
 
-<br></li><li>Знание языков <input type="text" name="language" size="20" maxlength="80" value="<?php echo $item->language;?>"/> 
+<br></li><li>Знание языков <input class="styler" type="text" name="language" size="20" maxlength="80" value="<?php echo $item->language;?>"/> 
 </li></ul>
 <li>Интересы: <br>
-<textarea name="interests" cols="40" rows = "10" maxlength = "250"> <?php echo $item->interests; ?> </textarea> <br>
+<textarea class="styler" name="interests" cols="40" rows = "10" maxlength = "250"> <?php echo $item->interests; ?> </textarea> <br>
 
 </li>
 </ul>
 <?php endforeach; ?>
 
-<br><input type="submit" id="prof-upd" value="Сохранить" />
+<br><input class="styler" type="submit" id="prof-upd" value="Сохранить" />
 
 </form>
 </div>

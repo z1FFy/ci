@@ -36,6 +36,7 @@ class Upload extends CI_Controller {
 		}
 		if ($who == 'avatars') {
 			$config['upload_path'] = './uploads/avatars/';
+			$photo_data ='';
 		}
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']	= '5000';
@@ -99,7 +100,6 @@ class Upload extends CI_Controller {
 	}
 	function db_upload() {
 			$who  = $_GET['who'];
-			$photo_data = $_GET['photo_data'];
 			$logged = $this->session->userdata('logged_in');
 			if ($logged == TRUE) {
 			$user_id=$this->session->userdata('user_id');
@@ -111,6 +111,7 @@ class Upload extends CI_Controller {
 			$photos_name = $_GET['photos_name'];
 			}
 			if ($who == 'photos') {
+				$photo_data = $_GET['photo_data'];
 				$data = array(
 	               'user_id' => $user_id,
 	               'name_photo' => $name_photo,
