@@ -191,8 +191,20 @@ $('.btn_entry').click(function() {
       //    onAjaxSuccess
       //    );
       // });
-       //delete photo
-       $('.delete_photos').click(function() { 
+       //delete photo 
+
+
+
+
+
+             $('.red_photo').click(function() { 
+        id_photo = $(this).attr("link");
+          photos_name = $(this).attr("photos_name");
+       var src = site_full+"/id/albom/red_photo?id_photo="+id_photo+"&photos_name="+photos_name;
+        upload(src,'nof',400,500);
+      });
+
+         $(".delete_photos").on("click", function(){
           console.log('ee');
         delete_photos = $(this).attr("link");
       $.post(site_full+"/id/delete_photos",
@@ -200,20 +212,12 @@ $('.btn_entry').click(function() {
               },
          onAjaxSuccess
          );
-      });
-
       function onAjaxSuccess(data)
       {
   window.location.replace(site_full+"/id");
   alert(data);
       };
-
-             $('.red_photo').click(function() { 
-        id_photo = $(this).attr("link");
-       var src = site_full+"/id/albom/red_photo?id_photo="+id_photo;
-        upload(src,'nof',400,500);
       });
-
 
 
    $('#friends').click(function() { 

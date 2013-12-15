@@ -46,18 +46,18 @@ margin-bottom: 40px;
      $('#left_user').hide();
 
   });
-  window.onload = function() {
-        var photo = $("#photo");
-      photo_w=parseInt(photo.width());
-      r_photo_w=$('#photo').attr('r_width');
-      photo_h=parseInt(photo.height());
-      // p_ph_h=-photo_h/100*50;
-      // $('#ph_prev,#ph_next').css({'top': p_ph_h});
-      r_photo_h=$('#photo').attr('r_height');
-      if (photo_w>r_photo_w) {
-        $('#photo').attr('width', r_photo_w);
-      }
-  }
+  // window.onload = function() {
+  //       var photo = $("#photo");
+  //     photo_w=parseInt(photo.width());
+  //     r_photo_w=$('#photo').attr('r_width');
+  //     photo_h=parseInt(photo.height());
+  //     // p_ph_h=-photo_h/100*50;
+  //     // $('#ph_prev,#ph_next').css({'top': p_ph_h});
+  //     r_photo_h=$('#photo').attr('r_height');
+  //     if (photo_w>r_photo_w) {
+  //       $('#photo').attr('width', r_photo_w);
+  //     }
+  // }
 </script>
 <?php
 foreach ($user_data as $item){ 
@@ -69,6 +69,7 @@ foreach ($user_data as $item){
 	<?php 
        $this->load->view('left_user',$user_data); 
   $id=$_GET['id'];
+    $id_orig=$_GET['id_orig'];
 
     $user_id=$this->session->userdata('user_id');
     $count=count($photos_data);
@@ -121,12 +122,12 @@ $photo =$item->url_photo;
   $arr = GetImageSize($img_path);
   $width=$arr[0]; // ширина
   $height=$arr[1]; // высота
-  //  $proc=$width/100*55;
-  // $proc=$width-$proc;
-  // echo $proc;
-  //  if ($width<700) {
 
-  // $p_h=-$height/100*50; }
+  $min=$item->min;
+  $mwidth='55%';
+  if ($min == 'min') {
+    $mwidth=$width;
+  }
   $i=$i+1;
 }
 
@@ -144,10 +145,12 @@ echo '<div align="center" id="right_user">
  
 
 //<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
-   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="" src="'.$img_path.'" width="55%"></div></a>'; 
+   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="" src="'.$img_path.'" width="'.$mwidth.'"></div></a>'; 
 //<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
- echo '<p style="margin-top:10px;text-align:center;padding:10px">
- <input type="button" class="batn styler" href="'.$img_path.'" value="на полный экран">';
+ echo '<p style="margin-top:10px;text-align:center;padding:10px">';
+ echo "<button class='batn styler' onclick=";
+ echo "location.href='";
+ echo $img_path."' >на полный экран</button>";
 
 
 	
@@ -157,7 +160,7 @@ echo ' <input type="button" class="like_photos like_photos1 batn styler" value="
 }  if ($whopage=='my') {
     if ($logged==TRUE) {
           //  echo '  <a class="delete_photos batn" link='.$item->id_photos.'>Удалить</a>';
-              echo '  <input type="button" class="red_photo batn styler" link='.$item->id_photos.' value="Редактировать">';
+              echo '  <input type="button" class="red_photo batn styler" photos_name="'.$photos_name.'" link='.$id_orig.' value="Редактировать">';
 
     }
 }

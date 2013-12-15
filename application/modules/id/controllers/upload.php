@@ -100,6 +100,7 @@ class Upload extends CI_Controller {
 	}
 	function db_upload() {
 			$who  = $_GET['who'];
+			$min = $_GET['min'];
 			$logged = $this->session->userdata('logged_in');
 			if ($logged == TRUE) {
 			$user_id=$this->session->userdata('user_id');
@@ -116,7 +117,8 @@ class Upload extends CI_Controller {
 	               'user_id' => $user_id,
 	               'name_photo' => $name_photo,
 	               'photos_name'=> $photos_name,
-	               'photo_data' => $photo_data
+	               'photo_data' => $photo_data,
+	               'min' => $min
 	                       );
 				$data_user = $this->db_module->send_user_photos($data);
 			}

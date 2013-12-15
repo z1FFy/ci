@@ -188,7 +188,7 @@ if ($whopage == 'my') {
   <form action="profile" method="post" >
       <input type="hidden" id="send_key" value="1" name="send_key" />
       <input type="hidden" id="key" value="0" name="key" />
-      <input type="submit" value="Выслать код подтверждения на Email"  />
+      <input class="styler" type="submit" value="Выслать код подтверждения на Email"  />
     </form>
 
 

@@ -134,9 +134,13 @@ if ($key == 'name_photo') {
 if ($key == 'photos_name') {
 	$photos_name=$value;
 }
+if ($key == 'min') {
+	$min=$value;
+}
 	}
 	if($photo_data <= 30){
 		$this->id_user   =  $user_id;
+		$this->min   =  $min;
         $this->url_photo = $name;
         $this->photos_name = $photos_name; 
 		$query = $this->db->insert('photos', $this);
@@ -188,17 +192,19 @@ if ($key == 'photos_name') {
 		 $query = $this->db->get_where('photos', array('id_photos' => $photo_id));
 	     return $query->result();
 	}
+
 //добавление фото в альбом
-function send_photo_from_albom($albom_id, $photo_id) {
+function send_photo_from_albom($albom_id, $photo_id, $photos_name) {
 			$logged = $this->session->userdata('logged_in');
 		$result='';
 		if ($logged=TRUE) {
-		$this->id_albom = $albom_id;
-		//$this->photo_id = $photo_id;
-		//var_dump($this->albom_id);
-		//var_dump($photo_id);
-
+		
 		$this->db->where('id_photos', $photo_id);
+		if (!empty($photos_name)) {
+			$this->photos_name = $photos_name;
+		} else {
+			$this->id_albom = $albom_id;
+		}
 		$this->db->update('photos', $this);
 		$result ='Фото добавлено в альбом';
 		} else {
@@ -216,6 +222,12 @@ function get_photo_from_albom($albom_id) {
 
 	    //return $query->result();
 	}
+
+
+
+///////////////
+
+
 
 
 //обновл профиля

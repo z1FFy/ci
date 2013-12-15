@@ -37,9 +37,17 @@ function do_albom()
 
 function do_img_to_albom()
 	{
-		$albom_id = $_POST['id_albom'];
-		$photo_id = $_POST['id_photos'];
-		$res=$this->db_module->send_photo_from_albom($albom_id, $photo_id);
+		$photo_id= $_POST['id_photos'];
+		if (isset($_POST['id_albom'])) {
+			$albom_id = $_POST['id_albom'];		
+			$res=$this->db_module->send_photo_from_albom($albom_id, $photo_id,'');
+		}
+	if (isset($_POST['photos_name'])) {
+		$photos_name = $_POST['photos_name'];
+		$res=$this->db_module->send_photo_from_albom('',$photo_id,$photos_name);
+	}
+		$user_id=$this->session->userdata('user_id');
+	header ("Location:". $this->config->site_url().'id'.$user_id);
 	}
 
 function photos_in_albom()
@@ -70,9 +78,10 @@ function photos_in_albom()
 
 	function red_photo() {
 		$id_photo=$_GET['id_photo'];
+		$photos_name=$_GET['photos_name'];
 		$user_id=$this->session->userdata('user_id');
 		$albom_data = $this->db_module->get_albom_photos($user_id);
-		$data=array( 'albom_data' => $albom_data,'user_id'=>$user_id,'id_photo'=>$id_photo);
+		$data=array( 'albom_data' => $albom_data,'user_id'=>$user_id,'id_photo'=>$id_photo,'photos_name'=>$photos_name);
 		$this->load->view('red_photo',$data);
 	}
 

@@ -320,3 +320,14 @@ background: url("http://2.bp.blogspot.com/-1sdAwGvGOuk/UfZ235yA_hI/AAAAAAAAFms/2
 .iptotop.hidden {
 bottom: -100px
 }
+
+
+.block {
+	border-radius: 10px;
+	margin-bottom:40px;text-align:left;background-color: #EDF7FD;padding: 10px;
+}
+.p_block {
+	border-radius: 10px;
+	margin-bottom:40px;text-align:left;background-color: #EDF7FD;padding: 10px;
+	margin-top:-20px;margin-left:1%;margin-right:1%;height:400px;width:28%;display: inline-table;
+}

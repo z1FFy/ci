@@ -183,8 +183,19 @@ class picture {
 
 if ($who== 'photos') {
     $user_id=$this->session->userdata('user_id');
-    $name_photo = $upload_data['file_name'];
-    header ("Location:db_upload?user_id=".$user_id."&name=".$name_photo."&who=".$who.'&photos_name='.$photos_name.'&photo_data='.$photo_data);
+    $image_width = $upload_data['image_width'];
+$full_path = $upload_data['full_path'];
+$name_photo = $upload_data['file_name'];
+
+$new_image = new picture($this->config->site_url().'uploads/'.$name_photo);
+$min='none';
+if ($image_width <= 600){
+  $min='min';
+}
+
+
+
+    header ("Location:db_upload?&min=".$min."&user_id=".$user_id."&name=".$name_photo."&who=".$who.'&photos_name='.$photos_name.'&photo_data='.$photo_data);
     if($photo_data >= 30){
         echo "Достигнут лимит в 30 фотографий";
     }else{
@@ -207,8 +218,12 @@ $name_photo = $upload_data['file_name'];
 $raw_name = $upload_data['raw_name'];
 $raw_name.='.jpeg';
 $new_image = new picture($this->config->site_url().'uploads/avatars/'.$name_photo);
+$min='none';
 if ($image_width >= 600){
     $new_image->imageresizewidth(600);
+}
+else {
+    $min='min';
 }
 $new_image->image_type='jpeg';
 
@@ -226,6 +241,7 @@ echo '<form action="'.$this->config->site_url().'id/upload/small_ava'.'" method=
             <input type="hidden" id="y" name="y" />
             <input type="hidden" id="w" name="w" />
             <input type="hidden" id="h" name="h" />
+            <input type="hidden" id="min" name="min" value="'.$min.'" />
             <input type="hidden" value="'.$name_photo.'" id="name_photo" name="name_photo" />
             <input type="hidden" value="'.$full_path.'" id="full_path" name="full_path" />
             <input type="hidden" value="'.$file_path.'" id="file_path" name="file_path" />
