@@ -22,13 +22,13 @@ if ($who == 'photos') {
 
 <form action="<?php echo $this->config->site_url() ?>id/upload/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <?php if ($who=='photos') {?>
-<input class="styler" type="text" name="photos_name" maxlength="20" placeholder="Имя" />
+<input type="text" name="photos_name" maxlength="20" placeholder="Имя" />
  <?php } ?>
-<br><input class="styler" type="file" name="userfile" size="20" />
+<br><input type="file" name="userfile" size="20" />
  <input type="hidden" name="who" value="<?php echo $who; ?>">
 <br /><br />
 
-<input class="styler" type="submit" value="Загрузить" />
+<input  type="submit" value="Загрузить" />
 
 </form>
 

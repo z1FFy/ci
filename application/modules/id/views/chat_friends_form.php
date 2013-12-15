@@ -50,6 +50,7 @@ function onAjaxSuccess(data)
 <?php 
 //var_dump($this->session);
 $friend_id = $_GET['friend_id'];
+date_default_timezone_set('Europe/Moscow');
 		foreach ($messages_data as $item){ 
 			if($item->name == ''){
 				$name = $item->login;
@@ -58,7 +59,7 @@ $friend_id = $_GET['friend_id'];
 			}
 			//var_dump($item);
 			echo '<div style="background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);"<img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
-			.$name.' - '.$item->messages.' '.$item->message_date;
+			.$name.' - '.$text = htmlspecialchars($item->messages, ENT_QUOTES).' '.date("d.m.y H:i:s" ,$item->message_date);
 			//$friend_id = $item->adresat;
 			?></div> <br>  
 			<?php

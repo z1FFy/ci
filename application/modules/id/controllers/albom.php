@@ -60,7 +60,7 @@ function photos_in_albom()
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$photos_data = $this->db_module->get_user_photos($url_id);
 		$message_data = $this->db_module->view_message($id_photos);
-		$message_data_arr = array( 'message_data' => $message_data, 'user_data' => $user_data, 'photos_data' => $photos_data,'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id);
+		$message_data_arr = array( 'message_data' => $message_data, 'user_data' => $user_data, 'photos_data' => $photos_data,'whopage' => $whopage,'logged' => $logged,'user_id' => $url_id, 'url_id' => $url_id);
 		$page_content=$this->load->view('view_photo',$message_data_arr,true);
 		$title="Просмотр фото";
 		$data['page_content'] = $page_content;

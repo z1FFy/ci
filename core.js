@@ -1,13 +1,3 @@
-
-(function($) {  
-$(function() {  
-  
-  $('input, select, button, file, text').styler();  
-  
-})  
-})(jQuery)  
- 
-
 function validate(evt) {
 var el = $('#mail');
 if (el.is(":focus")){

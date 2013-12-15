@@ -6,11 +6,9 @@
     <meta charset="utf-8">
 
   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
-  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>jquery.formstyler.css" type="text/css" />
 <link rel="shortcut icon" href="<?php echo $this->config->site_url() ?>favicon.ico"></link>
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
-  <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.formstyler.min.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.simplemodal.1.4.4.min.js"></script>
 </head>
 <body>
@@ -23,10 +21,10 @@
 </header>
 <div align="center" id="menu">
    <?php if ($logged != TRUE) { ?>
-  <input style="width: 120px;" type="text" name="login-entry"  onkeypress='validate(event)' class="auth styler" maxlength="20" placeholder="Email">
-  <input style="width: 120px;" type="password" name ="password-entry"  onkeypress='validate(event)' class="auth styler"maxlength="20" placeholder="Пароль">
+  <input type="text" name="login-entry"  onkeypress='validate(event)' class="auth" maxlength="20" placeholder="Email">
+  <input type="password" name ="password-entry"  onkeypress='validate(event)' class="auth"maxlength="20" placeholder="Пароль">
 
-  <button  type="submit" style="padding: 4px 11px;" class="btn_entry styler">Войти</button>
+  <button type="submit" class="btn_entry">Войти</button>
 <?php } else {
       echo '<a href="'.$this->config->site_url().'"">Главная</a>   ';
     echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a> ';
@@ -52,9 +50,6 @@ position: absolute;" src="'.$this->config->site_url().'/images/help.png"><a styl
 <small>Авторские права на все материалы опубликованные
 на сайте принадлежат их авторам.</small>
 <div align="right">
-<a class=' iptotop' href='#'>
-<span></span>
-</a>
 <!-- Yandex.Metrika informer -->
 <a href="http://metrika.yandex.ru/stat/?id=23092057&amp;from=informer"
 target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/23092057/3_0_2067FFFF_0047FFFF_1_pageviews"

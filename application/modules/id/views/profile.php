@@ -173,7 +173,7 @@ background-color:#fff;
      
     <?php if($item->interests != ''){ ?>
      <li>Интересы: <br>
-      <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled"><?php echo $item->interests;?><?php } ?></textarea>
+      <textarea cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled"><?php echo $item->interests;?><?php } ?></textarea>
     <li>Специализация: <?php echo $item->spec_user;?></li>
 
   

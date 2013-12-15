@@ -1,15 +1,17 @@
 <div id="polosa"><br></div>
 <div id="right_user">
 	<p class="titl">Мои работы  
+	<?php if($whopage == "my") { echo '<button class="upload_foto">Загрузить работу</button><br>';} ?> </p> 
 <?php 
 $id_al='';
 	$sel='';
 	if (isset($_GET['id_albom'])) {
 $id_al = $_GET['id_albom'];
 	}
-	echo '<select style="width:100px" onchange="top.location=this.value">';
+	echo "Альбомы:  ";
+	echo '<select onchange="top.location=this.value">';
 	echo '<option value="'.$this->config->site_url().'id'.$url_id.'">Все</a> </option> ';
-?> </p>  <?php
+
 	$i=0;
 	foreach ($albom_data as $item){ 
 		$i++;
@@ -21,7 +23,7 @@ $id_al = $_GET['id_albom'];
 	echo '<option '.$sel.' value="'.$this->config->site_url().'id'.$url_id.'/?id_albom='.$item->id_albom.'">'.$item->albom_name.'</a> </option> ';
 } ?>
 </select>
-	<?php if($whopage == "my") { echo '<input type="button" class="upload_foto styler" value="Загрузить работу"> ';} ?>
+<br>
 <br>
 
 <!-- vse foto -->
