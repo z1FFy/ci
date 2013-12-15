@@ -188,7 +188,7 @@ if ($i==$id+1) {
 <a id="show_com" class="batn" style="display: block;width: 300px;">Комментарии(показать)</a></div>
 <div id="comments" style="display:none">
 <?php 
-
+date_default_timezone_set('Europe/Moscow');
 		foreach ($message_data as $item){ 
 
       if($item->name == ''){
@@ -196,7 +196,8 @@ if ($i==$id+1) {
       }else{
         $name = $item->name.' '.$item->famil;
       }
-			 echo '<div><div style="display:inline" class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame_com" width="100"></div><div style="display:inline" class="block2">'.$name.' - ';echo $item->messages.' : '; echo $item->message_date.'</div>';
+			 echo '<div><div style="display:inline" class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame_com" width="100"></div><div style="display:inline" class="block2">'.$name.' - ';
+       echo $text = htmlspecialchars($item->messages, ENT_QUOTES).' : '; echo date("d.m.y H:i:s" ,$item->message_date).'</div>';
 
 			?> </div> 
 			<?php
@@ -216,4 +217,13 @@ if ($i==$id+1) {
 <?php 
 echo "</p></div></div>";
  ?>
+
+
+
+
+
+
+
+
+
 

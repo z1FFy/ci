@@ -268,10 +268,9 @@ function send_message($id_photos, $messages, $user_id){
 	$this->photos_id = $id_photos;
 	$this->messages = $messages;
 	$this->user_id = $user_id;
-	$this->message_date  = date("d.m.y h:i:s");
+	$this->message_date  = time();
 	$query = $this->db->insert('chat_photos', $this); 
 	return $query;
-
 }
 
 function view_message($id_photos){
@@ -360,7 +359,7 @@ function send_chat_friends($user_id, $friend_id, $messages){
 	$this->user_id = $user_id;
 	$this->adresat = $friend_id;
 	$this->messages = $messages;
-	$this->message_date  = date("d.m.y h:i:s");
+	$this->message_date  = time();
 	$query = $this->db->insert('chat_friends', $this); 
 }
 

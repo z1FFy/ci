@@ -50,6 +50,7 @@ function onAjaxSuccess(data)
 <?php 
 //var_dump($this->session);
 $friend_id = $_GET['friend_id'];
+date_default_timezone_set('Europe/Moscow');
 		foreach ($messages_data as $item){ 
 			if($item->name == ''){
 				$name = $item->login;
