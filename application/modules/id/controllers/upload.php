@@ -12,10 +12,11 @@ class Upload extends CI_Controller {
 
 	function index()
 	{
-
+		$user_id=$this->session->userdata('user_id');
 		$logged = $this->session->userdata('logged_in');
 		if ($logged == TRUE) {
-			$this->load->view('upload_form', array('error' => ' ' ));
+			$photo_data = $this->db_module->get_num_user_photos($user_id);
+			$this->load->view('upload_form', array('error' => ' ' ,'photo_data' => $photo_data));
 		}
 		else {
 			$this->load->view('welcome_message', array('error' => ' ' ));
@@ -32,11 +33,9 @@ class Upload extends CI_Controller {
 		if ($who == 'photos') {
 			$config['upload_path'] = './uploads/photos/';
 			$photos_name = $_POST['photos_name'];
-			$photo_data = $this->db_module->get_num_user_photos($user_id);
 		}
 		if ($who == 'avatars') {
 			$config['upload_path'] = './uploads/avatars/';
-			$photo_data ='';
 		}
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']	= '5000';
@@ -54,7 +53,7 @@ class Upload extends CI_Controller {
 		}
 		else
 		{
-			$data = array('upload_data' => $this->upload->data(),'who' => $who, 'photo_data' => $photo_data);
+			$data = array('upload_data' => $this->upload->data(),'who' => $who);
 			if ($who == 'photos') {
 				$data['photos_name']=$photos_name;
 			}
@@ -100,7 +99,9 @@ class Upload extends CI_Controller {
 	}
 	function db_upload() {
 			$who  = $_GET['who'];
-			$min = $_GET['min'];
+			if (isset($_GET['min'])) {
+				$min = $_GET['min'];
+			}
 			$logged = $this->session->userdata('logged_in');
 			if ($logged == TRUE) {
 			$user_id=$this->session->userdata('user_id');

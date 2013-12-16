@@ -40,6 +40,9 @@ body {
 		visibility: hidden;
 
 	}
+	input {
+		width: 200px;
+	}
 </style>  
 <div align="center">
   <p style="font-size:30px;color:#fff">Регистрация </p>
@@ -65,8 +68,8 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 </script> 
 
 <form> 
-<select class="batn" id="regsel"  name="spec_user" onChange="selChange(this.form)">
-<option selected="selected" value="Выберите Вашу специализацию">Выберите Вашу специализацию</option>
+<div style=""><select class="styler" id="regsel"  name="spec_user" onChange="selChange(this.form)">
+<option selected="selected" value="Выберите Вашу специализацию">Специализация</option>
 <option value="Менеджмент">Менеджмент</option>
 <option  value="Разработка сайтов">Разработка сайтов</option>
 <option value="Дизайн">Дизайн</option>
@@ -96,7 +99,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <option value="Репетиторы/Преподаватели">Репетиторы/Преподаватели</option>
 <option value="Другое">Другое</option>
 
-</select>
+</select></div>
 
 <div id="div1">
 
@@ -106,11 +109,11 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
  <br>
  
 
- <input  type="text" name ="famil" onkeypress='validate(event)' maxlength="20" class="styler" placeholder="Фамилия" ><br>
-  <input type="text" name ="name" onkeypress='validate(event)' maxlength="20" class="styler" placeholder="Имя" ><br>
+ <input  type="text" name ="famil" onkeypress='validate(event)' maxlength="20" class="w styler" placeholder="Фамилия" ><br>
+  <input type="text" name ="name" onkeypress='validate(event)' maxlength="20" class="w styler" placeholder="Имя" ><br>
 
-  <input type="text" name ="login" onkeypress='validate(event)' maxlength="20" class="styler" placeholder="Логин" ><br>
-<input type="text" id="mail"  name="email" onkeypress='validate(event)' maxlength="40" class="styler" placeholder="Email"><br>
+  <input type="text" name ="login" onkeypress='validate(event)' maxlength="20" class="w styler" placeholder="Логин" ><br>
+<input type="text" id="mail"  name="email" onkeypress='validate(event)' maxlength="40" class="w styler" placeholder="Email"><br>
   <input type="password" name ="pass" onkeypress='validate(event)' maxlength="20" class="styler" placeholder="Пароль"><br>
     <input type="password" name ="password2" onkeypress='validate(event)' maxlength="20" class="styler" style="margin-left: 6px;" placeholder="Повторите Пароль">
  <br> <label style="margin-left: 30px;

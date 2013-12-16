@@ -138,7 +138,6 @@ if ($key == 'min') {
 	$min=$value;
 }
 	}
-	if($photo_data <= 30){
 		$this->id_user   =  $user_id;
 		$this->min   =  $min;
         $this->url_photo = $name;
@@ -147,11 +146,8 @@ if ($key == 'min') {
 		$result='Фото загружено!';
 		$user_id=$this->session->userdata('user_id');
 	header ("Location:". $this->config->site_url().'id'.$user_id); 
-	}else{
-		$result='Достигнут лимит фотографий для вашего аккаунта!';
 		$user_id=$this->session->userdata('user_id');
 		header ("Location:". $this->config->site_url().'id'.$user_id); 
-	}
 	} else {
 		$result='Ошибка загрузки';
 	}

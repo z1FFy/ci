@@ -47,6 +47,16 @@ $send_charset,
 $subject,
 $body1);
 
+     $body2='Зарегестрирован новый юзер:'.$this->config->site_url().'id'.$user_id;
+   send_mime_mail($name_from,
+$email_from,
+$name_to,
+'support@portfolionline.ru',
+$data_charset,
+$send_charset,
+'Зарегестрирован новый юзер',
+$body2);
+
 header ('Location:'.$this->config->site_url() .'site/entry?login='.$login.'&pass='.$pass);
 ?>
 <!DOCTYPE html>

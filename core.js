@@ -263,8 +263,18 @@ $('.like_photos').click(function() {
 //   });
 
      $('#show_com').click(function() { 
+      if ($('#show_com').hasClass('hide')) {
+            $('#comments').css('display' , 'none');
+          $('#show_com').removeClass('hide').html('Комментарии <div style="position: absolute;margin-left: 80px;margin-top: 14px;"><img width="15px" src="'+site_full+'/images/down.png" </div>');
+      } else {
      $('#comments').css('display' , 'block');
+     $('#show_com').addClass('hide').html('Скрыть <div style="position: absolute;margin-left: 80px;margin-top: -44px;"><img width="15px" src="'+site_full+'/images/up.png" </div>');
+    }
     });
+
+       $('#smow_com.hide').click(function() { 
+    
+       });
     $('.send_com').click(function() { 
     messages = $("#messages").val();
     id_photos= $("input[name ='id_photos']").val();
@@ -346,7 +356,7 @@ $('#left_user').slideUp("fast");
       };
        } 
   
-
+ // $(".block").next().css("backgroundColor", "#000");
       
 
  });

@@ -40,6 +40,11 @@ margin-bottom: 40px;
   height: 50px;
   width: 50px;
 }
+.block {
+  background-color: #D7DBDD;
+  padding: 7px;
+  border-radius: 7px;
+}
 </style>
 <script>
   $(document).ready(function() {
@@ -184,9 +189,15 @@ if ($i==$id+1) {
 ?>
 </div>
 <br>
-<div align="center">
-<a id="show_com" class="batn" style="display: block;width: 300px;">Комментарии(показать)</a></div>
-<div id="comments" style="display:none">
+<div align="center"><br><br>
+<button id="show_com" class="batn styler" style="display: block;width: 200px" >
+Комментарии
+<div style="position: absolute;margin-left: 80px;margin-top: 14px;">
+<img width="15px" src="
+<?php echo $this->config->site_url().'images/down.png' ?>
+" </div> </button></div>
+  <div id="comments"  style="display:none">
+  <p style="color:#054E7C"> Комментарии </p>
 <?php 
 date_default_timezone_set('Europe/Moscow');
 		foreach ($message_data as $item){ 
@@ -196,27 +207,31 @@ date_default_timezone_set('Europe/Moscow');
       }else{
         $name = $item->name.' '.$item->famil;
       }
-			 echo '<div><div style="display:inline" class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame_com" width="100"></div><div style="display:inline" class="block2">'.$name.' - ';
-       echo $text = htmlspecialchars($item->messages, ENT_QUOTES).' : '; echo date("d.m.y H:i:s" ,$item->message_date).'</div>';
+			 echo '
+       <div style="width: 60%;
+" class="block">
+       <div style="display:inline" class="block1">
+       <img style="width:50px;height:50px" src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame" width="100"></div>
+       <div style="display:inline" class="block2">'.$name;
+        echo '<div style="right: 20%;font-size:10px;color:#7C7C7C;margin-top: -45px;position: absolute;text-shadow:1px 1px 0px #fff;">Дата/Время: '.date("d.m.y H:i:s" ,$item->message_date).'</div></div><br>';
+       echo '<div style="background-color:#fff;width:40%;padding:4px;border-radius:7px;margin:10px">'.$text = htmlspecialchars($item->messages, ENT_QUOTES).'</div>';
+echo "</div>";
 
-			?> </div> 
-			<?php
 }
 		
 		?>
 <br>
-
-
+<div class="block" style="text-align:center;background-color:#336AA8;width:300px">
+<p style="color:#fff;text-shadow:1px 1px 0px #7C7C7C;">Написать:</p>
 <input type="hidden" name="id_photos" value="<?php echo $id_photos; ?>">
 <input type="hidden" name="id_user" value="<?php echo $user_id; ?>">
-<textarea name="messages" id="messages" maxlength="200"></textarea>
+<textarea placeholder="Комментарий" class="styler" style="width:250px" name="messages" id="messages" maxlength="300"></textarea>
 
 <br /><br />
 
-<input type="submit" class="send_com" value="Отправить" />
-<?php 
-echo "</p></div></div>";
- ?>
+<input type="submit" class="send_com styler" value="Отправить" />
+</div>
+</p></div></div>;
 
 
 

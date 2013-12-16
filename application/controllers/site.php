@@ -81,7 +81,7 @@ class Site extends CI_Controller {
 			
 		}
 		$name_from = 'PortfoliOnline.ru';
-		$email_from = 'about@portfolionline.ru';
+		$email_from = 'support@portfolionline.ru';
 		//$name_to = 'Получатель';
 		//$email_to = 'tailz440@mail.ru';
 		$data_charset = 'UTF-8';
