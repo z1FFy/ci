@@ -215,48 +215,7 @@
 		$this->db_module->delete_photos($delete_photos);
 	}
 
-	function friends_view()
-	{
-		$i=0;
-	 	$user_id=$this->session->userdata('user_id');
-	 	$url_id= $this->_get_url_id();
-		$whopage= $this->_get_whopage($url_id,$user_id);
-	 	$user_data = $this->db_module->get_user_by_id($user_id);
-		$friend_id = '';
-		$friends_data = $this->db_module->friends_view($user_id);
-		foreach ($friends_data as $item) {
-			//var_dump($item);
-
-			if($item->friend_id == $user_id){
-			$friend_id[$i] = $item->user_id;
-			}else{
-				$friend_id[$i] = $item->friend_id;
-			}
-			$i++;
-
-		}
-		$friends_data_friend = $this->db_module->get_users_by_id($friend_id);
-
-
-	$logged = $this->session->userdata('logged_in');
-		$friends_data_arr = array('friends_data_friend' => $friends_data_friend,         'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged);
-
-		$page_content = $this->load->view('friends_view_form',$friends_data_arr,true);
-		$title= 'Сообщения / PortfolioOnline';
 	
-		$user_id='';
-		if ($logged == TRUE) {
-		 	$user_id=$this->session->userdata('user_id');
-		 }
-		$page = array(
-           'title' => $title,
-           'page_content' => $page_content,
-           'logged' => $logged,
-           'user_id' => $user_id,
-         );
-		$this->load->view('template',$page);
-	
-	}
 
 	function support(){
 		$this->load->view('support');

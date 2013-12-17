@@ -148,12 +148,23 @@ border-radius: 6px;
 }
 
 .friend_block {
-	background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);width: 350px;
+	border: 1px solid #bbb;
+	border-radius: 10px 0 0 10px;
+	height: 80px;
+	text-align: left;
+	background-color: #EDF7FD;
+	width: 390px;
 }
 .friend_text {
-	margin-left: 60px;margin-top: -40px;position: absolute;
+	margin-left: 90px;margin-top: -60px;position: absolute;
 }
 
+.text_msg {
+	background-color:#fff;width:70%;padding:4px;border-radius:7px;margin:10px;
+}
+.date_msg {
+	right: 20%;font-size:10px;color:#7C7C7C;margin-top: -45px;position: absolute;text-shadow:1px 1px 0px #fff;
+}
 .phot {
 	
 }

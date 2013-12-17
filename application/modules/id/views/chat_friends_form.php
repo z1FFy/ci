@@ -7,13 +7,19 @@
 
   }
   #content {
-    padding-left: 20%;
-    padding-right: 20%;
-
+    padding-left: 10%;
+    padding-right: 10%;
+    display: table;
   }
   #menu {
     height: 39px;
   }
+  .block {
+  background-color: #D7DBDD;
+  padding: 7px;
+  border-radius: 7px;
+  width: 83%;
+}
   </style>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
@@ -48,9 +54,28 @@ function onAjaxSuccess(data)
 
 
 <?php 
-//var_dump($this->session);
-$friend_id = $_GET['friend_id'];
-date_default_timezone_set('Europe/Moscow');
+  $this->load->view('left_user',$user_data); 
+          ?><div id="polosa"></div>
+<div id="right_user">
+<?php
+  foreach ($messages_data as $item){ 
+ $name_f='';
+ if ($item->user_id==$url_id) {
+        //$name_f=$item->adresat;
+      }else {
+        $name_f=$name;
+      }
+      if($item->name == ''){
+        $name = $item->login;
+      }else{
+        $name = $item->name.' '.$item->famil;
+      }
+    
+  }
+echo '<p class="titl">Переписка '.$name_f.' </p><br>';
+
+  $friend_id = $_GET['friend_id'];
+  date_default_timezone_set('Europe/Moscow');
 		foreach ($messages_data as $item){ 
 			if($item->name == ''){
 				$name = $item->login;
@@ -58,8 +83,13 @@ date_default_timezone_set('Europe/Moscow');
 				$name = $item->name.' '.$item->famil;
 			}
 			//var_dump($item);
-  echo '<div style="background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
-      .$name.' - '.$text = htmlspecialchars($item->messages, ENT_QUOTES).' '.date("d.m.y H:i:s" ,$item->message_date);
+    
+  echo '<div class="block"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
+      .$name;
+      echo '<div class="date_msg">Дата/Время: ';
+      echo date("d.m.y H:i:s" ,$item->message_date);
+      echo '</div>';
+      echo '<div class="text_msg">'.htmlspecialchars($item->messages, ENT_QUOTES).'</div>';
       //$friend_id = $item->adresat;
       ?></div> <br>  
       <?php
@@ -70,10 +100,11 @@ date_default_timezone_set('Europe/Moscow');
 
 
 <!-- <form action="<?php echo $this->config->site_url() ?>id/chat/send_messages" method="post" accept-charset="utf-8"> -->
-<input type="hidden" name="friend_id" value="<?php echo $friend_id ?>" />
-<textarea name="messages" size="20"></textarea>
+<input  type="hidden" name="friend_id" value="<?php echo $friend_id ?>" />
+<textarea class="styler" placeholder="Сообщение" name="messages" size="20"></textarea>
 
 <br /><br />
 
 
-<input type="submit" class="btn" value="Отправить" />
+<input class="styler" type="submit" class="btn" value="Отправить" />
+</div>

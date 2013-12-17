@@ -211,10 +211,10 @@ date_default_timezone_set('Europe/Moscow');
        <div style="width: 60%;
 " class="block">
        <div style="display:inline" class="block1">
-       <img style="width:50px;height:50px" src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame" width="100"></div>
+       <img style="width:80px;height:80px" src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame" width="100"></div>
        <div style="display:inline" class="block2">'.$name;
-        echo '<div style="right: 20%;font-size:10px;color:#7C7C7C;margin-top: -45px;position: absolute;text-shadow:1px 1px 0px #fff;">Дата/Время: '.date("d.m.y H:i:s" ,$item->message_date).'</div></div><br>';
-       echo '<div style="background-color:#fff;width:40%;padding:4px;border-radius:7px;margin:10px">'.$text = htmlspecialchars($item->messages, ENT_QUOTES).'</div>';
+        echo '<div class="date_msg">Дата/Время: '.date("d.m.y H:i:s" ,$item->message_date).'</div></div><br>';
+       echo '<div class="text_msg">'.$text = htmlspecialchars($item->messages, ENT_QUOTES).'</div>';
 echo "</div>";
 
 }
@@ -231,7 +231,7 @@ echo "</div>";
 
 <input type="submit" class="send_com styler" value="Отправить" />
 </div>
-</p></div></div>;
+</p></div></div>
 
 
 

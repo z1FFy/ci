@@ -14,6 +14,7 @@
   #menu {
     height: 39px;
   }
+
   </style>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
@@ -37,8 +38,10 @@
 				$name = $item->name.' '.$item->famil;
 			}
 			$friend = $item->user_id;
-			echo '<div class="friend_block"><a href="'.$this->config->site_url().'id'.$item->user_id.'"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/></a>			
-		  	<p class="friend_text"> '.$name.'<br><a href="'.$this->config->site_url().'id/friends?friend_id='.$item->user_id.'">Написать</a>
+			echo '<div class="friend_block">
+			<a href="'.$this->config->site_url().'id'.$item->user_id.'">
+			<img style="width:80px;height:80px;border-radius: 10px 0 0 10px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" /></a>			
+		  	<p class="friend_text"> '.$name.'<br><a href="'.$this->config->site_url().'id'.$url_id.'/friends?friend_id='.$item->user_id.'">Написать</a>
 		  	<a href="'.$this->config->site_url().'id'.$item->user_id.'"> Посмотреть</a></p><br>';
 			//echo '<div style="padding:10px;"><i>'.$msg[$i].'</i></div>';
 			?> </div><br>  
