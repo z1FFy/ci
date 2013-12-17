@@ -65,7 +65,7 @@ foreach ($user_data as $item){
       $famil=$item->famil;
     }
       ?>
-<div id="showmenu"><?php echo $name.' '.$famil; ?></div>
+<div id="showmenu"><?php echo $text = htmlspecialchars($name, ENT_QUOTES).' '.$text = htmlspecialchars($famil, ENT_QUOTES); ?></div>
 	<?php 
        $this->load->view('left_user',$user_data); 
   $id=$_GET['id'];
@@ -135,7 +135,7 @@ $photo =$item->url_photo;
 echo '<div align="center" id="right_user">
 <div style="position: relative;margin-bottom: -45px;"><a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idprev.'&id_orig='.$id_photos_p.'"><img src="'.$this->config->site_url().'images/prev.png"></a>
 <a style="margin-left: 435px" href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img src="'.$this->config->site_url().'images/next.png"></a>
-</div><p style="text-align:center;padding: 10px">'.$photos_name.' </p>
+</div><p style="text-align:center;padding: 10px">'.$text = htmlspecialchars($photos_name, ENT_QUOTES).' </p>
 '; 
  
 
@@ -188,7 +188,8 @@ date_default_timezone_set('Europe/Moscow');
       }else{
         $name = $item->name.' '.$item->famil;
       }
-			 echo '<div><div style="display:inline" class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame_com" width="100"></div><div style="display:inline" class="block2">'.$name.' - ';
+			 echo '<div><div style="display:inline" class="block1"><img src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame_com" width="100"></div><div style="display:inline" class="block2">'
+       .$text = htmlspecialchars($name, ENT_QUOTES).' - ';
        echo $text = htmlspecialchars($item->messages, ENT_QUOTES).' : '; echo date("d.m.y H:i:s" ,$item->message_date).'</div>';
 
 			?> </div> 

@@ -85,7 +85,7 @@ function up_podtvr($user_id) {
 		$this->password = $_POST['pass'];
 		$this->spec_user = $_POST['spec_user'];
 		$this->avatar  = 'f04d67ae61e74e96a1e25f226c4379a7.jpeg';
-		$this->date  = date("d.m.y h:i:s");
+		$this->date  = time();
 		$data = $this->db_module->get_user($this->login);
 		$data_mail = $this->db_module->get_user_by_email($this->mail);
 		foreach ($data as $item){ 
@@ -307,6 +307,11 @@ function dell_like($like_photos){
 	$this->db->delete('like_photo', array('photo_id' => $like_photos, 'user_id'=>$user_id));
 }
 
+function dell_user($user_id){
+	$user_id = $this->session->userdata('user_id');
+	$this->db->delete('users', array('user_id' => $user_id));
+}
+
 function delete_photos($delete_photos){
 	$user_id = $this->session->userdata('user_id');
 	$this->db->delete('photos', array('id_photos' => $delete_photos));
@@ -348,7 +353,36 @@ function send_chat_friends($user_id, $friend_id, $messages){
 	$this->adresat = $friend_id;
 	$this->messages = $messages;
 	$this->message_date  = time();
+	$this->unread = 'unread';
 	$query = $this->db->insert('chat_friends', $this); 
+}
+
+function get_unread($user_id){
+	$query = $this->db->select('unread');
+	$query = $this->db->from('chat_friends');
+	$query = $this->db->where('adresat', $user_id);
+	$query = $this->db->where('unread', 'unread');
+	$query = $this->db->get();
+	return $query->num_rows();
+
+}
+
+function get_all_unread($user_id){
+	$query = $this->db->select('user_id, unread');
+	$query = $this->db->from('chat_friends');
+	$query = $this->db->where('adresat', $user_id);
+	$query = $this->db->where('unread', 'unread');
+	$query = $this->db->get();
+	return $query->result();
+
+}
+
+function dell_unread($user_id, $friend_id){
+	$this->unread = 'read';
+	$this->db->where('adresat', $user_id);
+	$query = $this->db->where('user_id', $friend_id);
+	$query = $this->db->where('unread', 'unread');
+	$this->db->update('chat_friends', $this);
 }
 
 

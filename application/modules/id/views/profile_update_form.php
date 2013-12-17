@@ -56,9 +56,9 @@ foreach ($user_data as $item) {
 <?php foreach ($user_data as $item):?>
 
 <ul>
-	<li>Фамилия: <input type="text" name="famil" size="20" maxlength="20" value="<?php echo $item->famil;?>"/> <br>
-	</li><li>Имя: <input type="text" name="name" size="20" maxlength="20" value="<?php echo $item->name;?>"/> <br>
-	</li><li>Отчество: <input type="text" name="otchestvo"  size="20" maxlength="20"  value="<?php echo $item->otchestvo;?>"/>
+	<li>Фамилия: <input type="text" name="famil" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->famil, ENT_QUOTES);?>"/> <br>
+	</li><li>Имя: <input type="text" name="name" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->name, ENT_QUOTES);?>"/> <br>
+	</li><li>Отчество: <input type="text" name="otchestvo"  size="20" maxlength="20"  value="<?php echo $text = htmlspecialchars($item->otchestvo, ENT_QUOTES);?>"/>
 	</li><br>
 	<li>Почта: <input type="text" name="mail" size="20" maxlength="50" value="<?php echo $item->mail;?>"/><br>
 	</li>
@@ -115,7 +115,7 @@ foreach ($user_data as $item) {
 	}?>
 	</select>
 
-<br></li><li>Город <input type="text" name="sity" size="20" maxlength="20" value="<?php echo $item->sity;?>"/> 
+<br></li><li>Город <input type="text" name="sity" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?>"/> 
 
 	<!-- <input type="text" name="birthday" size="20"  value="<?php echo $item->birthday;?> " />
 	 --><br>
@@ -181,10 +181,10 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 
 
 <h4>Контакты:</h4></li><ul><li>
-Телефон: <input type="text" name="telephone" size="20" maxlength="20" value="<?php echo $item->telephone;?>"/> 
-<br></li><li>Дополнительный телефон: <input type="text" name="dop_telephone" size="20" maxlength="80" value="<?php echo $item->dop_telephone;?>"/> 
-<br></li><li>Skype: <input type="text" name="skype" size="20" maxlength="20" value="<?php echo $item->skype; ?>"/> 
-<br></li><li>Личный сайт: <input type="text" name="website" size="30" maxlength="40" value="<?php echo $item->website;?>"/> 
+Телефон: <input type="text" name="telephone" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->telephone, ENT_QUOTES);?>"/> 
+<br></li><li>Дополнительный телефон: <input type="text" name="dop_telephone" size="20" maxlength="80" value="<?php echo $text = htmlspecialchars($item->dop_telephone, ENT_QUOTES);?>"/> 
+<br></li><li>Skype: <input type="text" name="skype" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->skype, ENT_QUOTES); ?>"/> 
+<br></li><li>Личный сайт: <input type="text" name="website" size="30" maxlength="40" value="<?php echo $text = htmlspecialchars($item->website, ENT_QUOTES);?>"/> 
 
 </li></ul>
 
@@ -196,7 +196,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <li><h4>Образование:</h4></li><ul><li>
 Уровень 
 <select name="education_level"> 
-<option value="<?php echo $item->education_level; ?>"><?php echo $item->education_level; ?></option>
+<option value="<?php echo $item->education_level; ?>"><?php echo $text = htmlspecialchars($item->education_level, ENT_QUOTES); ?></option>
 <option value="Высшее">Высшее</option>
 <option value="Бакалавр">Бакалавр</option>
 <option value="Магистр">Магистр</option>
@@ -207,8 +207,8 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <option value="Среднее">Среднее</option>
 </select>
 
-<br></li><li>Наименование учебного заведения <input type="text" name="education_basic" size="20" maxlength="80" value="<?php echo $item->education_basic;?>"/> 
-<br></li><li>Факультет <input type="text" name="facultet" size="20"  value="<?php echo $item->facultet;?>"/> 
+<br></li><li>Наименование учебного заведения <input type="text" name="education_basic" size="20" maxlength="80" value="<?php echo $text = htmlspecialchars($item->education_basic, ENT_QUOTES);?>"/> 
+<br></li><li>Факультет <input type="text" name="facultet" size="20"  value="<?php echo $text = htmlspecialchars($item->telephone, ENT_QUOTES);echo $text = htmlspecialchars($item->facultet, ENT_QUOTES);?>"/> 
 <br></li><li>Год окончания 
 <select name="education_end" size="1">
 	<?php for ($i = 1900; $i <= 2015; $i++){

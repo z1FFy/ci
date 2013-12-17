@@ -24,6 +24,8 @@
 <div id="right_user">
 <p class="titl">Мои контакты:</p><br>
 <?php
+		
+//$i=0;
 		if(!$friends_data_friend){
 			echo 'Вы не с кем не переписывались!';
 		}
@@ -36,10 +38,18 @@
 			}else{
 				$name = $item->name.' '.$item->famil;
 			}
+			$avatar = $item->avatar;
 			$friend = $item->user_id;
-			echo '<div class="friend_block"><a href="'.$this->config->site_url().'id'.$item->user_id.'"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/></a>			
-		  	<p class="friend_text"> '.$name.'<br><a href="'.$this->config->site_url().'id/friends?friend_id='.$item->user_id.'">Написать</a>
-		  	<a href="'.$this->config->site_url().'id'.$item->user_id.'"> Посмотреть</a></p><br>';
+			$user_id = $item->user_id;
+			$i=0;
+			foreach ($unread_data as $item) {
+			if($friend == $item->user_id){
+				$i++;
+			}
+		}	
+			echo '<div class="friend_block"><a href="'.$this->config->site_url().'id'.$user_id.'"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar.'" width="50"/></a>			
+		  	<p class="friend_text"> '.$text = htmlspecialchars($name, ENT_QUOTES).' '.$i.'<br><a href="'.$this->config->site_url().'id/friends?friend_id='.$user_id.'">Написать</a>
+		  	<a href="'.$this->config->site_url().'id'.$user_id.'"> Посмотреть</a></p><br>';
 			//echo '<div style="padding:10px;"><i>'.$msg[$i].'</i></div>';
 			?> </div><br>  
 			<?php

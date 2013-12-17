@@ -19,6 +19,7 @@
 		$friend_id = $_GET['friend_id'];
 		$user_id=$this->session->userdata('user_id');
 		$messages_data = $this->db_module->view_friend_message($friend_id, $user_id);
+		$this->db_module->dell_unread($user_id, $friend_id);
 		$messages_data_arr = array( 'messages_data' => $messages_data);
 
  		$page_content = $this->load->view('chat_friends_form',$messages_data_arr,true);
