@@ -31,7 +31,6 @@
 		$logged = $this->session->userdata('logged_in');
 		$user_data = $this->db_module->get_user_by_id($user_id);
 		$messages_data_arr = array( 'messages_data' => $messages_data ,'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id ,'logged' => $logged);
-
  		$page_content = $this->load->view('chat_friends_form',$messages_data_arr,true);
 		$title= 'Сообщения / PortfolioOnline';
 		$logged = $this->session->userdata('logged_in');
@@ -50,47 +49,50 @@
 
 	}
 function friends_view()
-	{
-		$i=0;
-	 	$user_id=$this->session->userdata('user_id');
-	 	$url_id= $this->_get_url_id();
-		$whopage= $this->_get_whopage($url_id,$user_id);
-	 	$user_data = $this->db_module->get_user_by_id($user_id);
-		$friend_id = '';
-		$friends_data = $this->db_module->friends_view($user_id);
-		foreach ($friends_data as $item) {
-			//var_dump($item);
+{
+$i=0;
+$user_id=$this->session->userdata('user_id');
+$url_id= $this->_get_url_id();
+$whopage= $this->_get_whopage($url_id,$user_id);
+$user_data = $this->db_module->get_user_by_id($user_id);
+$friend_id = '';
+$friends_data = $this->db_module->friends_view($user_id);
+foreach ($friends_data as $item) {
+//var_dump($item);
 
-			if($item->friend_id == $user_id){
-			$friend_id[$i] = $item->user_id;
-			}else{
-				$friend_id[$i] = $item->friend_id;
-			}
-			$i++;
+if($item->friend_id == $user_id){
+$friend_id[$i] = $item->user_id;
+}else{
+$friend_id[$i] = $item->friend_id;
+}
+$i++;
 
-		}
-		$friends_data_friend = $this->db_module->get_users_by_id($friend_id);
+}
+$unread_data = $this->db_module->get_all_unread($user_id);
+
+$friends_data_friend = $this->db_module->get_users_by_id($friend_id);
 
 
-	$logged = $this->session->userdata('logged_in');
-		$friends_data_arr = array('friends_data_friend' => $friends_data_friend,         'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged);
+$logged = $this->session->userdata('logged_in');
+$unread = $this->db_module->get_unread($url_id);
+$friends_data_arr = array('friends_data_friend' => $friends_data_friend, 'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data,);
 
-		$page_content = $this->load->view('friends_view_form',$friends_data_arr,true);
-		$title= 'Сообщения / PortfolioOnline';
-	
-		$user_id='';
-		if ($logged == TRUE) {
-		 	$user_id=$this->session->userdata('user_id');
-		 }
-		$page = array(
-           'title' => $title,
-           'page_content' => $page_content,
-           'logged' => $logged,
-           'user_id' => $user_id,
-         );
-		$this->load->view('template',$page);
-	
-	}
+$page_content = $this->load->view('friends_view_form',$friends_data_arr,true);
+$title= 'Сообщения / PortfolioOnline';
+
+$user_id='';
+if ($logged == TRUE) {
+$user_id=$this->session->userdata('user_id');
+}
+$page = array(
+'title' => $title,
+'page_content' => $page_content,
+'logged' => $logged,
+'user_id' => $user_id,
+);
+$this->load->view('template',$page);
+
+}
 	function chat_friends()
 		{
 			$this->load->view('chat_friends_form');	

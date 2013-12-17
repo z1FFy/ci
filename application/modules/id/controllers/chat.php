@@ -24,6 +24,7 @@
 		$user_id=$this->session->userdata('user_id');
 		$res=$this->db_module->send_message($id_photos, $messages, $user_id);
 		echo $res;
+		
 	}
 
 

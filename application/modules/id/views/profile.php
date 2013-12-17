@@ -109,6 +109,7 @@ background-color:#fff;
 
 
 <?php
+
        $this->load->view('left_user',$user_data); 
    ?>
 
@@ -120,60 +121,60 @@ background-color:#fff;
 <ul>
   
   <?php if($item->famil != ''){ ?>
-	<li>Фамилия: <?php echo $item->famil;?></li>  <?php } ?>
+	<li>Фамилия: <?php echo $text = htmlspecialchars($item->famil, ENT_QUOTES);?></li>  <?php } ?>
    
    <?php if($item->name != ''){ ?>
-	<li>Имя: <?php echo $item->name;?> </li> <?php } ?>
+	<li>Имя: <?php echo $text = htmlspecialchars($item->name, ENT_QUOTES);?> </li> <?php } ?>
 	 
    <?php if($item->otchestvo != ''){ ?>
-  <li>Отчество: <?php echo $item->otchestvo;?></li><?php } ?>
+  <li>Отчество: <?php echo $text = htmlspecialchars($item->otchestvo, ENT_QUOTES);?></li><?php } ?>
    
    <?php if($item->mail != ''){ ?>
-	<li>Почта: <?php echo $item->mail;?></li><?php } ?>
+	<li>Почта: <?php echo $text = htmlspecialchars($item->mail, ENT_QUOTES);?></li><?php } ?>
   
-  <li>Пол: <?php echo $item->sex;?></li>
+  <li>Пол: <?php echo $text = htmlspecialchars($item->sex, ENT_QUOTES);?></li>
    <?php if($item->birthday != ''){ ?>
-	<li>Дата Рождения: <?php echo $item->birthday;?></li><?php } ?>
-	<li>Дата регистрации: <?php echo $item->date;?></li>
+	<li>Дата Рождения: <?php echo $text = htmlspecialchars($item->birthday, ENT_QUOTES);?></li><?php } ?>
+	<li>Дата регистрации: <?php echo $text = htmlspecialchars($item->date, ENT_QUOTES);?></li>
   
    <?php if($item->sity != ''){ ?>
-  <li>Родной город: <?php echo $item->sity;?></li><?php } ?>
+  <li>Родной город: <?php echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?></li><?php } ?>
 
   <?php if(($item->telephone != '') || ($item->dop_telephone != '') || ($item->skype != '') || ($item->website != '')){ ?>  
   <li>Контакты:</li> <?php } ?>
     <ul>
     
      <?php if($item->telephone != ''){ ?>  
-    <li>Мобильный телефон: <?php echo $item->telephone;?></li> <?php } ?>
+    <li>Мобильный телефон: <?php echo $text = htmlspecialchars($item->telephone, ENT_QUOTES);?></li> <?php } ?>
 
      <?php if($item->dop_telephone != ''){ ?>
-    <li>Дополнительный телефон: <?php echo $item->dop_telephone;?></li><?php } ?>
+    <li>Дополнительный телефон: <?php echo $text = htmlspecialchars($item->dop_telephone, ENT_QUOTES);?></li><?php } ?>
 
      <?php if($item->skype != ''){ ?>
-    <li>Skype: <?php echo $item->skype;?></li><?php } ?>
+    <li>Skype: <?php echo $text = htmlspecialchars($item->skype, ENT_QUOTES);?></li><?php } ?>
 
      <?php if($item->website != ''){ ?>
-    <li>Личный сайт: <?php echo '<a href="'.$item->website.'">'.$item->website.'</a>'; ?></li> <?php } ?>
+    <li>Личный сайт: <?php echo '<a href="'.$text = htmlspecialchars($item->website, ENT_QUOTES).'">'.$text = htmlspecialchars($item->website, ENT_QUOTES).'</a>'; ?></li> <?php } ?>
     </ul>
   <li>Образование:</li>
     <ul>
-    <li>Уровень образования: <?php echo $item->education_level;?></li>
+    <li>Уровень образования: <?php echo $text = htmlspecialchars($item->education_level, ENT_QUOTES);?></li>
     
     <?php if($item->education_basic != ''){ ?>
-    <li>Наименование учебного заведения: <?php echo $item->education_basic;?></li><?php } ?>
+    <li>Наименование учебного заведения: <?php echo $text = htmlspecialchars($item->education_basic, ENT_QUOTES);?></li><?php } ?>
     
     <?php if($item->facultet != ''){ ?>
-    <li>Факультет: <?php echo $item->facultet;?></li><?php } ?>
+    <li>Факультет: <?php echo $text = htmlspecialchars($item->facultet, ENT_QUOTES);?></li><?php } ?>
 
-    <li>Закончил: <?php echo $item->education_end;?></li>
+    <li>Закончил: <?php echo $text = htmlspecialchars($item->education_end, ENT_QUOTES);?></li>
 
     <?php if($item->language != ''){ ?>
-     <li>Знание языков: <?php echo $item->language;?></li><?php } ?>
+     <li>Знание языков: <?php echo $text = htmlspecialchars($item->language, ENT_QUOTES);?></li><?php } ?>
     </ul>
      
     <?php if($item->interests != ''){ ?>
      <li>Интересы: <br>
-      <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled"><?php echo $item->interests;?><?php } ?></textarea>
+   <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled"><?php echo $item->interests;?><?php } ?></textarea>
     <li>Специализация: <?php echo $item->spec_user;?></li>
 
   

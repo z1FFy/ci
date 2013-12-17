@@ -28,67 +28,30 @@ background-color:#fff;
 
 </style>
 
-
-</head>
-<body>
-
-<?php
-$logged = $this->session->userdata('logged_in');
-foreach ($user_data as $item) {
-      $login=$item->login;
-      $user_id=$item->user_id;
-      $avatar_url=$item->avatar;
-      $email=$item->mail;
-      }
-
-
-       $this->load->view('left_user',$user_data); 
-   ?>
-
-<div id="polosa"></div>
-<div id="right_user">
-  <p class="titl">Поиск людей</p> <br>
-<div style="background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);">
-<form action="<?php echo $this->config->site_url() ?>id<?php echo $user_id ?>/seach_user" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-<tr>
-Дата рождения:
-<select name="birthday1" size="1">
-  <option value="day">день</option>
-  <?php for ($i = 1; $i <= 31; $i++){
-  if ($i<10){
-  echo '<option value="0'.$i.'">0' .$i.' </option>';
-  }else{
-
-    echo '<option value="'.$i.'">' .$i.' </option>';
-
-  }
-  
-  }?>
-  </select>
-
-  <select name="birthday2" size="1">
-    <option value="month">месяц</option>
-  <?php for ($i = 1; $i <= 12; $i++){
-  if ($i<10){
-  echo '<option value="0'.$i.'">0' .$i.' </option>';
-  }else{
-
-    echo '<option value="'.$i.'">' .$i.' </option>';
-
-  }
-  }?>
-  </select>
-
-
-  <select name="birthday3" size="1">
-    <option value="year">год</option>
-  <?php for ($i = 1800; $i <= 2015; $i++){
-  echo '<option value="'.$i.'">' .$i.' </option>';
-  }?>
-  </select>
-  <br>
-<!-- spec_user -->
 <script language ="JavaScript"> 
+  $(document).ready(function() {
+    $('#search').click(function() {
+     birthday1 = $("select[name='birthday1']").val();
+         birthday2 = $("select[name='birthday2']").val();
+             birthday3 = $("select[name='birthday3']").val();
+                 spec_user = $("select[name='spec_user']").val();
+                 seach = $("input[name='seach']").val();
+      $.post(site_full+"/id/seach_user",
+         { 
+          birthday1 : birthday1,
+           birthday2 : birthday2,
+            birthday3 : birthday3,
+             spec_user : spec_user,
+              seach : seach,
+              },
+         onAjaxSuccess
+         );
+      function onAjaxSuccess(data)
+      {
+  $('#res').html(data);
+      };
+});
+});
 
 function selChange(seln) { 
 selNum = seln.spec_user.selectedIndex; 
@@ -106,7 +69,88 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 } 
  
 </script> 
-Специализация:
+
+</head>
+<body>
+
+<?php
+$logged = $this->session->userdata('logged_in');
+foreach ($user_data as $item) {
+      $login=$item->login;
+      $user_id=$item->user_id;
+      $avatar_url=$item->avatar;
+      $email=$item->mail;
+      }
+
+
+
+   ?>
+
+
+
+<?php 
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+	if($text == ''){
+		foreach ($seach_data as $item) {
+			//var_dump($item);
+			echo '<div style="background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);"><img src="'.$this->config->site_url().'/uploads/avatars/small/'.$item->avatar.'" width="50"><a href="'.$this->config->site_url().'id'.$item->user_id.'">'.' '.$item->name.' '.$item->famil.'</a></div><br>';	
+		}
+	}else{
+		echo $text;
+	}
+} else {
+      $this->load->view('left_user',$user_data); 
+  ?>
+
+<div id="polosa"></div>
+<div id="right_user">
+
+  <p class="titl">Поиск людей</p> <br>
+
+<form action="<?php echo $this->config->site_url() ?>id<?php echo $user_id ?>/seach_user" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+<tr>
+Дата рождения:
+<select style="width:90px" name="birthday1" size="1">
+  <option value="day">день</option>
+  <?php for ($i = 1; $i <= 31; $i++){
+  if ($i<10){
+  echo '<option value="0'.$i.'">0' .$i.' </option>';
+  }else{
+
+    echo '<option value="'.$i.'">' .$i.' </option>';
+
+  }
+  
+  }?>
+  </select>
+
+  <select style="width:90px" name="birthday2" size="1">
+    <option value="month">месяц</option>
+  <?php for ($i = 1; $i <= 12; $i++){
+  if ($i<10){
+  echo '<option value="0'.$i.'">0' .$i.' </option>';
+  }else{
+
+    echo '<option value="'.$i.'">' .$i.' </option>';
+
+  }
+  }?>
+  </select>
+
+
+  <select style="width:90px" name="birthday3" size="1">
+    <option value="year">год</option>
+  <?php for ($i = 1800; $i <= 2015; $i++){
+  echo '<option value="'.$i.'">' .$i.' </option>';
+  }?>
+  </select>
+  <br>
+<!-- spec_user -->
+
+<?php
+  echo '
+  Специализация:
 
 <select class="batn" id="regsel" name="spec_user" onChange="selChange(this.form)">
 <option selected="selected" value="">Не выбрано</option>
@@ -148,25 +192,15 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 
 <br>
 <!-- seach -->
-<input type="text" name="seach" maxlength="50" placeholder="Поиск" />
-<input  type="submit" value="Найти" />
+<input type="text"  class="styler" name="seach" maxlength="50" placeholder="Имя пользователя" />
+<input id="search"  class="styler" type="button" value="Найти" />
 
 </form>
+<div id="res"> </div>
+<br></div>';
 
-<br>
-<?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-	if($text == ''){
-		foreach ($seach_data as $item) {
-			//var_dump($item);
-			echo '<div style="background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);"><img src="'.$this->config->site_url().'/uploads/avatars/small/'.$item->avatar.'" width="50"><a href="'.$this->config->site_url().'id'.$item->user_id.'">'.' '.$item->name.' '.$item->famil.'</a></div><br>';	
-		}
-	}else{
-		echo $text;
-	}
 }
 ?>
-</div>
+
 </body>
 </html>

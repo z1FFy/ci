@@ -222,19 +222,19 @@
 	}
 
 	function seach(){
+		$logged = $this->session->userdata('logged_in');
+		if ($logged == TRUE) {
 		$title='Найти человека';
 		$user_id=$this->session->userdata('user_id');
 		$url_id= $this->_get_url_id();
 		$whopage= $this->_get_whopage($url_id,$user_id);
-		$logged = $this->session->userdata('logged_in');
+
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged);
 		$page_content = $this->load->view('seach', $user_data_arr, true);
 
 		$user_id='';
-		if ($logged == TRUE) {
 		 	$user_id=$this->session->userdata('user_id');
-		 }
 		$page = array(
            'title' => $title,
            'page_content' => $page_content,
@@ -242,8 +242,12 @@
            'user_id' => $user_id,
            'url_id' => $url_id,
          );
+
 		$this->load->view('template',$page);	
 		//$this->load->view('seach');
+	} else {
+		echo "not denied";
+	}
 	}
 
 	function seach_user(){
@@ -285,20 +289,20 @@
 		
 		//
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'seach_data' => $seach_data, 'text' => $text);
-		$page_content = $this->load->view('seach', $user_data_arr, true);
+	 $this->load->view('seach', $user_data_arr);
 
 		$user_id='';
 		if ($logged == TRUE) {
 		 	$user_id=$this->session->userdata('user_id');
 		 }
-		$page = array(
-           'title' => $title,
-           'page_content' => $page_content,
-           'logged' => $logged,
-           'user_id' => $user_id,
-           'url_id' => $url_id,
-         );
-		$this->load->view('template',$page);	
+		// $page = array(
+  //          'title' => $title,
+  //          'page_content' => $page_content,
+  //          'logged' => $logged,
+  //          'user_id' => $user_id,
+  //          'url_id' => $url_id,
+  //        );
+		// $this->load->view('template',$page);	
 
 		
 	}
