@@ -367,7 +367,7 @@ input[type="button"].styler,
 input[type="submit"].styler,
 input[type="reset"].styler {
 	overflow: visible;
-	padding: 7px 11px;
+	padding: 4px 9px;
 	outline: none;
 	border: 1px solid #CCC;
 	border-bottom-color: #B3B3B3;

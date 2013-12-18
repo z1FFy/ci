@@ -40,9 +40,12 @@ body {
 		visibility: hidden;
 
 	}
-	input {
+	.w  {
 		width: 200px;
+		margin: 4px;
 	}
+
+
 </style>  
 <div align="center">
   <p style="font-size:30px;color:#fff">Регистрация </p>
@@ -67,7 +70,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
  
 </script> 
 
-<form> 
+
 <div style=""><select class="styler" id="regsel"  name="spec_user" onChange="selChange(this.form)">
 <option selected="selected" value="Выберите Вашу специализацию">Специализация</option>
 <option value="Менеджмент">Менеджмент</option>
@@ -101,11 +104,6 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 
 </select></div>
 
-<div id="div1">
-
- </div>
-</form> 
-
  <br>
  
 
@@ -114,8 +112,8 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 
   <input type="text" name ="login" onkeypress='validate(event)' maxlength="20" class="w styler" placeholder="Логин" ><br>
 <input type="text" id="mail"  name="email" onkeypress='validate(event)' maxlength="40" class="w styler" placeholder="Email"><br>
-  <input type="password" name ="pass" onkeypress='validate(event)' maxlength="20" class="styler" placeholder="Пароль"><br>
-    <input type="password" name ="password2" onkeypress='validate(event)' maxlength="20" class="styler" style="margin-left: 6px;" placeholder="Повторите Пароль">
+  <input type="password" name ="pass" onkeypress='validate(event)' maxlength="20" class="w styler" placeholder="Пароль"><br>
+    <input type="password" name ="password2" onkeypress='validate(event)' maxlength="20" class="w styler" style="margin-left: 6px;" placeholder="Повторите Пароль">
  <br> <label style="margin-left: 30px;
 height: 20px;
 width:  170px;" id="pad">  </label> 

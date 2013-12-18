@@ -25,7 +25,9 @@ background-color:#fff;
   #menu {
     height: 39px;
   }
-
+ 	.spi li{
+ 		margin: 4px;
+ 	}
 </style>
 </head>
 <body>
@@ -55,7 +57,7 @@ foreach ($user_data as $item) {
 
 <?php foreach ($user_data as $item):?>
 
-<ul>
+<ul class="spi">
 
 	<li>Фамилия: <input class="styler" type="text" name="famil" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->famil, ENT_QUOTES);?>"/> <br>
 	</li><li>Имя: <input class="styler" type="text" name="name" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->name, ENT_QUOTES);?>"/> <br>
@@ -183,12 +185,12 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <br></li><li>
 
 
-<h4>Контакты:</h4></li><ul><li>
+<h4>Контакты:</h4></li><ul class="spi"><li>
 
 Телефон: <input class="styler" type="text" name="telephone" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->telephone, ENT_QUOTES);?>"/> 
-<br></li><li>Дополнительный телефон: <input type="text" name="dop_telephone" size="20" maxlength="80" value="<?php echo $text = htmlspecialchars($item->dop_telephone, ENT_QUOTES);?>"/> 
-<br></li><li>Skype: <input type="text" name="skype" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->skype, ENT_QUOTES); ?>"/> 
-<br></li><li>Личный сайт: <input type="text" name="website" size="30" maxlength="40" value="<?php echo $text = htmlspecialchars($item->website, ENT_QUOTES);?>"/> 
+<br></li><li>Дополнительный телефон: <input  class="styler" type="text" name="dop_telephone" size="20" maxlength="80" value="<?php echo $text = htmlspecialchars($item->dop_telephone, ENT_QUOTES);?>"/> 
+<br></li><li>Skype: <input  class="styler" type="text" name="skype" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->skype, ENT_QUOTES); ?>"/> 
+<br></li><li>Личный сайт: <input  class="styler" type="text" name="website" size="30" maxlength="40" value="<?php echo $text = htmlspecialchars($item->website, ENT_QUOTES);?>"/> 
 
 
 </li></ul>
@@ -198,7 +200,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 
 
 
-<li><h4>Образование:</h4></li><ul><li>
+<li><h4>Образование:</h4></li><ul class="spi"><li>
 Уровень 
 <select name="education_level"> 
 <option value="<?php echo $item->education_level; ?>"><?php echo $text = htmlspecialchars($item->education_level, ENT_QUOTES); ?></option>

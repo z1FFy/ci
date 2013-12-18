@@ -19,6 +19,8 @@
   padding: 7px;
   border-radius: 7px;
   width: 83%;
+  min-width: 500px;
+  margin-bottom: -5px;
 }
   </style>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -60,11 +62,11 @@ function onAjaxSuccess(data)
 <?php
   foreach ($messages_data as $item){ 
  $name_f='';
- if ($item->user_id==$url_id) {
-        //$name_f=$item->adresat;
-      }else {
-        $name_f=$name;
-      }
+ // if ($item->user_id==$url_id) {
+ //        //$name_f=$item->adresat;
+ //      }else {
+ //        $name_f=$name;
+ //      }
       if($item->name == ''){
         $name = $item->login;
       }else{
@@ -72,7 +74,7 @@ function onAjaxSuccess(data)
       }
     
   }
-echo '<p class="titl">Переписка '.$name_f.' </p><br>';
+echo '<p class="titl">Переписка  </p><br>';
 
   $friend_id = $_GET['friend_id'];
   date_default_timezone_set('Europe/Moscow');
@@ -106,5 +108,5 @@ echo '<p class="titl">Переписка '.$name_f.' </p><br>';
 <br /><br />
 
 
-<input class="styler" type="submit" class="btn" value="Отправить" />
+<input  type="submit" class="btn styler"  value="Отправить" />
 </div>

@@ -26,6 +26,7 @@
 		$friend_id = $_GET['friend_id'];
 		$user_id=$this->session->userdata('user_id');
 		$messages_data = $this->db_module->view_friend_message($friend_id, $user_id);
+		$this->db_module->dell_unread($user_id, $friend_id);
 		$url_id= $this->_get_url_id();
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$logged = $this->session->userdata('logged_in');

@@ -21,6 +21,7 @@
 
 	function index() {
 		$url_id= $this->_get_url_id();
+		$unread = $this->db_module->get_unread($url_id);
 	 	$user_id=$this->session->userdata('user_id');
 	 	$logged = $this->session->userdata('logged_in');
 	 	if ($this->uri->segment(1) == 'id') {
@@ -54,6 +55,7 @@
 	               'url_id' => $url_id,
 	               'user_id' => $user_id,
 	               'profile_data' => $profile_data,
+	               'unread' => $unread
 	                       );
 				$page_content = $this->load->view('userpage', $data, true);
 				$data['page_content'] = $page_content;

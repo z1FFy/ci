@@ -26,12 +26,18 @@
 
 echo '<p style="padding-left:45px">';
     if ($whopage == 'my') {
+          if(!empty($unread)){
+            if ($unread==1) {
+              $m_text='Новое сообщение';
+            } else {
+              $m_text='Новых сообщений';
+            }
+
+      echo '<a style="color:#757534" href="'.$this->config->site_url() .'id'.$url_id.'/friends/friends_view">'.$unread.' '.$m_text.'<img width="25" src="'.$this->config->site_url().'/images/message.png"></a><br>';
+    }
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."'>Мои работы</a>";
    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/friends_view">Мои контакты</a>';
-    if(!empty($unread)){
-      echo ' '.$unread;
-    }
     echo '<br>  <a id="upload_ava">Изменить аватар</a>';
     echo '<br><a class="upload_foto">Загрузить работу</a>';
     echo '<br>'.$exit;

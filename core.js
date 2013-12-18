@@ -129,10 +129,12 @@ $('.btn_entry').click(function() {
      },
      onAjaxSuccess
    );
-
+    } else {
+    alert('Длина должна быть больше трех символов');
+  } 
    function onAjaxSuccess(data)
    {
- console.log(data);
+ // console.log(data);
   if (data == 'no_pass') {
    alert('Вы не правильно ввели данные');
   } else { 
@@ -140,9 +142,7 @@ $('.btn_entry').click(function() {
      }
    
           };
-    } else {
-    alert('Длина должна быть больше трех символов');
-  } 
+
        
 }); 
       
