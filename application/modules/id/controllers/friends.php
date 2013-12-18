@@ -31,6 +31,7 @@
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$logged = $this->session->userdata('logged_in');
 		$user_data = $this->db_module->get_user_by_id($user_id);
+		$this->db_module->dell_unread($user_id, $friend_id);
 		$messages_data_arr = array( 'messages_data' => $messages_data ,'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id ,'logged' => $logged);
  		$page_content = $this->load->view('chat_friends_form',$messages_data_arr,true);
 		$title= 'Сообщения / PortfolioOnline';
@@ -69,14 +70,15 @@ $friend_id[$i] = $item->friend_id;
 $i++;
 
 }
-$unread_data = $this->db_module->get_all_unread($user_id);
 
+$last_activity =$this->db_module->get_last_activity($friend_id); 
+$unread_data = $this->db_module->get_all_unread($user_id);
 $friends_data_friend = $this->db_module->get_users_by_id($friend_id);
 
 
 $logged = $this->session->userdata('logged_in');
 $unread = $this->db_module->get_unread($url_id);
-$friends_data_arr = array('friends_data_friend' => $friends_data_friend, 'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data,);
+$friends_data_arr = array('friends_data_friend' => $friends_data_friend, 'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data, 'last_activity' => $last_activity);
 
 $page_content = $this->load->view('friends_view_form',$friends_data_arr,true);
 $title= 'Сообщения / PortfolioOnline';
@@ -94,6 +96,12 @@ $page = array(
 $this->load->view('template',$page);
 
 }
+	
+
+
+
+
+
 	function chat_friends()
 		{
 			$this->load->view('chat_friends_form');	

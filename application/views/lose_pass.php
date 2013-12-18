@@ -37,16 +37,25 @@ function mime_header_encode($str, $data_charset, $send_charset) {
   return '=?' . $send_charset . '?B?' . base64_encode($str) . '?=';
 }
 
-     $body2='Ваш пароль на сайте portfolionline.ru: '.$pass;
+  
+
+     $body2='Ваш пароль на сайте portfolionline.ru:<br> '.$pass;
      echo $body2;
-//  send_mime_mail('Support',
-// 'support@portfolionline.ru',
-// 'user',
-// $email,
-// $data_charset,
-// $send_charset,
-// 'Зарегестрирован новый юзер',
-// $body2);
+    $data_charset = 'UTF-8';
+    $send_charset = "CP1251";
+
+
+//$headers .= "Content-type: text/html; charset=$send_charset\r\n";
+
+
+ send_mime_mail('PortfoliOnline',
+'support@portfolionline.ru',
+'user',
+$email,
+$data_charset,
+$send_charset,
+'Восстановление пароля',
+$body2);
  }
  else {
 echo '
