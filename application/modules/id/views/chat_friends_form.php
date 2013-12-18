@@ -58,17 +58,18 @@ function onAjaxSuccess(data)
           ?><div id="polosa"></div>
 <div id="right_user">
 <?php
+$name_f= '';
   foreach ($messages_data as $item){ 
  $name_f='';
- if ($item->user_id==$url_id) {
-        //$name_f=$item->adresat;
-      }else {
-        $name_f=$name;
-      }
       if($item->name == ''){
         $name = $item->login;
       }else{
         $name = $item->name.' '.$item->famil;
+      }
+      if ($item->user_id==$url_id) {
+        //$name_f=$item->adresat;
+      }else {
+        $name_f=$name;
       }
     
   }
@@ -106,5 +107,5 @@ echo '<p class="titl">Переписка '.$name_f.' </p><br>';
 <br /><br />
 
 
-<input class="styler" type="submit" class="btn" value="Отправить" />
+<input type="submit" class="btn styler" value="Отправить" />
 </div>

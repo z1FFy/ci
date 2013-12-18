@@ -469,5 +469,20 @@ if(count($mas) == 2){
 }
 
 
+function last_activity($user_id){
+	$this->lastactivity = time();
+	$this->db->where('user_id', $user_id);
+	$this->db->update('users', $this);
+}
+
+function get_last_activity($friend_id){
+	$this->db->select('user_id, lastactivity');
+	$query = $this->db->from('users');
+	$this->db->where_in('user_id', $friend_id);
+	$query = $this->db->get();
+    return $query->result();
+
+}
+
 	}
 	   ?>
