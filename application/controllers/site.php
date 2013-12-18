@@ -155,7 +155,20 @@ class Site extends CI_Controller {
 		}
 	}
 
-	
+	function lose_pass() {
+			if (isset($_GET['send'])) {
+				$email=$_GET['email'];
+				$user_data = $this->db_module->get_user_by_email($email);
+				foreach ($user_data as $item) {
+					$pass=$item->password;
+				}
+				$data = array('pass' => $pass ,'email' => $email);
+				$this->load->view('lose_pass', $data);
+			} else {
+				$this->load->view('lose_pass');
+			}
+
+	}
 	
 	function vyhod() {
 		$this->session->sess_destroy();

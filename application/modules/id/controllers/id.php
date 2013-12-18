@@ -73,10 +73,11 @@
 		$title='Профиль';
 		$user_id=$this->session->userdata('user_id');
 		$url_id= $this->_get_url_id();
+		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$logged = $this->session->userdata('logged_in');
 		$user_data = $this->db_module->get_user_by_id($url_id);
-		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged);
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
 		$page_content = $this->load->view('profile', $user_data_arr, true);
 
 		$user_id='';
@@ -99,10 +100,11 @@
 		$title='Редактировать профиль';
 		$user_id=$this->session->userdata('user_id');
 		$url_id= $this->_get_url_id();
+		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$logged = $this->session->userdata('logged_in');
 		$user_data = $this->db_module->get_user_by_id($url_id);
-		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged);
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
 		$page_content = $this->load->view('profile_update_form', $user_data_arr, true);
 
 		$user_id='';
@@ -169,11 +171,18 @@
 	}
 
 	function profile_podtvr() {
+		if (isset($_GET['k'])) {
+		$key=$_GET['k'];
+		$podtvr=$_GET['p'];
+		if ($key == $podtvr) {
 		$user_id=$this->session->userdata('user_id');
 		echo $this->db_module->up_podtvr($user_id);
 		  header ('Location:'.$this->config->site_url() .'id'.$user_id.'/profile');
-
-
+		}
+		}
+		else {
+			echo "not denied";
+		}
 	}
 
 
@@ -229,14 +238,12 @@
 		$title='Найти человека';
 		$user_id=$this->session->userdata('user_id');
 		$url_id= $this->_get_url_id();
+		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
 
 		$user_data = $this->db_module->get_user_by_id($url_id);
-		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged);
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread'=>$unread);
 		$page_content = $this->load->view('seach', $user_data_arr, true);
-
-		$user_id='';
-		 	$user_id=$this->session->userdata('user_id');
 		$page = array(
            'title' => $title,
            'page_content' => $page_content,
@@ -246,7 +253,6 @@
          );
 
 		$this->load->view('template',$page);	
-		//$this->load->view('seach');
 	} else {
 		echo "not denied";
 	}

@@ -25,6 +25,9 @@ background-color:#fff;
   #menu {
     height: 39px;
   }
+    .spi{
+    margin: 4px;
+  }
 
 </style>
 
@@ -111,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <form action="<?php echo $this->config->site_url() ?>id<?php echo $user_id ?>/seach_user" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <tr>
 Дата рождения:
-<select style="width:90px" name="birthday1" size="1">
+<select class="spi" style="width:90px" name="birthday1" size="1">
   <option value="day">день</option>
   <?php for ($i = 1; $i <= 31; $i++){
   if ($i<10){
@@ -125,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   }?>
   </select>
 
-  <select style="width:90px" name="birthday2" size="1">
+  <select class="spi" style="width:90px" name="birthday2" size="1">
     <option value="month">месяц</option>
   <?php for ($i = 1; $i <= 12; $i++){
   if ($i<10){
@@ -139,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   </select>
 
 
-  <select style="width:90px" name="birthday3" size="1">
+  <select class="spi" style="width:90px" name="birthday3" size="1">
     <option value="year">год</option>
   <?php for ($i = 1800; $i <= 2015; $i++){
   echo '<option value="'.$i.'">' .$i.' </option>';
@@ -152,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   echo '
   Специализация:
 
-<select class="batn" id="regsel" name="spec_user" onChange="selChange(this.form)">
+<select class="batn spi" id="regsel" name="spec_user" onChange="selChange(this.form)">
 <option selected="selected" value="">Не выбрано</option>
 <option value="Менеджмент">Менеджмент</option>
 <option value="Разработка сайтов">Разработка сайтов</option>
@@ -193,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <br>
 <!-- seach -->
 <input type="text"  class="styler" name="seach" maxlength="50" placeholder="Имя пользователя" />
-<input id="search"  class="styler" type="button" value="Найти" />
+<input id="search"  class="styler spi" type="button" value="Найти" />
 
 </form>
 <div id="res"> </div>

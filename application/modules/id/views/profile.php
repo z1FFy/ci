@@ -45,6 +45,7 @@ function mime_header_encode($str, $data_charset, $send_charset) {
 
    foreach ($user_data as $item) {
 $podtvr=$item->podtvr;
+$pod=$podtvr;
       $login=$item->login;
       $user_id=$item->user_id;
       $avatar_url=$item->avatar;
@@ -73,7 +74,7 @@ if (isset($_GET['key'])) {
   else {
   $key=$_GET['key'];
 if ($key == $podtvr) {
-  header ("Location:profile_podtvr");
+  header ("Location:profile_podtvr?k=".$key."&p=".$pod);
 }
 }
 }

@@ -70,10 +70,12 @@ foreach ($user_data as $item){
       $famil=$item->famil;
     }
       ?>
-<div id="showmenu"><?php echo $name.' '.$famil; ?></div>
+<div id="showmenu"><?php echo $name.' '.$famil; ?><img style="position: absolute;margin-top: 4px;" width="15px" src="
+<?php echo $this->config->site_url().'images/down.png' ?>
+"> </div>
 	<?php 
        $this->load->view('left_user',$user_data); 
-  $id=$_GET['id'];
+    $id=$_GET['id'];
     $id_orig=$_GET['id_orig'];
 
     $user_id=$this->session->userdata('user_id');
@@ -195,7 +197,7 @@ if ($i==$id+1) {
 <div style="position: absolute;margin-left: 80px;margin-top: 14px;">
 <img width="15px" src="
 <?php echo $this->config->site_url().'images/down.png' ?>
-" </div> </button></div>
+"> </div> </button></div>
   <div id="comments"  style="display:none">
   <p style="color:#054E7C"> Комментарии </p>
 <?php 
