@@ -326,10 +326,10 @@ function delete_photos($delete_photos){
 }
 
 function friends_insert($friend_id, $user_id){
-	$friends->friend_id = $friend_id;
-	$friends->user_id = $user_id;
+	$this->friend_id = $friend_id;
+	$this->user_id = $user_id;
 
-	$query = $this->db->insert('friends', $friends); 
+	$query = $this->db->insert('friends', $this); 
 
 }
 
@@ -395,13 +395,13 @@ function dell_unread($user_id, $friend_id){
 
 
 
-function view_friends($friend_id, $user_id){
+function view_friends($mass){
 	$this->db->select('*');
 	$this->db->from('friends');
-	$this->db->where('friends.user_id', $user_id); 
-	$this->db->where('friends.friend_id', $friend_id);
+	$this->db->where_in('friends.user_id', $mass); 
+	$this->db->where_in('friends.friend_id', $mass);
 	$query = $this->db->get();
-	return $query->result();
+	return $query->num_rows();
 
 }
 
@@ -481,6 +481,14 @@ function get_last_activity($friend_id){
 	$this->db->where_in('user_id', $friend_id);
 	$query = $this->db->get();
     return $query->result();
+
+}
+
+
+function pass_update($user_id, $new_pass){
+	$this->password = $new_pass;
+	$this->db->where('user_id', $user_id);
+	$this->db->update('users', $this);
 
 }
 

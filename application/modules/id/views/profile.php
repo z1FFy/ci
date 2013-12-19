@@ -199,6 +199,7 @@ if ($whopage == 'my') {
 
  echo "<br><a href='".$this->config->site_url() ."id".$user_id."/profile_update_form' >Редактировать профиль</a>";
 
+ echo "<br><a href='".$this->config->site_url() ."id".$user_id."/pass_update_form' >Изменить пароль</a>";
  echo "<br><a href='".$this->config->site_url() ."id".$user_id."/dell_form' >Удалить страницу</a>";
 
 

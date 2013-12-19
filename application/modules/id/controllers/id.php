@@ -338,6 +338,58 @@
 		$this->session->sess_destroy();
 		header ("Location:". $this->config->site_url());
 	}
+
+	function pass_update_form(){
+		
+		$logged = $this->session->userdata('logged_in');
+		if ($logged == TRUE) {
+		$title='Измение пароля';
+		$user_id=$this->session->userdata('user_id');
+		$url_id= $this->_get_url_id();
+		$unread = $this->db_module->get_unread($url_id);
+		$whopage= $this->_get_whopage($url_id,$user_id);
+		$user_data = $this->db_module->get_user_by_id($url_id);
+
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
+		$page_content = $this->load->view('pass_update', $user_data_arr, true);
+		$this ->db_module->last_activity($user_id);
+
+		$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id,
+           'url_id' => $url_id,
+         );
+
+		$this->load->view('template',$page);	
+	} else {
+		echo "not denied";
+	}
+
+	}
+
+
+	function pass_update(){
+		$old_pass = $_POST['old_pass'];
+		$new_pass = $_POST['new_pass'];
+		if(preg_match('/^[a-z0-9]{3,20}$/',$new_pass)){
+		$user_id=$this->session->userdata('user_id');
+		$pass_data = $this->db_module->get_user_by_id($user_id);
+		foreach ($pass_data as $item) {
+			$orig_pass = $item->password;
+		}
+		if($old_pass === $orig_pass){
+			$this->db_module->pass_update($user_id, $new_pass);
+			echo 'Пароль изменен';
+		}else{
+			echo 'Старый пароль введен неправильно';
+		}
+		//$this->load->view('pass_update');
+		}else{
+			echo "В пароле испольуются некоректные символы";
+		}
+	}
  
 }
 ?>

@@ -116,32 +116,48 @@ $this->load->view('template',$page);
 			$avatar = $item->avatar;
 		}
 		$this->db_module->send_chat_friends($user_id, $friend_id, $messages, $avatar);
-		// извлекаю из базы значение "отправлял ли пользователь сообщение этому адресату когда либо"
-		$friend_data = $this->db_module->view_friends($friend_id, $user_id); 
-		foreach ($friend_data as $item) {
+		// // извлекаю из базы значение "отправлял ли пользователь сообщение этому адресату когда либо"
+		// $friend_data = $this->db_module->view_friends($friend_id, $user_id); 
+		// foreach ($friend_data as $item) {
 			
-			$id_user = $item->user_id;
-			$id_friend = $item->friend_id;
-		}
+		// 	$id_user = $item->user_id;
+		// 	$id_friend = $item->friend_id;
+		// }
 
-		// извлекаю из базы значение "отправлял ли адресат сообщение пользователю когда либо"
-		$friend_data1 = $this->db_module->view_friends1($friend_id, $user_id); 
-		foreach ($friend_data1 as $item1) {
-			$id_user1 = $item1->user_id;
-			$id_friend1 = $item1->friend_id;
-		}
-		// если по запросам в базе ничего не вывелось
-		if($id_user == '' && $id_friend == ''){	
-			$lal = '1';	
-			}
+		// // извлекаю из базы значение "отправлял ли адресат сообщение пользователю когда либо"
+		// $friend_data1 = $this->db_module->view_friends1($friend_id, $user_id); 
+		// foreach ($friend_data1 as $item1) {
+		// 	$id_user1 = $item1->user_id;
+		// 	$id_friend1 = $item1->friend_id;
+		// }
+		// // если по запросам в базе ничего не вывелось
+		// if($id_user == '' && $id_friend == ''){	
+		// 	$lal = '1';	
+		// 	}
 
-		if($id_user1 == '' && $id_friend1 == ''){	
-			$lal1 = '1';	
-			}
+		// if($id_user1 == '' && $id_friend1 == ''){	
+		// 	$lal1 = '1';	
+		// 	}
 
-		// заносим в базу айди пользователя и адресата для дальнейшего извлечения сообщений
-		if($lal == '1' && $lal1 == '1'){
-		$this->db_module->friends_insert($friend_id, $user_id); 
+		// // заносим в базу айди пользователя и адресата для дальнейшего извлечения сообщений
+		// if($lal == '1' && $lal1 == '1'){
+		// $this->db_module->friends_insert($friend_id, $user_id); 
+		// }
+
+	}
+
+
+	function subscribe(){
+		$friend_id = $_POST['friend_id'];
+		$user_id=$this->session->userdata('user_id');
+		$mass = $arrayName = array('0' => $user_id, '1' => $friend_id);
+		$friend_data = $this->db_module->view_friends($mass); 
+		//заносим в базу айди пользователя и адресата для дальнейшего извлечения сообщений
+		if($friend_data != '1'){
+		$this->db_module->friends_insert($friend_id, $user_id);
+		echo 'Подписался'; 
+		}else{
+			echo 'Уже подписан';
 		}
 
 	}

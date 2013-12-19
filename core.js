@@ -55,11 +55,6 @@ includeJS('/ci/config.js');
 //       $('#simplemodal-container').css(cssObj);
 // });
 
-
-
-
-
-
 //Reg
 
 
@@ -354,7 +349,26 @@ $('#left_user').slideUp("fast");
           overlayClose:true
         });   
       };
-       } 
+       }
+
+//subscribe
+
+$('#subscribe').click(function() {
+
+  friend_id = $(this).attr("link");
+  $.post(site_full+"/id/friends/subscribe",
+         { friend_id : friend_id,
+              },
+         onAjaxSuccess
+         );
+      function onAjaxSuccess(data)
+      {
+  //window.location.replace(site_full+"/id");
+        alert(data);
+      };
+  
+});
+
   
  // $(".block").next().css("backgroundColor", "#000");
       
