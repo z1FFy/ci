@@ -159,11 +159,24 @@ class Site extends CI_Controller {
 			if (isset($_GET['send'])) {
 				$email=$_GET['email'];
 				$user_data = $this->db_module->get_user_by_email($email);
+				$u_mail='';
+				$pass='';
 				foreach ($user_data as $item) {
 					$pass=$item->password;
+					$u_mail=$item->mail;
 				}
+				if ($email==$u_mail) {
 				$data = array('pass' => $pass ,'email' => $email);
+					if ($email=='') {
+				echo '    <meta charset="utf-8">Вы не ввели Email';
+
+			} else {
 				$this->load->view('lose_pass', $data);
+			}
+			} else {
+				echo '    <meta charset="utf-8">Пользователь с таким email не найден';
+			}
+		
 			} else {
 				$this->load->view('lose_pass');
 			}

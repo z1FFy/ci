@@ -23,6 +23,7 @@
 		$url_id= $this->_get_url_id();
 		$unread = $this->db_module->get_unread($url_id);
 	 	$user_id=$this->session->userdata('user_id');
+	 		$this ->db_module->last_activity($user_id);
 	 	$logged = $this->session->userdata('logged_in');
 	 	if ($this->uri->segment(1) == 'id') {
 	 		if ($logged == TRUE){
@@ -39,12 +40,13 @@
 			$podtvr = $this->db_module->get_podtvr($url_id);
 		}
 
-		$this ->db_module->last_activity($url_id);
+
 
 		$photo_data = $this->db_module->get_user_photos($url_id);
 		$albom_data = $this->db_module->get_albom_photos($url_id);
 		$profile_data = $this->db_module->get_user_by_id($url_id);
 		$unread = $this->db_module->get_unread($url_id);
+		$last_activity =$this->db_module->get_last_activity($url_id); 
 		$title='userpage';
 		foreach ($profile_data as $item){ 
 			$title=$item->name.' '.$item->famil.' / PortfolioOnline';
@@ -59,7 +61,9 @@
 	               'url_id' => $url_id,
 	               'user_id' => $user_id,
 	               'profile_data' => $profile_data,
-	               'unread' => $unread
+	               'unread' => $unread,
+	               'last_activity' => $last_activity
+
 	                       );
 				$page_content = $this->load->view('userpage', $data, true);
 				$data['page_content'] = $page_content;
@@ -83,7 +87,7 @@
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
 		$page_content = $this->load->view('profile', $user_data_arr, true);
-		$this ->db_module->last_activity($url_id);//
+		$this ->db_module->last_activity($user_id);//
 		$user_id='';
 		if ($logged == TRUE) {
 		 	$user_id=$this->session->userdata('user_id');
@@ -110,7 +114,7 @@
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
 		$page_content = $this->load->view('profile_update_form', $user_data_arr, true);
-		$this ->db_module->last_activity($url_id);
+		$this ->db_module->last_activity($user_id);
 		$user_id='';
 		if ($logged == TRUE) {
 		 	$user_id=$this->session->userdata('user_id');
@@ -248,7 +252,7 @@
 
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
 		$page_content = $this->load->view('seach', $user_data_arr, true);
-		$this ->db_module->last_activity($url_id);
+		$this ->db_module->last_activity($user_id);
 
 		$page = array(
            'title' => $title,
@@ -303,7 +307,7 @@
 		
 		//
 		$unread = $this->db_module->get_unread($url_id);
-		$this ->db_module->last_activity($url_id);
+		$this ->db_module->last_activity($user_id);
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'seach_data' => $seach_data, 'text' => $text, 'unread' => $unread,);
 	 $this->load->view('seach', $user_data_arr);
 

@@ -155,11 +155,11 @@ $('.btn_entry').click(function() {
  //Upload
     $('.upload_foto').click(function() { 
         var src = site_full+"/id/upload?who=photos";
-        upload(src,'nof',310,310);
+        upload(src,'nof',330,330);
        }); 
       $('#upload_ava').click(function() { 
         var src = site_full+"/id/upload?who=avatars";
-        upload(src,'nof');
+        upload(src,'nof',350,330);
        }); 
       $('#red-prof').click(function() { 
         var src = site_full+"/id/profile_update_form";
@@ -201,7 +201,7 @@ $('.btn_entry').click(function() {
         id_photo = $(this).attr("link");
           photos_name = $(this).attr("photos_name");
        var src = site_full+"/id/albom/red_photo?id_photo="+id_photo+"&photos_name="+photos_name;
-        upload(src,'nof',400,500);
+        upload(src,'nof',430,430);
       });
 
          $(".delete_photos").on("click", function(){
@@ -346,9 +346,9 @@ $('#left_user').slideUp("fast");
           containerCss:{
             backgroundColor:"#fff", 
             borderColor:"#fff", 
-            width:300,
+            width:w,
             padding:10, 
-            height:300,
+            height:h,
 
           },
           overlayClose:true

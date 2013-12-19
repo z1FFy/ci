@@ -26,8 +26,8 @@
    <?php if ($logged != TRUE) { ?>
   <input style="width: 120px;" type="text" name="login-entry"  onkeypress='validate(event)' class="auth styler" maxlength="20" placeholder="Логин">
   <input style="width: 120px;" type="password" name ="password-entry"  onkeypress='validate(event)' class="auth styler"maxlength="20" placeholder="Пароль">
-
   <button  type="submit" style="padding: 4px 11px;" class="btn_entry styler">Войти</button>
+  <font style="color:#fff;font-size:14px"><a href="<?php echo $this->config->site_url(); ?>site/lose_pass"><img alt="Восстановление пароля" title="Восстановление пароля" src="<?php echo $this->config->site_url().'/images/pass.png'; ?>"></a></font>
 <?php } else {
       echo '<a href="'.$this->config->site_url().'"">Главная</a>   ';
     echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a> ';

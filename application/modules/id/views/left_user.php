@@ -21,7 +21,13 @@
     }
       echo '<div id="left_user">';
       echo '<br><div style="margin-top: -20px;margin-left:23px" class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
- echo '<p style="text-align:center">'.$whostring.' '.$text = htmlspecialchars($name, ENT_QUOTES).' '.$text = htmlspecialchars($famil, ENT_QUOTES).'</p>'.'<p style="font-size:13px;text-align:center">( '.$spec.' )</p>';
+ $t = time() - $item->lastactivity;
+      if($t > 300){
+        $last_activity = 'Offline';
+      }else{
+        $last_activity = 'Online';
+      }
+ echo '<p style="text-align:center">'.$last_activity.'<br>'.$whostring.' '.$text = htmlspecialchars($name, ENT_QUOTES).' '.$text = htmlspecialchars($famil, ENT_QUOTES).'</p>'.'<p style="font-size:13px;text-align:center">( '.$spec.' )</p>';
      
 
 echo '<p style="padding-left:45px">';
