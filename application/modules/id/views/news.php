@@ -77,32 +77,37 @@ $('.pass_update').click(function() {
 <div id="right_user">
 <!-- <form> -->
  <?php
- //$i=0;
-foreach ($news_photos_data as $item) {
-  $i=0;
+
+foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
   $url_photo = $item->url_photo;
   $name_photo = $item->photos_name;
   $photos_date = $item->photos_date;
   $id_photos = $item->id_photos;
   $id_user = $item->id_user;
+  $i=0;                               // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
   foreach ($subscribe_users_data as $item) {
     if($i==0){
-        if($photos_date >= $item->subscribe_date ){
-          if($item->name == ''){
-          $name = $item->login;
-        }else{
-          $name = $item->name.' '.$item->famil;
+      for ($j=0; $j < count($subscribe_users_id); $j++) {  // нужно чтобы дата подписи с лузером совподала с его id 
+        if($item->user_id == $subscribe_users_id[$j]){
+          if($photos_date >= $subscribe_users_date[$j] ){ // если дата добавления фотки больше даты создания подписи эхаем все говно
+              if($item->name == ''){
+              $name = $item->login;
+              }else{
+                $name = $item->name.' '.$item->famil;
+              }
+              echo '<div align = "center">';
+              echo htmlspecialchars($name, ENT_QUOTES).' добавил/a изображение '.date("d.m.y H:i:s" ,htmlspecialchars($photos_date, ENT_QUOTES)).'<br>';
+              echo '<img src="'.$this->config->site_url().'uploads/photos/'.$url_photo.'"/">';
+              echo '</div><br>';
+              $i++;
+          }
         }
-        echo '<div align = "center">';
-        echo htmlspecialchars($name, ENT_QUOTES).' добавил/a изображение '.date("d.m.y H:i:s" ,htmlspecialchars($photos_date, ENT_QUOTES)).'<br>';
-        echo '<img src="'.$this->config->site_url().'uploads/photos/'.$url_photo.'"/">';
-        echo '</div><br>';
-        $i++;
       }
       
     }
     
   }
+
 
 }
 
