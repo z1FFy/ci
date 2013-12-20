@@ -23,46 +23,49 @@
 
 	function index() {
 
-$logged = $this->session->userdata('logged_in');
-if ($logged == TRUE) {
-$title='Новости';
-$user_id=$this->session->userdata('user_id');
-$url_id= $this->_get_url_id();
-$unread = $this->db_module->get_unread($url_id);
-$whopage= $this->_get_whopage($url_id,$user_id);
-$user_data = $this->db_module->get_user_by_id($url_id);
-$i=0;
-$subscribe_users_data = $this->db_module->friends_view($user_id);
-foreach ($subscribe_users_data as $item) {
-if ($item->user_id == $this->session->userdata('user_id')) {
-$subscribe_users_id[$i] = $item->friend_id;
-}else{
-$subscribe_users_id[$i] = $item->user_id;
-}
-//$subscribe_users_date[$i] = $item->subscribe_date;
-var_dump($item);
-$i++;
-}
-//var_dump($subscribe_users_id);
-$news_photos_data = $this->db_module->view_news_photos($subscribe_users_id);
-$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'news_photos_data' => $news_photos_data, 'subscribe_users_data' => $subscribe_users_data);
-$page_content = $this->load->view('news', $user_data_arr, true);
-$this ->db_module->last_activity($user_id);
 
-$page = array(
-'title' => $title,
-'page_content' => $page_content,
-'logged' => $logged,
-'user_id' => $user_id,
-'url_id' => $url_id,
-);
+		$logged = $this->session->userdata('logged_in');
+		if ($logged == TRUE) {
+		$title='Новости';
+		$user_id=$this->session->userdata('user_id');
+		$url_id= $this->_get_url_id();
+		$unread = $this->db_module->get_unread($url_id);
+		$whopage= $this->_get_whopage($url_id,$user_id);
+		$user_data = $this->db_module->get_user_by_id($url_id);
+		$i=0;
+		$subscribe_users_data1 = $this->db_module->friends_view_id($user_id); //извлекаем все подписи с id пользователя
+		foreach ($subscribe_users_data1 as $item) {							  // заносим в $subscribe_users_id id всех с кем подписаны 
+			if($item->user_id == $this->session->userdata('user_id')){
+				$subscribe_users_id[$i] = $item->friend_id;
+			}else{
+				$subscribe_users_id[$i] = $item->user_id;
+			}
+			$subscribe_users_date[$i] = $item->subscribe_date;				// заносим в $subscribe_users_date метку времени тех подписей с которыми подписывались
+			$i++;
+		}
+		//var_dump($subscribe_users_id);
+		//var_dump($subscribe_users_date);
+		$subscribe_users_data = $this->db_module->get_users_by_id($subscribe_users_id); // извлекаем всех лузеров с кем подписаны
+		$news_photos_data = $this->db_module->view_news_photos($subscribe_users_id);	// извлекаем все фотки подписаных лузеров
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'news_photos_data' => $news_photos_data, 'subscribe_users_data' => $subscribe_users_data, 'subscribe_users_id' => $subscribe_users_id, 'subscribe_users_date' => $subscribe_users_date);
+		$page_content = $this->load->view('news', $user_data_arr, true);
+		$this ->db_module->last_activity($user_id);
 
-$this->load->view('template',$page); 
-} else {
-echo "not denied";
-}
+		$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id,
+           'url_id' => $url_id,
+         );
 
-}
+		$this->load->view('template',$page);	
+	} else {
+		echo "not denied";
+	}
+
+	}
+
 
 	
 

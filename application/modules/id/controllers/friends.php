@@ -165,7 +165,7 @@ $this->load->view('template',$page);
 		if ($logged == TRUE) {
 		$friend_id = $_POST['friend_id'];
 		$user_id=$this->session->userdata('user_id');
-		$mass = $arrayName = array('0' => $user_id, '1' => $friend_id);
+		$mass = array('0' => $user_id, '1' => $friend_id);
 		$friend_data = $this->db_module->view_friends($mass); 
 		
 		//заносим в базу айди пользователя и адресата для дальнейшего извлечения сообщений

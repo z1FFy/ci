@@ -31,6 +31,7 @@
 <?php } else {
       echo '<a href="'.$this->config->site_url().'"">Главная</a>   ';
     echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a> ';
+     echo '<a href="'.$this->config->site_url().'id'.$user_id.'/news"">Лента новостей</a> ';
        echo '<a href="'.$this->config->site_url().'id'.$user_id.'/profile"">Настройки</a>';
        echo ' <a href="'.$this->config->site_url().'id'.$user_id.'/seach"">Поиск</a>';
              $exit='<a href="'.$this->config->site_url().'site/vyhod">выйти</a>';

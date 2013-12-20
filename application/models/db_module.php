@@ -498,13 +498,14 @@ function pass_update($user_id, $new_pass){
 
 function friends_view_id($user_id){
 	$this->db->select('*');
-	$this->db->from('friends', 'users');
-	 $this->db->join('users', 'friends.friend_id = users.user_id');
+	$this->db->from('friends');
+	 //$this->db->join('friends', 'friends.friend_id = users.user_id');
 	 $this->db->where('friends.user_id', $user_id); 
 	$this->db->or_where('friends.friend_id', $user_id);
 	$query = $this->db->get();
 	 return $query->result();
 }
+
 
 
 function view_news_photos($subscribe_users_id){
@@ -516,18 +517,7 @@ function view_news_photos($subscribe_users_id){
     return $query->result();
 }
 
-function view_message1($id_photos){
-	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
-	$this->db->select('*');
-	$this->db->from('users','chat_photos');
-	$this->db->join('chat_photos', 'chat_photos.user_id = users.user_id');
-	$this->db->where_in('chat_photos.photos_id', $id_photos); 
-	$query = $this->db->get();
 
-
-	 return $query->result();
-
-}
 
 
 

@@ -23,12 +23,12 @@
       echo '<br><div style="margin-top: -20px;margin-left:23px" class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
  $t = time() - $item->lastactivity;
       if($t > 300){
-        $last_activity = 'Offline';
+        $last_activity = '<img width="80px" src="'.$this->config->site_url().'images/offline.png">';
       }else{
-        $last_activity = 'Online';
+        $last_activity = '<img width="80px" src="'.$this->config->site_url().'images/online.png">';
       }
- echo '<p style="text-align:center">'.$last_activity.'<br>'.$whostring.' '.$text = htmlspecialchars($name, ENT_QUOTES).' '.$text = htmlspecialchars($famil, ENT_QUOTES).'</p>'.'<p style="font-size:13px;text-align:center">( '.$spec.' )</p>';
-     
+ echo '<br><p style="text-align:center">'.$whostring.' '.$text = htmlspecialchars($name, ENT_QUOTES).' '.$text = htmlspecialchars($famil, ENT_QUOTES).'</p>'.'<p style="font-size:13px;text-align:center">( '.$spec.' )';
+     echo '<br>'.$last_activity.'</p>';
 
 echo '<p style="padding-left:45px">';
     if ($whopage == 'my') {
@@ -46,7 +46,7 @@ echo '<p style="padding-left:45px">';
    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/friends_view">Мои контакты</a>';
     echo '<br>  <a id="upload_ava">Изменить аватар</a>';
     echo '<br><a class="upload_foto">Загрузить работу</a>';
-    echo '<br>  <a href="'.$this->config->site_url() .'id'.$url_id.'/news">Новости</a>';
+    echo '<br>  <a href="'.$this->config->site_url() .'id'.$url_id.'/news">Лента новостей</a>';
     echo '<br>'.$exit;
     echo '<p style="font-size:12px;text-align:center"><br><br>Ссылка на портфолио:<br><i><a href="'.$this->config->site_url() .'id'.$url_id.'">'.$this->config->site_url() ."id".$url_id.'</i></a></p>';
     }else{    

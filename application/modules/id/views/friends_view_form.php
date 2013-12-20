@@ -45,9 +45,9 @@
 
 			$t = time() - $item->lastactivity;
 			if($t > 300){
-				$last_activity = 'Offline';
+				$last_activity = '<img width="50px" src="'.$this->config->site_url().'images/offline.png">';
 			}else{
-				$last_activity = 'Online';
+				$last_activity = '<img width="50px" src="'.$this->config->site_url().'images/online.png">';
 			}
 			
 
@@ -65,7 +65,7 @@
 
 						echo '<div class="friend_block"><a href="'.$this->config->site_url().'id'.$friend.'">
 			<img style="width:80px;height:80px;border-radius: 10px 0 0 10px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar.'" /></a>			
-		  	<p class="friend_text"> '.$name.' : '.$kol.' '.$last_activity.'<br><a href="'.$this->config->site_url().'id'.$url_id.'/friends?friend_id='.$friend.'">Написать</a>
+		  	<p class="friend_text"> '.$name.'   '.$kol.' '.$last_activity.'<br><a href="'.$this->config->site_url().'id'.$url_id.'/friends?friend_id='.$friend.'">Написать</a>
 		  	<a href="'.$this->config->site_url().'id'.$friend.'"> Посмотреть</a></p><br>';
 
 			//echo '<div style="padding:10px;"><i>'.$msg[$i].'</i></div>';
