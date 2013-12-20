@@ -21,7 +21,7 @@ $id_al = $_GET['id_albom'];
 	echo '<option '.$sel.' value="'.$this->config->site_url().'id'.$url_id.'/?id_albom='.$item->id_albom.'">'.$item->albom_name.'</a> </option> ';
 } ?>
 </select>
-	<?php if($whopage == "my") { echo '<input type="button" class="upload_foto styler" value="Загрузить работу"> ';} ?>
+	<?php if($whopage == "my") { echo '<input type="button" class="styler" id="create_albom" value="Создать альбом"><input   type="button" class="upload_foto styler" value="Загрузить работу">';} ?>
 <br>
 
 <!-- vse foto -->

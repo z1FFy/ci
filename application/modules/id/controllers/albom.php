@@ -32,7 +32,7 @@ function do_albom()
 	{
 		$albom_name = $_POST['albom_name'];
 		$res=$this->db_module->send_new_albom($albom_name);
-		echo $res;
+		header ("Location:". $this->config->site_url().'id'.$user_id);
 	}
 
 function do_img_to_albom()

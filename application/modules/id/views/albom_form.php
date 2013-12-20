@@ -7,11 +7,11 @@
 
 <form action="<?php echo $this->config->site_url() ?>id/albom/do_albom" method="post" accept-charset="utf-8">
 
-<input type="text" name="albom_name" size="20" />
+<input class="styler" placeholder="Название альбома" type="text" name="albom_name" size="20" />
 
 <br /><br />
 
-<input type="submit" value="Создать" />
+<input class="styler" type="submit" value="Создать" />
 
 </form>
 

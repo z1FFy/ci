@@ -29,14 +29,7 @@ foreach ($user_data as $item){
 			$avatar_url=$item->avatar;
       $spec=$item->spec_user;
 		}
-		if ($whopage=='my') {
-      $whostring='Я';
-      $whostring_title="Моя";
-      $exit='<a href="'.$this->config->site_url().'site/vyhod">выйти</a>';
 
-    } else {
-  	   $whostring='';
-    }
        $this->load->view('left_user',$user_data); 
    $this->load->view('albom_index',$user_data); 
 

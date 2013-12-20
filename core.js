@@ -234,7 +234,10 @@ $('.btn_entry').click(function() {
         upload(src,'nof',400,500);
        }); 
     
-
+  $('#create_albom').click(function() { 
+        var src = site_full+"/id/albom";
+        upload(src,'nof',300,300);
+       }); 
 
 
 $('.like_photos').click(function() { 
