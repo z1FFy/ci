@@ -137,11 +137,15 @@ if ($key == 'photos_name') {
 if ($key == 'min') {
 	$min=$value;
 }
+if ($key == 'photos_date') {
+	$photos_date=$value;
+}
 	}
 		$this->id_user   =  $user_id;
 		$this->min   =  $min;
         $this->url_photo = $name;
         $this->photos_name = $photos_name; 
+        $this->photos_date = $photos_date;
 		$query = $this->db->insert('photos', $this);
 		$result='Фото загружено!';
 		$user_id=$this->session->userdata('user_id');
@@ -305,9 +309,9 @@ function view_like($like_photos){
 
 }
 
-function view_like_user($like_photos){
-	$query = $this->db->get_where('like_photo', array('photo_id' => $like_photos));
-    return $query->result();
+function view_like_user($like_photos, $user_id){
+	$query = $this->db->get_where('like_photo', array('photo_id' => $like_photos, 'user_id' => $user_id));
+    return $query->num_rows();
 }
 
 function dell_like($like_photos){
@@ -326,10 +330,10 @@ function delete_photos($delete_photos){
 }
 
 function friends_insert($friend_id, $user_id){
-	$friends->friend_id = $friend_id;
-	$friends->user_id = $user_id;
-
-	$query = $this->db->insert('friends', $friends); 
+	$this->friend_id = $friend_id;
+	$this->user_id = $user_id;
+	$this->subscribe_date = time();
+	$query = $this->db->insert('friends', $this); 
 
 }
 
@@ -398,8 +402,8 @@ function dell_unread($user_id, $friend_id){
 function view_friends($mass){
 	$this->db->select('*');
 	$this->db->from('friends');
-	$this->db->where_in('friends.user_id', $mass); 
-	$this->db->where_in('friends.friend_id', $mass);
+	$this->db->where_in('user_id', $mass); 
+	$this->db->where_in('friend_id', $mass);
 	$query = $this->db->get();
 	return $query->num_rows();
 
@@ -491,6 +495,41 @@ function pass_update($user_id, $new_pass){
 	$this->db->update('users', $this);
 
 }
+
+function friends_view_id($user_id){
+	$this->db->select('*');
+	$this->db->from('friends', 'users');
+	 $this->db->join('users', 'friends.friend_id = users.user_id');
+	 $this->db->where('friends.user_id', $user_id); 
+	$this->db->or_where('friends.friend_id', $user_id);
+	$query = $this->db->get();
+	 return $query->result();
+}
+
+
+function view_news_photos($subscribe_users_id){
+	$this->db->select('*');
+	$query = $this->db->from('photos');
+	$this->db->where_in('id_user', $subscribe_users_id);
+	//$this->db->where_in('photos_date =', $subscribe_users_date);
+	$query = $this->db->get();
+    return $query->result();
+}
+
+function view_message1($id_photos){
+	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
+	$this->db->select('*');
+	$this->db->from('users','chat_photos');
+	$this->db->join('chat_photos', 'chat_photos.user_id = users.user_id');
+	$this->db->where_in('chat_photos.photos_id', $id_photos); 
+	$query = $this->db->get();
+
+
+	 return $query->result();
+
+}
+
+
 
 	}
 	   ?>

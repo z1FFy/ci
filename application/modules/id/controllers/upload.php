@@ -112,6 +112,7 @@ class Upload extends CI_Controller {
 			$name_photo  = $_GET['name'];
 			$photos_name = $_GET['photos_name'];
 			}
+			$photos_date = time();
 			if ($who == 'photos') {
 				$photo_data = $_GET['photo_data'];
 				$data = array(
@@ -119,7 +120,8 @@ class Upload extends CI_Controller {
 	               'name_photo' => $name_photo,
 	               'photos_name'=> $photos_name,
 	               'photo_data' => $photo_data,
-	               'min' => $min
+	               'min' => $min,
+	               'photos_date' => $photos_date
 	                       );
 				$data_user = $this->db_module->send_user_photos($data);
 			}

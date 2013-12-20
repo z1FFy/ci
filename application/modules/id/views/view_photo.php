@@ -214,7 +214,7 @@ date_default_timezone_set('Europe/Moscow');
 " class="block">
        <div style="display:inline" class="block1">
        <img style="width:50px;height:50px" src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame" width="100"></div>
-       <div style="display:inline" class="block2">'.$name;
+       <div style="display:inline" class="block2">'.htmlspecialchars($name, ENT_QUOTES);
         echo '<div class="date_msg">Дата/Время: '.date("d.m.y H:i:s" ,$item->message_date).'</div></div><br>';
        echo '<div class="text_msg">'.$text = htmlspecialchars($item->messages, ENT_QUOTES).'</div>';
 echo "</div>";
