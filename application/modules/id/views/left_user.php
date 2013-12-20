@@ -46,6 +46,7 @@ echo '<p style="padding-left:45px">';
    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/friends_view">Мои контакты</a>';
     echo '<br>  <a id="upload_ava">Изменить аватар</a>';
     echo '<br><a class="upload_foto">Загрузить работу</a>';
+    echo '<br>  <a href="'.$this->config->site_url() .'id'.$url_id.'/news">Новости</a>';
     echo '<br>'.$exit;
     echo '<p style="font-size:12px;text-align:center"><br><br>Ссылка на портфолио:<br><i><a href="'.$this->config->site_url() .'id'.$url_id.'">'.$this->config->site_url() ."id".$url_id.'</i></a></p>';
     }else{    

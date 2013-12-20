@@ -136,7 +136,7 @@ background-color:#fff;
   <li>Пол: <?php echo $text = htmlspecialchars($item->sex, ENT_QUOTES);?></li>
    <?php if($item->birthday != ''){ ?>
 	<li>Дата Рождения: <?php echo $text = htmlspecialchars($item->birthday, ENT_QUOTES);?></li><?php } ?>
-	<li>Дата регистрации: <?php echo $text = htmlspecialchars($item->date, ENT_QUOTES);?></li>
+	<li>Дата регистрации: <?php echo date("d.m.y H:i:s" , htmlspecialchars($item->date, ENT_QUOTES));?></li>
   
    <?php if($item->sity != ''){ ?>
   <li>Родной город: <?php echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?></li><?php } ?>

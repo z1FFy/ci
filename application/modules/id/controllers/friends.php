@@ -52,6 +52,8 @@
 	}
 function friends_view()
 {
+	$logged = $this->session->userdata('logged_in');
+	if ($logged == TRUE) {
 $i=0;
 $user_id=$this->session->userdata('user_id');
 $url_id= $this->_get_url_id();
@@ -75,8 +77,6 @@ $last_activity =$this->db_module->get_last_activity($friend_id);
 $unread_data = $this->db_module->get_all_unread($user_id);
 $friends_data_friend = $this->db_module->get_users_by_id($friend_id);
 
-
-$logged = $this->session->userdata('logged_in');
 $unread = $this->db_module->get_unread($url_id);
 $friends_data_arr = array('friends_data_friend' => $friends_data_friend, 'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data, 'last_activity' => $last_activity);
 
@@ -84,9 +84,9 @@ $page_content = $this->load->view('friends_view_form',$friends_data_arr,true);
 $title= 'Сообщения / PortfolioOnline';
 
 $user_id='';
-if ($logged == TRUE) {
+
 $user_id=$this->session->userdata('user_id');
-}
+
 $page = array(
 'title' => $title,
 'page_content' => $page_content,
@@ -94,9 +94,10 @@ $page = array(
 'user_id' => $user_id,
 );
 $this->load->view('template',$page);
-
+} else {
+				header ("Location:". $this->config->site_url());
 }
-	
+}
 
 
 
@@ -104,10 +105,18 @@ $this->load->view('template',$page);
 
 	function chat_friends()
 		{
+				$logged = $this->session->userdata('logged_in');
+	if ($logged == TRUE) {
+
 			$this->load->view('chat_friends_form');	
+} else {
+				header ("Location:". $this->config->site_url());
+}
 		}
 
 	function send_friends_messages(){
+						$logged = $this->session->userdata('logged_in');
+			if ($logged == TRUE) {
 		$messages = $_POST['messages'];
 		$friend_id = $_POST['friend_id'];
 		$user_id=$this->session->userdata('user_id');
@@ -116,6 +125,10 @@ $this->load->view('template',$page);
 			$avatar = $item->avatar;
 		}
 		$this->db_module->send_chat_friends($user_id, $friend_id, $messages, $avatar);
+		} else {
+				header ("Location:". $this->config->site_url());
+}
+		
 		// // извлекаю из базы значение "отправлял ли пользователь сообщение этому адресату когда либо"
 		// $friend_data = $this->db_module->view_friends($friend_id, $user_id); 
 		// foreach ($friend_data as $item) {
@@ -148,10 +161,13 @@ $this->load->view('template',$page);
 
 
 	function subscribe(){
+						$logged = $this->session->userdata('logged_in');
+		if ($logged == TRUE) {
 		$friend_id = $_POST['friend_id'];
 		$user_id=$this->session->userdata('user_id');
 		$mass = $arrayName = array('0' => $user_id, '1' => $friend_id);
 		$friend_data = $this->db_module->view_friends($mass); 
+		
 		//заносим в базу айди пользователя и адресата для дальнейшего извлечения сообщений
 		if($friend_data != '1'){
 		$this->db_module->friends_insert($friend_id, $user_id);
@@ -160,9 +176,10 @@ $this->load->view('template',$page);
 			echo 'Уже подписан';
 		}
 
-	}
+			} else {
+				header ("Location:". $this->config->site_url());
+}
 
-
-
+}
 }
 ?>

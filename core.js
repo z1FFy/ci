@@ -196,7 +196,7 @@ $('.btn_entry').click(function() {
         id_photo = $(this).attr("link");
           photos_name = $(this).attr("photos_name");
        var src = site_full+"/id/albom/red_photo?id_photo="+id_photo+"&photos_name="+photos_name;
-        upload(src,'nof',430,430);
+        upload(src,'nof',430,300);
       });
 
          $(".delete_photos").on("click", function(){

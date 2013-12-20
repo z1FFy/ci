@@ -198,7 +198,7 @@
 	function like_photos(){
 		
 		 $like_photos = $_POST['like_photos'];
-
+		 $user_id = $this->session->userdata('user_id');
 		$like_num=0;
 		$like_data = $this->db_module->view_like($like_photos);
 		foreach ($like_data as $item) {
@@ -206,17 +206,14 @@
 		}
 		
 		
-		$arr_like_data = $this->db_module->view_like_user($like_photos);
-		foreach ($arr_like_data as $item) {
-			$user_id = $item->user_id;
-		}
+		$like_user_rows = $this->db_module->view_like_user($like_photos, $user_id);
 			
-			if($user_id == $this->session->userdata('user_id'))
+			if($like_user_rows >= 1)
 			{
 				$like_num=$like_num-1;
 				$this->db_module->dell_like($like_photos);
-			}else
-			{
+			}
+			if($like_user_rows == 0){
 				$like_num=$like_num+1;
 				$this->db_module->send_like_photos($like_photos);
 				
@@ -390,6 +387,8 @@
 			echo "В пароле испольуются некоректные символы";
 		}
 	}
+
+
  
 }
 ?>
