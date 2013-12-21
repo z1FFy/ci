@@ -1,6 +1,6 @@
  
   <?php
-  $my_id=$user_id;
+  $my_id=$this->session->userdata('user_id');
   foreach ($user_data as $item){ 
       $name=$item->name;
       $famil=$item->famil;
