@@ -151,8 +151,8 @@ $this->load->view('template',$page);
 		$friend_id = $_POST['friend_id'];
 		$user_id=$this->session->userdata('user_id');
 		$mass = array('0' => $user_id, '1' => $friend_id);
-		$friend_data = $this->db_module->view_friends($mass); 
-		
+		//$friend_data = $this->db_module->view_friends($mass); 
+		$friend_data = $this->db_module->view_friends($user_id, $friend_id); 
 		//заносим в базу айди пользователя и адресата для дальнейшего извлечения сообщений
 		if($friend_data != '1'){
 		$this->db_module->friends_insert($friend_id, $user_id);

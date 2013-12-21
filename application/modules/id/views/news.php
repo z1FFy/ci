@@ -76,6 +76,7 @@ $('.pass_update').click(function() {
 <div id="polosa"></div>
 <div id="right_user">
 <!-- <form> -->
+<h1>Новости:</h1>
  <?php
 
 foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
@@ -87,9 +88,8 @@ foreach ($news_photos_data as $item) { //в переменные заносим 
   $i=0;                               // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
   foreach ($subscribe_users_data as $item) {
     if($i==0){
-      for ($j=0; $j < count($subscribe_users_id); $j++) {  // нужно чтобы дата подписи с лузером совподала с его id 
-        if($item->user_id == $subscribe_users_id[$j]){
-          if($photos_date >= $subscribe_users_date[$j] ){ // если дата добавления фотки больше даты создания подписи эхаем все говно
+        if($item->friend_id == $id_user){
+          if($photos_date >= $item->subscribe_date ){ // если дата добавления фотки больше даты создания подписи эхаем все говно
               if($item->name == ''){
               $name = $item->login;
               }else{
@@ -102,7 +102,6 @@ foreach ($news_photos_data as $item) { //в переменные заносим 
               $i++;
           }
         }
-      }
       
     }
     
