@@ -79,15 +79,21 @@ body {
 	}
 
 	#showmenu{
+		text-align: center;
+		min-width: 100px;
+		z-index: 200;
 		position: absolute;
-		top: 150px;
+		top: 183px;
 		left: 50px;
 		background-color: #EDF7FD;
-		box-shadow: 0 0 3px rgba(255, 255, 255, 1);
-		padding-top: 7px;
-		padding-bottom: 7px;
+		box-shadow: 0 0 3px rgba(47, 105, 179, 1);
+		border-radius: 0px 0px 5px 5px;
+		padding-top: 10px;
+/*		padding-bottom: 14px;*/
 		padding-left: 20px;
 		padding-right: 20px;
+		border: 0px solid rgba(47, 105, 179, 1);
+
 	}
 	#polosa {
 		display:table-cell;

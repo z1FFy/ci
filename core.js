@@ -302,17 +302,6 @@ function onAjaxSuccess(data)
           };
 
 
-  $('#showmenu').mouseover(function() { 
-
-  $('#left_user').slideDown("slow");
-
- $('#left_user').mouseleave(function() { 
-
-$('#left_user').slideUp("fast");
-
-
-       }); 
-       }); 
 
 
 

@@ -80,6 +80,7 @@
 
 		$title='Профиль';
 		$user_id=$this->session->userdata('user_id');
+		$this ->db_module->last_activity($user_id);
 		$url_id= $this->_get_url_id();
 		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
@@ -87,7 +88,6 @@
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
 		$page_content = $this->load->view('profile', $user_data_arr, true);
-		$this ->db_module->last_activity($user_id);//
 		$user_id='';
 		if ($logged == TRUE) {
 		 	$user_id=$this->session->userdata('user_id');
@@ -107,6 +107,7 @@
 	function profile_update_form() {
 		$title='Редактировать профиль';
 		$user_id=$this->session->userdata('user_id');
+		$this ->db_module->last_activity($user_id);
 		$url_id= $this->_get_url_id();
 		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
@@ -114,7 +115,6 @@
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
 		$page_content = $this->load->view('profile_update_form', $user_data_arr, true);
-		$this ->db_module->last_activity($user_id);
 		$user_id='';
 		if ($logged == TRUE) {
 		 	$user_id=$this->session->userdata('user_id');
@@ -242,6 +242,7 @@
 		if ($logged == TRUE) {
 		$title='Найти человека';
 		$user_id=$this->session->userdata('user_id');
+		$this ->db_module->last_activity($user_id);
 		$url_id= $this->_get_url_id();
 		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
@@ -249,8 +250,6 @@
 
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
 		$page_content = $this->load->view('seach', $user_data_arr, true);
-		$this ->db_module->last_activity($user_id);
-
 		$page = array(
            'title' => $title,
            'page_content' => $page_content,
@@ -269,6 +268,7 @@
 
 		$title='Найти человека';
 		$user_id=$this->session->userdata('user_id');
+		$this ->db_module->last_activity($user_id);
 		$url_id= $this->_get_url_id();
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$logged = $this->session->userdata('logged_in');
@@ -304,7 +304,6 @@
 		
 		//
 		$unread = $this->db_module->get_unread($url_id);
-		$this ->db_module->last_activity($user_id);
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'seach_data' => $seach_data, 'text' => $text, 'unread' => $unread,);
 	 $this->load->view('seach', $user_data_arr);
 
@@ -342,6 +341,7 @@
 		if ($logged == TRUE) {
 		$title='Измение пароля';
 		$user_id=$this->session->userdata('user_id');
+		$this ->db_module->last_activity($user_id);
 		$url_id= $this->_get_url_id();
 		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
@@ -349,7 +349,6 @@
 
 		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
 		$page_content = $this->load->view('pass_update', $user_data_arr, true);
-		$this ->db_module->last_activity($user_id);
 
 		$page = array(
            'title' => $title,

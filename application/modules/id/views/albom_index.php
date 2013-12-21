@@ -1,19 +1,23 @@
 <div id="polosa"><br></div>
 <div id="right_user">
+
 	<p class="titl">Мои работы  
 <?php 
+
 $id_al='';
 	$sel='';
 	if (isset($_GET['id_albom'])) {
 $id_al = $_GET['id_albom'];
 	}
 	echo '<select style="width:100px" onchange="top.location=this.value">';
+
 	echo '<option value="'.$this->config->site_url().'id'.$url_id.'">Все</a> </option> ';
 ?> </p>  <?php
 	$i=0;
+
 	foreach ($albom_data as $item){ 
 		$i++;
-		if ($i==$id_al) {
+		if ($item->id_albom==$id_al) {
 				$sel='selected';
 		}else {
 			$sel='';

@@ -32,6 +32,7 @@ function do_albom()
 	{
 		$albom_name = $_POST['albom_name'];
 		$res=$this->db_module->send_new_albom($albom_name);
+		$user_id=$this->session->userdata('user_id');
 		header ("Location:". $this->config->site_url().'id'.$user_id);
 	}
 

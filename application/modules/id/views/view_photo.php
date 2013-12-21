@@ -50,6 +50,20 @@ margin-bottom: 40px;
   $(document).ready(function() {
      $('#left_user').hide();
 
+    $('#showmenu').click(function() { 
+      $('#left_user').slideDown("slow");
+      }); 
+ $('#left_user').mouseleave(function() { 
+
+$('#left_user').slideUp("fast");
+
+
+       }); 
+
+  $('#showmenu').hover(function() { 
+
+  $('#left_user').slideDown("slow");
+       }); 
   });
   // window.onload = function() {
   //       var photo = $("#photo");
@@ -70,7 +84,7 @@ foreach ($user_data as $item){
       $famil=$item->famil;
     }
       ?>
-<div id="showmenu"><?php echo $name.' '.$famil; ?><img style="position: absolute;margin-top: 4px;" width="15px" src="
+<div id="showmenu"><?php echo $name.' '.$famil; ?><br><img style="<!-- position: absolute;margin-top: 4px; -->" width="15px" src="
 <?php echo $this->config->site_url().'images/down.png' ?>
 "> </div>
 	<?php 

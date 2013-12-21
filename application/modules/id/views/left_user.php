@@ -1,5 +1,6 @@
  
   <?php
+  $my_id=$user_id;
   foreach ($user_data as $item){ 
       $name=$item->name;
       $famil=$item->famil;
@@ -23,7 +24,7 @@
       echo '<br><div style="margin-top: -20px;margin-left:23px" class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
  $t = time() - $item->lastactivity;
       if($t > 300){
-        $last_activity = '<img width="80px" src="'.$this->config->site_url().'images/offline.png">';
+        $last_activity = '';
       }else{
         $last_activity = '<img width="80px" src="'.$this->config->site_url().'images/online.png">';
       }
@@ -53,7 +54,7 @@ echo '<p style="padding-left:45px">';
    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."'>Мои работы</a>";
       echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
       if ($logged == TRUE) {
-        echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends?friend_id=".$url_id."'>Отправить сообщение</a>";
+        echo "<br><a  href='".$this->config->site_url() ."id".$my_id."/friends?friend_id=".$url_id."'>Отправить сообщение</a>";
         echo '<br>  <a id="subscribe" link = '.$url_id.'>Подписаться</a>';
       }
 echo '</p>';
