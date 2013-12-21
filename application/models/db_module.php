@@ -329,7 +329,7 @@ function delete_photos($delete_photos){
 	$this->db->delete('photos', array('id_photos' => $delete_photos));
 }
 
-function friends_insert($friend_id, $user_id){
+	function friends_insert($friend_id, $user_id){
 	$this->friend_id = $friend_id;
 	$this->user_id = $user_id;
 	$this->subscribe_date = time();
@@ -399,11 +399,20 @@ function dell_unread($user_id, $friend_id){
 
 
 
-function view_friends($mass){
+// function view_friends($mass){
+// 	$this->db->select('*');
+// 	$this->db->from('friends');
+// 	$this->db->where_in('user_id', $mass); 
+// 	$this->db->where_in('friend_id', $mass);
+// 	$query = $this->db->get();
+// 	return $query->num_rows();
+
+// }
+function view_friends($user_id, $friend_id){
 	$this->db->select('*');
 	$this->db->from('friends');
-	$this->db->where_in('user_id', $mass); 
-	$this->db->where_in('friend_id', $mass);
+	$this->db->where('user_id', $user_id); 
+	$this->db->where('friend_id', $friend_id);
 	$query = $this->db->get();
 	return $query->num_rows();
 
@@ -498,10 +507,10 @@ function pass_update($user_id, $new_pass){
 
 function friends_view_id($user_id){
 	$this->db->select('*');
-	$this->db->from('friends');
-	 //$this->db->join('friends', 'friends.friend_id = users.user_id');
+	$this->db->from('users');
+	 $this->db->join('friends', 'friends.friend_id = users.user_id');
 	 $this->db->where('friends.user_id', $user_id); 
-	$this->db->or_where('friends.friend_id', $user_id);
+	//$this->db->or_where('friends.friend_id', $user_id);
 	$query = $this->db->get();
 	 return $query->result();
 }

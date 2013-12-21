@@ -34,7 +34,9 @@ background-color:#fff;
 <p class="titl"> Лента новостей</p>
 <!-- <form> -->
  <?php
-
+if (empty($news_photos_data)) {
+  echo "Нет новостей";
+}
 foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
   $url_photo = $item->url_photo;
   $name_photo = $item->photos_name;
@@ -44,9 +46,8 @@ foreach ($news_photos_data as $item) { //в переменные заносим 
   $i=0;                               // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
   foreach ($subscribe_users_data as $item) {
     if($i==0){
-      for ($j=0; $j < count($subscribe_users_id); $j++) {  // нужно чтобы дата подписи с лузером совподала с его id 
-        if($item->user_id == $subscribe_users_id[$j]){
-          if($photos_date >= $subscribe_users_date[$j] ){ // если дата добавления фотки больше даты создания подписи эхаем все говно
+        if($item->friend_id == $id_user){
+          if($photos_date >= $item->subscribe_date ){ // если дата добавления фотки больше даты создания подписи эхаем все говно
               if($item->name == ''){
               $name = $item->login;
               }else{
@@ -59,7 +60,6 @@ foreach ($news_photos_data as $item) { //в переменные заносим 
               $i++;
           }
         }
-      }
       
     }
     
