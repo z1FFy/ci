@@ -20,7 +20,7 @@
     } else {
        $whostring='';
     }
-      echo '<div id="left_user">';
+      echo '<div style="" class="block" id="left_user">';
       echo '<br><div style="margin-top: -20px;margin-left:23px" class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
  $t = time() - $item->lastactivity;
       if($t > 300){
@@ -44,22 +44,25 @@ echo '<p style="padding-left:45px">';
     }
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."'>Мои работы</a>";
-   echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/friends_view">Мои контакты</a>';
+   echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/friends_view">Мои сообщения</a>';
     echo '<br>  <a id="upload_ava">Изменить аватар</a>';
     echo '<br><a class="upload_foto">Загрузить работу</a>';
     echo '<br>  <a href="'.$this->config->site_url() .'id'.$url_id.'/news">Лента новостей</a>';
     echo '<br>'.$exit;
     echo '<p style="font-size:12px;text-align:center"><br><br>Ссылка на портфолио:<br><i><a href="'.$this->config->site_url() .'id'.$url_id.'">'.$this->config->site_url() ."id".$url_id.'</i></a></p>';
+
     }else{    
    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."'>Мои работы</a>";
       echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
       if ($logged == TRUE) {
         echo "<br><a  href='".$this->config->site_url() ."id".$my_id."/friends?friend_id=".$url_id."'>Отправить сообщение</a>";
         echo '<br>  <a id="subscribe" link = '.$url_id.'>Подписаться</a>';
+
       }
 echo '</p>';
 
 }
 
 echo '</div>';
+
 ?>

@@ -14,7 +14,7 @@
   #menu {
     height: 39px;
   }
-  .block {
+  .block_msg {
   background-color: #D7DBDD;
   padding: 7px;
   border-radius: 7px;
@@ -86,7 +86,7 @@ echo '<p class="titl">Переписка  </p><br>';
 			}
 			//var_dump($item);
     
-  echo '<div class="block"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
+  echo '<div class="block_msg"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
       .htmlspecialchars($name, ENT_QUOTES);
       echo '<div class="date_msg">Дата/Время: ';
       echo date("d.m.y H:i:s" ,$item->message_date);

@@ -1,5 +1,6 @@
 
 body {
+	min-width: 835px;
  	margin: 0px;
  	font-family: Verdana;
  	background-color: #fff;
@@ -52,7 +53,17 @@ body {
 		background-image: url('images/menu-bg.png');
 	}
 	#menu a {
-		color: #fff;
+color: #fff;
+/*background-color: rgba(255, 255, 255, 0.07);*/
+padding: 5px;
+color: #fff;
+padding-bottom: 19px;
+padding-top: 10px;
+text-shadow: 0px 0px 1px rgb(31, 55, 85);
+	}
+	#menu a:hover {
+		background-color: rgba(255, 255, 255, 0.12);
+		text-decoration: none;
 	}
 
 	#middle-pol {
@@ -74,8 +85,10 @@ body {
 
 	#left_user {
 		width: 250px;
-		padding-top: 10px;
+		padding-top: 14px;
 		z-index: 444;
+		margin-right: 10px;
+		border-radius: 0px 0px 10px 10px;
 	}
 
 	#showmenu{
@@ -86,7 +99,7 @@ body {
 		top: 183px;
 		left: 50px;
 		background-color: #EDF7FD;
-		box-shadow: 0 0 3px rgba(47, 105, 179, 1);
+		/*box-shadow: 0 0 3px rgba(0,0,0,5);*/
 		border-radius: 0px 0px 5px 5px;
 		padding-top: 10px;
 /*		padding-bottom: 14px;*/
@@ -98,7 +111,7 @@ body {
 	#polosa {
 		display:table-cell;
 
-		width: 2px;
+		width: 0px;
 		background-color: #054E7C;
 		margin-right: 10px;
 		height: 100%;
@@ -106,7 +119,7 @@ body {
 	}
 	#right_user {
 		padding-top: 10px;
-		margin-left: 20px;
+		/*margin-left: 20px;*/
 height: 100%;
 min-height: 600px;
 margin-bottom: 40px;
@@ -146,11 +159,11 @@ border-radius: 6px;
 .block_photo {
 	float: left;
 	background-color: #EDF7FD;
-	height: 164px;
 	padding: 10px;
 	margin-left: 10px;
 	margin-top: 10px;
 	box-shadow: 0 0 1px rgba(0,0,0,0.5);
+	width: 20%;
 }
 
 .friend_block {
@@ -183,8 +196,11 @@ border-radius: 6px;
 .photo {
 	float: left;
 	background-size: cover;
-	height: 150px;
-	width: 150px;
+/*height: 40%;*/
+width: 100%;
+/*min-height: 40px;
+min-width: 50px;
+*/
 }
 .block_photo:hover {
 /*	background-color: #336AA8;	*/
@@ -236,10 +252,14 @@ opacity: 0.8;
 }
 .pod_photo {
 width: 100%;
-/*color:#EDF7FD;*/
+color: #EDF7FD;
+text-shadow: 0px 0px 2px #000;
 position: static;
-margin-top: 150px;
+margin-top: 87%;
+min-height: 30px;
 text-align: center;
+background-color: rgba(0, 0, 0, 0.17);
+
 }
 #wrapper {
 	width: 100%;

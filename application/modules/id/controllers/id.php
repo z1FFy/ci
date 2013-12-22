@@ -48,9 +48,16 @@
 		$unread = $this->db_module->get_unread($url_id);
 		$last_activity =$this->db_module->get_last_activity($url_id); 
 		$title='userpage';
+$i=0;
+
 		foreach ($profile_data as $item){ 
 			$title=$item->name.' '.$item->famil.' / PortfolioOnline';
 		}
+
+
+	
+
+
 				$data = array(
 	               'user_data' => $data_user,
 	               'whopage' => $whopage,
@@ -61,6 +68,7 @@
 	               'url_id' => $url_id,
 	               'user_id' => $user_id,
 	               'profile_data' => $profile_data,
+
 	               'unread' => $unread,
 	               'last_activity' => $last_activity
 

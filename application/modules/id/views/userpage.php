@@ -10,12 +10,22 @@
 
   }
   #content {
-    padding-left: 10%;
-    padding-right: 10%;
-    display: table;
+    padding-left: 0%;
+    padding-right: 0%;
+/*    display: table;*/
   }
+  #left_user {
+float: left;
+}
+.block {
+ 
+  padding-bottom: 8px;
+}
   #menu {
     height: 39px;
+  }
+  .block_photo {
+    width:16%;
   }
 
 </style>
@@ -31,8 +41,11 @@ foreach ($user_data as $item){
 		}
 
        $this->load->view('left_user',$user_data); 
+
    $this->load->view('albom_index',$user_data); 
+  
 
 ?>
+
 <!-- Профиль! -->
  

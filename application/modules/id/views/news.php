@@ -35,15 +35,29 @@ background-color:#fff;
 <!-- <form> -->
  <?php
 if (empty($news_photos_data)) {
-  echo "Нет новостей";
+  echo "Подписывайтесь под другим пользователем, что бы видеть сдесь последние обновления";
 }
+
+
+     # code...
+  
+      echo '<div style="
+width: 240px;
+" class="block">Подписчики:<br>';
+foreach ($friends_data_friend as $item) {
+  echo '<img style="width:50px;height:50px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'">';
+}
+
+echo '</div>';
+
 foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
   $url_photo = $item->url_photo;
   $name_photo = $item->photos_name;
   $photos_date = $item->photos_date;
   $id_photos = $item->id_photos;
   $id_user = $item->id_user;
-  $i=0;                               // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
+  $i=0;        
+                 // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
   foreach ($subscribe_users_data as $item) {
     if($i==0){
         if($item->friend_id == $id_user){
@@ -58,6 +72,8 @@ foreach ($news_photos_data as $item) { //в переменные заносим 
               echo '<img width="400" src="'.$this->config->site_url().'uploads/photos/'.$url_photo.'"/">';
               echo '</div><br>';
               $i++;
+          } else {
+
           }
         }
       
