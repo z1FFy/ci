@@ -125,10 +125,16 @@ $this->load->view('template',$page);
 			$avatar = $item->avatar;
 		}
 		$this->db_module->send_chat_friends($user_id, $friend_id, $messages, $avatar);
+		$mass = array('0' => $user_id, '1' => $friend_id);
+		$friend_data = $this->db_module->view_friends($mass); 
+		if($friend_data != '1'){
+		$this->db_module->friends_insert($friend_id, $user_id);
+		
+		}
+
 		} else {
 				header ("Location:". $this->config->site_url());
 }
-		
 		// // извлекаю из базы значение "отправлял ли пользователь сообщение этому адресату когда либо"
 		// $friend_data = $this->db_module->view_friends($friend_id, $user_id); 
 		// foreach ($friend_data as $item) {
@@ -163,14 +169,15 @@ $this->load->view('template',$page);
 	function subscribe(){
 						$logged = $this->session->userdata('logged_in');
 		if ($logged == TRUE) {
-		$friend_id = $_POST['friend_id'];
+		$second_user = $_POST['friend_id'];
 		$user_id=$this->session->userdata('user_id');
-		$mass = array('0' => $user_id, '1' => $friend_id);
+		$mass = array('0' => $user_id, '1' => $second_user);
 		//$friend_data = $this->db_module->view_friends($mass); 
-		$friend_data = $this->db_module->view_friends($user_id, $friend_id); 
+		$subscribe_data = $this->db_module->view_subscribe_users($user_id, $second_user); 
 		//заносим в базу айди пользователя и адресата для дальнейшего извлечения сообщений
-		if($friend_data != '1'){
-		$this->db_module->friends_insert($friend_id, $user_id);
+		//var_dump($subscribe_data);
+		if($subscribe_data != '1'){
+		$this->db_module->subscribe_insert($second_user, $user_id);
 		echo 'Подписался'; 
 		}else{
 			echo 'Уже подписан';

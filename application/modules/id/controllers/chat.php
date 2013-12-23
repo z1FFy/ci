@@ -26,6 +26,14 @@
 		echo $res;
 		
 	}
+		function send_message_v(){
+		$id_video = $_POST['id_video'];
+		$messages = $_POST['messages'];
+		$user_id=$this->session->userdata('user_id');
+		$res=$this->db_module->send_message_v($id_video, $messages, $user_id);
+		echo $res;
+		
+	}
 
 
 

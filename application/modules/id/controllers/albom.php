@@ -92,10 +92,11 @@ function photos_in_albom()
 		if (isset($_GET['id_vid'])) {
 				$id_video = $_GET['id_vid'];
 				$video_data = $this->db_module->get_user_videos($url_id);
+				$message_data = $this->db_module->view_message_vid($id_video);
 			}
 		$unread = $this->db_module->get_unread($url_id);
 
-	$data_arr = array('user_data' => $user_data, 
+	$data_arr = array('user_data' => $user_data, 'message_data' =>  $message_data,
 		'video_data' => $video_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
 
 	$page_content=$this->load->view('view_video',$data_arr,true);

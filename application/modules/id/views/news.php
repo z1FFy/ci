@@ -34,17 +34,17 @@ background-color:#fff;
 <p class="titl"> Лента новостей</p>
 <!-- <form> -->
  <?php
-if (empty($news_photos_data)) {
+if (empty($subscribe_users_data)) {
   echo "Подписывайтесь под другим пользователем, что бы видеть сдесь последние обновления";
 }
 
 
-     # code...
+   
   
       echo '<div style="
 width: 240px;
 " class="block">Подписчики:<br>';
-foreach ($friends_data_friend as $item) {
+foreach ($subscribe_users_data as $item) {
   echo '<img style="width:50px;height:50px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'">';
 }
 
@@ -60,7 +60,7 @@ foreach ($news_photos_data as $item) { //в переменные заносим 
                  // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
   foreach ($subscribe_users_data as $item) {
     if($i==0){
-        if($item->friend_id == $id_user){
+        if($item->second_user == $id_user){
           if($photos_date >= $item->subscribe_date ){ // если дата добавления фотки больше даты создания подписи эхаем все говно
               if($item->name == ''){
               $name = $item->login;

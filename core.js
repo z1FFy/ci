@@ -293,6 +293,43 @@ $('.like_photos').click(function() {
    };
  });
 
+
+ $('.send_com_v').click(function() { 
+    messages = $("#messages").val();
+    id_video= $("input[name ='id_video']").val();
+    id_user= $("input[name ='id_user']").val();
+   //alert(messages);
+
+
+
+  $.post(site_full+"/id/chat/send_message_v",
+     { messages : messages, id_video : id_video,
+          },
+     onAjaxSuccess
+   );
+  function onAjaxSuccess(data)
+   {
+    // alert(data);
+      location.reload();
+   };
+ });
+         $(".delete_video").on("click", function(){
+
+        delete_video = $(this).attr("link");
+      $.post(site_full+"/id/delete_video",
+         { delete_video : delete_video,
+              },
+         onAjaxSuccess
+         );
+      function onAjaxSuccess(data)
+      {
+  window.location.replace(site_full+"/id");
+
+      };
+      });
+
+
+
 function onAjaxSuccess(data)
    {
   $('.like_photos1').addClass('.like_photos');     

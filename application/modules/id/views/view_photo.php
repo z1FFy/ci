@@ -56,9 +56,9 @@ margin-left: 250px;
   $(document).ready(function() {
      //$('#left_user').hide();
 
-    $('#showmenu').click(function() { 
-      $('#left_user').slideDown("slow");
-      }); 
+    // $('#showmenu').click(function() { 
+    //   $('#left_user').slideDown("slow");
+    //   }); 
 //  $('#left_user').mouseleave(function() { 
 
 // $('#left_user').slideUp("fast");
@@ -66,11 +66,11 @@ margin-left: 250px;
 
 //        }); 
 
-  $('#showmenu').hover(function() { 
+  // $('#showmenu').hover(function() { 
 
-  $('#left_user').slideDown("slow");
-       }); 
-  });
+  // $('#left_user').slideDown("slow");
+  //      }); 
+  // });
   // window.onload = function() {
   //       var photo = $("#photo");
   //     photo_w=parseInt(photo.width());
@@ -258,7 +258,8 @@ echo "</div>";
 
 <input type="submit" class="send_com styler" value="Отправить" />
 </div>
-</p></div></div>
+</p></div>
+</div>
 
 
 </div>
