@@ -64,18 +64,46 @@ function photos_in_albom()
 		$url_id= $this->_get_url_id();
 	 	$user_id=$this->session->userdata('user_id');
 	 	$logged = $this->session->userdata('logged_in');
-		$whopage= $this->_get_whopage($url_id,$user_id);		
+		$whopage= $this->_get_whopage($url_id,$user_id);	
+		$video_data='';
+		if (isset($_GET['id_vid'])) {
+				$id_video = $_GET['id_vid'];
+				$video_data = $this->db_module->get_user_videos($url_id);
+			}
 		$id_photos = $_GET['id_orig'];
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$photos_data = $this->db_module->get_user_photos($url_id);
 		$message_data = $this->db_module->view_message($id_photos);
 		$unread = $this->db_module->get_unread($url_id);
-		$message_data_arr = array( 'message_data' => $message_data, 'user_data' => $user_data, 'photos_data' => $photos_data,'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
+		$message_data_arr = array( 'message_data' => $message_data, 'user_data' => $user_data, 'photos_data' => $photos_data, 'video_data' => $video_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
 		$page_content=$this->load->view('view_photo',$message_data_arr,true);
 		$title="Просмотр фото";
 		$data['page_content'] = $page_content;
 		$data['title'] = $title;
 		$this->load->view('template',$data);		
+	}
+
+	function view_video() {
+				$url_id= $this->_get_url_id();
+	 	$user_id=$this->session->userdata('user_id');
+	 	$logged = $this->session->userdata('logged_in');
+		$whopage= $this->_get_whopage($url_id,$user_id);	
+		$user_data = $this->db_module->get_user_by_id($url_id);
+		if (isset($_GET['id_vid'])) {
+				$id_video = $_GET['id_vid'];
+				$video_data = $this->db_module->get_user_videos($url_id);
+			}
+		$unread = $this->db_module->get_unread($url_id);
+
+	$data_arr = array('user_data' => $user_data, 
+		'video_data' => $video_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
+
+	$page_content=$this->load->view('view_video',$data_arr,true);
+		$title="Просмотр видео";
+		$data['page_content'] = $page_content;
+		$data['title'] = $title;
+		$this->load->view('template',$data);		
+	
 	}
 
 	function red_photo() {

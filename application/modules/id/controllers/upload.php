@@ -29,7 +29,20 @@ class Upload extends CI_Controller {
 		$user_id=$this->session->userdata('user_id');
 		if ($logged == TRUE) {
 			$who = $_POST['who'];
-
+		if ($who == 'video') {
+			$video_name = $_POST['photos_name'];
+			$kod = $_POST['kod'];
+			$youtube_url = $kod;
+			preg_match("!v\=([A-z|0-9]*)!", $youtube_url, $url_parts);
+			$video_id = $url_parts[1];
+				$data = array(
+	               'user_id' => $user_id,
+	               'video_name' => $video_name,
+	               'kod' => $video_id
+	                       );
+				$data_user = $this->db_module->send_user_videos($data);
+		}
+		else {
 		if ($who == 'photos') {
 			$config['upload_path'] = './uploads/photos/';
 			$photos_name = $_POST['photos_name'];
@@ -66,7 +79,8 @@ class Upload extends CI_Controller {
            'user_id' => $user_id
          );
 		$this->load->view('template',$page);
-		}
+				}
+			}
 		}
 	}
 	function small_ava() {

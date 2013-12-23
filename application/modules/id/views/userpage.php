@@ -25,7 +25,7 @@ float: left;
     height: 39px;
   }
   .block_photo {
-    width:16%;
+    width:13%;
   }
 
 </style>

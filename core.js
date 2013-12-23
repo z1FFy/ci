@@ -231,7 +231,7 @@ $('.btn_entry').click(function() {
 
   $('#teh').click(function() { 
         var src = site_full+"/id/support";
-        upload(src,'nof',400,500);
+        upload(src,'nof',300,300);
        }); 
     
   $('#create_albom').click(function() { 

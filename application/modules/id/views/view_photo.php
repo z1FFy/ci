@@ -49,6 +49,7 @@ margin-left: 250px;
 }
 .block_photo {
   width: auto;
+  max-width: 200px;
 }
 </style>
 <script>
@@ -176,7 +177,7 @@ echo '<small>Название:</small><br> '.$photos_name.'
  echo '<div style="font-size: 10px;color: rgb(124, 124, 124);text-shadow: 1px 1px 0px white;"><br>Дата/Время:<br> '.date("d.m.y H:i:s" ,$item->photos_date).'</div></div>';
 
 //<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
-   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="" src="'.$img_path.'" width="'.$mwidth.'"></div></a>'; 
+   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="max-width:'.$mwidth.'px" width="90%" src="'.$img_path.'" ></div></a>'; 
 //<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
  echo '<p style="margin-top:10px;text-align:center;padding:10px">';
  echo "<button class='batn styler' onclick=";

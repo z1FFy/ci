@@ -65,13 +65,13 @@ echo "Ваше сообщение отправлено, мы обязатель�
 
 
 
-<form action="<?php echo $this->config->site_url() ?>id/support" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-<input type="text" name="support_mail" maxlength="40" placeholder="Введите свою почту" />
+<form  action="<?php echo $this->config->site_url() ?>id/support" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+<input class="styler" type="text" name="support_mail" maxlength="40" placeholder="Введите свою почту" />
 <br><br>
-<textarea name="support_message" placeholder="Опишите проблему"></textarea>
+<textarea class="styler" name="support_message" placeholder="Опишите проблему"></textarea>
  <br>
 
-<input type="submit" value="Отправить" />
+<input class="styler" type="submit" value="Отправить" />
 
 </form>
 

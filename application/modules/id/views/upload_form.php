@@ -1,9 +1,27 @@
-<html>
-<head>
-<title>Форма загрузки</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-</head>
-<body>
+<script>
+	(function($) {  
+$(function() {  
+  
+  $('input, select, button, file, text').styler();  
+  
+})  
+})(jQuery)  
+  $(document).ready(function() {
+  	$("textarea[name='kod']").hide();
+ $("select[name='type']").change(function () {
+ 	val=($(this).val());
+ 	if (val=='Видео(YouTube)') {
+	 	$(".jq-file__name").hide('fast');
+	 	$("textarea[name='kod']").show('fast');
+	 	$("input[name='who']").val('video');
+ 	}
+ 	else {
+ 	$(".jq-file__name").show('fast');
+ 		$("textarea[name='kod']").hide('fast');
+ 	}
+ 	});
+ });
+</script>
 
 <?php
 $who = '';
@@ -30,9 +48,15 @@ if ($access=='da') {
 
 echo '<form action="'.$this->config->site_url().'id/upload/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">';
 if ($who=='photos') {
-echo '<input class="styler" type="text" name="photos_name" maxlength="20" placeholder="Имя" />';
+echo '	<br>Тип файла: <select name="type" class="styler" style="width:140px">
+	<option name="photo">Изображение</option>
+	<option name="video">Видео(YouTube)</option>
+	</select>
+	';
  }
-echo '<br><input class="styler" type="file" name="userfile" size="20" />
+echo '<br><br><input  class="styler" type="file" name="userfile" size="20" />
+ <textarea name="kod" class="styler" cols="40" rows = "5" placeholder="Ссылка на видео с YouTube"></textarea>
+<br><br><input class="styler" type="text" name="photos_name" maxlength="20" placeholder="Имя" />
  <input type="hidden" name="who" value="'.$who.'">
 <br /><br />
 
@@ -42,5 +66,3 @@ echo '<br><input class="styler" type="file" name="userfile" size="20" />
 ';
 }
 ?>
-</body>
-</html>

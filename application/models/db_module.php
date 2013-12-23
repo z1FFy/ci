@@ -158,6 +158,32 @@ if ($key == 'photos_date') {
 	return $result;
 	}
 
+function send_user_videos($data) {
+	$logged = $this->session->userdata('logged_in');
+	$result='';
+	if ($logged=TRUE) {
+	$video_name=$data['video_name'];
+	$user_id=$data['user_id'];
+	$kod=$data['kod'];
+	$video_date = time();
+		$this->id_user   =  $user_id;
+        $this->video_name = $video_name; 
+        $this->kod = $kod;
+        $this->video_date = $video_date;
+		$query = $this->db->insert('videos', $this);
+		$result='Фото загружено!';
+	header ("Location:". $this->config->site_url().'id'.$user_id); 
+
+	} else {
+		$result='Ошибка загрузки';
+	}
+	return $result;
+	}
+
+	function get_user_videos($url_id) {
+		 $query = $this->db->get_where('videos', array('id_user' => $url_id));
+	     return $query->result();
+	}
 
 	function get_user_photos($url_id) {
 		 $query = $this->db->get_where('photos', array('id_user' => $url_id));

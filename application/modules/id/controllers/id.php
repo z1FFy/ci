@@ -43,6 +43,7 @@
 
 
 		$photo_data = $this->db_module->get_user_photos($url_id);
+		$video_data = $this->db_module->get_user_videos($url_id);
 		$albom_data = $this->db_module->get_albom_photos($url_id);
 		$profile_data = $this->db_module->get_user_by_id($url_id);
 		$unread = $this->db_module->get_unread($url_id);
@@ -65,6 +66,7 @@ $i=0;
 	               'podtvr' => $podtvr,
 	               'albom_data' => $albom_data,
 	               'photo_data' => $photo_data ,
+	               'video_data' => $video_data ,
 	               'url_id' => $url_id,
 	               'user_id' => $user_id,
 	               'profile_data' => $profile_data,
