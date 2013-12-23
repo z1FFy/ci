@@ -37,7 +37,7 @@
 		$subscribe_users_data = $this->db_module->friends_view_id($user_id); //извлекаем все подписи с id пользователя
 		//var_dump($subscribe_users_data);
 		foreach ($subscribe_users_data as $item) {							  // заносим в $subscribe_users_id id всех с кем подписаны 
-			$subscribe_users_id[$i] = $item->friend_id;
+			$subscribe_users_id[$i] = $item->second_user;
 			$i++;
 		}
 		//var_dump($subscribe_users_id);
@@ -45,16 +45,16 @@
 		$news_photos_data = $this->db_module->view_news_photos($subscribe_users_id);	// извлекаем все фотки подписаных лузеров
 		//var_dump($news_photos_data);
 		$friend_id = '';
-		$friends_data = $this->db_module->friends_view($user_id);
+		$friends_data = $this->db_module->subscribe_view($user_id);
 		foreach ($friends_data as $item) {
-		if($item->friend_id == $user_id){
-		$friend_id[$i] = $item->user_id;
+		if($item->second_user == $user_id){
+		$second_user[$i] = $item->user_id;
 		}else{
-		$friend_id[$i] = $item->friend_id;
+		$second_user[$i] = $item->second_user;
 		}
 		$i++;
 }
-		$friends_data_friend = $this->db_module->get_users_by_id($friend_id);
+		$friends_data_friend = $this->db_module->get_users_by_id($second_user);
 		$user_data_arr = array( 'user_data' => $user_data, 'friends_data_friend' => $friends_data_friend, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'news_photos_data' => $news_photos_data, 'subscribe_users_data' => $subscribe_users_data);
 		$page_content = $this->load->view('news', $user_data_arr, true);
 		$this ->db_module->last_activity($user_id);

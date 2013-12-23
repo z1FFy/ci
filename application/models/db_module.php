@@ -330,10 +330,10 @@ function delete_photos($delete_photos){
 }
 
 	function friends_insert($friend_id, $user_id){
-	$this->friend_id = $friend_id;
-	$this->user_id = $user_id;
-	$this->subscribe_date = time();
-	$query = $this->db->insert('friends', $this); 
+	$this1->friend_id = $friend_id;
+	$this1->user_id = $user_id;
+	$this1->subscribe_date = time();
+	$query = $this->db->insert('friends', $this1); 
 
 }
 
@@ -367,6 +367,7 @@ function send_chat_friends($user_id, $friend_id, $messages){
 	$this->message_date  = time();
 	$this->unread = 'unread';
 	$query = $this->db->insert('chat_friends', $this); 
+	//$query->free_result();
 }
 
 function get_unread($user_id){
@@ -399,24 +400,16 @@ function dell_unread($user_id, $friend_id){
 
 
 
-// function view_friends($mass){
-// 	$this->db->select('*');
-// 	$this->db->from('friends');
-// 	$this->db->where_in('user_id', $mass); 
-// 	$this->db->where_in('friend_id', $mass);
-// 	$query = $this->db->get();
-// 	return $query->num_rows();
-
-// }
-function view_friends($user_id, $friend_id){
+function view_friends($mass){
 	$this->db->select('*');
 	$this->db->from('friends');
-	$this->db->where('user_id', $user_id); 
-	$this->db->where('friend_id', $friend_id);
+	$this->db->where_in('user_id', $mass); 
+	$this->db->where_in('friend_id', $mass);
 	$query = $this->db->get();
 	return $query->num_rows();
 
 }
+
 
 
 function view_friends1($friend_id, $user_id){
@@ -508,8 +501,8 @@ function pass_update($user_id, $new_pass){
 function friends_view_id($user_id){
 	$this->db->select('*');
 	$this->db->from('users');
-	 $this->db->join('friends', 'friends.friend_id = users.user_id');
-	 $this->db->where('friends.user_id', $user_id); 
+	 $this->db->join('subscribe', 'subscribe.second_user = users.user_id');
+	 $this->db->where('subscribe.user_id', $user_id); 
 	//$this->db->or_where('friends.friend_id', $user_id);
 	$query = $this->db->get();
 	 return $query->result();
@@ -527,7 +520,48 @@ function view_news_photos($subscribe_users_id){
 }
 
 
+function view_subscribe_users($user_id, $second_user){
+	$this->db->select('*');
+	$this->db->from('subscribe');
+	$this->db->where('user_id', $user_id); 
+	$this->db->where('second_user', $second_user);
+	$query = $this->db->get();
+	return $query->num_rows();
 
+}
+
+function subscribe_insert($second_user, $user_id){
+	$this->second_user = $second_user;
+	$this->user_id = $user_id;
+	$this->subscribe_date = time();
+	$query = $this->db->insert('subscribe', $this); 
+
+}
+
+function subscribe_view($user_id){
+	$this->db->select('*');
+	$this->db->from('users', 'subscribe');
+	 $this->db->join('subscribe', 'users.user_id = subscribe.second_user');
+	 $this->db->where('subscribe.user_id', $user_id); 
+	$this->db->or_where('subscribe.second_user', $user_id);
+	$query = $this->db->get();
+	 return $query->result();
+}
+
+
+function visit_insert($url_id, $guest_id, $session_id){
+	$data = array('session_id' => $session_id, 'user_id' => $url_id, 'guest_id' => $guest_id, 'visit_date' => time());
+	$query = $this->db->insert('visit', $data); 
+}
+
+function view_visit_num($user_id){
+	$this->db->select('*');
+	$this->db->from('visit');
+	$this->db->where('user_id', $user_id); 
+	$query = $this->db->get();
+	return $query->result();
+
+}
 
 
 	}

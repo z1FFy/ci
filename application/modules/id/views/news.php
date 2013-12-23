@@ -60,7 +60,7 @@ foreach ($news_photos_data as $item) { //в переменные заносим 
                  // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
   foreach ($subscribe_users_data as $item) {
     if($i==0){
-        if($item->friend_id == $id_user){
+        if($item->second_user == $id_user){
           if($photos_date >= $item->subscribe_date ){ // если дата добавления фотки больше даты создания подписи эхаем все говно
               if($item->name == ''){
               $name = $item->login;

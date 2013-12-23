@@ -20,10 +20,16 @@
 	}
 
 	function index() {
+			$time='';
+			$visit_date='';
 		$url_id= $this->_get_url_id();
 		$unread = $this->db_module->get_unread($url_id);
 	 	$user_id=$this->session->userdata('user_id');
-	 		$this ->db_module->last_activity($user_id);
+	 	$session_id=$this->session->userdata('session_id');
+	 	
+	 	$this ->db_module->last_activity($user_id);
+
+	 		//var_dump($this->session);
 	 	$logged = $this->session->userdata('logged_in');
 	 	if ($this->uri->segment(1) == 'id') {
 	 		if ($logged == TRUE){
@@ -40,7 +46,19 @@
 			$podtvr = $this->db_module->get_podtvr($url_id);
 		}
 
-
+		$visit_repeat = $this->db_module->view_visit_num($url_id);
+				foreach ($visit_repeat as $item) {
+				if($item->session_id == $session_id){
+					$time = time() - $item->visit_date;
+					$visit_date = $item->visit_date;
+					$user_id1 = $item->user_id;	
+				}
+				}
+				if($time > 3 || $visit_date ==''){
+					if($url_id != '' && $url_id != $user_id){
+						$this->db_module->visit_insert($url_id, $user_id, $session_id);	//Добавляем посещение гостя
+					}
+				}
 
 		$photo_data = $this->db_module->get_user_photos($url_id);
 		$albom_data = $this->db_module->get_albom_photos($url_id);
@@ -70,8 +88,7 @@ $i=0;
 	               'profile_data' => $profile_data,
 
 	               'unread' => $unread,
-	               'last_activity' => $last_activity
-
+	               'last_activity' => $last_activity,
 	                       );
 				$page_content = $this->load->view('userpage', $data, true);
 				$data['page_content'] = $page_content;
