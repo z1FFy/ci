@@ -568,6 +568,17 @@ function view_news_photos($subscribe_users_id){
 }
 
 
+function get_users_videos($subscribe_users_id) {
+	$this->db->select('*');
+	$query = $this->db->from('videos');
+	//$this->db->join('photos', 'videos.id_user = photos.id_user');
+	$this->db->where_in('id_user', $subscribe_users_id);
+	$query = $this->db->get();
+    return $query->result();
+
+	}
+
+
 function view_subscribe_users($user_id, $second_user){
 	$this->db->select('*');
 	$this->db->from('subscribe');
@@ -609,6 +620,11 @@ function view_visit_num($user_id){
 	$query = $this->db->get();
 	return $query->result();
 
+}
+
+
+function dell_subscribe($user_id, $second_user){
+	$this->db->delete('subscribe', array('user_id' => $user_id, 'second_user'=>$second_user));
 }
 
 

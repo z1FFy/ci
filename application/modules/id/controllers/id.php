@@ -20,6 +20,7 @@
 	}
 
 	function index() {
+			$subscribe_user ='';
 			$time='';
 			$visit_date='';
 		$url_id= $this->_get_url_id();
@@ -65,7 +66,15 @@
 		$albom_data = $this->db_module->get_albom_photos($url_id);
 		$profile_data = $this->db_module->get_user_by_id($url_id);
 		$unread = $this->db_module->get_unread($url_id);
-		$last_activity =$this->db_module->get_last_activity($url_id); 
+		$last_activity =$this->db_module->get_last_activity($url_id);
+		$subscribe_data = $this->db_module->subscribe_view($user_id); 
+		foreach ($subscribe_data as $item) {
+			if($item->second_user == $url_id && $item->user_id == $user_id){
+				$subscribe_user = 'subscribe';
+			}else{
+				$subscribe_user = 'not_subscribe';
+			}
+		}
 		$title='userpage';
 $i=0;
 
@@ -91,6 +100,7 @@ $i=0;
 
 	               'unread' => $unread,
 	               'last_activity' => $last_activity,
+	               'subscribe_user' => $subscribe_user,
 	                       );
 				$page_content = $this->load->view('userpage', $data, true);
 				$data['page_content'] = $page_content;

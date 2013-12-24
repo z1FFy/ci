@@ -169,24 +169,40 @@ $this->load->view('template',$page);
 	function subscribe(){
 						$logged = $this->session->userdata('logged_in');
 		if ($logged == TRUE) {
-		$second_user = $_POST['friend_id'];
+		$second_user = $_GET['friend_id'];
 		$user_id=$this->session->userdata('user_id');
-		$mass = array('0' => $user_id, '1' => $second_user);
+		//$mass = array('0' => $user_id, '1' => $second_user);
 		//$friend_data = $this->db_module->view_friends($mass); 
-		$subscribe_data = $this->db_module->view_subscribe_users($user_id, $second_user); 
-		//заносим в базу айди пользователя и адресата для дальнейшего извлечения сообщений
-		//var_dump($subscribe_data);
-		if($subscribe_data != '1'){
+		// $subscribe_data = $this->db_module->view_subscribe_users($user_id, $second_user); 
+		// //заносим в базу айди пользователя и адресата для дальнейшего извлечения сообщений
+		// //var_dump($subscribe_data);
+		// if($subscribe_data != '1'){
 		$this->db_module->subscribe_insert($second_user, $user_id);
-		echo 'Подписался'; 
-		}else{
-			echo 'Уже подписан';
-		}
+		header ("Location:". $this->config->site_url().'id'.$second_user); 
+		// }else{
+		// 	echo 'Уже подписан';
+		// }
 
 			} else {
 				header ("Location:". $this->config->site_url());
-}
+			}
+
+	}
+
+
+function dell_subscribe(){
+		$logged = $this->session->userdata('logged_in');
+		$second_user = $_GET['friend_id'];
+		$user_id=$this->session->userdata('user_id');
+		$subscribe_data = $this->db_module->dell_subscribe($user_id, $second_user); 
+		header ("Location:". $this->config->site_url().'id'.$second_user); 
+
 
 }
+
+
+
+
+
 }
 ?>

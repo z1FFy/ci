@@ -51,16 +51,7 @@ foreach ($user_data as $item) {
 
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-	if($text == ''){
-		foreach ($seach_data as $item) {
-			//var_dump($item);
-			echo '<div style="background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);"><img src="'.$this->config->site_url().'/uploads/avatars/small/'.$item->avatar.'" width="50"><a href="'.$this->config->site_url().'id'.$item->user_id.'">'.' '.htmlspecialchars($item->name, ENT_QUOTES).' '.htmlspecialchars($item->famil, ENT_QUOTES).'</a></div><br>';	
-		}
-	}else{
-		echo $text;
-	}
-} else {
+{}
       $this->load->view('left_user',$user_data); 
   ?>
 
@@ -70,8 +61,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <p class="titl">Статистика</p> <br>
 
 <?php 
-echo 'Колличество просмотров: '.count($visit_data);
+$day = time() - 86400;
+$d=0;
+$week = time() - 86400*7;
+$w=0;
+$month = time() - 86400*30;
+$m=0;
+echo 'Колличество просмотров(за все время): '.count($visit_data).'<br>';
+  echo '<div style="
+width: 240px;
+" class="block">Просматривали:<br>';
+foreach ($guests_data as $item) {
+   echo '<img style="width:50px;height:50px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'"> ';
 }
+?></div>
+<?php
+
+foreach ($visit_data as $item) {
+  if($item->visit_date >= $day){
+    $d++;
+  }
+  if($item->visit_date >= $week){
+    $w++;
+  }
+  if($item->visit_date >= $month){
+    $m++;
+  }
+}
+echo 'Колличество просмотров(за месяц): '.$m.'<br>';
+echo 'Колличество просмотров(за неделю): '.$w.'<br>';
+echo 'Колличество просмотров(за сутки): '.$d.'<br>';
+
 ?>
 
 

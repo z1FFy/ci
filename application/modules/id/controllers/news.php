@@ -44,6 +44,7 @@
 		//var_dump($subscribe_users_id);
 		//var_dump($subscribe_users_date);
 		$news_photos_data = $this->db_module->view_news_photos($subscribe_users_id);	// извлекаем все фотки подписаных лузеров
+		$video_data = $this->db_module->get_users_videos($subscribe_users_id);
 		//var_dump($news_photos_data);
 		$friend_id = '';
 		$friends_data = $this->db_module->subscribe_view($user_id);
@@ -56,7 +57,7 @@
 		$i++;
 }
 		$friends_data_friend = $this->db_module->get_users_by_id($second_user);
-		$user_data_arr = array( 'user_data' => $user_data, 'friends_data_friend' => $friends_data_friend, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'news_photos_data' => $news_photos_data, 'subscribe_users_data' => $subscribe_users_data);
+		$user_data_arr = array( 'user_data' => $user_data, 'friends_data_friend' => $friends_data_friend, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'news_photos_data' => $news_photos_data, 'subscribe_users_data' => $subscribe_users_data, 'video_data' => $video_data);
 		$page_content = $this->load->view('news', $user_data_arr, true);
 		$this ->db_module->last_activity($user_id);
 	

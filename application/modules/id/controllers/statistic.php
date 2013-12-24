@@ -33,7 +33,16 @@
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$visit_data = $this->db_module->view_visit_num($url_id);
-		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'visit_data' => $visit_data);
+		$i=0;
+		foreach ($visit_data as $item) {
+			if($item->guest_id != 0){
+				$guests[$i] = $item->guest_id;
+				$i++;
+			}
+		}
+		$guests_data = $this->db_module->get_users_by_id($guests);
+		//var_dump($guests_data);
+		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'visit_data' => $visit_data, 'guests_data' => $guests_data);
 		$page_content = $this->load->view('statistic', $user_data_arr, true);
 		$this ->db_module->last_activity($user_id);
 	
