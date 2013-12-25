@@ -607,6 +607,15 @@ function subscribe_view($user_id){
 	 return $query->result();
 }
 
+function subscribe_user($user_id, $url_id){
+	$this->db->select('user_id,second_user');
+	$this->db->from('subscribe');
+	$this->db->where('subscribe.user_id', $user_id); 
+	$this->db->where('subscribe.second_user', $url_id);
+	$query = $this->db->get();
+	 return $query->result();
+}
+
 
 function visit_insert($url_id, $guest_id, $session_id){
 	$data = array('session_id' => $session_id, 'user_id' => $url_id, 'guest_id' => $guest_id, 'visit_date' => time());

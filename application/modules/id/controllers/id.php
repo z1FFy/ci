@@ -60,14 +60,8 @@
 						$this->db_module->visit_insert($url_id, $user_id, $session_id);	//Добавляем посещение гостя
 					}
 				}
-
-		$photo_data = $this->db_module->get_user_photos($url_id);
-		$video_data = $this->db_module->get_user_videos($url_id);
-		$albom_data = $this->db_module->get_albom_photos($url_id);
-		$profile_data = $this->db_module->get_user_by_id($url_id);
-		$unread = $this->db_module->get_unread($url_id);
-		$last_activity =$this->db_module->get_last_activity($url_id);
-		$subscribe_data = $this->db_module->subscribe_view($user_id); 
+		$subscribe_data = $this->db_module->subscribe_user($user_id, $url_id); 
+		//var_dump($subscribe_data);
 		foreach ($subscribe_data as $item) {
 			if($item->second_user == $url_id && $item->user_id == $user_id){
 				$subscribe_user = 'subscribe';
@@ -75,6 +69,13 @@
 				$subscribe_user = 'not_subscribe';
 			}
 		}
+		$photo_data = $this->db_module->get_user_photos($url_id);
+		$video_data = $this->db_module->get_user_videos($url_id);
+		$albom_data = $this->db_module->get_albom_photos($url_id);
+		$profile_data = $this->db_module->get_user_by_id($url_id);
+		$unread = $this->db_module->get_unread($url_id);
+		$last_activity =$this->db_module->get_last_activity($url_id);
+		
 		$title='userpage';
 $i=0;
 
