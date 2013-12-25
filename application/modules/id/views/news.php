@@ -44,7 +44,9 @@ else {
 width: 240px;
 " class="block">Подписчики:<br>';
 foreach ($subscribe_users_data as $item) {
+  echo '<a href="'.$this->config->site_url().'id'.$item->second_user.'">';
   echo '<img style="width:50px;height:50px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'">';
+  echo '</a>  ';
 }
 
 echo '</div>';
@@ -74,7 +76,7 @@ if($vies==0){
                   $name = $item->name.' '.$item->famil;
                 }
                 echo '<div class="block" >';
-                echo htmlspecialchars($name, ENT_QUOTES).'  <div style="margin-top:-18px" class="date_msg">'.date("d.m.y H:i:s" ,htmlspecialchars($photos_date, ENT_QUOTES)).'</div>';
+                echo '<a href="'.$this->config->site_url().'id'.$id_user.'">'.htmlspecialchars($name, ENT_QUOTES).'  </a><div style="margin-top:-18px" class="date_msg">'.date("d.m.y H:i:s" ,htmlspecialchars($photos_date, ENT_QUOTES)).'</div>';
                 echo '<img width="400" src="'.$this->config->site_url().'uploads/photos/'.$url_photo.'"/">';
                 echo '</div><br>';
                 $i++;

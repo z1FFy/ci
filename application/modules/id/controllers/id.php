@@ -60,14 +60,8 @@
 						$this->db_module->visit_insert($url_id, $user_id, $session_id);	//Добавляем посещение гостя
 					}
 				}
-
-		$photo_data = $this->db_module->get_user_photos($url_id);
-		$video_data = $this->db_module->get_user_videos($url_id);
-		$albom_data = $this->db_module->get_albom_photos($url_id);
-		$profile_data = $this->db_module->get_user_by_id($url_id);
-		$unread = $this->db_module->get_unread($url_id);
-		$last_activity =$this->db_module->get_last_activity($url_id);
-		$subscribe_data = $this->db_module->subscribe_view($user_id); 
+		$subscribe_data = $this->db_module->subscribe_user($user_id, $url_id); 
+		//var_dump($subscribe_data);
 		foreach ($subscribe_data as $item) {
 			if($item->second_user == $url_id && $item->user_id == $user_id){
 				$subscribe_user = 'subscribe';
@@ -75,6 +69,13 @@
 				$subscribe_user = 'not_subscribe';
 			}
 		}
+		$photo_data = $this->db_module->get_user_photos($url_id);
+		$video_data = $this->db_module->get_user_videos($url_id);
+		$albom_data = $this->db_module->get_albom_photos($url_id);
+		$profile_data = $this->db_module->get_user_by_id($url_id);
+		$unread = $this->db_module->get_unread($url_id);
+		$last_activity =$this->db_module->get_last_activity($url_id);
+		
 		$title='userpage';
 $i=0;
 
@@ -203,11 +204,11 @@ $i=0;
 		$skype = $_POST['skype'];
 		$website = $_POST['website'];
 		$interests = $_POST['interests'];
-		
+		$fon = $_POST['fon'];
 
 		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level,
 		 $education_basic, $facultet, $education_end, $language, 
-		 $sity, $telephone, $dop_telephone, $skype, $website, $interests);
+		 $sity, $telephone, $dop_telephone, $skype, $website, $interests,$fon);
 		$user_id=$this->session->userdata('user_id');
 		header ('Location:'.$this->config->site_url() .'id'.$user_id.'/profile');
 

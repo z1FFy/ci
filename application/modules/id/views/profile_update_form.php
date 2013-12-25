@@ -240,7 +240,10 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 </li>
 </ul>
 <?php endforeach; ?>
-
+<br>Фон: <select style="width:100px" name="fon" class="styler">
+	<option value="grey">Серый</option>
+	<option value="white">Белый</option>
+</select>
 <br><input class="styler" type="submit" id="prof-upd" value="Сохранить" />
 
 </form>

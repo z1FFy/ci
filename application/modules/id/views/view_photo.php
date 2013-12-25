@@ -168,20 +168,29 @@ echo '<div align="center" id="right_user">
 //<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
    echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="max-width:'.$mwidth.'px" width="90%" src="'.$img_path.'" ></div></a>'; 
 //<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
-echo '<div class="block" style="width:50%;text-align: center;padding: 10px;">';
-  if (!empty($photos_name)) {
+echo '<div class="block" style="background-color: #eee;
+border-radius: 0px;
+width: 88%;
+text-align: center;
+padding: 10px;
+margin-left: 30px;
+margin-bottom:0px">';
+  if ( $photos_name!=' ') {
+    $mar='margin-top: -40px;';
 echo '<small>Название:</small><br> '.$photos_name.'
 ';  
+} else {
+  $mar='margin-bottom: -40px;';
 }
- echo '<div style="font-size: 10px;color: rgb(124, 124, 124);text-shadow: 1px 1px 0px white;"><br>Дата/Время:<br> '.date("d.m.y H:i:s" ,$item->photos_date).'</div></div>';
- echo '<p style="margin-top:10px;text-align:center;padding:10px">';
+ echo '<div style="font-size: 10px;color: rgb(124, 124, 124);text-shadow: 1px 1px 0px white;text-align:right;'.$mar.'"><br>Дата/Время:<br> '.date("d.m.y H:i:s" ,$item->photos_date).'</div>';
+  echo '<p style="margin-top:10px;text-align:center;padding:10px">';
 
  echo "<button class='batn styler' onclick=";
  echo "location.href='";
  echo $img_path."' >на полный экран</button>";
 
 
-	
+  
 
 if ($logged == TRUE) {
 echo ' <input type="button" class="like_photos like_photos1 batn styler" value="LIKE '.$item->like_photos.'" link='.$item->id_photos.'>  ';
@@ -193,6 +202,7 @@ echo ' <input type="button" class="like_photos like_photos1 batn styler" value="
     }
 }
 ?>
+</div>
 <div style="display:inline-block">
 <?php
 $i=0; foreach ($photos_data as $item){ 

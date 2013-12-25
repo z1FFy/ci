@@ -1,4 +1,11 @@
-
+<?php 
+$fon='';
+if (!empty($user_data)){
+foreach ($user_data as $item) {
+  $fon=$item->fon;
+}
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +22,18 @@
    <!--[if IE]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
+<style>
+  body,#content,#wrapper {
+    <?php 
+      if ($fon=='grey'){
+        echo 'background-color: #D6D6D6;';
+      }
+            if ($fon=='white'){
+        echo 'background-color: #fff;';
+      }
+     ?> 
+  }
+</style>
 </head>
 <body>
 <div id="wrapper">

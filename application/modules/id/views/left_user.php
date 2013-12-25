@@ -56,11 +56,14 @@ echo '<p style="padding-left:45px">';
       echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
       if ($logged == TRUE) {
         echo "<br><a  href='".$this->config->site_url() ."id".$my_id."/friends?friend_id=".$url_id."'>Отправить сообщение</a>";
+        
+        if (isset($subscribe_user)) {
         if($subscribe_user == 'subscribe'){
          echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends/dell_subscribe?friend_id=".$url_id."'>Отписаться</a>";
         }
         if(empty($subscribe_user)){
           echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends/subscribe?friend_id=".$url_id."'>Подписаться</a>";
+        }
         }
         
 

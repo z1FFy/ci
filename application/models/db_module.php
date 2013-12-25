@@ -257,7 +257,7 @@ function get_photo_from_albom($albom_id) {
 
 
 //обновл профиля
-function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $language, $sity, $telephone, $dop_telephone, $skype, $website, $interests) {
+function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $language, $sity, $telephone, $dop_telephone, $skype, $website, $interests,$fon) {
 		$logged = $this->session->userdata('logged_in');
 		$result='';
 		if ($logged=TRUE) {
@@ -279,6 +279,7 @@ function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex,
 		$this->skype = $skype;
 		$this->website = $website;
 		$this->interests = $interests;
+		$this->fon = $fon;
 		$user_id = $this->session->userdata('user_id');
 		$this->db->where('user_id', $user_id);
 		$this->db->update('users', $this);
@@ -603,6 +604,15 @@ function subscribe_view($user_id){
 	 $this->db->join('subscribe', 'users.user_id = subscribe.second_user');
 	 $this->db->where('subscribe.user_id', $user_id); 
 	$this->db->or_where('subscribe.second_user', $user_id);
+	$query = $this->db->get();
+	 return $query->result();
+}
+
+function subscribe_user($user_id, $url_id){
+	$this->db->select('user_id,second_user');
+	$this->db->from('subscribe');
+	$this->db->where('subscribe.user_id', $user_id); 
+	$this->db->where('subscribe.second_user', $url_id);
 	$query = $this->db->get();
 	 return $query->result();
 }
