@@ -65,9 +65,10 @@ if (!empty($video_data)) {
 		$kod=$item->kod;
 		$thumbUrl = "http://img.youtube.com/vi/".$kod."/0.jpg";
 		echo '<div class="block_photo">
+
 		<a class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_video?id_vid='.$item->id_videos.'">
 		<div class="photo" style="background-image:url('.$thumbUrl.')">
-		<div class="pod_photo">'.$text = htmlspecialchars($item->video_name, ENT_QUOTES).'</div></div></a></div>';
+		<div class="pod_photo"><div style="position:absolute"> <img src="'.$this->config->site_url().'/images/play.png"> </div>'.$text = htmlspecialchars($item->video_name, ENT_QUOTES).'</div></div></a></div>';
 	}
 }
  ?>

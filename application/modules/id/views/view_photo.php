@@ -23,14 +23,9 @@ body {
   background-color: #fff;
 }
 #left_user{
-
-width: 250px;
-margin-right: 0px;
 float: left;
-background-color: #EDF7FD;
-/*box-shadow: 0 0 3px rgba(0,0,0,5);*/
-
 }
+
 #right_user {
   padding-top: 10px;
 height: 100%;
@@ -42,7 +37,7 @@ margin-left: 250px;
   height: 50px;
   width: 50px;
 }
-.block {
+.block_n {
   background-color: #D7DBDD;
   padding: 7px;
   border-radius: 7px;
@@ -96,7 +91,7 @@ foreach ($user_data as $item){
 <?php //echo $this->config->site_url().'images/down.png' ?>
 <!-- "> </div> -->
 	<?php 
-       $this->load->view('left_user',$user_data); 
+
     $id=$_GET['id'];
     $id_orig=$_GET['id_orig'];
 
@@ -165,21 +160,22 @@ $photo =$item->url_photo;
 
 //<a  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idprev.'&id_orig='.$id_photos_p.'"><img src="'.$this->config->site_url().'images/prev.png"></a>
 //<a style="margin-left: 435px" href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img src="'.$this->config->site_url().'images/next.png"></a>
-
+ $this->load->view('left_user',$user_data); 
 echo '<div align="center" id="right_user">
 <div style="margin-right: 20%;">
 ';
-echo '<div class="block" style="right: 10px;text-align: center;padding: 10px;position: absolute;">';
+
+//<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
+   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="max-width:'.$mwidth.'px" width="90%" src="'.$img_path.'" ></div></a>'; 
+//<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
+echo '<div class="block" style="width:50%;text-align: center;padding: 10px;">';
   if (!empty($photos_name)) {
 echo '<small>Название:</small><br> '.$photos_name.'
 ';  
 }
  echo '<div style="font-size: 10px;color: rgb(124, 124, 124);text-shadow: 1px 1px 0px white;"><br>Дата/Время:<br> '.date("d.m.y H:i:s" ,$item->photos_date).'</div></div>';
-
-//<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
-   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="max-width:'.$mwidth.'px" width="90%" src="'.$img_path.'" ></div></a>'; 
-//<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
  echo '<p style="margin-top:10px;text-align:center;padding:10px">';
+
  echo "<button class='batn styler' onclick=";
  echo "location.href='";
  echo $img_path."' >на полный экран</button>";

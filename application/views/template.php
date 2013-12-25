@@ -18,20 +18,35 @@
 </head>
 <body>
 <div id="wrapper">
-<header>
+<!-- <header>
 <div align="center" >
-<a href="<?php echo $this->config->site_url() ?>"><img id="logo" src="
-<?php echo $this->config->site_url() ?>images/logo.png"></a>
+
 </div>
 </header>
-<div align="center" id="menu">
+ -->
+ <div style="padding-left: 32px;
+height: 53px;
+width: 200px;
+position: absolute;
+padding-right: 38px;
+background-color: #336aa8;"><a href="<?php echo $this->config->site_url() ?>"><img id="logo" src="
+<?php echo $this->config->site_url() ?>images/logo.png"></a></div>  
+ <div align="left" id="menu">
    <?php if ($logged != TRUE) { ?>
+   <div id="entry">
+   <button   style="padding: 4px 11px;" class="styler">Войти</button>
+   <button onclick="location.href='<?php echo $this->config->site_url(); ?>site/reg'"  style="padding: 4px 11px;" class="styler">Регистрация</button>
+   </div>
+ <div id="auth">
   <input style="width: 120px;" type="text" name="login-entry"  onkeypress='validate(event)' class="auth styler" maxlength="20" placeholder="Логин">
   <input style="width: 120px;" type="password" name ="password-entry"  onkeypress='validate(event)' class="auth styler"maxlength="20" placeholder="Пароль">
   <button  type="submit" style="padding: 4px 11px;" class="btn_entry styler">Войти</button>
   <font style="color:#fff;font-size:14px"><a href="<?php echo $this->config->site_url(); ?>site/lose_pass"><img alt="Восстановление пароля" title="Восстановление пароля" src="<?php echo $this->config->site_url().'/images/pass.png'; ?>"></a></font>
+  <button onclick="location.href='<?php echo $this->config->site_url(); ?>site/reg'"  style="padding: 4px 11px;" class="styler">Регистрация</button>
+
+  </div>
 <?php } else {
-      echo '<a href="'.$this->config->site_url().'"">Главная</a>   ';
+      // echo '<a href="'.$this->config->site_url().'"">Главная</a>   ';
     echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a> ';
      echo '<a href="'.$this->config->site_url().'id'.$user_id.'/news"">Лента новостей</a> ';
        echo '<a href="'.$this->config->site_url().'id'.$user_id.'/profile"">Настройки</a>';

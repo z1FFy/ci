@@ -109,7 +109,11 @@ $('#pad').html('минимальное значение любого поля - 
 
  
 
-
+$('#auth').hide();
+$('#entry').click(function() { 
+$('#auth').show('fast');
+$('#entry').hide('fast');
+  });
 
           //Auth
 $('.btn_entry').click(function() { 

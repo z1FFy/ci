@@ -59,7 +59,7 @@ echo '<p style="padding-left:45px">';
         if($subscribe_user == 'subscribe'){
          echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends/dell_subscribe?friend_id=".$url_id."'>Отписаться</a>";
         }
-        if($subscribe_user == 'not_subscribe'){
+        if(empty($subscribe_user)){
           echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends/subscribe?friend_id=".$url_id."'>Подписаться</a>";
         }
         

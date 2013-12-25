@@ -7,8 +7,7 @@
 
   }
   #content {
-    padding-left: 10%;
-    padding-right: 10%;
+
 	display: table;
   }
   #menu {

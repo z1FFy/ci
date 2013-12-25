@@ -13,8 +13,7 @@ background-color:#fff;
 
   }
   #content {
-    padding-left: 10%;
-    padding-right: 10%;
+
     display: table;
   }
   #menu {
@@ -38,7 +37,7 @@ if (empty($subscribe_users_data)) {
   echo "Подписывайтесь под другим пользователем, что бы видеть сдесь последние обновления";
 }
 
-
+else {
    
   
       echo '<div style="
@@ -56,6 +55,7 @@ if (isset($_GET['vies'])) {
 }else{$vies = '';}
 
 if($vies==0){
+
   foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
     $url_photo = $item->url_photo;
     $name_photo = $item->photos_name;
@@ -122,7 +122,7 @@ if($vies==1){
 
 }
 }
-
+}
 
  ?>
 

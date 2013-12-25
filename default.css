@@ -43,13 +43,17 @@ body {
 		width: 100%;
 	}
 	#logo {
-		padding-top:20px;
+		position: absolute;
+		height: 53px;
+		left: 20px;
+		top: 0px;
 	}
 
 	#menu {
+		padding-left: 276px;
 		padding-top: 15px;
-		width: 100%;
-		height: 40px;
+
+		height: 39px;
 		background-image: url('images/menu-bg.png');
 	}
 	#menu a {
@@ -58,7 +62,7 @@ color: #fff;
 padding: 5px;
 color: #fff;
 padding-bottom: 19px;
-padding-top: 10px;
+padding-top: 15px;
 text-shadow: 0px 0px 1px rgb(31, 55, 85);
 	}
 	#menu a:hover {
@@ -75,12 +79,12 @@ text-shadow: 0px 0px 1px rgb(31, 55, 85);
 	}
 
 	#content {
-		padding-left: 20%;
-		padding-right: 20%;
+		padding-left: 0%;
+		padding-right: 0%;
 
 		text-align: left;
 		background: #fff;
-   margin-top: -1px;
+
 	}
 
 	#left_user {
@@ -259,7 +263,9 @@ margin-top: 87%;
 min-height: 30px;
 text-align: center;
 background-color: rgba(0, 0, 0, 0.17);
-
+text-overflow: ellipsis; 
+overflow: hidden; 
+white-space: nowrap; 
 }
 #wrapper {
 	width: 100%;
