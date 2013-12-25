@@ -1,9 +1,11 @@
 <?php 
 $fon='';
 if (!empty($user_data)){
-foreach ($user_data as $item) {
-  $fon=$item->fon;
-}
+  if($whopage=='my'){
+    foreach ($user_data as $item) {
+      $fon=$item->fon;
+    }
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -30,6 +32,9 @@ foreach ($user_data as $item) {
       }
             if ($fon=='white'){
         echo 'background-color: #fff;';
+      }
+                  if ($fon=='img1'){
+        echo 'background-image: url("'.$this->config->site_url().'/images/bg/1.jpg");background-size: cover;color:#054E7C;';
       }
      ?> 
   }

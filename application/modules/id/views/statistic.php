@@ -1,13 +1,6 @@
-<html>
-<head>
-<title>Поиск людей</title>
-	  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
 <style>
-body{
-background-color:#fff;
-}
+
 
 
     #middle-pol {
@@ -18,8 +11,7 @@ background-color:#fff;
 
   }
   #content {
-    padding-left: 0%;
-    padding-right: 0%;
+
     display: table;
   }
   #menu {
@@ -31,8 +23,7 @@ background-color:#fff;
 
 </style>
 
-</head>
-<body>
+
 
 <?php
 $logged = $this->session->userdata('logged_in');
@@ -96,6 +87,3 @@ echo 'Колличество просмотров(за сутки): '.$d.'<br>';
 
 
 </div>
-
-</body>
-</html>

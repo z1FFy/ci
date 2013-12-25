@@ -1,13 +1,7 @@
-<html>
-<head>
-	<title></title>
-	  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
 
 <style>
-body{
-background-color:#fff;
-}
+
 
 
     #middle-pol {
@@ -29,8 +23,7 @@ background-color:#fff;
  		margin: 4px;
  	}
 </style>
-</head>
-<body>
+
 
 
 <?php
@@ -234,19 +227,18 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 
 <br></li><li>Знание языков <input class="styler" type="text" name="language" size="20" maxlength="80" value="<?php echo $item->language;?>"/> 
 </li></ul>
-<li>Интересы: <br>
+<li><b>Интересы:</b> <br>
 <textarea class="styler" name="interests" cols="40" rows = "10" maxlength = "250"> <?php echo $item->interests; ?> </textarea> <br>
 
-</li>
-</ul>
-<?php endforeach; ?>
-<br>Фон: <select style="width:100px" name="fon" class="styler">
+</li><li>Фон: <select style="width:100px" name="fon" class="styler">
 	<option value="grey">Серый</option>
 	<option value="white">Белый</option>
-</select>
-<br><input class="styler" type="submit" id="prof-upd" value="Сохранить" />
+	<option value="img1">Картинка1</option>
+</select></li>
+</ul>
+<?php endforeach; ?>
+
+<br><input style="font-size:19px;" class="styler" type="submit" id="prof-upd" value="Сохранить" />
 
 </form>
 </div>
-</body>
-</html>

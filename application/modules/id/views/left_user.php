@@ -19,7 +19,7 @@
     } else {
        $whostring='';
     }
-      echo '<div style="" class="block" id="left_user">';
+      echo '<div style="background-color:rgba(237, 247, 253, 0.72);" class="block"  id="left_user">';
       echo '<br><div style="margin-top: -20px;margin-left:23px" class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
  $t = time() - $item->lastactivity;
       if($t > 300){

@@ -1,13 +1,5 @@
-<html>
-<head>
-<title>Поиск людей</title>
-	  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
 <style>
-body{
-background-color:#fff;
-}
 
 
     #middle-pol {
@@ -18,8 +10,6 @@ background-color:#fff;
 
   }
   #content {
-    padding-left: 0%;
-    padding-right: 0%;
     display: table;
   }
   #menu {
@@ -73,8 +63,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
  
 </script> 
 
-</head>
-<body>
+
 
 <?php
 $logged = $this->session->userdata('logged_in');
@@ -205,5 +194,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 }
 ?>
 
-</body>
-</html>
