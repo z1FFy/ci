@@ -36,7 +36,7 @@ background-color:#fff;
  <?php
 if (empty($subscribe_users_data)) {
   echo "Подписывайтесь под другим пользователем, что бы видеть сдесь последние обновления";
-}
+}else{
 
 
    
@@ -126,6 +126,8 @@ if($vies==1){
 }
 
 
+}
+
  ?>
 
 
@@ -133,18 +135,7 @@ if($vies==1){
 
  <!-- </form> -->
 </div>
-<!-- foreach ($subscribe_users_data as $item) {
-  echo '<a href="'.$this->config->site_url().'id'.$item->user_id.'/news?id_news='.$item->second_user.'"><img style="width:50px;height:50px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'"></a>';
-}
 
-echo '</div>';
-//var_dump($news_photos_data);
-//var_dump($video_data);
-//$id_news ='';
-if (isset($_GET['id_news'])) {
-
-  $id_news = $_GET['id_news'];
-}else{$id_news = '';} -->
 
 
 

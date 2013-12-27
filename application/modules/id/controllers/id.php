@@ -269,6 +269,12 @@ $i=0;
 		$this->db_module->delete_photos($delete_photos);
 	}
 
+	function delete_audio()
+	{
+		$delete_audio = $_POST['delete_audio'];
+		$this->db_module->delete_audio($delete_audio);
+	}
+
 		function delete_video()
 	{
 		$delete_video = $_POST['delete_video'];

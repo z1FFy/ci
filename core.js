@@ -152,6 +152,10 @@ $('.btn_entry').click(function() {
         var src = site_full+"/id/upload?who=photos";
         upload(src,'nof',330,330);
        }); 
+    $('.upload_audio').click(function() { 
+        var src = site_full+"/id/upload?who=audios";
+        upload(src,'nof',330,330);
+       }); 
       $('#upload_ava').click(function() { 
         var src = site_full+"/id/upload?who=avatars";
         upload(src,'nof',350,330);
@@ -178,15 +182,7 @@ $('.btn_entry').click(function() {
         upload(src);
        }); 
 
-      //  $('.like_photos').click(function() { 
-      //   like_photos = $(this).attr("link");
-      // $.post(site_full+"/id/like_photos",
-      //    { like_photos : like_photos
-      //         },
-      //    onAjaxSuccess
-      //    );
-      // });
-       //delete photo 
+
 
 
 
@@ -196,6 +192,12 @@ $('.btn_entry').click(function() {
         id_photo = $(this).attr("link");
           photos_name = $(this).attr("photos_name");
        var src = site_full+"/id/albom/red_photo?id_photo="+id_photo+"&photos_name="+photos_name;
+        upload(src,'nof',430,300);
+      });
+             $('.red_audio').click(function() { 
+        id_audio = $(this).attr("link");
+          audio_name = $(this).attr("audio_name");
+       var src = site_full+"/id/albom/red_audio?id_audio="+id_audio+"&audio_name="+audio_name;
         upload(src,'nof',430,300);
       });
 
@@ -236,6 +238,11 @@ $('.btn_entry').click(function() {
     
   $('#create_albom').click(function() { 
         var src = site_full+"/id/albom";
+        upload(src,'nof',300,300);
+       }); 
+
+    $('#create_audio_albom').click(function() { 
+        var src = site_full+"/id/albom?albom=1";
         upload(src,'nof',300,300);
        }); 
 
@@ -324,6 +331,22 @@ $('.like_photos').click(function() {
       function onAjaxSuccess(data)
       {
   window.location.replace(site_full+"/id");
+
+      };
+      });
+
+$(".delete_audio").on("click", function(){
+
+        delete_audio = $(this).attr("link");
+      $.post(site_full+"/id/delete_audio",
+         { delete_audio : delete_audio,
+              },
+         onAjaxSuccess
+         );
+      function onAjaxSuccess(data)
+      {
+  //window.location.replace(site_full+"/id"++"/albom/view_audio");
+  location.reload();
 
       };
       });

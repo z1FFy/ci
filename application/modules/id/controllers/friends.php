@@ -75,10 +75,10 @@ $i++;
 
 $last_activity =$this->db_module->get_last_activity($friend_id); 
 $unread_data = $this->db_module->get_all_unread($user_id);
+$mess_data = $this->db_module->get_all_user_messages($user_id);
 $friends_data_friend = $this->db_module->get_users_by_id($friend_id);
-
 $unread = $this->db_module->get_unread($url_id);
-$friends_data_arr = array('friends_data_friend' => $friends_data_friend, 'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data, 'last_activity' => $last_activity);
+$friends_data_arr = array('friends_data_friend' => $friends_data_friend, 'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data, 'last_activity' => $last_activity, 'mess_data' => $mess_data);
 
 $page_content = $this->load->view('friends_view_form',$friends_data_arr,true);
 $title= 'Сообщения / PortfolioOnline';

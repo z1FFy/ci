@@ -189,6 +189,10 @@ function send_user_videos($data) {
 		 $query = $this->db->get_where('photos', array('id_user' => $url_id));
 	     return $query->result();
 	}
+	function get_user_audios($url_id) {
+		 $query = $this->db->get_where('audios', array('id_user' => $url_id));
+	     return $query->result();
+	}
 
 	function get_num_user_photos($url_id) {
 		 $query = $this->db->get_where('photos', array('id_user' => $url_id));
@@ -210,8 +214,27 @@ function send_user_videos($data) {
 	    return $result;
 	}
 
+	function send_new_audio_albom($albom_name) {
+		$logged = $this->session->userdata('logged_in');
+		$result='';
+		if ($logged=TRUE) {
+		$this->albom_name = $albom_name;
+		$this->user_id=$this->session->userdata('user_id');
+		$query = $this->db->insert('audio_albom', $this);
+	    $result = 'Альбом создан';
+	    } else {
+	    	$result='Ошибка прав';
+	    }
+	    return $result;
+	}
+
 	function get_albom_photos($url_id) {
 		 $query = $this->db->get_where('albom', array('user_id' => $url_id));
+	     return $query->result();
+	}
+
+	function get_albom_audios($url_id) {
+		 $query = $this->db->get_where('audio_albom', array('user_id' => $url_id));
 	     return $query->result();
 	}
 	function get_photos_by_id($photo_id) {
@@ -240,6 +263,29 @@ function send_photo_from_albom($albom_id, $photo_id, $photos_name) {
 		return $result;
 	    //return $query->result();
 	}
+
+	function send_audio_from_albom($albom_id, $audio_id, $audios_name) {
+			$logged = $this->session->userdata('logged_in');
+		$result='';
+		if ($logged=TRUE) {
+		
+		$this->db->where('id_audios', $audio_id);
+		if (!empty($audios_name)) {
+			$this->audio_name = $audios_name;
+		} else {
+			$this->id_albom = $albom_id;
+		}
+		$this->db->update('audios', $this);
+		$result ='Аудио добавлено в альбом';
+		} else {
+			$result='Ошибка прав';
+		}
+
+		return $result;
+	    //return $query->result();
+	}
+
+
 //отображение фото в выбраном альбоме
 function get_photo_from_albom($albom_id) {
 		 $query = $this->db->get_where('photos', array('id_albom' => $albom_id));
@@ -377,6 +423,11 @@ function delete_video($delete_video){
 	$this->db->delete('videos', array('id_videos' => $delete_video));
 }
 
+function delete_audio($delete_audio){
+	$user_id = $this->session->userdata('user_id');
+	$this->db->delete('audios', array('id_audios' => $delete_audio));
+}
+
 	function friends_insert($friend_id, $user_id){
 	$this1->friend_id = $friend_id;
 	$this1->user_id = $user_id;
@@ -433,6 +484,17 @@ function get_all_unread($user_id){
 	$query = $this->db->from('chat_friends');
 	$query = $this->db->where('adresat', $user_id);
 	$query = $this->db->where('unread', 'unread');
+	$query = $this->db->get();
+	return $query->result();
+
+}
+
+
+function get_all_user_messages($user_id){
+	$query = $this->db->select('user_id, unread, messages, adresat');
+	$query = $this->db->from('chat_friends');
+	$query = $this->db->where('adresat', $user_id);
+	$query = $this->db->or_where('user_id', $user_id);
 	$query = $this->db->get();
 	return $query->result();
 
@@ -634,6 +696,20 @@ function view_visit_num($user_id){
 
 function dell_subscribe($user_id, $second_user){
 	$this->db->delete('subscribe', array('user_id' => $user_id, 'second_user'=>$second_user));
+}
+
+function view_like_kol($url_id){
+	$query = $this->db->get_where('like_photo', array('user_id' => $url_id));
+	return $query->num_rows();
+}
+
+function upload_audio($user_id, $url_audio, $audios_name){
+	$this->id_user = $user_id;
+	$this->url_audio = $url_audio;
+	$this->audio_name = $audios_name;
+	$this->audio_date  = time();
+	$query = $this->db->insert('audios', $this); 
+
 }
 
 

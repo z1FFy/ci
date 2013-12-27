@@ -43,9 +43,32 @@ class Upload extends CI_Controller {
 				$data_user = $this->db_module->send_user_videos($data);
 		}
 		else {
+		if ($who == 'audio') {
+			$config['upload_path'] = './uploads/audios/';
+			$audios_name = $_POST['photos_name'];
+			$config['allowed_types'] = 'mp3';
+			$config['max_size']	= '8000';
+			$config['encrypt_name'] = 'TRUE';
+			$this->load->library('upload', $config);
+			if ( ! $this->upload->do_upload())
+			{
+				$error = array('error' => $this->upload->display_errors());
+
+				$this->load->view('upload_form', $error);
+			}
+			else
+			{
+				$data=$this->upload->data();
+				$url_audio = $data['file_name'];
+				$this->db_module->upload_audio($user_id, $url_audio, $audios_name);
+				header ("Location:". $this->config->site_url().'id'.$user_id.'/albom/view_audio'); 
+			}
+		}else{
+
 		if ($who == 'photos') {
 			$config['upload_path'] = './uploads/photos/';
 			$photos_name = $_POST['photos_name'];
+			
 		}
 		if ($who == 'avatars') {
 			$config['upload_path'] = './uploads/avatars/';
@@ -81,6 +104,7 @@ class Upload extends CI_Controller {
 		$this->load->view('template',$page);
 				}
 			}
+		}
 		}
 	}
 	function small_ava() {
