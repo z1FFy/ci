@@ -32,6 +32,10 @@
 		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$user_data = $this->db_module->get_user_by_id($url_id);
+		foreach ($user_data as $item) {		
+			$acc=$item->account;
+		}
+		if ($acc=='pro') {
 		$visit_data = $this->db_module->view_visit_num($url_id);
 		$i=0;
 		foreach ($visit_data as $item) {
@@ -55,6 +59,9 @@
          );
 
 		$this->load->view('template',$page);	
+	} else {
+		echo "not denied";
+	}
 	} else {
 		echo "not denied";
 	}

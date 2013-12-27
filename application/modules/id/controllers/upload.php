@@ -13,10 +13,11 @@ class Upload extends CI_Controller {
 	function index()
 	{
 		$user_id=$this->session->userdata('user_id');
+$user_data = $this->db_module->get_user_by_id($user_id);
 		$logged = $this->session->userdata('logged_in');
 		if ($logged == TRUE) {
 			$photo_data = $this->db_module->get_num_user_photos($user_id);
-			$this->load->view('upload_form', array('error' => ' ' ,'photo_data' => $photo_data));
+			$this->load->view('upload_form', array('error' => ' ' ,'photo_data' => $photo_data,'user_data' => $user_data));
 		}
 		else {
 			$this->load->view('welcome_message', array('error' => ' ' ));

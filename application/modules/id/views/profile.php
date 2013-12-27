@@ -105,7 +105,37 @@ background-color:#fff;
   #menu {
     height: 39px;
   }
-
+    .tbl {
+      border: 0px solid #bbb;
+ /*     border-radius: 10px;*/
+      padding: 10px;
+/*      background-color: #F0F6FD;*/
+      font-size: 17px;
+    }
+    .name,.val {
+      color: #888;
+      border: 1px solid #bbb;
+      border-radius: 10px 0px 0px 10px;
+      padding: 5px;
+      margin-top: 15px;
+      border: 0px;
+      text-align: center;
+      font-size: 14px;
+      width: 100px;
+    }
+    .val {
+            font-size: 17px;
+      text-align: left;
+      width: 130px;
+      color: #000;
+      border-radius: 0px;
+      background-color: #fff;
+      border: 1px solid #bbb;
+    }
+    .item {
+  padding: 44px;
+  border: 10px solid #000;
+    }
 </style>
 
 
@@ -119,65 +149,83 @@ background-color:#fff;
   <p class="titl"><?php if ($whopage=='my') {
     echo "Мой ";
   } ?>Профиль</p> <br>
-<ul>
-  
+    <div style="float:left">
+  Личная Информация:
+<table  cellspacing="1" cellpadding="0" class="tbl" border="1">
   <?php if($item->famil != ''){ ?>
-	<li>Фамилия: <?php echo $text = htmlspecialchars($item->famil, ENT_QUOTES);?></li>  <?php } ?>
-   
+    <tr class="item">
+	 <td class="name">Фамилия: </td>
+   <td class="val"><?php echo $text = htmlspecialchars($item->famil, ENT_QUOTES);?></td>   </tr>  <?php } ?>
    <?php if($item->name != ''){ ?>
-	<li>Имя: <?php echo $text = htmlspecialchars($item->name, ENT_QUOTES);?> </li> <?php } ?>
+     <tr class="item">
+	<td class="name">Имя:</td> 
+   <td class="val"><?php echo $text = htmlspecialchars($item->name, ENT_QUOTES);?> </td> </tr> <?php } ?>
 	 
    <?php if($item->otchestvo != ''){ ?>
-  <li>Отчество: <?php echo $text = htmlspecialchars($item->otchestvo, ENT_QUOTES);?></li><?php } ?>
+       <tr class="item">
+  <td class="name">Отчество: </td>
+   <td class="val"><?php echo $text = htmlspecialchars($item->otchestvo, ENT_QUOTES);?> </td> </tr><?php } ?>
    
    <?php if($item->mail != ''){ ?>
-	<li>Почта: <?php echo $text = htmlspecialchars($item->mail, ENT_QUOTES);?></li><?php } ?>
-  
-  <li>Пол: <?php echo $text = htmlspecialchars($item->sex, ENT_QUOTES);?></li>
+          <tr class="item">
+  <td class="name">
+Почта: </td>   <td class="val"><?php echo $text = htmlspecialchars($item->mail, ENT_QUOTES);?></td></tr> <?php } ?>
+
+     <tr class="item">
+  <td class="name">Пол:</td>  <td class="val"><?php echo $text = htmlspecialchars($item->sex, ENT_QUOTES);?></td></tr>
    <?php if($item->birthday != ''){ ?>
-	<li>Дата Рождения: <?php echo $text = htmlspecialchars($item->birthday, ENT_QUOTES);?></li><?php } ?>
-	<li>Дата регистрации: <?php echo date("d.m.y H:i:s" , htmlspecialchars($item->date, ENT_QUOTES));?></li>
+	  <tr class="item">
+  <td class="name">Дата Рождения:</td><td class="val"> <?php echo $text = htmlspecialchars($item->birthday, ENT_QUOTES);?></td></tr><?php } ?>
+ <tr class="item">
+  <td class="name">Дата регистрации: </td>  <td class="val"><?php echo date("d.m.y H:i:s" , htmlspecialchars($item->date, ENT_QUOTES));?></td></tr>
   
    <?php if($item->sity != ''){ ?>
-  <li>Родной город: <?php echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?></li><?php } ?>
-
+   <tr class="item">
+  <td class="name">Родной город:</td>  <td class="val"> <?php echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?></td></tr><?php } ?>
+</table>
   <?php if(($item->telephone != '') || ($item->dop_telephone != '') || ($item->skype != '') || ($item->website != '')){ ?>  
-  <li>Контакты:</li> <?php } ?>
-    <ul>
-    
+  Контакты: 
+    <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
+  <?php } ?>
+
      <?php if($item->telephone != ''){ ?>  
-    <li>Мобильный телефон: <?php echo $text = htmlspecialchars($item->telephone, ENT_QUOTES);?></li> <?php } ?>
+       <tr class="item">
+  <td class="name">Мобильный телефон:</td>  <td class="val">  <?php echo $text = htmlspecialchars($item->telephone, ENT_QUOTES);?></td></tr> <?php } ?>
 
      <?php if($item->dop_telephone != ''){ ?>
-    <li>Дополнительный телефон: <?php echo $text = htmlspecialchars($item->dop_telephone, ENT_QUOTES);?></li><?php } ?>
+           <tr class="item">
+  <td class="name">Дополнительный телефон:</td>  <td class="val">  <?php echo $text = htmlspecialchars($item->dop_telephone, ENT_QUOTES);?></td></tr><?php } ?>
 
      <?php if($item->skype != ''){ ?>
-    <li>Skype: <?php echo $text = htmlspecialchars($item->skype, ENT_QUOTES);?></li><?php } ?>
+               <tr class="item">
+  <td class="name">Skype:</td><td class="val"> <?php echo $text = htmlspecialchars($item->skype, ENT_QUOTES);?></tr></td><?php } ?>
 
      <?php if($item->website != ''){ ?>
-    <li>Личный сайт: <?php echo '<a href="'.$text = htmlspecialchars($item->website, ENT_QUOTES).'">'.$text = htmlspecialchars($item->website, ENT_QUOTES).'</a>'; ?></li> <?php } ?>
-    </ul>
-  <li>Образование:</li>
-    <ul>
-    <li>Уровень образования: <?php echo $text = htmlspecialchars($item->education_level, ENT_QUOTES);?></li>
+                   <tr class="item">
+  <td class="name">Личный сайт:</td><td class="val"> <?php echo '<a href="'.$text = htmlspecialchars($item->website, ENT_QUOTES).'">'.$text = htmlspecialchars($item->website, ENT_QUOTES).'</a>'; ?></td></tr> 
+</table>
+  <?php } ?>
+
+  Образование:
+    <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
+                       <tr class="item">
+  <td class="name">Уровень образования: </td><td class="val"> <?php echo $text = htmlspecialchars($item->education_level, ENT_QUOTES);?></td></tr>
     
     <?php if($item->education_basic != ''){ ?>
-    <li>Наименование учебного заведения: <?php echo $text = htmlspecialchars($item->education_basic, ENT_QUOTES);?></li><?php } ?>
+    <tr class="item">
+  <td class="name">Наименование учебного заведения: </td><td class="val">  <?php echo $text = htmlspecialchars($item->education_basic, ENT_QUOTES);?> </td></tr>  <?php } ?>
     
     <?php if($item->facultet != ''){ ?>
-    <li>Факультет: <?php echo $text = htmlspecialchars($item->facultet, ENT_QUOTES);?></li><?php } ?>
+       <tr class="item">
+  <td class="name">Факультет:</td><td class="val">  <?php echo $text = htmlspecialchars($item->facultet, ENT_QUOTES);?></td></tr><?php } ?>
 
-    <li>Закончил: <?php echo $text = htmlspecialchars($item->education_end, ENT_QUOTES);?></li>
+           <tr class="item">
+  <td class="name">Закончил:</td><td class="val"> <?php echo $text = htmlspecialchars($item->education_end, ENT_QUOTES);?></td></tr>
 
     <?php if($item->language != ''){ ?>
-     <li>Знание языков: <?php echo $text = htmlspecialchars($item->language, ENT_QUOTES);?></li><?php } ?>
-    </ul>
-     
-    <?php if($item->interests != ''){ ?>
-     <li>Интересы: <br>
-   <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled"><?php echo $item->interests;?><?php } ?></textarea>
-    <li>Специализация: <?php echo $item->spec_user;?></li>
-
+               <tr class="item">
+  <td class="name">Знание языков:</td><td class="val"> <?php echo $text = htmlspecialchars($item->language, ENT_QUOTES);?></td></tr><?php } ?>
+ </table>
   
 <?php
 
@@ -209,6 +257,18 @@ if ($whopage == 'my') {
 
 
 ?>
-</ul>
+</div>
+    <?php if($item->interests != ''){ ?>
+
+    <div style="float:left">
+Интересы:<br>
+            
+   <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled"><?php echo $item->interests;?><?php } ?></textarea>
+         <table  cellspacing="1" cellpadding="0" class="tbl" border="1"> 
+       <tr class="item">
+  <td class="name">Специализация: </td><td class="val"> <?php echo $item->spec_user;?></td></tr></table>
+
+ 
+</div>
 
 </div>

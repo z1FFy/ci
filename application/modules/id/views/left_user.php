@@ -7,9 +7,14 @@
       $user_id=$item->user_id;
       $avatar_url=$item->avatar;
       $spec=$item->spec_user;
-
+      $acc=$item->account;
     }
-    //var_dump($unread);
+    
+    if ($acc=='pro') {
+      $acc_t='<font style="color:red;font-weight:bold">Pro</font>';
+    } else {
+      $acc_t='';
+    }
   
     if ($whopage=='my') {
       $whostring='Я';
@@ -27,7 +32,7 @@
       }else{
         $last_activity = '<img width="80px" src="'.$this->config->site_url().'images/online.png">';
       }
- echo '<br><p style="text-align:center">'.$whostring.' '.$text = htmlspecialchars($name, ENT_QUOTES).' '.$text = htmlspecialchars($famil, ENT_QUOTES).'</p>'.'<p style="font-size:13px;text-align:center">( '.$spec.' )';
+ echo '<br><p style="text-align:center">'.$whostring.' '.$text = htmlspecialchars($name, ENT_QUOTES).' '.$text = htmlspecialchars($famil, ENT_QUOTES).'  '.$acc_t.'</p>'.'<p style="font-size:13px;text-align:center">( '.$spec.' )';
      echo '<br>'.$last_activity.'</p>';
 
 echo '<p style="padding-left:45px">';
@@ -47,7 +52,9 @@ echo '<p style="padding-left:45px">';
     echo '<br>  <a id="upload_ava">Изменить аватар</a>';
     echo '<br><a class="upload_foto">Загрузить работу</a>';
     echo '<br>  <a href="'.$this->config->site_url() .'id'.$url_id.'/news">Лента новостей</a>';
+    if ($acc=='pro') {
     echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/statistic">Статистика</a>';
+  }
     echo '<br>'.$exit;
     echo '<p style="font-size:12px;text-align:center"><br><br>Ссылка на портфолио:<br><i><a href="'.$this->config->site_url() .'id'.$url_id.'">'.$this->config->site_url() ."id".$url_id.'</i></a></p>';
 

@@ -21,6 +21,7 @@ if (!empty($user_data)){
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.formstyler.min.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.simplemodal.1.4.4.min.js"></script>
 <meta name="keywords" content="онлайн портфолио,бесплатное онлайн портфолио,портфолио онлайн бесплатно,портфолио сделать онлайн,портфолио создать онлайн,детское портфолио онлайн бесплатно,создать портфолио онлайн бесплатно,сделать бесплатно онлайн портфолио,детское портфолио сделать онлайн,портфолио,сделать детское портфолио онлайн бесплатно,портфолио школьника создать онлайн,создать детское портфолио онлайн бесплатно,портфолио +для мальчика онлайн,портфолио ребенка онлайн,портфолио онлайн бесплатно,портфолио смотреть онлайн,онлайн создание портфолио,портфолио заполнить онлайн,портфолио онлайн бесплатно +для детей,онлайн портфолио дизайнера,portfolionline,po ,gjhnajkbj jykfqy ,gjhnajkbjjykfqy ,tcgkfnyj,portfolio free,portfolio online free,portfolioonline free,portfolioonline free,portfolionline free,онлайн портфолио фотографа,онлайн портфолио модели ,онлайн портфолио модели бесплатно,портфолио онлайн фотограф,онлайн портфолио бесплатно" />
+<META NAME="z-payment.label" CONTENT="z-payment label 7A76BC9FA19B9D0F58C5F21C3B64DC7B">
    <!--[if IE]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
@@ -34,7 +35,8 @@ if (!empty($user_data)){
         echo 'background-color: #fff;';
       }
                   if ($fon=='img1'){
-        echo 'background-image: url("'.$this->config->site_url().'/images/bg/1.jpg");background-size: cover;color:#054E7C;';
+        echo 'background-image: url("'.$this->config->site_url().'/images/bg/1.jpg");background-size: cover;color:#054E7C;background-repeat:no-repeat;
+background-attachment:fixed;';
       }
      ?> 
   }

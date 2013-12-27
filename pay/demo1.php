@@ -6,8 +6,8 @@
 
 // регистрационная информация (логин, пароль #1)
 // registration info (login, password #1)
-$mrh_login = "demo";
-$mrh_pass1 = "password_1";
+$mrh_login = "po";
+$mrh_pass1 = "210219852102198521021985";
 
 // номер заказа
 // number of order
@@ -19,7 +19,7 @@ $inv_desc = "ROBOKASSA Advanced User Guide";
 
 // сумма заказа
 // sum of order
-$out_summ = "8.96";
+$out_summ = "2";
 
 // тип товара
 // code of goods

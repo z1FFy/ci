@@ -35,9 +35,17 @@ if ($who == 'avatars') {
 	$access='da';
 }
 if ($who == 'photos') {
+
 	if($photo_data >= 30){
-		$access='no';		echo 'Достигнут лимит фотографий для вашего аккаунта!';
-		
+				foreach ($user_data as $item) {		
+			$acc=$item->account;
+		}
+		if ($acc=='pro') {
+			$access='yes';
+		} else {
+		$access='no';		
+		echo 'Достигнут лимит фотографий для вашего аккаунта!';
+		}
 	}else{
 echo "<p style='font-size:17px'>Выберите работу с жесткого диска</p>";
 $access='da';

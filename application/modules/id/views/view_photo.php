@@ -31,7 +31,7 @@ float: left;
 height: 100%;
 min-height: 600px;
 margin-bottom: 40px;
-margin-left: 250px;
+margin-left: 280px;
 }
 .frame_com {
   height: 50px;
@@ -173,7 +173,6 @@ border-radius: 0px;
 width: 88%;
 text-align: center;
 padding: 10px;
-margin-left: 28px;
 margin-bottom: 0px;">';
   if ( ($photos_name!=' ') && (!empty($photos_name))) {
     $mar='margin-top: -40px;';
@@ -203,7 +202,7 @@ echo ' <input type="button" class="like_photos like_photos1 batn styler" value="
 }
 ?>
 </div>
-<div style="display:inline-block;width: 89%;">
+<div style="display:inline-block;">
 <?php
 $i=0; foreach ($photos_data as $item){ 
     $photos_name=$item->photos_name;
