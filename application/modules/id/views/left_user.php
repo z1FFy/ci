@@ -49,6 +49,7 @@ echo '<p style="padding-left:45px">';
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."'>Мои работы</a>";
    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/friends_view">Мои сообщения</a>';
+   echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/albom/view_audio">Мои аудиозаписи</a>';
     echo '<br>  <a id="upload_ava">Изменить аватар</a>';
     echo '<br><a class="upload_foto">Загрузить работу</a>';
     echo '<br>  <a href="'.$this->config->site_url() .'id'.$url_id.'/news">Лента новостей</a>';

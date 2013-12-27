@@ -1,9 +1,7 @@
-
 <style>
-body{
-background-color:#fff;
-}
-
+    body{
+    background-color:#fff;
+    }
 
     #middle-pol {
     padding-top: 0px;
@@ -13,13 +11,12 @@ background-color:#fff;
 
   }
   #content {
-
     display: table;
   }
   #menu {
     height: 39px;
   }
-    .spi{
+  .spi{
     margin: 4px;
   }
 
@@ -35,9 +32,9 @@ background-color:#fff;
  <?php
 if (empty($subscribe_users_data)) {
   echo "Подписывайтесь под другим пользователем, что бы видеть сдесь последние обновления";
-}
+}else{
 
-else {
+
    
   
       echo '<div style="
@@ -100,7 +97,7 @@ if($vies==1){
     $video_name = $item->video_name;
     $id_user = $item->id_user;
     $i=0;        
-                   // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
+    // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
     foreach ($subscribe_users_data as $item) {
       if($i==0){
           if($item->second_user == $id_user){
@@ -110,10 +107,10 @@ if($vies==1){
                 }else{
                   $name = $item->name.' '.$item->famil;
                 }
-               echo '<div class="block">';
-              echo htmlspecialchars($name, ENT_QUOTES).'  <div style="margin-top:-18px" class="date_msg">'.date("d.m.y H:i:s" ,htmlspecialchars($video_date, ENT_QUOTES)).'</div>';
-              echo '<div><iframe width="100%" height="400" src="//www.youtube.com/embed/'.$kod.'" frameborder="0" allowfullscreen></iframe>
-              <div>'.$text = htmlspecialchars($video_name, ENT_QUOTES).'</div></div><br>';
+                echo '<div class="block">';
+                echo htmlspecialchars($name, ENT_QUOTES).'  <div style="margin-top:-18px" class="date_msg">'.date("d.m.y H:i:s" ,htmlspecialchars($video_date, ENT_QUOTES)).'</div>';
+                echo '<div><iframe width="100%" height="400" src="//www.youtube.com/embed/'.$kod.'" frameborder="0" allowfullscreen></iframe>
+                <div>'.$text = htmlspecialchars($video_name, ENT_QUOTES).'</div></div><br>';
                 $i++;
             }
           }
@@ -124,32 +121,10 @@ if($vies==1){
 
 }
 }
+
+
 }
 
  ?>
 
-
-
-
- <!-- </form> -->
 </div>
-<!-- foreach ($subscribe_users_data as $item) {
-  echo '<a href="'.$this->config->site_url().'id'.$item->user_id.'/news?id_news='.$item->second_user.'"><img style="width:50px;height:50px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'"></a>';
-}
-
-echo '</div>';
-//var_dump($news_photos_data);
-//var_dump($video_data);
-//$id_news ='';
-if (isset($_GET['id_news'])) {
-
-  $id_news = $_GET['id_news'];
-}else{$id_news = '';} -->
-
-
-
-
-
-
-
-

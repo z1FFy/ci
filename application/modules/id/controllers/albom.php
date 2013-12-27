@@ -23,17 +23,31 @@ class Albom extends CI_Controller {
 
 	function index()
 	{
-	
-		$this->load->view('albom_form');
+		if (isset($_GET['albom'])) {
+		$audio =$_GET['albom'];
+		$audio_arr = array('audio' => $audio);
+		$this->load->view('albom_form', $audio_arr);
+	}else{
+			$this->load->view('albom_form');
+		}
 	}
 
 	
 function do_albom()
 	{
 		$albom_name = $_POST['albom_name'];
-		$res=$this->db_module->send_new_albom($albom_name);
-		$user_id=$this->session->userdata('user_id');
-		header ("Location:". $this->config->site_url().'id'.$user_id);
+		if (isset($_POST['audio'])) {
+			
+			$res=$this->db_module->send_new_audio_albom($albom_name);
+			$user_id=$this->session->userdata('user_id');
+			header ("Location:". $this->config->site_url().'id'.$user_id.'/albom/view_audio');
+		}else{
+			$res=$this->db_module->send_new_albom($albom_name);
+			$user_id=$this->session->userdata('user_id');
+			header ("Location:". $this->config->site_url().'id'.$user_id);
+
+		}
+		
 	}
 
 function do_img_to_albom()
@@ -49,6 +63,21 @@ function do_img_to_albom()
 	}
 		$user_id=$this->session->userdata('user_id');
 	header ("Location:". $this->config->site_url().'id'.$user_id);
+	}
+
+	function do_audio_to_albom()
+	{
+		$audio_id= $_POST['id_audios'];
+		if (isset($_POST['id_albom'])) {
+			$albom_id = $_POST['id_albom'];		
+			$res=$this->db_module->send_audio_from_albom($albom_id, $audio_id,'');
+		}
+	if (isset($_POST['audios_name'])) {
+		$audios_name = $_POST['audios_name'];
+		$res=$this->db_module->send_audio_from_albom('',$audio_id,$audios_name);
+	}
+		$user_id=$this->session->userdata('user_id');
+	header ("Location:". $this->config->site_url().'id'.$user_id.'/albom/view_audio');
 	}
 
 function photos_in_albom()
@@ -107,6 +136,30 @@ function photos_in_albom()
 	
 	}
 
+	function view_audio() {
+				$url_id= $this->_get_url_id();
+	 	$user_id=$this->session->userdata('user_id');
+	 	$logged = $this->session->userdata('logged_in');
+		$whopage= $this->_get_whopage($url_id,$user_id);	
+		$user_data = $this->db_module->get_user_by_id($url_id);
+		$albom_data = $this->db_module->get_albom_audios($url_id);
+				$audio_data = $this->db_module->get_user_audios($url_id);
+
+		$unread = $this->db_module->get_unread($url_id);
+
+	$data_arr = array('user_data' => $user_data,
+		'audio_data' => $audio_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread, 'albom_data'=> $albom_data);
+
+	$page_content=$this->load->view('view_audio',$data_arr,true);
+		$title="Просмотр аудио";
+		$data['page_content'] = $page_content;
+		$data['title'] = $title;
+		$this->load->view('template',$data);		
+	
+	}
+
+
+
 	function red_photo() {
 		$id_photo=$_GET['id_photo'];
 		$photos_name=$_GET['photos_name'];
@@ -114,6 +167,15 @@ function photos_in_albom()
 		$albom_data = $this->db_module->get_albom_photos($user_id);
 		$data=array( 'albom_data' => $albom_data,'user_id'=>$user_id,'id_photo'=>$id_photo,'photos_name'=>$photos_name);
 		$this->load->view('red_photo',$data);
+	}
+
+	function red_audio() {
+		$id_audios=$_GET['id_audio'];
+		$audios_name=$_GET['audio_name'];
+		$user_id=$this->session->userdata('user_id');
+		$albom_data = $this->db_module->get_albom_audios($user_id);
+		$data=array( 'albom_data' => $albom_data,'user_id'=>$user_id,'id_audios'=>$id_audios,'audios_name'=>$audios_name);
+		$this->load->view('red_audio',$data);
 	}
 
 
