@@ -54,7 +54,7 @@ body {
 		padding-top: 15px;
 
 		height: 39px;
-		background-image: url('images/menu-bg_n.png');
+		background-image: url('./images/menu-bg_n.png');
 	}
 	#menu a {
 color: #fff;
@@ -94,10 +94,27 @@ margin-right: -5px;
 		padding-top: 14px;
 		z-index: 444;
 		margin-right: 10px;
-		border-radius: 0px 0px 10px 10px;
+		border-radius: 0px 0px 10px 0px;
 		margin-bottom: 15%;
+		background-color: #rgba(219, 219, 219, 0.72);
 	}
+	.status {
+text-align: center;
 
+font-size: 17px;
+color: rgb(66, 177, 106);
+
+
+text-shadow: 1px 1px 1px #FFF;
+padding: 0PX;
+margin-left: 80px;
+margin-right: 80px;
+background-color: #EBEBEB;
+border-radius: 10px;
+box-shadow: 0 0 9px rgba(0,0,0,0.1);
+
+margin-top: 10px;
+	}
 	#showmenu{
 		text-align: center;
 		min-width: 100px;
@@ -166,7 +183,7 @@ border-radius: 6px;
 
 .block_photo {
 	float: left;
-	background-color: #EDF7FD;
+	background-color: rgba(219, 219, 219, 0.72);
 	padding: 10px;
 	margin-left: 10px;
 	margin-top: 10px;
@@ -179,11 +196,28 @@ border-radius: 6px;
 	border-radius: 10px 0 0 10px;
 	height: 80px;
 	text-align: left;
-	background-color: #EDF7FD;
-	width: 390px;
+	background-color: rgba(219, 219, 219, 0.72);
+	width: 80%;
+}
+  .block_msg {
+  background-color: #D7DBDD;
+  padding: 7px;
+  border-radius: 7px;
+  width: 83%;
+  min-width: 500px;
+  margin-bottom: -5px;
 }
 .friend_text {
-	margin-left: 90px;margin-top: -60px;position: absolute;
+margin-left: 90px;
+margin-top: -60px;
+width: 80%;
+text-overflow: ellipsis;
+overflow: hidden;
+
+height: 34px;
+background-color: #FFF;
+border-radius: 10PX;
+padding: 4PX;
 }
 
 .text_msg {
@@ -379,10 +413,10 @@ bottom: -100px
 
 .block {
 	border-radius: 10px;
-	margin-bottom:40px;text-align:left;background-color: #EDF7FD;padding: 10px;
+	margin-bottom:40px;text-align:left;background-color: rgba(219, 219, 219, 0.72);padding: 10px;
 }
 .p_block {
 	border-radius: 10px;
-	margin-bottom:40px;text-align:left;background-color: #EDF7FD;padding: 10px;
+	margin-bottom:40px;text-align:left;background-color: rgba(219, 219, 219, 0.72);padding: 10px;
 	margin-top:-20px;margin-left:1%;margin-right:1%;height:400px;width:28%;display: inline-table;
 }

@@ -168,7 +168,7 @@ echo '<div align="center" id="right_user">
 //<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
    echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="max-width:'.$mwidth.'px" width="90%" src="'.$img_path.'" ></div></a>'; 
 //<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
-echo '<div class="block" style="background-color: rgba(238, 238, 238, 0.69);
+echo '<div class="block" style="background-color: rgba(219, 219, 219, 0.72);
 border-radius: 0px;
 width: 88%;
 text-align: center;

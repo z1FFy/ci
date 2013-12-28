@@ -14,14 +14,7 @@
   #menu {
     height: 39px;
   }
-  .block_msg {
-  background-color: #D7DBDD;
-  padding: 7px;
-  border-radius: 7px;
-  width: 83%;
-  min-width: 500px;
-  margin-bottom: -5px;
-}
+
   </style>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 

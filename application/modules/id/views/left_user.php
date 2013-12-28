@@ -24,13 +24,13 @@
     } else {
        $whostring='';
     }
-      echo '<div style="background-color:rgba(237, 247, 253, 0.72);" class="block"  id="left_user">';
+      echo '<div style="background-color:rgba(219, 219, 219, 0.72)" class="block"  id="left_user">';
       echo '<br><div style="margin-top: -20px;margin-left:23px" class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
  $t = time() - $item->lastactivity;
       if($t > 300){
         $last_activity = '';
       }else{
-        $last_activity = '<img width="80px" src="'.$this->config->site_url().'images/online.png">';
+        $last_activity = '<p class="status" >online</p>';
       }
  echo '<br><p style="text-align:center">'.$whostring.' '.$text = htmlspecialchars($name, ENT_QUOTES).' '.$text = htmlspecialchars($famil, ENT_QUOTES).'  '.$acc_t.'</p>'.'<p style="font-size:13px;text-align:center">( '.$spec.' )';
      echo '<br>'.$last_activity.'</p>';

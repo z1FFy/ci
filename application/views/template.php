@@ -36,11 +36,19 @@ if (!empty($user_data)){
         echo 'background-color: #fff;';
       }
                   if ($fon=='img1'){
-        echo 'background-image: url("'.$this->config->site_url().'/images/bg/1.jpg");background-size: cover;color:#054E7C;background-repeat:no-repeat;
-background-attachment:fixed;';
+        echo 'background-image: url("'.$this->config->site_url().'/images/bg/1.jpg");background-size: cover;background-repeat:no-repeat;
+background-attachment:fixed;color:#fff';
       }
-     ?> 
+
+      ?>
+
+
   }
+  <?php 
+  if ($fon=='img1'){
+        echo '#simplemodal-data {color:#000;}.text_msg {color:#000;}';
+      }
+        ?>
 </style>
 </head>
 <body>

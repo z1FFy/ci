@@ -13,7 +13,15 @@
   #menu {
     height: 39px;
   }
-
+.block_msg {
+background-color: #D7DBDD;
+padding: 7px;
+border-radius: 7px;
+width: 83%;
+min-width: 500px;
+margin-bottom: -5px;
+height: 80px;
+}
   </style>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
@@ -22,7 +30,7 @@
         $this->load->view('left_user',$user_data); ?>
         <div id="polosa"></div>
 <div id="right_user">
-<p class="titl">Мои контакты:</p><br>
+<p class="titl">Мои сообщения:</p><br>
 <?php
 //$i=0;
 		if(!$friends_data_friend){
@@ -43,9 +51,9 @@
 			$user_id = $item->user_id;
 			$t = time() - $item->lastactivity;
 			if($t > 300){
-				$last_activity = '<img width="50px" src="'.$this->config->site_url().'images/offline.png">';
+				$last_activity = '<font style="color: rgb(66, 177, 106);" >online</font>';
 			}else{
-				$last_activity = '<img width="50px" src="'.$this->config->site_url().'images/online.png">';
+				$last_activity = '<font style="color: rgb(66, 177, 106);" >online</font>';
 			}
 			
 
@@ -58,7 +66,7 @@
 			if ($i<1) {
 				$kol=' ';
 		}	else {
-			$kol='<img width="25" src="'.$this->config->site_url().'/images/message.png">'.$i;
+			$kol='<img style="margin-top: -5px;" width="25" src="'.$this->config->site_url().'/images/message.png">'.$i;
 		}
 		$last_mess='Вам еще не писали!';
 		foreach ($mess_data as $item) {
@@ -67,10 +75,12 @@
 				}
 				}
 
-						echo '<div class="friend_block"><a href="'.$this->config->site_url().'id'.$friend.'">
+						echo '<div class="block_msg"><a href="'.$this->config->site_url().'id'.$friend.'">
 			<img style="width:80px;height:80px;border-radius: 10px 0 0 10px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar.'" /></a>			
-		  	<p class="friend_text"> '.$name.'   '.$kol.' '.$last_activity.' <br>Последнее сообщение: '.$last_mess.'<br><a href="'.$this->config->site_url().'id'.$url_id.'/friends?friend_id='.$friend.'">Переписка</a>
-		  	<a href="'.$this->config->site_url().'id'.$friend.'"> Посмотреть</a></p><br>';
+		  	 <p style="position: absolute;
+margin-top: -81px;
+margin-left: 90px;">'.$name.'   '.$kol.' '.$last_activity.'</p> <a href="'.$this->config->site_url().'id'.$url_id.'/friends?friend_id='.$friend.'"><p class="friend_text"><br> '.$last_mess.'</p><br></a>
+		  <br>';
 			//echo '<div style="padding:10px;"><i>'.$msg[$i].'</i></div>';
 			?> </div><br>  
 			<?php
