@@ -234,6 +234,10 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 	<option value="grey">Серый</option>
 	<option value="white">Белый</option>
 	<option value="img1">Картинка1</option>
+	<option value="img2">Картинка2</option>
+	<option value="img3">Картинка3</option>
+	<option value="img4">Картинка4</option>
+	<option value="img5">Картинка5</option>
 </select></li>
 </ul>
 <?php endforeach; ?>

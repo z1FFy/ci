@@ -1,10 +1,9 @@
 <?php 
 $fon='';
 if (!empty($user_data)){
-  if($whopage=='my'){
     foreach ($user_data as $item) {
       $fon=$item->fon;
-    }
+
   }
 }
 ?>
@@ -36,18 +35,27 @@ if (!empty($user_data)){
         echo 'background-color: #fff;';
       }
                   if ($fon=='img1'){
-        echo 'background-image: url("'.$this->config->site_url().'/images/bg/1.jpg");background-size: cover;background-repeat:no-repeat;
-background-attachment:fixed;color:#fff';
+        echo 'background-image: url("'.$this->config->site_url().'/images/bg/1.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
       }
-
+                  if ($fon=='img2'){
+        echo 'background-image: url("'.$this->config->site_url().'/images/bg/2.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff;';
+      }
+                        if ($fon=='img3'){
+        echo 'background-image: url("'.$this->config->site_url().'/images/bg/3.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
+      }
+                        if ($fon=='img4'){
+        echo 'background-image: url("'.$this->config->site_url().'/images/bg/4.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
+      }
+                        if ($fon=='img5'){
+        echo 'background-image: url("'.$this->config->site_url().'/images/bg/5.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
+      }
       ?>
 
 
   }
   <?php 
-  if ($fon=='img1'){
-        echo '#simplemodal-data {color:#000;}.text_msg {color:#000;}';
-      }
+  if ($fon=='img1' || $fon=='img2' || $fon=='img3' || $fon=='img4' || $fon=='img5') {
+        echo '#simplemodal-data {color:#000;}.text_msg {color:#000;';}
         ?>
 </style>
 </head>
@@ -93,7 +101,7 @@ background-color: #336aa8;"><a href="<?php echo $this->config->site_url() ?>"><i
   ?>
 
 </div>
-<div id="middle-pol" align="center"><img style="" src="<?php echo $this->config->site_url() ?>images/byd.png"></div>
+
 <div  id="content">
 <?php echo $page_content; ?>
 </div>

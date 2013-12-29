@@ -407,6 +407,13 @@ function onAjaxSuccess(data)
       };
        }
 
+$('#upload_ava').hide();
+$('#ava').hover(function() {
+ $('#upload_ava').show('fast');
+ $('#right_user').mouseenter(function() {
+  $('#upload_ava').hide('fast');
+ });
+});
 //subscribe
 
   

@@ -51,7 +51,7 @@ height: 80px;
 			$user_id = $item->user_id;
 			$t = time() - $item->lastactivity;
 			if($t > 300){
-				$last_activity = '<font style="color: rgb(66, 177, 106);" >online</font>';
+				$last_activity = '<font style="color: red;" >offline</font>';
 			}else{
 				$last_activity = '<font style="color: rgb(66, 177, 106);" >online</font>';
 			}

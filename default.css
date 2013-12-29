@@ -418,5 +418,12 @@ bottom: -100px
 .p_block {
 	border-radius: 10px;
 	margin-bottom:40px;text-align:left;background-color: rgba(219, 219, 219, 0.72);padding: 10px;
-	margin-top:-20px;margin-left:1%;margin-right:1%;height:400px;width:28%;display: inline-table;
+	margin-left:1%;margin-right:1%;height:400px;width:28%;display: inline-table;
+}
+
+.m_bl {
+	margin-top:20px;background-color: rgba(89, 124, 163, 0.39);padding:0px;
+}
+.m_t_block {
+	padding-bottom: 15px;padding-top:10px;font-size: 20px;background-color: rgba(54, 106, 172, 0.39);margin-top: -20px;margin-top: -20px;color: #fff;text-shadow:1px 0px 2px #030303;
 }
