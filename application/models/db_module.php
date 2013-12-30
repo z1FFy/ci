@@ -712,6 +712,31 @@ function upload_audio($user_id, $url_audio, $audios_name){
 
 }
 
+function kol_user_photos($url_id){//статистика всего картинок
+	$this->db->select('id_photos');
+	$this->db->from('photos');
+	$this->db->where('id_user', $url_id); 
+	$query = $this->db->get();
+	return $query->result();
+
+}
+function kol_user_videos($url_id){//статистика всего видеозаписей
+	$this->db->select('id_videos');
+	$this->db->from('videos');
+	$this->db->where('id_user', $url_id); 
+	$query = $this->db->get();
+	return $query->result();
+
+}
+function kol_user_audios($url_id){//статистика всего аудиозаписей
+	$this->db->select('id_audios');
+	$this->db->from('audios');
+	$this->db->where('id_user', $url_id); 
+	$query = $this->db->get();
+	return $query->result();
+
+}
+
 
 	}
 	   ?>
