@@ -31,11 +31,12 @@ $(document).ready(function() {
 
 
 $('.btn').click(function() { 
-
+//alert('zazaazaz');
 messages= $("textarea[name='messages']").val();
 friend_id= $("input[name='friend_id']").val();
+site_url= $("input[name='site_url']").val();
 //alert(chat_name);
-	$.post("friends/send_friends_messages",
+	$.post(site_url+"id/friends/send_friends_messages",
      { messages : messages, friend_id : friend_id
           },
      onAjaxSuccess
@@ -76,7 +77,7 @@ function onAjaxSuccess(data)
   }
 echo '<p class="titl">Переписка  </p><br>';
 
-  $friend_id = $_GET['friend_id'];
+  $friend_id = preg_replace("/[^0-9]/", '', $this->uri->segment(2));
   date_default_timezone_set('Europe/Moscow');
 		foreach ($messages_data as $item){ 
 			if($item->name == ''){
@@ -97,12 +98,13 @@ echo '<p class="titl">Переписка  </p><br>';
       <?php
 
 		
-		}?>
+		}echo $this->pagination->create_links();?>
 <br>
 
 
 <!-- <form action="<?php echo $this->config->site_url() ?>id/chat/send_messages" method="post" accept-charset="utf-8"> -->
 <input  type="hidden" name="friend_id" value="<?php echo $friend_id ?>" />
+<input  type="hidden" name="site_url" value="<?php echo $this->config->site_url() ?>" />
 <textarea class="styler" placeholder="Сообщение" name="messages" size="20"></textarea>
 
 <br /><br />

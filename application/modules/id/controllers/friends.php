@@ -21,11 +21,25 @@
 			return $whopage;
 	}
 
-	function index() {
-
-		$friend_id = $_GET['friend_id'];
+	function index() {	
+			$friend_id = preg_replace("/[^0-9]/", '', $this->uri->segment(2));
+		var_dump($friend_id);
 		$user_id=$this->session->userdata('user_id');
 		$messages_data = $this->db_module->view_friend_message($friend_id, $user_id);
+$row_count = $messages_data;
+$config['base_url'] = $this->config->site_url().'id'.$user_id.'/friends'.$friend_id.'/index/';
+$config['total_rows'] = $row_count-1;
+$config['per_page'] = 2; // кол-во фоток на 1 странице
+$config['uri_segment'] = 4;
+$config['num_links'] = 2;
+$config['next_link'] = '>>';
+$offset= preg_replace("/[^0-9]/", '', $this->uri->segment(4));
+//var_dump($config['uri_segment']);
+var_dump($this->uri->segment(4));
+$this->pagination->initialize($config); 
+
+$messages_data = $this->db_module->view_friend_message1($friend_id, $user_id, $config['per_page'], $offset);
+
 		$this->db_module->dell_unread($user_id, $friend_id);
 		$url_id= $this->_get_url_id();
 		$whopage= $this->_get_whopage($url_id,$user_id);

@@ -58,7 +58,7 @@ if (isset($_GET['vies'])) {
 }else{$vies = '';}
 
 if($vies==0){
-  foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
+   foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
     $url_photo = $item->url_photo;
     $name_photo = $item->photos_name;
     $photos_date = $item->photos_date;
@@ -88,7 +88,8 @@ if($vies==0){
     }
 
 
-  }
+   }
+  echo $this->pagination->create_links();
 
 }
 
@@ -123,14 +124,22 @@ if($vies==1){
     }
 
 }
+
+
+
+}
 }
 
 
-}
+
+
 
  ?>
-
-
+<br>
+<?php
+// var_dump($news_photos_data);
+// echo $this->pagination->create_links();
+?>
 
 
  <!-- </form> -->

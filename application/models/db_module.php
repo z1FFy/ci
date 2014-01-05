@@ -8,16 +8,20 @@ $this->load->database("default");
 
 
 function get_user($login){
-	   $query = $this->db->get_where('users', array('login' => $login));
+	    $this->db->select('user_id ,  login ,  password ,  mail ,  date ,  famil ,  name ,  otchestvo ,  birthday ,  avatar ,  podtvr ,  spec_user ,  sex ,  education_level ,  education_basic ,  facultet ,  education_end , language ,  sity ,  telephone ,  dop_telephone ,  skype ,  website ,  interests ,  lastactivity');
+		$query = $this->db->get_where('users', array('login' => $login));
 	     return $query->result();
 	}
 
 function get_user_by_email($email){
+	   $this->db->select('user_id,  mail ,  date ,  famil ,  name ,  otchestvo ,  birthday ,  avatar ,  podtvr ,  spec_user, lastactivity');
+	
 	   $query = $this->db->get_where('users', array('mail' => $email));
 	     return $query->result();
 	}
 function get_user_by_id($user_id){
-	 $query = $this->db->get_where('users', array('user_id' => $user_id));
+	$this->db->select('user_id ,  login , mail ,  date ,  famil ,  name ,  otchestvo ,  birthday ,  avatar ,  podtvr ,  spec_user ,  sex ,  education_level ,  education_basic ,  facultet ,  education_end , language ,  sity ,  telephone ,  dop_telephone ,  skype ,  website ,  interests ,  lastactivity');
+	$query = $this->db->get_where('users', array('user_id' => $user_id));
 	     return $query->result();
 }
 
@@ -364,6 +368,8 @@ function view_message($id_photos){
 
 	 return $query->result();
 }
+
+
 function view_message_vid($id_video){
 	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
 	$this->db->select('*');
@@ -448,7 +454,8 @@ function friends_view($user_id){
 
 
 function get_users_by_id($user_id){
-	$this->db->select('*');
+	$this->db->select('user_id ,  login , mail ,  date ,  famil ,  name ,  otchestvo ,  birthday ,  avatar ,  podtvr ,  spec_user ,  sex ,  education_level ,  education_basic ,  facultet ,  education_end , language ,  sity ,  telephone ,  dop_telephone ,  skype ,  website ,  interests ,  lastactivity');
+	
 	$this->db->from('users');
 	$this->db->where_in('user_id', $user_id);
 	$query = $this->db->get();
@@ -511,7 +518,7 @@ function dell_unread($user_id, $friend_id){
 
 
 function view_friends($mass){
-	$this->db->select('*');
+	$this->db->select('id_friend, user_id, friend_id, subscribe_date');
 	$this->db->from('friends');
 	$this->db->where_in('user_id', $mass); 
 	$this->db->where_in('friend_id', $mass);
@@ -524,7 +531,7 @@ function view_friends($mass){
 
 function view_friends1($friend_id, $user_id){
 
-	$this->db->select('*');
+	$this->db->select('id_friend, user_id, friend_id, subscribe_date');
 	$this->db->from('friends');
 	$this->db->where('friends.user_id', $friend_id); 
 	$this->db->where('friends.friend_id', $user_id);
@@ -534,14 +541,34 @@ function view_friends1($friend_id, $user_id){
 
 function view_friend_message($friend_id, $user_id){
 
-	$this->db->select('*');
+	$this->db->select('chat_friends.id_chat_friends, chat_friends.user_id, chat_friends.adresat, chat_friends.messages, chat_friends.message_date, chat_friends.unread,
+	    users.user_id ,  users.login , users.famil ,  users.name , users.avatar');
 	$this->db->from('users','chat_friends');
 	$this->db->join('chat_friends', 'chat_friends.user_id = users.user_id');
 	$this->db->where('chat_friends.adresat', $friend_id); 
 	$this->db->where('chat_friends.user_id', $user_id);
-
+	//$this->db->order_by('chat_friends.message_date', 'desc');
 	$this->db->or_where('chat_friends.adresat', $user_id); 
 	$this->db->where('chat_friends.user_id', $friend_id);
+	$query = $this->db->get();
+
+
+	 return $query->num_rows();
+
+}
+
+function view_friend_message1($friend_id, $user_id, $num, $offset){
+
+	$this->db->select('chat_friends.id_chat_friends, chat_friends.user_id, chat_friends.adresat, chat_friends.messages, chat_friends.message_date, chat_friends.unread,
+	    users.user_id ,  users.login , users.famil ,  users.name , users.avatar');
+	$this->db->from('users','chat_friends');
+	$this->db->join('chat_friends', 'chat_friends.user_id = users.user_id');
+	$this->db->where('chat_friends.adresat', $friend_id); 
+	$this->db->where('chat_friends.user_id', $user_id);
+	//$this->db->order_by('chat_friends.message_date', 'desc');
+	$this->db->or_where('chat_friends.adresat', $user_id); 
+	$this->db->where('chat_friends.user_id', $friend_id);
+	$this->db->limit($num, $offset);
 	$query = $this->db->get();
 
 
@@ -624,6 +651,7 @@ function view_news_photos($subscribe_users_id){
 	$this->db->select('*');
 	$query = $this->db->from('photos');
 	$this->db->where_in('id_user', $subscribe_users_id);
+	$this->db->order_by("photos_date", "desc"); 
 	//$this->db->where_in('photos_date =', $subscribe_users_date);
 	$query = $this->db->get();
     return $query->result();
@@ -635,6 +663,7 @@ function get_users_videos($subscribe_users_id) {
 	$query = $this->db->from('videos');
 	//$this->db->join('photos', 'videos.id_user = photos.id_user');
 	$this->db->where_in('id_user', $subscribe_users_id);
+	$this->db->order_by("video_date", "desc"); 
 	$query = $this->db->get();
     return $query->result();
 
@@ -736,6 +765,42 @@ function kol_user_audios($url_id){//статистика всего аудиоз
 	return $query->result();
 
 }
+
+function view_test($num, $offset){
+	$query = $this->db->get('photos', $num, $offset);
+	return $query->result();
+}
+
+function get_count_photos() {
+        $this->db->order_by("photos_date", "desc");
+        $query = $this->db->get('photos');                             
+        $rowcount = $query->num_rows();                                    
+        return $rowcount;
+        }
+
+
+
+//   function view_news_photos($subscribe_users_id,  $num, $offset){
+// 	$this->db->select('users.user_id, users.login, users.name,users.famil, photos.url_photo, photos.photos_name, photos.photos_date, photos.id_photos, photos.id_user');
+// 	$this->db->from('photos','users');
+// 	$this->db->join('users', 'users.user_id = photos.id_user');
+// 	$this->db->where_in('users.user_id', $subscribe_users_id);
+// 	$this->db->order_by("photos_date", "desc");
+// 	$this->db->limit($num, $offset);
+// 	$query = $this->db->get();
+//     return $query->result();
+// }
+
+// function view_news_photos1($subscribe_users_id){
+//     $this->db->select('id_user');
+// 	$this->db->from('photos');
+// 	$this->db->where_in('id_user', $subscribe_users_id);
+// 	$query = $this->db->get();
+// 	//return $query->result();                             
+//         $rowcount = $query->num_rows();                                    
+//         return $rowcount;
+    
+// }
 
 
 	}
