@@ -102,9 +102,7 @@ background-color:#fff;
     padding-right: 0%;
     display: table;
   }
-  #menu {
-    height: 39px;
-  }
+
     .tbl {
       border: 0px solid #bbb;
  /*     border-radius: 10px;*/

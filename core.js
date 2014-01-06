@@ -407,13 +407,40 @@ function onAjaxSuccess(data)
       };
        }
 
-$('#upload_ava').hide();
-$('#ava').hover(function() {
- $('#upload_ava').show('fast');
- $('#right_user').mouseenter(function() {
-  $('#upload_ava').hide('fast');
- });
+
+
+
+ $('#bg_t').hide();
+ $('#typefon').change(function() { 
+  typefon= $("select[name='typefon']").val();
+ if (typefon=='color') {
+   $('#bg_t').hide('fast');
+   $('#color_t').show('fast');
+ };
+  if (typefon=='bg') {
+     $('#color_t').hide('fast');
+ $('#bg_t').show('fast');
+  }
 });
+
+ $('.bge').click(function() { 
+    bge = $(this).attr("name");
+    $("img[name='img1']").css('border', '3px solid #bbb');
+     $("img[name='img2']").css('border', '3px solid #bbb');
+      $("img[name='img3']").css('border', '3px solid #bbb');
+       $("img[name='img4']").css('border', '3px solid #bbb');
+        $("img[name='img5']").css('border', '3px solid #bbb');
+    $(this).css('border', '3px solid green');
+    $("input[name='bg']").val(bge);
+ });
+
+// $('#upload_ava').hide();
+// $('#ava').hover(function() {
+//  $('#upload_ava').show('fast');
+//  $('#right_user').mouseenter(function() {
+//   $('#upload_ava').hide('fast');
+//  });
+// });
 //subscribe
 
   

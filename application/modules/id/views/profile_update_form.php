@@ -16,12 +16,10 @@
     padding-right: 0%;
     display: table;
   }
-  #menu {
-    height: 39px;
-  }
- 	.spi li{
- 		margin: 4px;
- 	}
+
+ .styler {
+ 	margin: 4px;
+ }
 </style>
 
 
@@ -135,7 +133,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 
 
 } 
- 
+
 </script> 
 
 <select  class="batn" id="regsel" name="spec_user" onChange="selChange(this.form)">
@@ -230,15 +228,33 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <li><b>Интересы:</b> <br>
 <textarea class="styler" name="interests" cols="40" rows = "10" maxlength = "250"> <?php echo $item->interests; ?> </textarea> <br>
 
-</li><li>Фон: <select style="width:100px" name="fon" class="styler">
-	<option value="grey">Серый</option>
+</li><li>Фон: <br></li>
+<select style="width:160px" id="typefon" name="typefon" class="styler">
+	<option value="color">Сплошной цвет</option>
+	<option value="bg">Изображение</option>
+	</select>
+	<div id="color_t">
+Цвет:<select style="width:100px" id="fon" name="fon" class="styler">
 	<option value="white">Белый</option>
-	<option value="img1">Картинка1</option>
-	<option value="img2">Картинка2</option>
-	<option value="img3">Картинка3</option>
-	<option value="img4">Картинка4</option>
-	<option value="img5">Картинка5</option>
-</select></li>
+	<option value="grey">Серый</option>
+
+</select></div>
+<div id="bg_t">
+Изображение:
+<style>
+	.bge {
+		border: 3px solid #bbb;
+	}
+</style>
+<div id="preview" style="width:500px;height:200px;">
+	<input type="hidden" name="bg" value="0">
+	<img class="bge" name="img1" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/1.jpg'?>">
+	<img class="bge" name="img2" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/2.jpg'?>">
+	<img class="bge" name="img3" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/3.jpg'?>">
+	<img class="bge" name="img4" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/4.jpg'?>">
+	<img class="bge" name="img5" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/5.jpg'?>">
+</div>
+</div>
 </ul>
 <?php endforeach; ?>
 

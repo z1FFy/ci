@@ -5,7 +5,7 @@ body {
  	font-family: Verdana;
  	background-color: #fff;
  	height: 100%;
- 	font-size: 15px;
+ 	font-size: 14px;
  	}
  	html {height: 100%}
  	a {
@@ -36,6 +36,7 @@ body {
 		position: absolute;
 		color: #fff;
 		margin-top: 40px;
+		margin-left: 10px;
  	}
 	header {
 		background-color: #336AA8;
@@ -51,9 +52,9 @@ body {
 
 	#menu {
 		padding-left: 276px;
-		padding-top: 15px;
+		padding-top: 18px;
 
-		height: 39px;
+		height: 35px;
 		background-image: url('./images/menu-bg_n.png');
 	}
 	#menu a {
@@ -61,8 +62,8 @@ color: #fff;
 /*background-color: rgba(255, 255, 255, 0.07);*/
 padding: 5px;
 color: #fff;
-padding-bottom: 19px;
-padding-top: 15px;
+padding-bottom: 18px;
+padding-top: 21px;
 text-shadow: 0px 0px 1px rgb(31, 55, 85);
 margin-right: -5px;
 
@@ -422,8 +423,12 @@ bottom: -100px
 }
 
 .m_bl {
-	margin-top:20px;background-color: rgba(89, 124, 163, 0.39);padding:0px;
+	margin-top:20px;background-color: rgba(89, 124, 163, 0.39);padding-top: 30px;
 }
 .m_t_block {
-	padding-bottom: 15px;padding-top:10px;font-size: 20px;background-color: rgba(54, 106, 172, 0.39);margin-top: -20px;margin-top: -20px;color: #fff;text-shadow:1px 0px 2px #030303;
+	padding-bottom: 15px;padding-top:10px;font-size: 20px;background-color: rgba(54, 106, 172, 0.39);margin-top: -20px;margin-top: -20px;color:#3277B9;
+}
+
+#entry,#auth {
+	margin-top: -7px;
 }

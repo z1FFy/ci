@@ -21,9 +21,7 @@ float: left;
  
   padding-bottom: 8px;
 }
-  #menu {
-    height: 39px;
-  }
+
   .block_photo {
     width:13%;
   }

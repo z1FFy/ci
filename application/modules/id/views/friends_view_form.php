@@ -10,9 +10,7 @@
 
 	display: table;
   }
-  #menu {
-    height: 39px;
-  }
+
 .block_msg {
 background-color: #D7DBDD;
 padding: 7px;

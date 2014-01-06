@@ -13,9 +13,7 @@
   #content {
     display: table;
   }
-  #menu {
-    height: 39px;
-  }
+
   .spi{
     margin: 4px;
   }

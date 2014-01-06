@@ -13,9 +13,7 @@ padding-right: 0px;
 width: 100%;
 
   }
-  #menu {
-    height: 39px;
-  }
+
 body {
 	background-color: #fff;
 }

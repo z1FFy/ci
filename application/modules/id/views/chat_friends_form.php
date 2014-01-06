@@ -11,9 +11,7 @@
     padding-right: 0%;
     display: table;
   }
-  #menu {
-    height: 39px;
-  }
+
 
   </style>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">

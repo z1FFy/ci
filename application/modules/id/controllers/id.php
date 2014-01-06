@@ -205,6 +205,9 @@ $i=0;
 		$website = $_POST['website'];
 		$interests = $_POST['interests'];
 		$fon = $_POST['fon'];
+		if ($_POST['bg']!='0') {
+		$fon = $_POST['bg'];
+		}
 
 		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level,
 		 $education_basic, $facultet, $education_end, $language, 
