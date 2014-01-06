@@ -99,12 +99,27 @@ function photos_in_albom()
 				$id_video = $_GET['id_vid'];
 				$video_data = $this->db_module->get_user_videos($url_id);
 			}
-		$id_photos = $_GET['id_orig'];
+		$id_orig = preg_replace("/[^0-9]/", '', $this->uri->segment(3));
+		$id_photos =preg_replace("/[^0-9]/", '', $this->uri->segment(4));
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$photos_data = $this->db_module->get_user_photos($url_id);
-		$message_data = $this->db_module->view_message($id_photos);
+		$message_data = $this->db_module->view_message1($id_orig);
 
+		
+$row_count = $message_data;
 
+$config['base_url'] = $this->config->site_url().'id'.$user_id.'/albom/view_photo'.$id_orig.'/'.$id_photos;
+$config['total_rows'] = $row_count;
+$config['per_page'] = 2; // кол-во фоток на 1 странице
+$config['uri_segment'] = 5;
+$config['num_links'] = 2;
+$config['next_link'] = '>>';
+$offset= preg_replace("/[^0-9]/", '', $this->uri->segment(5));
+//var_dump($config['uri_segment']);
+
+$this->pagination->initialize($config); 
+var_dump($this->uri->segment(5));
+$message_data = $this->db_module->view_message($id_orig, $config['per_page'], $offset);
 
 		$unread = $this->db_module->get_unread($url_id);
 		$message_data_arr = array( 'message_data' => $message_data, 'user_data' => $user_data, 'photos_data' => $photos_data, 'video_data' => $video_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);

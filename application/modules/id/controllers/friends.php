@@ -29,7 +29,7 @@
 $row_count = $messages_data;
 
 $config['base_url'] = $this->config->site_url().'id'.$user_id.'/friends'.$friend_id.'/index/';
-$config['total_rows'] = $row_count-1;
+$config['total_rows'] = $row_count;
 $config['per_page'] = 10; // кол-во фоток на 1 странице
 $config['uri_segment'] = 4;
 $config['num_links'] = 2;

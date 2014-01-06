@@ -48,6 +48,10 @@ $route['id(:num)/friends(:num)'] = "id/friends";
 $route['id(:num)/friends(:num)/index'] = "id/friends/index/$2";
 $route['id(:num)/friends(:num)/index/(:num)'] = "id/friends/index/$2";
 
+$route['id(:num)/albom/view_photo(:num)/(:num)'] = "id/albom/view_photo/$2";
+$route['id(:num)/albom/view_photo(:num)/(:num)/(:num)'] = "id/albom/view_photo/$2";
+
+
 $route['id(:num)/(:any)'] = "id/$2";
 
 

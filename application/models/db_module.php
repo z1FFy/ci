@@ -358,12 +358,25 @@ function send_message_v($id_video, $messages, $user_id){
 	return $query;
 }
 
-function view_message($id_photos){
+function view_message1($id_photos){
 	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
 	$this->db->select('*');
 	$this->db->from('users','chat_photos');
 	$this->db->join('chat_photos', 'chat_photos.user_id = users.user_id');
 	$this->db->where('chat_photos.photos_id', $id_photos); 
+	$query = $this->db->get();
+
+
+	 return $query->num_rows();
+}
+
+function view_message($id_photos, $num, $offset){
+	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
+	$this->db->select('*');
+	$this->db->from('users','chat_photos');
+	$this->db->join('chat_photos', 'chat_photos.user_id = users.user_id');
+	$this->db->where('chat_photos.photos_id', $id_photos); 
+	$this->db->limit($num, $offset);
 	$query = $this->db->get();
 
 

@@ -78,8 +78,6 @@ margin-left: 280px;
   // }
 </script>
 <?php
-
-echo $this->pagination->create_links();
 foreach ($user_data as $item){ 
       $name=$item->name;
       $famil=$item->famil;
@@ -92,8 +90,8 @@ foreach ($user_data as $item){
 <!-- "> </div> -->
 	<?php 
 
-    $id=$_GET['id'];
-    $id_orig=$_GET['id_orig'];
+    $id=$this->uri->segment(4);
+    $id_orig=$this->uri->segment(3);
 
     $user_id=$this->session->userdata('user_id');
     $count=count($photos_data);
@@ -166,7 +164,7 @@ echo '<div align="center" id="right_user">
 ';
 
 //<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
-   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="max-width:'.$mwidth.'px" width="90%" src="'.$img_path.'" ></div></a>'; 
+   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo'.$id_photos_n.'/'.$idnext.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="max-width:'.$mwidth.'px" width="90%" src="'.$img_path.'" ></div></a>'; 
 //<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
 echo '<div class="block" style="background-color: rgba(219, 219, 219, 0.72);
 border-radius: 0px;
@@ -211,7 +209,7 @@ $sel='';
 if ($i==$id+1) {
   $sel='background-color:#386E8F;';
 }
-      echo '<div style="height: 100px;'.$sel.'" class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$i.'&id_orig='.$item->id_photos.'">
+      echo '<div style="height: 100px;'.$sel.'" class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo'.$item->id_photos.'/'.$i.'">
 <div class="photo" style="height: 100px;width:100px;background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');"></div></a></div>';
 // if ($i == 4) {
 //  echo "<br>";
@@ -221,14 +219,14 @@ if ($i==$id+1) {
 ?>
 </div>
 <br>
-<div align="center"><br><br>
+<!-- <div align="center"><br><br>
 <button id="show_com" class="batn styler" style="display: block;width: 200px" >
 Комментарии
 <div style="position: absolute;margin-left: 80px;margin-top: 14px;">
 <img width="15px" src="
 <?php echo $this->config->site_url().'images/down.png' ?>
-"> </div> </button></div>
-  <div id="comments"  style="display:none">
+"> </div> </button></div> -->
+  <div id="comments"  style="display:block">
   <p style="color:#054E7C"> Комментарии </p>
 <?php 
 date_default_timezone_set('Europe/Moscow');
@@ -252,6 +250,9 @@ echo "</div>";
 
 }
 		
+echo $this->pagination->create_links();
+
+
 		?>
 <br>
 <div class="block" style="text-align:center;background-color:#336AA8;width:300px">

@@ -38,7 +38,7 @@ $id_al = $_GET['id_albom'];
 
 		$i++;
 		if (empty($id_al)) {
-			echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$i.'&id_orig='.$item->id_photos.'">
+			echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo'.$item->id_photos.'/'.$i.'">
 			<div class="photo" style="background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');">';
 			$style='';
 			if (empty($photos_name)) {
@@ -50,7 +50,7 @@ $id_al = $_GET['id_albom'];
 			echo '</div></a></div>';
 } else {
 	if ($id_al==$id_albom) {
-		echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$i.'&id_orig='.$item->id_photos.'">
+		echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo'.$item->id_photos.'/'.$i.'">
 			<div class="photo" style="background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');"><div class="pod_photo">'.$text = htmlspecialchars($photos_name, ENT_QUOTES).'</div></div></a></div>';
 
 	}
