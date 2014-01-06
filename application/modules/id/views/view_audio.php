@@ -19,6 +19,7 @@ width: 100%;
   }</style>
   <?php     $this->load->view('left_user',$user_data); 
 echo '<div  id="right_user">
+
 <div style="margin-right: 20%;">';
 
 $id_al='';

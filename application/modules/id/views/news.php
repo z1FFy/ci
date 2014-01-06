@@ -83,7 +83,8 @@ if($vies==0){
     }
 
 
-  }
+   }
+  echo $this->pagination->create_links();
 
 }
 
@@ -118,11 +119,31 @@ if($vies==1){
     }
 
 }
+
+
+
+}
 }
 
 
-}
+
+
 
  ?>
+<br>
+<?php
+// var_dump($news_photos_data);
+// echo $this->pagination->create_links();
+?>
 
+
+ <!-- </form> -->
 </div>
+
+
+
+
+
+
+
+

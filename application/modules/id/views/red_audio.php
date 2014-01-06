@@ -1,4 +1,5 @@
 
+ 
 
 
  <script>
@@ -42,13 +43,13 @@ $(function() {
 <select name = "id_albom"  style="width: 200px;">
 <?php 
 echo '<option value="all">Все</a> </option> ';
-        foreach ($albom_data as $item){  ?>
-        <option value="<?php echo $item->id_albom ?>" >
-                <?php 
-                //var_dump($item);
-                 echo $item->albom_name; ?>
-        </option>
-        <?php } ?>
+	foreach ($albom_data as $item){  ?>
+	<option value="<?php echo $item->id_albom ?>" >
+		<?php 
+		//var_dump($item);
+		 echo $item->albom_name; ?>
+	</option>
+	<?php } ?>
 </select>
 <input type="submit" class="styler" value="Ок">
 <input type="hidden" name="id_audios" value="<?php echo $id_audios; ?>">
@@ -56,5 +57,5 @@ echo '<option value="all">Все</a> </option> ';
 </form> 
 </div>
  <div class="block" style="background-color:#82b1cc;margin-top:-20px;">
-         <input type="button" style="color:red" class="delete_audios styler" value="Удалить" link='<?php echo $id_audios; ?>'> 
+	 <input type="button" style="color:red" class="delete_audios styler" value="Удалить" link='<?php echo $id_audios; ?>'> 
 </div>

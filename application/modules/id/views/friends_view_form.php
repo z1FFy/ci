@@ -72,12 +72,14 @@ height: 80px;
 				$last_mess = $item->messages;
 				}
 				}
+				$array = array('friend' => $friend, );
+				$this->uri->assoc_to_uri($array);
 
-						echo '<div class="block_msg"><a href="'.$this->config->site_url().'id'.$friend.'">
+						echo '<div class="block_msg"><a href="'.$this->config->site_url().'id'.$url_id.'/friends'.$friend.'">
 			<img style="width:80px;height:80px;border-radius: 10px 0 0 10px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar.'" /></a>			
 		  	 <p style="position: absolute;
 margin-top: -81px;
-margin-left: 90px;">'.$name.'   '.$kol.' '.$last_activity.'</p> <a href="'.$this->config->site_url().'id'.$url_id.'/friends?friend_id='.$friend.'"><p class="friend_text"><br> '.$last_mess.'</p><br></a>
+margin-left: 90px;">'.$name.'   '.$kol.' '.$last_activity.'</p> <a href="'.$this->config->site_url().'id'.$url_id.'/friends'.$friend.'"><p class="friend_text"><br> '.$last_mess.'</p><br></a>
 		  <br>';
 			//echo '<div style="padding:10px;"><i>'.$msg[$i].'</i></div>';
 			?> </div><br>  

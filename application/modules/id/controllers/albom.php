@@ -103,6 +103,9 @@ function photos_in_albom()
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$photos_data = $this->db_module->get_user_photos($url_id);
 		$message_data = $this->db_module->view_message($id_photos);
+
+
+
 		$unread = $this->db_module->get_unread($url_id);
 		$message_data_arr = array( 'message_data' => $message_data, 'user_data' => $user_data, 'photos_data' => $photos_data, 'video_data' => $video_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
 		$page_content=$this->load->view('view_photo',$message_data_arr,true);

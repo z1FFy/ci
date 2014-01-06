@@ -1,27 +1,46 @@
+<html>
+<head>
+<title>Поиск людей</title>
+	  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
 <style>
-
-
-
-    #middle-pol {
-    padding-top: 0px;
-    width: 100%;
-    height: 0px;
-    visibility: hidden;
-
-  }
   #content {
 
     display: table;
   }
-
     .spi{
     margin: 4px;
   }
 
 </style>
 
+<script type="text/javascript">
+function showElement(layer){
+var myLayer = document.getElementById(layer);
+if(myLayer.style.display=="none"){
+ myLayer.style.display="block";
+ myLayer.backgroundPosition="top";
+ } else { 
+ myLayer.style.display="none";
+ }
+}
 
+function showElement1(layer){
+var myLayer = document.getElementById(layer);
+if(myLayer.style.display=="none"){
+ myLayer.style.display="block";
+ myLayer.backgroundPosition="top";
+ } else { 
+ myLayer.style.display="none";
+ }
+}
+
+
+</script>
+
+</head>
+<body>
 
 <?php
 $logged = $this->session->userdata('logged_in');
@@ -56,7 +75,6 @@ $week = time() - 86400*7;
 $w=0;
 $month = time() - 86400*30;
 $m=0;
-echo 'Колличество просмотров(за все время): '.count($visit_data).'<br>';
   echo '<div style="
 width: 240px;
 " class="block">Просматривали:<br>';
@@ -77,11 +95,27 @@ foreach ($visit_data as $item) {
     $m++;
   }
 }
-echo 'Колличество просмотров(за месяц): '.$m.'<br>';
-echo 'Колличество просмотров(за неделю): '.$w.'<br>';
-echo 'Колличество просмотров(за сутки): '.$d.'<br>';
+?>
+<a href="#" class="button" onclick="javascript:showElement('v-menu')">
+ <span><?php echo 'Колличество просмотров(за все время): '.count($visit_data).'<br>';  ?></span>
+</a>
+<ul id="v-menu" class="v-menu" style="display:none;">
+<?php
+echo '<li>За месяц: '.$m.'<br>';
+echo '<li>За неделю: '.$w.'<br>';
+echo '<li>За сутки: '.$d.'<br>';
+echo '</ul>';
+?>
+<a href="#" class="button" onclick="javascript:showElement1('v-menu1')">
+ <span><?php echo 'Всего работ: '.$kol_works = count($kol_user_photos)+count($kol_user_videos)+count($kol_user_audios).'/30<br>';  ?></span>
+</a>
+<ul id="v-menu1" class="v-menu1" style="display:none;">
+<?php
+echo 'Изображений: '.count($kol_user_photos).'<br>';
+echo 'Видеозаписей: '.count($kol_user_videos).'<br>';
+echo 'Аудиозаписей: '.count($kol_user_audios).'<br>';
+echo '</ul>';
 echo 'Колличество поставленных вами лайков(за все время): '.$like_data.'<br>';
-
 ?>
 
 

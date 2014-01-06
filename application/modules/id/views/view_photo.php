@@ -78,6 +78,8 @@ margin-left: 280px;
   // }
 </script>
 <?php
+
+echo $this->pagination->create_links();
 foreach ($user_data as $item){ 
       $name=$item->name;
       $famil=$item->famil;
@@ -245,6 +247,7 @@ date_default_timezone_set('Europe/Moscow');
        <div style="display:inline" class="block2">'.htmlspecialchars($name, ENT_QUOTES);
         echo '<div class="date_msg">Дата/Время: '.date("d.m.y H:i:s" ,$item->message_date).'</div></div><br>';
        echo '<div class="text_msg">'.$text = htmlspecialchars($item->messages, ENT_QUOTES).'</div>';
+
 echo "</div>";
 
 }
