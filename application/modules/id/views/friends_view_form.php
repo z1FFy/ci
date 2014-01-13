@@ -82,9 +82,9 @@ margin-top: -81px;
 margin-left: 90px;">'.$name.'   '.$kol.' '.$last_activity.'</p> <a href="'.$this->config->site_url().'id'.$url_id.'/friends'.$friend.'"><p class="friend_text"><br> '.$last_mess.'</p><br></a>
 		  <br>';
 			//echo '<div style="padding:10px;"><i>'.$msg[$i].'</i></div>';
-			?> </div><br>  
+			?> </div><br> 
 			<?php
 		}
 		//var_dump($mess_data);
 		?>
-		
+		</div> 

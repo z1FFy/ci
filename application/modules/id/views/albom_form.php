@@ -6,8 +6,9 @@
 <body>
 <form action="<?php echo $this->config->site_url() ?>id/albom/do_albom" method="post" accept-charset="utf-8">
 
-<input class="styler" placeholder="Название альбома" type="text" name="albom_name" size="20" />
-<?php 
+<input class="styler" placeholder="Название альбома" type="text" name="albom_name" maxlength="10"/>
+<?php
+echo '<input type="hidden" name="url_id" size="20" value="'.$_GET['url_id'].'" />'; 
 if (!empty($audio)) {
 echo '<input type="hidden" name="audio" size="20" value="audio" />';
 	

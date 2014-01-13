@@ -39,8 +39,8 @@ function mime_header_encode($str, $data_charset, $send_charset) {
 
   
 
-     $body2='Ваш пароль на сайте portfolionline.ru:<br> '.$pass;
-     echo $body2;
+     $body2='Ваш пароль на сайте portfolionline.ru:<br> Логин: '.$login.'<br>Пароль: '.$pass;
+     echo 'Проверьте почту!';
     $data_charset = 'UTF-8';
     $send_charset = "CP1251";
 

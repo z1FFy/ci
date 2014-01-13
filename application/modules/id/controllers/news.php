@@ -31,7 +31,7 @@
 		$url_id= $this->_get_url_id();
 		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
-		$user_data = $this->db_module->get_user_by_id($url_id);
+		$user_data = $this->db_module->get_user_by_id($url_id);$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
 		$i=0;
 		$subscribe_users_id='';
 		$second_user='';
@@ -73,7 +73,7 @@
 		$i++;
 }
 		$friends_data_friend = $this->db_module->get_users_by_id($second_user);
-		$user_data_arr = array( 'user_data' => $user_data, 'friends_data_friend' => $friends_data_friend, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'news_photos_data' => $news_photos_data, 'subscribe_users_data' => $subscribe_users_data, 'video_data' => $video_data);
+		$user_data_arr = array( 'user_data' => $user_data,'acc_data' => $acc_user, 'friends_data_friend' => $friends_data_friend, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'news_photos_data' => $news_photos_data, 'subscribe_users_data' => $subscribe_users_data, 'video_data' => $video_data);
 		$page_content = $this->load->view('news', $user_data_arr, true);
 		$this ->db_module->last_activity($user_id);
 	

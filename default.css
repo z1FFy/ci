@@ -38,6 +38,14 @@ body {
 		margin-top: 40px;
 		margin-left: 10px;
  	}
+ 	#inf {
+		text-decoration: none;
+		cursor: pointer;
+		position: absolute;
+		color: #fff;
+		margin-top: 40px;
+		margin-left: 250px;
+ 	}
 	header {
 		background-color: #336AA8;
 		height: 130px;
@@ -99,6 +107,9 @@ margin-right: -5px;
 		margin-bottom: 15%;
 		background-color: #rgba(219, 219, 219, 0.72);
 	}
+
+
+
 	.status {
 text-align: center;
 
@@ -208,6 +219,15 @@ border-radius: 6px;
   min-width: 500px;
   margin-bottom: -5px;
 }
+.block_msg_user {
+  background-color: #336aa8;
+  padding: 7px;
+  border-radius: 7px;
+  width: 83%;
+  min-width: 500px;
+  margin-bottom: -5px;
+}
+
 .friend_text {
 margin-left: 90px;
 margin-top: -60px;
@@ -230,6 +250,15 @@ padding: 4PX;
 	color: rgb(124, 124, 124);
 	margin-top: -45px;
 	text-shadow: 1px 1px 0px rgb(255, 255, 255);
+	height: 40px;
+	margin-left: 80%;
+}
+.date_msg_user {
+	right: 20%;
+	font-size: 10px;
+	color: rgb(255, 255, 250);
+	margin-top: -45px;
+	/*text-shadow: 1px 1px 0px rgb(255, 255, 250);*/
 	height: 40px;
 	margin-left: 80%;
 }

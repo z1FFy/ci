@@ -30,7 +30,7 @@ $row_count = $messages_data;
 
 $config['base_url'] = $this->config->site_url().'id'.$user_id.'/friends'.$friend_id.'/index/';
 $config['total_rows'] = $row_count;
-$config['per_page'] = 10; // кол-во фоток на 1 странице
+$config['per_page'] = 2; // кол-во фоток на 1 странице
 $config['uri_segment'] = 4;
 $config['num_links'] = 2;
 $config['next_link'] = '>>';
@@ -47,7 +47,8 @@ $messages_data = $this->db_module->view_friend_message1($friend_id, $user_id, $c
 		$logged = $this->session->userdata('logged_in');
 		$user_data = $this->db_module->get_user_by_id($user_id);
 		$this->db_module->dell_unread($user_id, $friend_id);
-		$messages_data_arr = array( 'messages_data' => $messages_data ,'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id ,'logged' => $logged);
+		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
+		$messages_data_arr = array( 'messages_data' => $messages_data ,'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id ,'logged' => $logged);
  		$page_content = $this->load->view('chat_friends_form',$messages_data_arr,true);
 		$title= 'Сообщения / PortfolioOnline';
 		$logged = $this->session->userdata('logged_in');
@@ -93,7 +94,8 @@ $unread_data = $this->db_module->get_all_unread($user_id);
 $mess_data = $this->db_module->get_all_user_messages($user_id);
 $friends_data_friend = $this->db_module->get_users_by_id($friend_id);
 $unread = $this->db_module->get_unread($url_id);
-$friends_data_arr = array('friends_data_friend' => $friends_data_friend, 'user_data' => $user_data, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data, 'last_activity' => $last_activity, 'mess_data' => $mess_data);
+$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
+$friends_data_arr = array('friends_data_friend' => $friends_data_friend, 'user_data' => $user_data,'acc_data' => $acc_user, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data, 'last_activity' => $last_activity, 'mess_data' => $mess_data);
 
 $page_content = $this->load->view('friends_view_form',$friends_data_arr,true);
 $title= 'Сообщения / PortfolioOnline';

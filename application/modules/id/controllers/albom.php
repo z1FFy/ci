@@ -35,20 +35,58 @@ class Albom extends CI_Controller {
 	
 function do_albom()
 	{
-		$albom_name = $_POST['albom_name'];
-		if (isset($_POST['audio'])) {
+		$albom_name = str_replace(" ","",$_POST['albom_name']);
+		$url_id = $_POST['url_id'];
 			
-			$res=$this->db_module->send_new_audio_albom($albom_name);
-			$user_id=$this->session->userdata('user_id');
-			header ("Location:". $this->config->site_url().'id'.$user_id.'/albom/view_audio');
-		}else{
-			$res=$this->db_module->send_new_albom($albom_name);
-			$user_id=$this->session->userdata('user_id');
-			header ("Location:". $this->config->site_url().'id'.$user_id);
+			if (isset($_POST['audio'])) {
 
-		}
-		
+					if($albom_name != ''){
+						if (preg_match('/^[a-zA-ZА-Яа-я\d_.@-]{3,10}$/u',$albom_name)) {
+						$alboms=$this->db_module->get_albom_audios_by_albom_name($albom_name, $url_id);
+						if($alboms <= 0){
+						$res=$this->db_module->send_new_audio_albom($albom_name, $url_id);
+						header ("Location:". $this->config->site_url().'id'.$user_id.'/albom/view_audio');
+						}else{
+							$albom_create = 'Такой альбом уже существует!';
+							header ("Location:". $this->config->site_url().'id'.$url_id.'/albom/view_audio?albom_create='.$albom_create);
+						}
+					}else{
+						$albom_create = 'Некорректное имя альбома!';
+						header ("Location:". $this->config->site_url().'id'.$url_id.'/albom/view_audio?albom_create='.$albom_create);
+					}
+						}else{
+							$albom_create = 'Заполните все поля!';
+							header ("Location:". $this->config->site_url().'id'.$url_id.'/albom/view_audio?albom_create='.$albom_create);
+						}
+				}else{
+					if($albom_name != ''){
+						if (preg_match('/^[а-яА-яa-zA-Z\d_.@-]{3,10}$/u',$albom_name)) {
+						$alboms=$this->db_module->get_albom_photos_by_albom_name($albom_name, $url_id);
+						if($alboms <= 0){
+						$res=$this->db_module->send_new_albom($albom_name);
+						header ("Location:". $this->config->site_url().'id'.$url_id);
+						}else{
+						$albom_create = 'Такой альбом уже существует!';
+						header ("Location:". $this->config->site_url().'id'.$url_id.'?albom_create='.$albom_create);
+					}
+
+						}else{
+							$albom_create = 'Некорректное имя альбома!';
+							header ("Location:". $this->config->site_url().'id'.$url_id.'?albom_create='.$albom_create);
+						}
+					}else{
+							$albom_create = 'Заполните все поля!';
+							header ("Location:". $this->config->site_url().'id'.$url_id.'/albom/view_audio?albom_create='.$albom_create);
+						}
+				}
+
 	}
+
+function delete_albom(){
+	$albom_name = $_GET['albom_name'];
+	$this->db_module->delete_albom($albom_name);
+
+}
 
 function do_img_to_albom()
 	{
@@ -122,7 +160,8 @@ var_dump($this->uri->segment(5));
 $message_data = $this->db_module->view_message($id_orig, $config['per_page'], $offset);
 
 		$unread = $this->db_module->get_unread($url_id);
-		$message_data_arr = array( 'message_data' => $message_data, 'user_data' => $user_data, 'photos_data' => $photos_data, 'video_data' => $video_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
+		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
+		$message_data_arr = array( 'message_data' => $message_data, 'user_data' => $user_data,'acc_data' => $acc_user, 'photos_data' => $photos_data, 'video_data' => $video_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
 		$page_content=$this->load->view('view_photo',$message_data_arr,true);
 		$title="Просмотр фото";
 		$data['page_content'] = $page_content;
@@ -142,9 +181,9 @@ $message_data = $this->db_module->view_message($id_orig, $config['per_page'], $o
 				$message_data = $this->db_module->view_message_vid($id_video);
 			}
 		$unread = $this->db_module->get_unread($url_id);
-
+		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
 	$data_arr = array('user_data' => $user_data, 'message_data' =>  $message_data,
-		'video_data' => $video_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
+		'video_data' => $video_data,'acc_data' => $acc_user, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
 
 	$page_content=$this->load->view('view_video',$data_arr,true);
 		$title="Просмотр видео";
@@ -164,9 +203,9 @@ $message_data = $this->db_module->view_message($id_orig, $config['per_page'], $o
 				$audio_data = $this->db_module->get_user_audios($url_id);
 
 		$unread = $this->db_module->get_unread($url_id);
-
+$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
 	$data_arr = array('user_data' => $user_data,
-		'audio_data' => $audio_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread, 'albom_data'=> $albom_data);
+		'audio_data' => $audio_data,'acc_data' => $acc_user, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread, 'albom_data'=> $albom_data);
 
 	$page_content=$this->load->view('view_audio',$data_arr,true);
 		$title="Просмотр аудио";

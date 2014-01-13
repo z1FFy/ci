@@ -76,11 +76,17 @@ echo '<p class="titl">Переписка  </p><br>';
 			}else{
 				$name = $item->name.' '.$item->famil;
 			}
-			//var_dump($item);
+      if($item->user_id == $this->session->userdata('user_id')){
+        $div_class='block_msg_user';
+        $div_class_data = 'date_msg_user';
+      }else{
+        $div_class='block_msg';
+        $div_class_data = 'date_msg';
+      }
     
-  echo '<div class="block_msg"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
+  echo '<div class="'.$div_class.'"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
       .htmlspecialchars($name, ENT_QUOTES);
-      echo '<div class="date_msg">Дата/Время: ';
+      echo '<div class="'.$div_class_data.'">Дата/Время: ';
       echo date("d.m.y H:i:s" ,$item->message_date);
       echo '</div>';
       echo '<div class="text_msg">'.htmlspecialchars($item->messages, ENT_QUOTES).'</div>';

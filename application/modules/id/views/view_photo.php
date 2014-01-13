@@ -91,7 +91,7 @@ foreach ($user_data as $item){
 	<?php 
 
     $id=$this->uri->segment(4);
-    $id_orig=$this->uri->segment(3);
+       $id_orig=preg_replace("/[^0-9]/", '', $this->uri->segment(3));
 
     $user_id=$this->session->userdata('user_id');
     $count=count($photos_data);
@@ -187,10 +187,14 @@ echo '<small>Название:</small><br> '.$photos_name.'
  echo $img_path."' >на полный экран</button>";
 
 
-  
+ foreach ($photos_data  as $item){ 
+  if($item->id_photos == $id_orig){
+    $like_photos=$item->like_photos;
+  }
+ }
 
 if ($logged == TRUE) {
-echo ' <input type="button" class="like_photos like_photos1 batn styler" value="LIKE '.$item->like_photos.'" link='.$item->id_photos.'>  ';
+echo ' <input type="button" class="like_photos like_photos1 batn styler" value="LIKE '.$like_photos.'" link='.$id_orig.'>  ';
 }  if ($whopage=='my') {
     if ($logged==TRUE) {
           //  echo '  <a class="delete_photos batn" link='.$item->id_photos.'>Удалить</a>';

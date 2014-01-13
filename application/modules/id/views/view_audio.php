@@ -44,9 +44,12 @@ $id_al = $_GET['id_albom'];
 
 
 
-if($whopage == "my") { echo '<input type="button" class="styler" id="create_audio_albom" value="Создать альбом"><input type="button" class="upload_foto styler" value="Загрузить работу">';}
+if($whopage == "my") { echo '<input type="button" class="styler" id="create_audio_albom" link='.$url_id.' value="Создать альбом"><input type="button" class="upload_foto styler" value="Загрузить работу">';}
 //$id_aud=$_GET['id_aud'];
-
+if (isset($_GET['albom_create'])) {
+echo '<br><p style="font-size: 20px;
+  color: rgb(124, 124, 124);">'.$_GET['albom_create'].'</p>';
+  }
 foreach ($audio_data as $item) {
   $id_albom=$item->id_albom;
  // var_dump($item);
@@ -58,7 +61,8 @@ foreach ($audio_data as $item) {
         <source src="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" type="audio/ogg; codecs=vorbis"; codecs=vorbis">
         Тег audio не поддерживается вашим браузером. 
         <a href="upload/audios/'.$item->url_audio.'">Скачайте музыку</a>.  
-        </audio>';
+        </audio><a href="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" download="'.$item->url_audio.'"> Скачайте музыку</a>';
+
 ?>
  <?php if ($whopage=='my') {
   ?>
@@ -75,7 +79,7 @@ foreach ($audio_data as $item) {
         <source src="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" type="audio/mp3; codecs=vorbis">
         <source src="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" type="audio/ogg; codecs=vorbis"; codecs=vorbis">
         Тег audio не поддерживается вашим браузером. 
-        <a href="upload/audios/'.$item->url_audio.'">Скачайте музыку</a>.  
+        <a href="upload/audios/'.$item->url_audio.'">Скачайте музыку</a>  
         </audio>';
 if ($whopage=='my') {
   ?>

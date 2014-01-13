@@ -67,11 +67,12 @@ $('#reg').click(function() {
   pass2 = $("input[name='password2']").val();
     spec_user = $("select[name='spec_user']").val();
   if (spec_user == 'Другое'){
-    alert(spec_user);
+    //alert(spec_user);
     spec_user = $("input[name='spec_user1']").val();
   }
-
-
+//alert(spec_user);
+if(spec_user !== 'Специализация'){
+if (spec_user !== ''){
   if (login.length >= 3 && pass.length >= 3) {
   if (pass == pass2) {
   $.post("sendreg",
@@ -81,25 +82,36 @@ $('#reg').click(function() {
    );
    } else {
 $('#pad').html('пароли не совпадают');
+//alert('пароли не совпадают');
 }   
 }else
 {
 $('#pad').html('минимальное значение любого поля - 3 символа');
 }
-
+}else{
+  $('#pad').html('Введите свою специализацию'); 
+}
+}else{
+  $('#pad').html('Выберите специализацию');
+}
    function onAjaxSuccess(data)
    {
-       
+     alert(data);  
  if (data== 'yzhe') {
- $('#pad').html('такой юзер есть');
+ $('#pad').html('Такой логин уже используется');
  } else {
-  if (data=='xren') {
-     $('#pad').html('символы не те');
+  if (data=='login') {
+     $('#pad').html('Вы используете запрещенные символы в поле Логин, разрешены: 0-9 A-Z a-z _ .');
   }else{
-
+    if (data=='mail') {
+      $('#pad').html('Вы используете запрещенные символы в поле Email, разрешены: 0-9 @ . a-z _ -');
+    }else{
+        if (data=='pass') {
+            $('#pad').html('Вы используете запрещенные символы в поле Пароль, разрешены: 0-9 A-Z a-z');
+        }else{
      location.href=site_full+'/site/reg_sucess?login='+login;
 
-}
+}}}
  }
           };    
    
@@ -239,15 +251,36 @@ $('.btn_entry').click(function() {
         var src = site_full+"/id/support";
         upload(src,'nof',300,300);
        }); 
+
+    $('.banner').click(function() { 
+        var src = site_full+"/id/banner";
+        upload(src,'nof',300,300);
+       }); 
     
   $('#create_albom').click(function() { 
-        var src = site_full+"/id/albom";
+    url_id = $(this).attr("link");
+        var src = site_full+"/id/albom?url_id="+url_id;
         upload(src,'nof',300,300);
        }); 
 
     $('#create_audio_albom').click(function() { 
-        var src = site_full+"/id/albom?albom=1";
+       url_id = $(this).attr("link");
+        var src = site_full+"/id/albom?url_id="+url_id+"&albom=1";
         upload(src,'nof',300,300);
+       }); 
+    
+    $('#delete_albom').click(function() { 
+    albom_name = $(this).attr("link");
+       $.post(site_full+"/id/albom/delete_albom?albom_name="+albom_name,
+     {
+        albom_name : albom_name,
+     },
+     onAjaxSuccess
+   );
+ function onAjaxSuccess(data)
+   {
+   window.location.replace(site_full+"/id");  
+          };
        }); 
 
 
@@ -405,6 +438,7 @@ function onAjaxSuccess(data)
           overlayClose:true
         });   
       };
+
        }
 
 

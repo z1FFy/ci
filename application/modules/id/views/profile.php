@@ -1,3 +1,186 @@
+<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
+<script type="text/javascript">
+// ymaps.ready(init);
+
+// function init() {
+//     // Данные о местоположении, определённом по IP
+//     var geolocation = ymaps.geolocation,
+//     // координаты
+//         coords = [geolocation.latitude, geolocation.longitude],
+//         myMap = new ymaps.Map('map', {
+//             center: coords,
+//             zoom: 10
+//         });
+
+
+
+//     myMap.geoObjects.add(
+//         new ymaps.Placemark(
+//             coords,
+//             {
+//                 // В балуне: страна, город, регион.
+//                 balloonContentHeader: geolocation.country,
+//                 balloonContent: geolocation.city,
+//                 balloonContentFooter: geolocation.region
+//             }
+//         )
+//     );
+
+
+
+// }
+</script>
+
+
+<script>
+// $('#friends').click(function() { 
+//         friend_id = $(this).attr("link");
+//         //alert(friend_id);
+//       $.post(site_full+"/id/friends_insert",
+//          { friend_id : friend_id,
+//               },
+//          onAjaxSuccess
+//          );
+//       });
+
+ymaps.ready(init);
+
+function init() {
+    var myMap = new ymaps.Map('map', {
+        center: [55.753994, 37.622093],
+        zoom: 9,
+        behaviors: ['default', 'scrollZoom']
+    });
+    map = $("#sity_map").attr("value");
+    //alert(map);
+    // Поиск координат центра Нижнего Новгорода.
+    ymaps.geocode(map, {
+
+        /**
+         * Опции запроса
+         * @see http://api.yandex.ru/maps/doc/jsapi/2.x/ref/reference/geocode.xml
+         */
+        // boundedBy: myMap.getBounds(), // Сортировка результатов от центра окна карты
+        // strictBounds: true, // Вместе с опцией boundedBy будет искать строго внутри области, указанной в boundedBy
+        results: 1 // Если нужен только один результат, экономим трафик пользователей
+    }).then(function (res) {
+            // Выбираем первый результат геокодирования.
+
+            var firstGeoObject = res.geoObjects.get(0),
+                // Координаты геообъекта.
+                coords = firstGeoObject.geometry.getCoordinates(),
+                // Область видимости геообъекта.
+                bounds = firstGeoObject.properties.get('boundedBy');
+
+            // Добавляем первый найденный геообъект на карту.
+            myMap.geoObjects.add(firstGeoObject);
+            // Масштабируем карту на область видимости геообъекта.
+            myMap.setBounds(bounds, {
+                checkZoomRange: true // проверяем наличие тайлов на данном масштабе.
+            });
+            /**
+             * Все данные в виде javascript-объекта.
+             */
+            console.log('Все данные геообъекта: ', firstGeoObject.properties.getAll());
+            /**
+             * Метаданные запроса и ответа геокодера.
+             * @see http://api.yandex.ru/maps/doc/geocoder/desc/reference/GeocoderResponseMetaData.xml
+             */
+            console.log('Метаданные ответа геокодера: ', res.metaData);
+            /**
+             * Метаданные геокодера, возвращаемые для найденного объекта.
+             * @see http://api.yandex.ru/maps/doc/geocoder/desc/reference/GeocoderMetaData.xml
+             */
+            console.log('Метаданные геокодера: ', firstGeoObject.properties.get('metaDataProperty.GeocoderMetaData'));
+            /**
+             * Точность ответа (precision) возвращается только для домов.
+             * @see http://api.yandex.ru/maps/doc/geocoder/desc/reference/precision.xml
+             */
+            console.log('precision', firstGeoObject.properties.get('metaDataProperty.GeocoderMetaData.precision'));
+            /**
+             * Тип найденного объекта (kind).
+             * @see http://api.yandex.ru/maps/doc/geocoder/desc/reference/kind.xml
+             */
+            console.log('Тип геообъекта: %s', firstGeoObject.properties.get('metaDataProperty.GeocoderMetaData.kind'));
+            console.log('Название объекта: %s', firstGeoObject.properties.get('name'));
+            console.log('Описание объекта: %s', firstGeoObject.properties.get('description'));
+            console.log('Полное описание объекта: %s', firstGeoObject.properties.get('text'));
+
+            /**
+             * Если нужно добавить по найденным геокодером координатам метку со своими стилями и контентом балуна, создаем новую метку по координатам найденной и добавляем ее на карту вместо найденной.
+             */
+            /**
+             var myPlacemark = new ymaps.Placemark(coords, {
+             iconContent: 'моя метка',
+             balloonContent: 'Содержимое балуна <strong>моей метки</strong>'
+             }, {
+             preset: 'twirl#violetStretchyIcon'
+             });
+
+             myMap.geoObjects.add(myPlacemark);
+             */
+        });
+}
+
+</script>
+
+
+<script>
+// ymaps.ready(init);
+
+// function init() {
+//     var myPlacemark,
+//         myMap = new ymaps.Map('map', {
+//             center: [55.753994, 37.622093],
+//             zoom: 9,
+//             behaviors: ['default', 'scrollZoom']
+//         });
+
+//     // Слушаем клик на карте
+//     myMap.events.add('click', function (e) {
+//         var coords = e.get('coords');
+//         //alert(coords);
+//         // Если метка уже создана – просто передвигаем ее
+//         if(myPlacemark) {
+//             myPlacemark.geometry.setCoordinates(coords);
+//         }
+//         // Если нет – создаем.
+//         else {
+//             myPlacemark = createPlacemark(coords);
+//             myMap.geoObjects.add(myPlacemark);
+//             // Слушаем событие окончания перетаскивания на метке.
+//             myPlacemark.events.add('dragend', function () {
+//                 getAddress(myPlacemark.geometry.getCoordinates());
+//             });
+//         }
+//         getAddress(coords);
+//     });
+
+//     // Создание метки
+//     function createPlacemark(coords) {
+//         return new ymaps.Placemark(coords, {
+//             iconContent: 'поиск...'
+//         }, {
+//             preset: 'twirl#violetStretchyIcon',
+//             draggable: true
+//         });
+//     }
+
+//     // Определяем адрес по координатам (обратное геокодирование)
+//     function getAddress(coords) {
+//         myPlacemark.properties.set('iconContent', 'поиск...');
+//         ymaps.geocode(coords).then(function (res) {
+//             var firstGeoObject = res.geoObjects.get(0);
+
+//             myPlacemark.properties
+//                 .set({
+//                     iconContent: firstGeoObject.properties.get('name'),
+//                     balloonContent: firstGeoObject.properties.get('text')
+//                 })
+//         });
+//     }
+// }
+</script>
 <?php
 function send_mime_mail($name_from, // имя отправителя
                         $email_from, // email отправителя
@@ -144,6 +327,10 @@ background-color:#fff;
 
 <div id="polosa"></div>
 <div id="right_user">
+
+ 
+
+
   <p class="titl"><?php if ($whopage=='my') {
     echo "Мой ";
   } ?>Профиль</p> <br>
@@ -180,6 +367,17 @@ background-color:#fff;
    <?php if($item->sity != ''){ ?>
    <tr class="item">
   <td class="name">Родной город:</td>  <td class="val"> <?php echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?></td></tr><?php } ?>
+<!-- ######################################### -->
+<?php if($item->sity != ''){ ?>
+   <tr class="item">
+  <td class="name">Город на карте:</td>  <td class="val">
+<?php echo '<input type="hidden" id="sity_map" value="'.htmlspecialchars($item->sity, ENT_QUOTES).'">' ?> 
+<div id="map" style="width: 600px; height: 400px"></div> 
+  <?php 
+  // echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?>
+
+</td></tr><?php } ?>
+<!-- ######################################### -->
 </table>
   <?php if(($item->telephone != '') || ($item->dop_telephone != '') || ($item->skype != '') || ($item->website != '')){ ?>  
   Контакты: 
