@@ -453,7 +453,9 @@ $i=0;
 		}
 	}
 
-
+function sity_map(){
+	$sity_map = $_POST['sity_map'];
+}
  
 }
 ?>
