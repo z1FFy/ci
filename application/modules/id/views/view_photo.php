@@ -27,8 +27,8 @@ float: left;
 #right_user {
   padding-top: 10px;
 height: 100%;
-min-height: 600px;
-margin-bottom: 40px;
+min-height: 500px;
+margin-bottom: 0px;
 margin-left: 280px;
 }
 .frame_com {
@@ -78,8 +78,6 @@ margin-left: 280px;
   // }
 </script>
 <?php
-
-echo $this->pagination->create_links();
 foreach ($user_data as $item){ 
       $name=$item->name;
       $famil=$item->famil;
@@ -92,8 +90,8 @@ foreach ($user_data as $item){
 <!-- "> </div> -->
 	<?php 
 
-    $id=$_GET['id'];
-    $id_orig=$_GET['id_orig'];
+    $id=$this->uri->segment(4);
+       $id_orig=preg_replace("/[^0-9]/", '', $this->uri->segment(3));
 
     $user_id=$this->session->userdata('user_id');
     $count=count($photos_data);
@@ -166,7 +164,7 @@ echo '<div align="center" id="right_user">
 ';
 
 //<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">
-   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="max-width:'.$mwidth.'px" width="90%" src="'.$img_path.'" ></div></a>'; 
+   echo '<div id="ph_main" ><a class="ph_main"   href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo'.$id_photos_n.'/'.$idnext.'"><img  id="photo"  r_width="'.$width.'"r_height="'.$height.'"  style="max-width:'.$mwidth.'px" width="90%" src="'.$img_path.'" ></div></a>'; 
 //<img class="pn_photo" src="'.$img_path_n.'" width="150px" height="150px">
 echo '<div class="block" style="background-color: rgba(219, 219, 219, 0.72);
 border-radius: 0px;
@@ -189,10 +187,14 @@ echo '<small>Название:</small><br> '.$photos_name.'
  echo $img_path."' >на полный экран</button>";
 
 
-  
+ foreach ($photos_data  as $item){ 
+  if($item->id_photos == $id_orig){
+    $like_photos=$item->like_photos;
+  }
+ }
 
 if ($logged == TRUE) {
-echo ' <input type="button" class="like_photos like_photos1 batn styler" value="LIKE '.$item->like_photos.'" link='.$item->id_photos.'>  ';
+echo ' <input type="button" class="like_photos like_photos1 batn styler" value="LIKE '.$like_photos.'" link='.$id_orig.'>  ';
 }  if ($whopage=='my') {
     if ($logged==TRUE) {
           //  echo '  <a class="delete_photos batn" link='.$item->id_photos.'>Удалить</a>';
@@ -211,7 +213,7 @@ $sel='';
 if ($i==$id+1) {
   $sel='background-color:#386E8F;';
 }
-      echo '<div style="height: 100px;'.$sel.'" class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$i.'&id_orig='.$item->id_photos.'">
+      echo '<div style="height: 100px;'.$sel.'" class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo'.$item->id_photos.'/'.$i.'">
 <div class="photo" style="height: 100px;width:100px;background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');"></div></a></div>';
 // if ($i == 4) {
 //  echo "<br>";
@@ -221,27 +223,35 @@ if ($i==$id+1) {
 ?>
 </div>
 <br>
-<div align="center"><br><br>
+<!-- <div align="center"><br><br>
 <button id="show_com" class="batn styler" style="display: block;width: 200px" >
 Комментарии
 <div style="position: absolute;margin-left: 80px;margin-top: 14px;">
 <img width="15px" src="
 <?php echo $this->config->site_url().'images/down.png' ?>
-"> </div> </button></div>
-  <div id="comments"  style="display:none">
-  <p style="color:#054E7C"> Комментарии </p>
+"> </div> </button></div> -->
+
+
+  <br><p class="textbox"> Комментарии </p>
+
+
+
+  <div id="comments"  style="display:block;text-align: center;
+margin: 0 auto;
+width: 90%;
+margin-top: 30px">
+
 <?php 
 date_default_timezone_set('Europe/Moscow');
-		foreach ($message_data as $item){ 
+    foreach ($message_data as $item){ 
 
       if($item->name == ''){
         $name = $item->login;
       }else{
         $name = $item->name.' '.$item->famil;
       }
-			 echo '
-       <div style="width: 60%;
-" class="block">
+       echo '
+       <div class="block">
        <div style="display:inline" class="block1">
        <img style="width:50px;height:50px" src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame" width="100"></div>
        <div style="display:inline" class="block2">'.htmlspecialchars($name, ENT_QUOTES);
@@ -251,20 +261,25 @@ date_default_timezone_set('Europe/Moscow');
 echo "</div>";
 
 }
-		
-		?>
+    
+echo $this->pagination->create_links();
+
+
+    ?>
 <br>
-<div class="block" style="text-align:center;background-color:#336AA8;width:300px">
+<div class="block" style="text-align:center;background-color:#336AA8;width:300px;margin: 0 auto">
+
 <p style="color:#fff;text-shadow:1px 1px 0px #7C7C7C;">Написать:</p>
 <input type="hidden" name="id_photos" value="<?php echo $id_photos; ?>">
 <input type="hidden" name="id_user" value="<?php echo $user_id; ?>">
 <textarea placeholder="Комментарий" class="styler" style="width:250px" name="messages" id="messages" maxlength="300"></textarea>
 
-<br /><br />
+<br>
 
 <input type="submit" class="send_com styler" value="Отправить" />
 </div>
-</p></div>
+
+</div>
 </div>
 
 

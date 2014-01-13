@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	if($text == ''){
 		foreach ($seach_data as $item) {
 			//var_dump($item);
-			echo '<div style="background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);"><img src="'.$this->config->site_url().'/uploads/avatars/small/'.$item->avatar.'" width="50"><a href="'.$this->config->site_url().'id'.$item->user_id.'">'.' '.htmlspecialchars($item->name, ENT_QUOTES).' '.htmlspecialchars($item->famil, ENT_QUOTES).'</a></div><br>';	
+			echo '<div style="background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);"><a href="'.$this->config->site_url().'id'.$item->user_id.'"><img src="'.$this->config->site_url().'/uploads/avatars/small/'.$item->avatar.'" width="50"></a><a href="'.$this->config->site_url().'id'.$item->user_id.'">'.' '.htmlspecialchars($item->name, ENT_QUOTES).' '.htmlspecialchars($item->famil, ENT_QUOTES).'</a></div><br>';	
 		}
 	}else{
 		echo $text;

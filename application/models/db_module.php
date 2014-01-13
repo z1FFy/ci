@@ -20,7 +20,13 @@ function get_user_by_email($email){
 	     return $query->result();
 	}
 function get_user_by_id($user_id){
-	$this->db->select('user_id ,  login , mail ,  date ,  famil ,  name ,  otchestvo ,  birthday ,  avatar ,  podtvr ,  spec_user ,  sex ,  education_level ,  education_basic ,  facultet ,  education_end , language ,  sity ,  telephone ,  dop_telephone ,  skype ,  website ,  interests ,  lastactivity,fon ,account');
+	$this->db->select('user_id ,  login ,login ,  password, mail ,  date ,  famil ,  name ,  otchestvo ,  birthday ,  avatar ,  podtvr ,  spec_user ,  sex ,  education_level ,  education_basic ,  facultet ,  education_end , language ,  sity ,  telephone ,  dop_telephone ,  skype ,  website ,  interests ,  lastactivity,fon ,account');
+	$query = $this->db->get_where('users', array('user_id' => $user_id));
+	     return $query->result();
+}
+
+function get_acc_by_id($user_id){
+	$this->db->select('account');
 	$query = $this->db->get_where('users', array('user_id' => $user_id));
 	     return $query->result();
 }
@@ -81,27 +87,34 @@ function up_podtvr($user_id) {
 
     	$user_login='';
     	$user_mail='';
+    	$data_mail='';
+    	if (isset($_POST['famil'])) {
     	if($_POST['famil']!='' && $_POST['name'] != ''){
     	$this->famil   = $_POST['famil'];
-    	$this->name   = $_POST['name'];}
+    	$this->name   = $_POST['name'];}}
 		$this->login   = $_POST['login']; // please read the below note
         $this->mail = $_POST['email'];
 		$this->password = $_POST['pass'];
 		$this->spec_user = $_POST['spec_user'];
-		$this->avatar  = 'f04d67ae61e74e96a1e25f226c4379a7.jpeg';
+		$this->avatar  = '17b37d165723990a8e74914ac7bb42f4.jpeg';
 		$this->date  = time();
 		$data = $this->db_module->get_user($this->login);
+		if (preg_match('/^[a-z0-9_.@-]{3,40}$/',$this->mail)) {
 		$data_mail = $this->db_module->get_user_by_email($this->mail);
+		
+		//var_dump($this->mail);
 		foreach ($data as $item){ 
 			$user_login=$item->login;
 		}
 		foreach ($data_mail as $item){ 
 			$user_mail=$item->mail;
 		}
+	}
 		//var_dump($this->password);
 		// провеяем логин пароль и имейл на наличие недопустимых символов
-		if ((preg_match('/^[a-z0-9_.]{3,20}$/',$this->login)) && (preg_match('/^[a-z0-9_.@-]{3,20}$/',$this->mail)) 
-			&& (preg_match('/^[a-z0-9]{3,20}$/',$this->password)) ){
+		if (preg_match('/^[a-zA-Z0-9_.]{3,20}$/',$this->login)) {
+			 if (preg_match('/^[a-z0-9_.@-]{3,40}$/',$this->mail)) {
+				if(preg_match('/^[a-zA-Z0-9]{3,20}$/',$this->password)){
 
 		if ($this->login != $user_login) {
     	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -114,9 +127,11 @@ function up_podtvr($user_id) {
 
 
 	} else {
-	echo 'yzhe';
+	echo 'yzhe';//login est takoi
 	}
-}else{echo"xren";}
+}else{echo"pass";}
+}else{echo"mail";}
+}else{echo"login";}
 }
 
 
@@ -217,6 +232,17 @@ function send_user_videos($data) {
 	    }
 	    return $result;
 	}
+	// function delete_albom($albom_name) {
+	// 	$logged = $this->session->userdata('logged_in');
+	// 	$result='';
+	// 	if ($logged=TRUE) {
+	// 	$this->db->delete('albom', array('user_id' => $this->session->userdata('user_id'), 'albom_name'=>$albom_name));
+	//     $result = 'Альбом удален';
+	//     } else {
+	//     	$result='Ошибка прав';
+	//     }
+	//     return $result;
+	// }
 
 	function send_new_audio_albom($albom_name) {
 		$logged = $this->session->userdata('logged_in');
@@ -241,6 +267,15 @@ function send_user_videos($data) {
 		 $query = $this->db->get_where('audio_albom', array('user_id' => $url_id));
 	     return $query->result();
 	}
+	function get_albom_photos_by_albom_name($albom_name,$url_id) {
+		 $query = $this->db->get_where('albom', array('albom_name' => $albom_name, 'user_id' => $url_id));
+	     return $query->num_rows();
+	}
+	function get_albom_audios_by_albom_name($albom_name,$url_id) {
+		 $query = $this->db->get_where('audio_albom', array('albom_name' => $albom_name, 'user_id' => $url_id));
+	     return $query->num_rows();
+	}
+
 	function get_photos_by_id($photo_id) {
 		 $query = $this->db->get_where('photos', array('id_photos' => $photo_id));
 	     return $query->result();
@@ -323,7 +358,7 @@ function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex,
 		$this->facultet  = $facultet;
 		$this->education_end  = $education_end;
 		$this->language  = $language;
-		$thus->sity = $sity;
+		$this->sity = $sity;
 		$this->telephone = $telephone;
 		$this->dop_telephone = $dop_telephone;
 		$this->skype = $skype;
@@ -358,12 +393,25 @@ function send_message_v($id_video, $messages, $user_id){
 	return $query;
 }
 
-function view_message($id_photos){
+function view_message1($id_photos){
 	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
 	$this->db->select('*');
 	$this->db->from('users','chat_photos');
 	$this->db->join('chat_photos', 'chat_photos.user_id = users.user_id');
 	$this->db->where('chat_photos.photos_id', $id_photos); 
+	$query = $this->db->get();
+
+
+	 return $query->num_rows();
+}
+
+function view_message($id_photos, $num, $offset){
+	//$query = $this->db->get_where('chat_photos', array('chat_photos.photos_id' => $id_photos));
+	$this->db->select('*');
+	$this->db->from('users','chat_photos');
+	$this->db->join('chat_photos', 'chat_photos.user_id = users.user_id');
+	$this->db->where('chat_photos.photos_id', $id_photos); 
+	$this->db->limit($num, $offset);
 	$query = $this->db->get();
 
 

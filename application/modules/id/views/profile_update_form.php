@@ -227,7 +227,12 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 </li></ul>
 <li><b>Интересы:</b> <br>
 <textarea class="styler" name="interests" cols="40" rows = "10" maxlength = "250"> <?php echo $item->interests; ?> </textarea> <br>
-
+<?php
+foreach ($acc_data as $item) {
+	$acc = $item->account;
+}
+if($acc=='pro'){
+?>
 </li><li>Фон: <br></li>
 <select style="width:160px" id="typefon" name="typefon" class="styler">
 	<option value="color">Сплошной цвет</option>
@@ -256,7 +261,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 </div>
 </div>
 </ul>
-<?php endforeach; ?>
+<?php } endforeach; ?>
 
 <br><input style="font-size:19px;" class="styler" type="submit" id="prof-upd" value="Сохранить" />
 

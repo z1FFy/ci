@@ -122,7 +122,6 @@ class Site extends CI_Controller {
 			}
 
 
-
 		$user_id='';
 		$pass_db = '';
 		$allow='';
@@ -133,7 +132,7 @@ class Site extends CI_Controller {
 			$user_id=$item->user_id;
 			$pass_db = $item->password;
 		}
-		if ((preg_match('/^[a-z0-9_]{3,20}$/',$login)) && (preg_match('/^[a-z0-9]{3,20}$/',$pass))){
+		if ((preg_match('/^[a-zA-Z0-9_]{3,20}$/',$login)) && (preg_match('/^[a-zA-Z0-9]{3,20}$/',$pass))){
 			if ($pass == $pass_db){
 				$newdata = array('logged_in' => TRUE, 'user_id' => $user_id);
 				$this->session->set_userdata($newdata);
@@ -164,9 +163,10 @@ class Site extends CI_Controller {
 				foreach ($user_data as $item) {
 					$pass=$item->password;
 					$u_mail=$item->mail;
+					$login =$item->login;
 				}
 				if ($email==$u_mail) {
-				$data = array('pass' => $pass ,'email' => $email);
+				$data = array('pass' => $pass ,'email' => $email, 'login'=>$login);
 					if ($email=='') {
 				echo '    <meta charset="utf-8">Вы не ввели Email';
 

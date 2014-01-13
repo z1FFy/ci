@@ -74,6 +74,8 @@
 <p style="background-color:#fff;" class="m_t_block">Выберите аккаунт:<br></p>
 <div style="padding-top:40px"><img src="images/pro.png">
 <img src="images/free.png"></div>
+<br>
+<a class="banner"><img src="uploads/banners/636x100.gif"></a>
 </div>
 <div style="margin-top:40px;" align="center" >
 <p style="background-color:green;color:#fff" class="m_t_block">ПОЧЕМУ И ЗАЧЕМ МЫ ВАМ НУЖНЫ?</p><br>

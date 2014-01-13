@@ -10,16 +10,18 @@ $id_al='';
 	if (isset($_GET['id_albom'])) {
 $id_al = $_GET['id_albom'];
 	}
+
 	echo '<select style="width:100px" onchange="top.location=this.value">';
 
 	echo '<option value="'.$this->config->site_url().'id'.$url_id.'">Все</a> </option> ';
 ?> </p>  <?php
 	$i=0;
-
+	$albom_name='';
 	foreach ($albom_data as $item){ 
 		$i++;
 		if ($item->id_albom==$id_al) {
 				$sel='selected';
+				$albom_name= $item->albom_name;
 		}else {
 			$sel='';
 		}
@@ -31,7 +33,17 @@ $id_al = $_GET['id_albom'];
 		echo '<input id_al="'.$id_al.'" type="button" class="styler" id="red_albom" value="Редактировать альбом">';
 		}
 		echo '<input type="button" class="styler" id="create_albom" value="Создать альбом">';
-	echo '<input   type="button" class="upload_foto styler" value="Загрузить работу">';} ?>
+	echo '<input   type="button" class="upload_foto styler" value="Загрузить работу">';} 
+$acc='';
+foreach ($acc_data as $item) {
+	$acc = $item->account;
+}
+if($acc != 'pro'){
+	echo '<a class="banner"><img style="position: absolute; top: 65px;" src="'.$this->config->site_url().'uploads/banners/900x70.gif" width="900" height="70"></a><br><br>';
+}
+	
+	?>
+
 <br>
 
 <!-- vse foto -->
@@ -43,7 +55,7 @@ $id_al = $_GET['id_albom'];
 
 		$i++;
 		if (empty($id_al)) {
-			echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$i.'&id_orig='.$item->id_photos.'">
+			echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo'.$item->id_photos.'/'.$i.'">
 			<div class="photo" style="background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');">';
 			$style='';
 			if (empty($photos_name)) {
@@ -55,7 +67,7 @@ $id_al = $_GET['id_albom'];
 			echo '</div></a></div>';
 } else {
 	if ($id_al==$id_albom) {
-		echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$i.'&id_orig='.$item->id_photos.'">
+		echo '<div class="block_photo"><a  class="phota"  href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo'.$item->id_photos.'/'.$i.'">
 			<div class="photo" style="background-image:url('.$this->config->site_url().'uploads/photos/'.$item->url_photo.');"><div class="pod_photo">'.$text = htmlspecialchars($photos_name, ENT_QUOTES).'</div></div></a></div>';
 
 	}
@@ -65,6 +77,7 @@ $id_al = $_GET['id_albom'];
 		
 </div>
 <?php 
+if (empty($id_al)) {
 if (!empty($video_data)) {
 	foreach ($video_data as $item) {
 		$kod=$item->kod;
@@ -75,6 +88,7 @@ if (!empty($video_data)) {
 		<div class="photo" style="background-image:url('.$thumbUrl.')">
 		<div class="pod_photo"><div style="position:absolute"> <img src="'.$this->config->site_url().'/images/play.png"> </div>'.$text = htmlspecialchars($item->video_name, ENT_QUOTES).'</div></div></a></div>';
 	}
+}
 }
  ?>
 </div>

@@ -41,6 +41,7 @@
 	 		}
 	 	}
 	 	$data_user = $this->db_module->get_user_by_id($url_id);
+	 	$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
 		$podtvr=0;
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		if ($logged == TRUE) {
@@ -89,6 +90,7 @@ $i=0;
 
 				$data = array(
 	               'user_data' => $data_user,
+	               'acc_data' => $acc_user,
 	               'whopage' => $whopage,
 	               'logged' => $logged,
 	               'podtvr' => $podtvr,
@@ -124,7 +126,8 @@ $i=0;
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$logged = $this->session->userdata('logged_in');
 		$user_data = $this->db_module->get_user_by_id($url_id);
-		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
+		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
+		$user_data_arr = array( 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
 		$page_content = $this->load->view('profile', $user_data_arr, true);
 		$user_id='';
 		if ($logged == TRUE) {
@@ -151,7 +154,8 @@ $i=0;
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$logged = $this->session->userdata('logged_in');
 		$user_data = $this->db_module->get_user_by_id($url_id);
-		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
+		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
+		$user_data_arr = array( 'user_data' => $user_data, 'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
 		$page_content = $this->load->view('profile_update_form', $user_data_arr, true);
 		$user_id='';
 		if ($logged == TRUE) {
@@ -208,7 +212,7 @@ $i=0;
 		if ($_POST['bg']!='0') {
 		$fon = $_POST['bg'];
 		}
-
+		
 		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level,
 		 $education_basic, $facultet, $education_end, $language, 
 		 $sity, $telephone, $dop_telephone, $skype, $website, $interests,$fon);
@@ -292,6 +296,12 @@ $i=0;
 	function support(){
 		$this->load->view('support');
 	}
+	function banner(){
+		$this->load->view('banner');
+	}
+	function info(){
+		$this->load->view('info');
+	}
 
 	function seach(){
 		$logged = $this->session->userdata('logged_in');
@@ -302,9 +312,9 @@ $i=0;
 		$url_id= $this->_get_url_id();
 		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
-		$user_data = $this->db_module->get_user_by_id($url_id);
+		$user_data = $this->db_module->get_user_by_id($url_id);$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
 
-		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
+		$user_data_arr = array( 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
 		$page_content = $this->load->view('seach', $user_data_arr, true);
 		$page = array(
            'title' => $title,
@@ -359,8 +369,8 @@ $i=0;
 		}
 		
 		//
-		$unread = $this->db_module->get_unread($url_id);
-		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'seach_data' => $seach_data, 'text' => $text, 'unread' => $unread,);
+		$unread = $this->db_module->get_unread($url_id);$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
+		$user_data_arr = array( 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'seach_data' => $seach_data, 'text' => $text, 'unread' => $unread,);
 	 $this->load->view('seach', $user_data_arr);
 
 		$user_id='';
@@ -401,9 +411,9 @@ $i=0;
 		$url_id= $this->_get_url_id();
 		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
-		$user_data = $this->db_module->get_user_by_id($url_id);
+		$user_data = $this->db_module->get_user_by_id($url_id);$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
 
-		$user_data_arr = array( 'user_data' => $user_data, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
+		$user_data_arr = array( 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
 		$page_content = $this->load->view('pass_update', $user_data_arr, true);
 
 		$page = array(
