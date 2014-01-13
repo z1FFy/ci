@@ -1,35 +1,5 @@
 <script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
-<script type="text/javascript">
-// ymaps.ready(init);
 
-// function init() {
-//     // Данные о местоположении, определённом по IP
-//     var geolocation = ymaps.geolocation,
-//     // координаты
-//         coords = [geolocation.latitude, geolocation.longitude],
-//         myMap = new ymaps.Map('map', {
-//             center: coords,
-//             zoom: 10
-//         });
-
-
-
-//     myMap.geoObjects.add(
-//         new ymaps.Placemark(
-//             coords,
-//             {
-//                 // В балуне: страна, город, регион.
-//                 balloonContentHeader: geolocation.country,
-//                 balloonContent: geolocation.city,
-//                 balloonContentFooter: geolocation.region
-//             }
-//         )
-//     );
-
-
-
-// }
-</script>
 
 
 <script>
@@ -70,117 +40,42 @@ function init() {
                 // Координаты геообъекта.
                 coords = firstGeoObject.geometry.getCoordinates(),
                 // Область видимости геообъекта.
-                bounds = firstGeoObject.properties.get('boundedBy');
 
+                bounds = firstGeoObject.properties.get('boundedBy');
+                //alert(bounds);
             // Добавляем первый найденный геообъект на карту.
-            myMap.geoObjects.add(firstGeoObject);
+            myMap.geoObjects.add( new ymaps.Placemark(
+            coords,
+            {
+                // В балуне: страна, город, регион.
+                iconContent: firstGeoObject.properties.get('text'),
+                 // balloonContentHeader: firstGeoObject.properties.get('description'),
+                 // balloonContent: firstGeoObject.properties.get('name'),
+                // balloonContentFooter: geolocation.region
+            }, {
+            // Опции.
+            // Иконка метки будет растягиваться под размер ее содержимого.
+            preset: 'twirl#redStretchyIcon',
+            // Метку можно перемещать.
+            //draggable: true
+        }
+        ));
             // Масштабируем карту на область видимости геообъекта.
             myMap.setBounds(bounds, {
                 checkZoomRange: true // проверяем наличие тайлов на данном масштабе.
             });
-            /**
-             * Все данные в виде javascript-объекта.
-             */
-            console.log('Все данные геообъекта: ', firstGeoObject.properties.getAll());
-            /**
-             * Метаданные запроса и ответа геокодера.
-             * @see http://api.yandex.ru/maps/doc/geocoder/desc/reference/GeocoderResponseMetaData.xml
-             */
-            console.log('Метаданные ответа геокодера: ', res.metaData);
-            /**
-             * Метаданные геокодера, возвращаемые для найденного объекта.
-             * @see http://api.yandex.ru/maps/doc/geocoder/desc/reference/GeocoderMetaData.xml
-             */
-            console.log('Метаданные геокодера: ', firstGeoObject.properties.get('metaDataProperty.GeocoderMetaData'));
-            /**
-             * Точность ответа (precision) возвращается только для домов.
-             * @see http://api.yandex.ru/maps/doc/geocoder/desc/reference/precision.xml
-             */
-            console.log('precision', firstGeoObject.properties.get('metaDataProperty.GeocoderMetaData.precision'));
-            /**
-             * Тип найденного объекта (kind).
-             * @see http://api.yandex.ru/maps/doc/geocoder/desc/reference/kind.xml
-             */
-            console.log('Тип геообъекта: %s', firstGeoObject.properties.get('metaDataProperty.GeocoderMetaData.kind'));
-            console.log('Название объекта: %s', firstGeoObject.properties.get('name'));
+           //alert(firstGeoObject.properties.get('metaDataProperty.GeocoderMetaData.precision')); 
+            
+console.log('Название объекта: %s', firstGeoObject.properties.get('name'));
             console.log('Описание объекта: %s', firstGeoObject.properties.get('description'));
             console.log('Полное описание объекта: %s', firstGeoObject.properties.get('text'));
-
-            /**
-             * Если нужно добавить по найденным геокодером координатам метку со своими стилями и контентом балуна, создаем новую метку по координатам найденной и добавляем ее на карту вместо найденной.
-             */
-            /**
-             var myPlacemark = new ymaps.Placemark(coords, {
-             iconContent: 'моя метка',
-             balloonContent: 'Содержимое балуна <strong>моей метки</strong>'
-             }, {
-             preset: 'twirl#violetStretchyIcon'
-             });
-
-             myMap.geoObjects.add(myPlacemark);
-             */
+            
         });
 }
 
 </script>
 
 
-<script>
-// ymaps.ready(init);
-
-// function init() {
-//     var myPlacemark,
-//         myMap = new ymaps.Map('map', {
-//             center: [55.753994, 37.622093],
-//             zoom: 9,
-//             behaviors: ['default', 'scrollZoom']
-//         });
-
-//     // Слушаем клик на карте
-//     myMap.events.add('click', function (e) {
-//         var coords = e.get('coords');
-//         //alert(coords);
-//         // Если метка уже создана – просто передвигаем ее
-//         if(myPlacemark) {
-//             myPlacemark.geometry.setCoordinates(coords);
-//         }
-//         // Если нет – создаем.
-//         else {
-//             myPlacemark = createPlacemark(coords);
-//             myMap.geoObjects.add(myPlacemark);
-//             // Слушаем событие окончания перетаскивания на метке.
-//             myPlacemark.events.add('dragend', function () {
-//                 getAddress(myPlacemark.geometry.getCoordinates());
-//             });
-//         }
-//         getAddress(coords);
-//     });
-
-//     // Создание метки
-//     function createPlacemark(coords) {
-//         return new ymaps.Placemark(coords, {
-//             iconContent: 'поиск...'
-//         }, {
-//             preset: 'twirl#violetStretchyIcon',
-//             draggable: true
-//         });
-//     }
-
-//     // Определяем адрес по координатам (обратное геокодирование)
-//     function getAddress(coords) {
-//         myPlacemark.properties.set('iconContent', 'поиск...');
-//         ymaps.geocode(coords).then(function (res) {
-//             var firstGeoObject = res.geoObjects.get(0);
-
-//             myPlacemark.properties
-//                 .set({
-//                     iconContent: firstGeoObject.properties.get('name'),
-//                     balloonContent: firstGeoObject.properties.get('text')
-//                 })
-//         });
-//     }
-// }
-</script>
 <?php
 function send_mime_mail($name_from, // имя отправителя
                         $email_from, // email отправителя
@@ -339,13 +234,13 @@ background-color:#fff;
 <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
   <?php if($item->famil != ''){ ?>
     <tr class="item">
-	 <td class="name">Фамилия: </td>
+   <td class="name">Фамилия: </td>
    <td class="val"><?php echo $text = htmlspecialchars($item->famil, ENT_QUOTES);?></td>   </tr>  <?php } ?>
    <?php if($item->name != ''){ ?>
      <tr class="item">
-	<td class="name">Имя:</td> 
+  <td class="name">Имя:</td> 
    <td class="val"><?php echo $text = htmlspecialchars($item->name, ENT_QUOTES);?> </td> </tr> <?php } ?>
-	 
+   
    <?php if($item->otchestvo != ''){ ?>
        <tr class="item">
   <td class="name">Отчество: </td>
@@ -359,7 +254,7 @@ background-color:#fff;
      <tr class="item">
   <td class="name">Пол:</td>  <td class="val"><?php echo $text = htmlspecialchars($item->sex, ENT_QUOTES);?></td></tr>
    <?php if($item->birthday != ''){ ?>
-	  <tr class="item">
+    <tr class="item">
   <td class="name">Дата Рождения:</td><td class="val"> <?php echo $text = htmlspecialchars($item->birthday, ENT_QUOTES);?></td></tr><?php } ?>
  <tr class="item">
   <td class="name">Дата регистрации: </td>  <td class="val"><?php echo date("d.m.y H:i:s" , htmlspecialchars($item->date, ENT_QUOTES));?></td></tr>
