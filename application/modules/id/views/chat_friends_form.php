@@ -70,15 +70,20 @@ echo '<p class="titl">Переписка  </p><br>';
 
   $friend_id = preg_replace("/[^0-9]/", '', $this->uri->segment(2));
   date_default_timezone_set('Europe/Moscow');
-		foreach ($messages_data as $item){ 
+    $user_id=$this->session->userdata('user_id');
+    foreach ($messages_data as $item){ 
 			if($item->name == ''){
 				$name = $item->login;
 			}else{
 				$name = $item->name.' '.$item->famil;
 			}
+      if ($item->adresat==$user_id) {
+        $style_bl= "background-color:#B4D1E2";
+      } else {
+         $style_bl= "bbackground-color: #D7DBDD;";
+      }
 			//var_dump($item);
-    
-  echo '<div class="block_msg"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
+  echo '<div style="'.$style_bl.'" class="block_msg"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
       .htmlspecialchars($name, ENT_QUOTES);
       echo '<div class="date_msg">Дата/Время: ';
       echo date("d.m.y H:i:s" ,$item->message_date);

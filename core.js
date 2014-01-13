@@ -434,6 +434,12 @@ function onAjaxSuccess(data)
     $("input[name='bg']").val(bge);
  });
 
+ $('#red_albom').click(function() { 
+    id_al=$(this).attr('id_al');
+          var src = site_full+"/id/albom/red_al?id_al="+id_al;
+        upload(src,'nof',300,300);
+ });
+
 // $('#upload_ava').hide();
 // $('#ava').hover(function() {
 //  $('#upload_ava').show('fast');
@@ -444,7 +450,7 @@ function onAjaxSuccess(data)
 //subscribe
 
   
- // $(".block").next().css("backgroundColor", "#000");
+  //$(".block_msg").next().css("backgroundColor", "#000");
       
 
  });

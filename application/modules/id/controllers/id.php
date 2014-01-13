@@ -271,6 +271,11 @@ $i=0;
 		$delete_photos = $_POST['delete_photos'];
 		$this->db_module->delete_photos($delete_photos);
 	}
+		function delete_albom()
+	{
+		$delete_al = $_POST['delete_al'];
+		$this->db_module->delete_albom($delete_al);
+	}
 
 	function delete_audio()
 	{

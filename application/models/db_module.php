@@ -636,6 +636,19 @@ function pass_update($user_id, $new_pass){
 
 }
 
+function edit_albom($id_al, $al_name){
+	$user_id = $this->session->userdata('user_id');
+	$this->albom_name = $al_name;
+	$this->db->where('id_albom', $id_al);
+	$this->db->where('user_id', $user_id);
+	$this->db->update('albom', $this);
+}
+
+function delete_albom($delete_al){
+	$user_id = $this->session->userdata('user_id');
+	$this->db->delete('albom', array('id_albom' => $delete_al));
+}
+
 function friends_view_id($user_id){
 	$this->db->select('*');
 	$this->db->from('users');

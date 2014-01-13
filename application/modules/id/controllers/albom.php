@@ -50,6 +50,15 @@ function do_albom()
 		
 	}
 
+function edit_albom() {
+	if (isset($_POST['id_al'])) {
+		$id_al=$_POST['id_al'];
+		$al_name=$_POST['al_name'];
+		$res=$this->db_module->edit_albom($id_al, $al_name);
+		header ("Location:". $this->config->site_url().'id'.$user_id);
+	}
+}
+
 function do_img_to_albom()
 	{
 		$photo_id= $_POST['id_photos'];
@@ -170,6 +179,13 @@ function photos_in_albom()
 		$albom_data = $this->db_module->get_albom_photos($user_id);
 		$data=array( 'albom_data' => $albom_data,'user_id'=>$user_id,'id_photo'=>$id_photo,'photos_name'=>$photos_name);
 		$this->load->view('red_photo',$data);
+	}
+
+	function red_al() {
+		$user_id=$this->session->userdata('user_id');
+		$albom_data = $this->db_module->get_albom_photos($user_id);
+		$data=array( 'albom_data' => $albom_data,'user_id'=>$user_id);
+		$this->load->view('red_al',$data);
 	}
 
 	function red_audio() {
