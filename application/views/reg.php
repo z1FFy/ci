@@ -19,15 +19,7 @@ padding-right: 20%;
 text-align: left;
 padding-top: 1px;
 padding-bottom: 40px;
-	/*background: #336aa8; /* Old browsers */*/
-/*background: -moz-linear-gradient(top, #336aa8 0%, #054e7c 100%); /* FF3.6+ */*/
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#336aa8), color-stop(100%,#054e7c)); /* Chrome,Safari4+ */*/
-/*background: -webkit-linear-gradient(top, #336aa8 0%,#054e7c 100%); /* Chrome10+,Safari5.1+ */*/
-/*background: -o-linear-gradient(top, #336aa8 0%,#054e7c 100%); /* Opera 11.10+ */*/
-/*background: -ms-linear-gradient(top, #336aa8 0%,#054e7c 100%); /* IE10+ */*/
-/*background: linear-gradient(to bottom, #336aa8 0%,#054e7c 100%); /* W3C */*/
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#336aa8', endColorstr='#054e7c',GradientType=0 ); /* IE6-9 */
-display: block;
+
 background-image:url('/images/blue_bg.png');
 	}
 body {
@@ -88,7 +80,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <option value="Анимация/Мультипликация">Анимация/Мультипликация</option>
 <option value="Фотография">Фотография</option>
 <option value="Аудио/Видео">Аудио/Видео</option>
-<option value="Реклама/Маркейтинг">Реклама/Маркейтинг</option>
+<option value="Реклама/Маркетинг">Реклама/Маркетинг</option>
 <option value="Разработка игр">Разработка игр</option>
 <option value="Арихитектура/Интерьер">Арихитектура/Интерьер</option>
 <option value="Инжиниринг">Инжиниринг</option>

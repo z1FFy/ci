@@ -96,7 +96,7 @@ $('#pad').html('минимальное значение любого поля - 
 }
    function onAjaxSuccess(data)
    {
-     alert(data);  
+
  if (data== 'yzhe') {
  $('#pad').html('Такой логин уже используется');
  } else {
@@ -474,13 +474,13 @@ function onAjaxSuccess(data)
         upload(src,'nof',300,300);
  });
 
-// $('#upload_ava').hide();
-// $('#ava').hover(function() {
-//  $('#upload_ava').show('fast');
-//  $('#right_user').mouseenter(function() {
-//   $('#upload_ava').hide('fast');
-//  });
-// });
+$('#upload_ava').hide();
+$('#ava').hover(function() {
+ $('#upload_ava').show('fast');
+ $('#right_user').mouseenter(function() {
+  $('#upload_ava').hide('fast');
+ });
+});
 //subscribe
 
   

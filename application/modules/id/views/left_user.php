@@ -3,6 +3,10 @@
   $my_id=$this->session->userdata('user_id');
   foreach ($user_data as $item){ 
       $name=$item->name;
+      $login= $item->login;
+      if ($name=='') {
+        $name=$login;
+      }
       $famil=$item->famil;
       $user_id=$item->user_id;
       $avatar_url=$item->avatar;

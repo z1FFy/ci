@@ -3,7 +3,7 @@ $fon='';
 if (!empty($user_data)){
     foreach ($user_data as $item) {
       $fon=$item->fon;
-
+      $acc=$item->account;
   }
 }
 ?>
@@ -27,6 +27,13 @@ if (!empty($user_data)){
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
 <style>
+<?php
+if ($acc!='pro') {
+  echo '#right_user {
+    min-height: 700px;
+  }';
+}
+ ?>
   body,#content,#wrapper {
     <?php 
       if ($fon=='grey'){

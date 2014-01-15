@@ -228,9 +228,30 @@ background-color:#fff;
 
   <p class="titl"><?php if ($whopage=='my') {
     echo "Мой ";
-  } ?>Профиль</p> <br>
+  } ?>Профиль</p>
     <div style="float:left">
-  Личная Информация:
+
+<?php
+if ($whopage == 'my') {
+      if($podtvr == 'okay') {
+        echo '<br>Ваш Email подтвержден';
+      } else {
+        echo "<br>Ваш email не подтвержден";
+?>
+  <form action="profile" method="post" >
+      <input type="hidden" id="send_key" value="1" name="send_key" />
+      <input type="hidden" id="key" value="0" name="key" />
+      <input class="styler" type="submit" value="Выслать код подтверждения на Email"  />
+    </form>
+<?php }
+ echo "<br><a href='".$this->config->site_url() ."id".$user_id."/profile_update_form' >Редактировать профиль</a>";
+ echo "<br><a href='".$this->config->site_url() ."id".$user_id."/pass_update_form' >Изменить пароль</a>";
+ echo "<br><a href='".$this->config->site_url() ."id".$user_id."/dell_form' >Удалить страницу</a>";
+  }
+?>
+
+
+  <br>Личная Информация:
 <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
   <?php if($item->famil != ''){ ?>
     <tr class="item">
@@ -317,38 +338,6 @@ background-color:#fff;
                <tr class="item">
   <td class="name">Знание языков:</td><td class="val"> <?php echo $text = htmlspecialchars($item->language, ENT_QUOTES);?></td></tr><?php } ?>
  </table>
-  
-<?php
-
-if ($whopage == 'my') {
-      if($podtvr == 'okay') {
-        echo '<br>Ваш Email подтвержден';
-      } else {
-        echo "<br>Ваш email не подтвержден";
-?>
-  <form action="profile" method="post" >
-      <input type="hidden" id="send_key" value="1" name="send_key" />
-      <input type="hidden" id="key" value="0" name="key" />
-      <input class="styler" type="submit" value="Выслать код подтверждения на Email"  />
-    </form>
-
-
-<?php
-} 
-
- echo "<br><a href='".$this->config->site_url() ."id".$user_id."/profile_update_form' >Редактировать профиль</a>";
-
- echo "<br><a href='".$this->config->site_url() ."id".$user_id."/pass_update_form' >Изменить пароль</a>";
- echo "<br><a href='".$this->config->site_url() ."id".$user_id."/dell_form' >Удалить страницу</a>";
-
-
-}
-
-
-
-
-?>
-</div>
     <?php if($item->interests != ''){ ?>
 
     <div style="float:left">
@@ -359,7 +348,10 @@ if ($whopage == 'my') {
        <tr class="item">
   <td class="name">Специализация: </td><td class="val"> <?php echo $item->spec_user;?></td></tr></table>
 
- 
+ </div>
+  
+
 </div>
 
 </div>
+

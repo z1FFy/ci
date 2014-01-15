@@ -32,7 +32,7 @@ $id_al = $_GET['id_albom'];
 		if (isset($_GET['id_albom'])) {
 		echo '<input id_al="'.$id_al.'" type="button" class="styler" id="red_albom" value="Редактировать альбом">';
 		}
-		echo '<input type="button" class="styler" id="create_albom" value="Создать альбом">';
+		echo '<input type="button" class="styler" link='.$url_id.' id="create_albom" value="Создать альбом">';
 	echo '<input   type="button" class="upload_foto styler" value="Загрузить работу">';} 
 $acc='';
 foreach ($acc_data as $item) {
