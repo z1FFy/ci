@@ -15,11 +15,10 @@ if (!empty($user_data)){
   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css?v=2" type="text/css" />
   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>jquery.formstyler.css" type="text/css" />
 <link rel="shortcut icon" href="<?php echo $this->config->site_url() ?>favicon.ico">
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
+   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> 
+   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
   <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.formstyler.min.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery.simplemodal.1.4.4.min.js"></script>
-         <meta name="google-site-verification" content="kGSRxWGipsInkcjN0yiRFuwzb2ftpG69Gn0WA9O3uwA" />
 <meta name="keywords" content="онлайн портфолио,бесплатное онлайн портфолио,портфолио онлайн бесплатно,портфолио сделать онлайн,портфолио создать онлайн,детское портфолио онлайн бесплатно,создать портфолио онлайн бесплатно,сделать бесплатно онлайн портфолио,детское портфолио сделать онлайн,портфолио,сделать детское портфолио онлайн бесплатно,портфолио школьника создать онлайн,создать детское портфолио онлайн бесплатно,портфолио +для мальчика онлайн,портфолио ребенка онлайн,портфолио онлайн бесплатно,портфолио смотреть онлайн,онлайн создание портфолио,портфолио заполнить онлайн,портфолио онлайн бесплатно +для детей,онлайн портфолио дизайнера,portfolionline,po ,gjhnajkbj jykfqy ,gjhnajkbjjykfqy ,tcgkfnyj,portfolio free,portfolio online free,portfolioonline free,portfolioonline free,portfolionline free,онлайн портфолио фотографа,онлайн портфолио модели ,онлайн портфолио модели бесплатно,портфолио онлайн фотограф,онлайн портфолио бесплатно" />
 <META NAME="z-payment.label" CONTENT="z-payment label 89A5BBE876A300ADBFB9E3AA3D6EF4C3">
 <meta name="interkassa-verification" content="3b63f53503c90f52695402dc6019f79c" />
@@ -30,12 +29,18 @@ if (!empty($user_data)){
   body,#content,#wrapper {
     <?php 
       if ($fon=='grey'){
+
         echo 'background-color: #D6D6D6;';
       }
             if ($fon=='white'){
         echo 'background-color: #fff;';
       }
-                  if ($fon=='img1'){
+      $fon= preg_replace("/[^0-9]/", '', $fon);
+      if ($fon!=''){
+        echo 'background-image: url("'.$this->config->site_url().'/images/bg/'.$fon.'.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
+      }
+
+                  /*if ($fon=='img1'){
         echo 'background-image: url("'.$this->config->site_url().'/images/bg/1.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
       }
                   if ($fon=='img2'){
@@ -46,10 +51,9 @@ if (!empty($user_data)){
       }
                         if ($fon=='img4'){
         echo 'background-image: url("'.$this->config->site_url().'/images/bg/4.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
-      }
-                        if ($fon=='img5'){
-        echo 'background-image: url("'.$this->config->site_url().'/images/bg/5.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
-      }
+      }*/
+                        
+
       ?>
 
 

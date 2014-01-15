@@ -251,13 +251,52 @@ if($acc=='pro'){
 		border: 3px solid #bbb;
 	}
 </style>
-<div id="preview" style="width:500px;height:200px;">
+<div id="preview" style="width:500px;height:1200px;">
 	<input type="hidden" name="bg" value="0">
 	<img class="bge" name="img1" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/1.jpg'?>">
 	<img class="bge" name="img2" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/2.jpg'?>">
 	<img class="bge" name="img3" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/3.jpg'?>">
 	<img class="bge" name="img4" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/4.jpg'?>">
 	<img class="bge" name="img5" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/5.jpg'?>">
+	<img class="bge" name="img6" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/6.jpg'?>">
+	<img class="bge" name="img7" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/7.jpg'?>">
+	<img class="bge" name="img8" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/8.jpg'?>">
+	<img class="bge" name="img9" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/9.jpg'?>">
+	<img class="bge" name="img10" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/10.jpg'?>">
+	<img class="bge" name="img11" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/11.jpg'?>">
+	<img class="bge" name="img12" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/12.jpg'?>">
+	<img class="bge" name="img13" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/13.jpg'?>">
+	<img class="bge" name="img14" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/14.jpg'?>">
+	<img class="bge" name="img15" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/15.jpg'?>">
+	<img class="bge" name="img16" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/16.jpg'?>">
+	<img class="bge" name="img17" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/17.jpg'?>">
+	<img class="bge" name="img18" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/18.jpg'?>">
+	<img class="bge" name="img19" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/19.jpg'?>">
+	<img class="bge" name="img20" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/20.jpg'?>">
+	<img class="bge" name="img21" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/21.jpg'?>">
+	<img class="bge" name="img22" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/22.jpg'?>">
+	<img class="bge" name="img23" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/23.jpg'?>">
+	<img class="bge" name="img24" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/24.jpg'?>">
+	<img class="bge" name="img25" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/25.jpg'?>">
+	<img class="bge" name="img26" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/26.jpg'?>">
+	<img class="bge" name="img27" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/27.jpg'?>">
+	<img class="bge" name="img28" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/28.jpg'?>">
+	<img class="bge" name="img29" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/29.jpg'?>">
+	<img class="bge" name="img30" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/30.jpg'?>">
+	<img class="bge" name="img31" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/31.jpg'?>">
+	<img class="bge" name="img32" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/32.jpg'?>">
+	<img class="bge" name="img33" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/33.jpg'?>">
+	<img class="bge" name="img34" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/34.jpg'?>">
+	<img class="bge" name="img35" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/35.jpg'?>">
+	<img class="bge" name="img36" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/36.jpg'?>">
+	<img class="bge" name="img37" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/37.jpg'?>">
+	<img class="bge" name="img38" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/38.jpg'?>">
+	<img class="bge" name="img39" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/39.jpg'?>">
+	<img class="bge" name="img40" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/40.jpg'?>">
+	<img class="bge" name="img41" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/41.jpg'?>">
+	<img class="bge" name="img42" width="100" height="100" src="<?php echo $this->config->site_url().'images/bg/42.jpg'?>">
+	
+
 </div>
 </div>
 </ul>

@@ -43,6 +43,7 @@ $route['404_override'] = '';
 $route['id(:num)'] = "id";
 //$route['site'] = "/";
 $route['id(:num)/photos'] = "id/photos";
+
 $route['id(:num)/friends(:num)'] = "id/friends";
 $route['id(:num)/friends(:num)/index'] = "id/friends/index/$2";
 $route['id(:num)/friends(:num)/index/(:num)'] = "id/friends/index/$2";

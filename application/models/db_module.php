@@ -232,17 +232,17 @@ function send_user_videos($data) {
 	    }
 	    return $result;
 	}
-	function delete_albom($albom_name) {
-		$logged = $this->session->userdata('logged_in');
-		$result='';
-		if ($logged=TRUE) {
-		$this->db->delete('albom', array('user_id' => $this->session->userdata('user_id'), 'albom_name'=>$albom_name));
-	    $result = 'Альбом удален';
-	    } else {
-	    	$result='Ошибка прав';
-	    }
-	    return $result;
-	}
+	// function delete_albom($albom_name) {
+	// 	$logged = $this->session->userdata('logged_in');
+	// 	$result='';
+	// 	if ($logged=TRUE) {
+	// 	$this->db->delete('albom', array('user_id' => $this->session->userdata('user_id'), 'albom_name'=>$albom_name));
+	//     $result = 'Альбом удален';
+	//     } else {
+	//     	$result='Ошибка прав';
+	//     }
+	//     return $result;
+	// }
 
 	function send_new_audio_albom($albom_name) {
 		$logged = $this->session->userdata('logged_in');
@@ -682,6 +682,19 @@ function pass_update($user_id, $new_pass){
 	$this->db->where('user_id', $user_id);
 	$this->db->update('users', $this);
 
+}
+
+function edit_albom($id_al, $al_name){
+	$user_id = $this->session->userdata('user_id');
+	$this->albom_name = $al_name;
+	$this->db->where('id_albom', $id_al);
+	$this->db->where('user_id', $user_id);
+	$this->db->update('albom', $this);
+}
+
+function delete_albom($delete_al){
+	$user_id = $this->session->userdata('user_id');
+	$this->db->delete('albom', array('id_albom' => $delete_al));
 }
 
 function friends_view_id($user_id){

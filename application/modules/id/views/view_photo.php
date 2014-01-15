@@ -27,8 +27,8 @@ float: left;
 #right_user {
   padding-top: 10px;
 height: 100%;
-min-height: 600px;
-margin-bottom: 40px;
+min-height: 500px;
+margin-bottom: 0px;
 margin-left: 280px;
 }
 .frame_com {
@@ -230,20 +230,28 @@ if ($i==$id+1) {
 <img width="15px" src="
 <?php echo $this->config->site_url().'images/down.png' ?>
 "> </div> </button></div> -->
-  <div id="comments"  style="display:block">
-  <p style="color:#054E7C"> Комментарии </p>
+
+
+  <br><p class="textbox"> Комментарии </p>
+
+
+
+  <div id="comments"  style="display:block;text-align: center;
+margin: 0 auto;
+width: 90%;
+margin-top: 30px">
+
 <?php 
 date_default_timezone_set('Europe/Moscow');
-		foreach ($message_data as $item){ 
+    foreach ($message_data as $item){ 
 
       if($item->name == ''){
         $name = $item->login;
       }else{
         $name = $item->name.' '.$item->famil;
       }
-			 echo '
-       <div style="width: 60%;
-" class="block">
+       echo '
+       <div class="block">
        <div style="display:inline" class="block1">
        <img style="width:50px;height:50px" src="'.$this->config->site_url().'/uploads/avatars/'.$item->avatar.'" class="frame" width="100"></div>
        <div style="display:inline" class="block2">'.htmlspecialchars($name, ENT_QUOTES);
@@ -253,23 +261,25 @@ date_default_timezone_set('Europe/Moscow');
 echo "</div>";
 
 }
-		
+    
 echo $this->pagination->create_links();
 
 
-		?>
+    ?>
 <br>
-<div class="block" style="text-align:center;background-color:#336AA8;width:300px">
+<div class="block" style="text-align:center;background-color:#336AA8;width:300px;margin: 0 auto">
+
 <p style="color:#fff;text-shadow:1px 1px 0px #7C7C7C;">Написать:</p>
 <input type="hidden" name="id_photos" value="<?php echo $id_photos; ?>">
 <input type="hidden" name="id_user" value="<?php echo $user_id; ?>">
 <textarea placeholder="Комментарий" class="styler" style="width:250px" name="messages" id="messages" maxlength="300"></textarea>
 
-<br /><br />
+<br>
 
 <input type="submit" class="send_com styler" value="Отправить" />
 </div>
-</p></div>
+
+</div>
 </div>
 
 

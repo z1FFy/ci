@@ -177,6 +177,7 @@ $i=0;
 
 
 		function profile_update_send(){
+			$fon='';
 		$famil = $_POST['famil'];
 		$name = $_POST['name'];
 		$otchestvo = $_POST['otchestvo'];
@@ -208,10 +209,10 @@ $i=0;
 		$skype = $_POST['skype'];
 		$website = $_POST['website'];
 		$interests = $_POST['interests'];
-		$fon = $_POST['fon'];
-		if ($_POST['bg']!='0') {
+		if (isset($_POST['fon'])) {$fon = $_POST['fon'];}
+		if (isset($_POST['fon'])) {if ($_POST['bg']!='0') {
 		$fon = $_POST['bg'];
-		}
+		}}
 		
 		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level,
 		 $education_basic, $facultet, $education_end, $language, 
@@ -274,6 +275,11 @@ $i=0;
 	{
 		$delete_photos = $_POST['delete_photos'];
 		$this->db_module->delete_photos($delete_photos);
+	}
+		function delete_albom()
+	{
+		$delete_al = $_POST['delete_al'];
+		$this->db_module->delete_albom($delete_al);
 	}
 
 	function delete_audio()

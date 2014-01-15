@@ -82,10 +82,13 @@ function do_albom()
 
 	}
 
-function delete_albom(){
-	$albom_name = $_GET['albom_name'];
-	$this->db_module->delete_albom($albom_name);
-
+function edit_albom() {
+	if (isset($_POST['id_al'])) {
+		$id_al=$_POST['id_al'];
+		$al_name=$_POST['al_name'];
+		$res=$this->db_module->edit_albom($id_al, $al_name);
+		header ("Location:". $this->config->site_url().'id'.$user_id);
+	}
 }
 
 function do_img_to_albom()
@@ -156,7 +159,7 @@ $offset= preg_replace("/[^0-9]/", '', $this->uri->segment(5));
 //var_dump($config['uri_segment']);
 
 $this->pagination->initialize($config); 
-var_dump($this->uri->segment(5));
+// var_dump($this->uri->segment(5));
 $message_data = $this->db_module->view_message($id_orig, $config['per_page'], $offset);
 
 		$unread = $this->db_module->get_unread($url_id);
@@ -224,6 +227,13 @@ $acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про
 		$albom_data = $this->db_module->get_albom_photos($user_id);
 		$data=array( 'albom_data' => $albom_data,'user_id'=>$user_id,'id_photo'=>$id_photo,'photos_name'=>$photos_name);
 		$this->load->view('red_photo',$data);
+	}
+
+	function red_al() {
+		$user_id=$this->session->userdata('user_id');
+		$albom_data = $this->db_module->get_albom_photos($user_id);
+		$data=array( 'albom_data' => $albom_data,'user_id'=>$user_id);
+		$this->load->view('red_al',$data);
 	}
 
 	function red_audio() {

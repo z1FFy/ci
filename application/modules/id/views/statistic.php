@@ -1,8 +1,3 @@
-<html>
-<head>
-<title>Поиск людей</title>
-	  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
 <style>
   #content {
@@ -39,8 +34,6 @@ if(myLayer.style.display=="none"){
 
 </script>
 
-</head>
-<body>
 
 <?php
 $logged = $this->session->userdata('logged_in');

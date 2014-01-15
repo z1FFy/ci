@@ -122,6 +122,7 @@ class Site extends CI_Controller {
 			}
 
 
+
 		$user_id='';
 		$pass_db = '';
 		$allow='';

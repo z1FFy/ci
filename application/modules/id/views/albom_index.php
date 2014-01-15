@@ -28,14 +28,12 @@ $id_al = $_GET['id_albom'];
 	echo '<option '.$sel.' value="'.$this->config->site_url().'id'.$url_id.'/?id_albom='.$item->id_albom.'">'.$item->albom_name.'</a> </option> ';
 } ?>
 </select>
-<?php
-
-
-
-if($whopage == "my") {
-	if($albom_name!=''){ 
-	echo '<input type="button" class="styler" id="delete_albom" link='.$albom_name.' value="Удалить альбом">';}
-	echo '<input type="button" class="styler" id="create_albom" link='.$url_id.' value="Создать альбом"><input   type="button" class="upload_foto styler" value="Загрузить работу">';} 
+	<?php if($whopage == "my") { 
+		if (isset($_GET['id_albom'])) {
+		echo '<input id_al="'.$id_al.'" type="button" class="styler" id="red_albom" value="Редактировать альбом">';
+		}
+		echo '<input type="button" class="styler" link='.$url_id.' id="create_albom" value="Создать альбом">';
+	echo '<input   type="button" class="upload_foto styler" value="Загрузить работу">';} 
 $acc='';
 foreach ($acc_data as $item) {
 	$acc = $item->account;
@@ -43,12 +41,9 @@ foreach ($acc_data as $item) {
 if($acc != 'pro'){
 	echo '<a class="banner"><img style="position: absolute; top: 65px;" src="'.$this->config->site_url().'uploads/banners/900x70.gif" width="900" height="70"></a><br><br>';
 }
-if (isset($_GET['albom_create'])) {
-echo '<br><p style="font-size: 20px;
-	color: rgb(124, 124, 124);">'.$_GET['albom_create'].'</p>';
-	}
 	
 	?>
+
 <br>
 
 <!-- vse foto -->

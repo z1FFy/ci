@@ -70,23 +70,22 @@ echo '<p class="titl">Переписка  </p><br>';
 
   $friend_id = preg_replace("/[^0-9]/", '', $this->uri->segment(2));
   date_default_timezone_set('Europe/Moscow');
-		foreach ($messages_data as $item){ 
+    $user_id=$this->session->userdata('user_id');
+    foreach ($messages_data as $item){ 
 			if($item->name == ''){
 				$name = $item->login;
 			}else{
 				$name = $item->name.' '.$item->famil;
 			}
-      if($item->user_id == $this->session->userdata('user_id')){
-        $div_class='block_msg_user';
-        $div_class_data = 'date_msg_user';
-      }else{
-        $div_class='block_msg';
-        $div_class_data = 'date_msg';
+      if ($item->adresat==$user_id) {
+        $style_bl= "background-color:#B4D1E2";
+      } else {
+         $style_bl= "bbackground-color: #D7DBDD;";
       }
-    
-  echo '<div class="'.$div_class.'"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
+			//var_dump($item);
+  echo '<div style="'.$style_bl.'" class="block_msg"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
       .htmlspecialchars($name, ENT_QUOTES);
-      echo '<div class="'.$div_class_data.'">Дата/Время: ';
+      echo '<div class="date_msg">Дата/Время: ';
       echo date("d.m.y H:i:s" ,$item->message_date);
       echo '</div>';
       echo '<div class="text_msg">'.htmlspecialchars($item->messages, ENT_QUOTES).'</div>';
