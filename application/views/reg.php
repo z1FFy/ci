@@ -1,8 +1,6 @@
 
 
 
-
-
 <script>
 
 
@@ -89,7 +87,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 <option value="Мобильные приложения">Мобильные приложения</option>
 <option value="Сети и информационные системы">Сети и информационные системы</option>
 <option value="Обслуживание клиентов">Обслуживание клиентов</option>
-<option value="Маркейтинг и продажи">Маркейтинг и продажи</option>
+<option value="Маркетинг и продажи">Маркетинг и продажи</option>
 <option value="Бизнес-услуги">Бизнес-услуги</option>
 <option value="Административная поддержка">Административная поддержка</option>
 <option value="Репетиторы/Преподаватели">Репетиторы/Преподаватели</option>
