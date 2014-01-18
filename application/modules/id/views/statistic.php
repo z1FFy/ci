@@ -31,6 +31,16 @@ if(myLayer.style.display=="none"){
  }
 }
 
+function showElement2(layer){
+var myLayer = document.getElementById(layer);
+if(myLayer.style.display=="none"){
+ myLayer.style.display="block";
+ myLayer.backgroundPosition="top";
+ } else { 
+ myLayer.style.display="none";
+ }
+}
+
 
 </script>
 
@@ -104,12 +114,40 @@ echo '</ul>';
 </a>
 <ul id="v-menu1" class="v-menu1" style="display:none;">
 <?php
-echo 'Изображений: '.count($kol_user_photos).'<br>';
-echo 'Видеозаписей: '.count($kol_user_videos).'<br>';
-echo 'Аудиозаписей: '.count($kol_user_audios).'<br>';
+echo '<li>Изображений: '.count($kol_user_photos).'<br>';
+echo '<li>Видеозаписей: '.count($kol_user_videos).'<br>';
+echo '<li>Аудиозаписей: '.count($kol_user_audios).'<br>';
 echo '</ul>';
 echo 'Колличество поставленных вами лайков(за все время): '.$like_data.'<br>';
+$kol_photos_like='';
+$kol_audios_like='';
+$kol_videos_like='';
+foreach ($kol_user_photos as $item) {
+  $kol_photos_like = $kol_photos_like + $item->like_photos;
+  # code...
+}
+foreach ($kol_user_videos as $item) {
+  $kol_videos_like = $kol_videos_like + $item->like_video;
+  # code...
+}
+
+foreach ($kol_user_audios as $item) {
+  $kol_audios_like = $kol_audios_like + $item->like_audio;
+  # code...
+}
 ?>
+<!-- <a href="#" class="button" onclick="javascript:showElement1('v-menu2')"> -->
+<?php
+$kol_all_like = $kol_photos_like+$kol_videos_like+$kol_audios_like;
+echo 'Колличество полученных лайков(за все время): '.$kol_photos_like.'<br>';
 
-
+?>
+<!-- </a> -->
+<ul id="v-menu2" class="v-menu2" style="display:none;">
+<?php
+echo '<li>Изображений: '.$kol_photos_like.'<br>';
+echo '<li>Видеозаписей: '.$kol_videos_like.'<br>';
+echo '<li>Аудиозаписей: '.$kol_audios_like.'<br>';
+?>
+</ul>
 </div>

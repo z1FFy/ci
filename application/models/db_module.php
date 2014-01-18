@@ -20,7 +20,7 @@ function get_user_by_email($email){
 	     return $query->result();
 	}
 function get_user_by_id($user_id){
-	$this->db->select('user_id ,  login ,login ,  password, mail ,  date ,  famil ,  name ,  otchestvo ,  birthday ,  avatar ,  podtvr ,  spec_user ,  sex ,  education_level ,  education_basic ,  facultet ,  education_end , language ,  sity ,  telephone ,  dop_telephone ,  skype ,  website ,  interests ,  lastactivity,fon ,account');
+	$this->db->select('user_id ,  login ,login ,  password, mail ,  date ,  famil ,  name ,  otchestvo ,  birthday ,  avatar ,  podtvr ,  spec_user ,  sex ,  education_level ,  education_basic ,  facultet ,  education_end , language ,  sity ,  telephone ,  dop_telephone ,  skype ,  website ,  interests ,  lastactivity,fon ,account, colortext');
 	$query = $this->db->get_where('users', array('user_id' => $user_id));
 	     return $query->result();
 }
@@ -342,7 +342,7 @@ function get_photo_from_albom($albom_id) {
 
 
 //обновл профиля
-function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $language, $sity, $telephone, $dop_telephone, $skype, $website, $interests,$fon) {
+function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level, $education_basic, $facultet, $education_end, $language, $sity, $telephone, $dop_telephone, $skype, $website, $interests,$fon, $colortext) {
 		$logged = $this->session->userdata('logged_in');
 		$result='';
 		if ($logged=TRUE) {
@@ -365,6 +365,7 @@ function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex,
 		$this->website = $website;
 		$this->interests = $interests;
 		$this->fon = $fon;
+		$this->colortext=$colortext;
 		$user_id = $this->session->userdata('user_id');
 		$this->db->where('user_id', $user_id);
 		$this->db->update('users', $this);
@@ -789,10 +790,7 @@ function dell_subscribe($user_id, $second_user){
 	$this->db->delete('subscribe', array('user_id' => $user_id, 'second_user'=>$second_user));
 }
 
-function view_like_kol($url_id){
-	$query = $this->db->get_where('like_photo', array('user_id' => $url_id));
-	return $query->num_rows();
-}
+
 
 function upload_audio($user_id, $url_audio, $audios_name){
 	$this->id_user = $user_id;
@@ -803,8 +801,13 @@ function upload_audio($user_id, $url_audio, $audios_name){
 
 }
 
+function view_like_kol($url_id){
+	$query = $this->db->get_where('like_photo', array('user_id' => $url_id));
+	return $query->num_rows();
+}
+
 function kol_user_photos($url_id){//статистика всего картинок
-	$this->db->select('id_photos');
+	$this->db->select('id_photos,like_photos');
 	$this->db->from('photos');
 	$this->db->where('id_user', $url_id); 
 	$query = $this->db->get();
@@ -812,7 +815,7 @@ function kol_user_photos($url_id){//статистика всего картин
 
 }
 function kol_user_videos($url_id){//статистика всего видеозаписей
-	$this->db->select('id_videos');
+	$this->db->select('id_videos, like_video');
 	$this->db->from('videos');
 	$this->db->where('id_user', $url_id); 
 	$query = $this->db->get();
@@ -820,7 +823,7 @@ function kol_user_videos($url_id){//статистика всего видеоз
 
 }
 function kol_user_audios($url_id){//статистика всего аудиозаписей
-	$this->db->select('id_audios');
+	$this->db->select('id_audios, like_audio');
 	$this->db->from('audios');
 	$this->db->where('id_user', $url_id); 
 	$query = $this->db->get();
@@ -840,8 +843,42 @@ function get_count_photos() {
         return $rowcount;
         }
 
+//мои контакты
+function get_contacts_by_id($url_id,$user_id){
+	$this->db->select('first_user, second_user, contacts_date, podtvr')->from('contacts')->where('first_user', $url_id)->where('second_user', $user_id)->or_where('second_user', $url_id)->where('first_user', $user_id);
+	$query = $this->db->get();
+	return $query->result();   
+}
 
+function get_contacts_not_pod($user_id){
+	$this->db->select('*')->from('contacts', 'users')->join('users', 'users.user_id = contacts.first_user')->where('second_user',$user_id)->where('contacts.podtvr <>', 'pod');
+	$query = $this->db->get();
+	return $query->result();   
+}
+function get_contacts_pod($user_id){
+	$this->db->select('*')->from('contacts','users')->join('users', 'users.user_id = contacts.second_user')->where('contacts.first_user', $user_id)->where('contacts.podtvr =', 'pod');
+	$query = $this->db->get();
+	return $query->result();   
+}
 
+function contacts_insert($user_id, $second_user){
+	$data = array('first_user' => $user_id, 'second_user' => $second_user, 'contacts_date' => time());
+	$query = $this->db->insert('contacts', $data); 
+}
+
+function contacts_podtvr($user_id, $second_user){
+	$data = array('first_user' => $user_id, 'second_user' => $second_user, 'podtvr' => 'pod', 'contacts_date' => time());
+	$this->db->insert('contacts', $data); 
+	$data1 = array('first_user' => $second_user, 'second_user' => $user_id, 'podtvr' => 'pod', 'contacts_date' => time());
+	$this->db->where('first_user',$second_user);
+	$this->db->where('second_user',$user_id);
+	$this->db->update('contacts',$data1);
+}
+
+function contacts_delete($first_user, $second_user){
+	$this->db->delete('contacts', array('first_user' => $first_user, 'second_user'=>$second_user));
+	$this->db->delete('contacts', array('first_user' => $second_user, 'second_user'=>$first_user));
+}
 //   function view_news_photos($subscribe_users_id,  $num, $offset){
 // 	$this->db->select('users.user_id, users.login, users.name,users.famil, photos.url_photo, photos.photos_name, photos.photos_date, photos.id_photos, photos.id_user');
 // 	$this->db->from('photos','users');

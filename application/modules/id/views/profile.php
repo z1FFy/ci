@@ -188,8 +188,8 @@ background-color:#fff;
 /*      background-color: #F0F6FD;*/
       font-size: 17px;
     }
+
     .name,.val {
-      color: #888;
       border: 1px solid #bbb;
       border-radius: 10px 0px 0px 10px;
       padding: 5px;
@@ -199,11 +199,11 @@ background-color:#fff;
       font-size: 14px;
       width: 100px;
     }
-    .val {
+    .val {color: #888;
             font-size: 17px;
       text-align: left;
       width: 130px;
-      color: #000;
+      /*color: #000;*/
       border-radius: 0px;
       background-color: #fff;
       border: 1px solid #bbb;

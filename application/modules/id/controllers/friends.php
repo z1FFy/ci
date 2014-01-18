@@ -216,7 +216,135 @@ function dell_subscribe(){
 
 
 }
+//мои контакты
+function contacts_send(){
+$logged = $this->session->userdata('logged_in');
+		if ($logged == TRUE) {
+			$second_user = $_GET['contacts_id'];
+			$user_id=$this->session->userdata('user_id');
+			$this->db_module->contacts_insert($user_id, $second_user);
+			header ("Location:". $this->config->site_url().'id'.$user_id);
+		}else {
+			header ("Location:". $this->config->site_url());
+		}
 
+}
+
+function contacts_podtvr(){
+	$first_user=$_GET['first_user'];
+	$second_user=$_GET['second_user'];
+	$this->db_module->contacts_podtvr($first_user, $second_user);
+	header ("Location:". $this->config->site_url().'id'.$first_user.'/friends/contacts');
+}
+
+function contacts(){
+
+$logged = $this->session->userdata('logged_in');
+	if ($logged == TRUE) {
+$i=0;
+$user_id=$this->session->userdata('user_id');
+$this ->db_module->last_activity($user_id);
+$url_id= $this->_get_url_id();
+$whopage= $this->_get_whopage($url_id,$user_id);
+$user_data = $this->db_module->get_user_by_id($user_id);
+$unread_data = $this->db_module->get_all_unread($user_id);
+$unread = $this->db_module->get_unread($url_id);
+$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
+//$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+$contacts_pod = $this->db_module->get_contacts_pod($user_id);
+
+$contacts_data_arr = array('user_data' => $user_data,'acc_data' => $acc_user, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data,'contacts_pod'=> $contacts_pod);
+
+$page_content = $this->load->view('contacts',$contacts_data_arr,true);
+$title= 'Мои Контакты / PortfolioOnline';
+
+$user_id='';
+
+$user_id=$this->session->userdata('user_id');
+
+$page = array(
+'title' => $title,
+'page_content' => $page_content,
+'logged' => $logged,
+'user_id' => $user_id,
+);
+$this->load->view('template',$page);
+} else {
+				header ("Location:". $this->config->site_url());
+}
+}
+
+function contacts_not_pod(){
+
+$logged = $this->session->userdata('logged_in');
+
+
+$user_id=$_POST['contacts'];
+
+$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+
+foreach ($contacts_not_pod as $item) {
+		if($item->name == ''){
+			$name = $item->login;	
+		}else{
+			$name=$item->name.' '.$item->famil;
+		}
+		echo '<img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>';
+		echo '<a href="'.$this->config->site_url().'id'.$item->second_user.'/friends/contacts_podtvr?first_user='.$item->second_user.'&second_user='.$item->first_user.'">Подтвердить добавление</a>';
+		# code...
+	}
+
+
+}
+
+function contacts_pod(){
+
+$logged = $this->session->userdata('logged_in');
+
+
+$user_id=$_POST['contacts'];
+//$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+$contacts_pod = $this->db_module->get_contacts_pod($user_id);
+
+if(count($contacts_pod) != 0){
+	foreach ($contacts_pod as $item) {
+		$t = time() - $item->lastactivity;
+			if($t > 300){
+				$last_activity = '<font style="color: red;" >offline</font>';
+			}else{
+				$last_activity = '<font style="color: rgb(66, 177, 106);" >online</font>';
+			}
+
+
+
+		if($item->name == ''){
+			$name = $item->login;	
+		}else{
+			$name=$item->name.' '.$item->famil;
+		}
+		echo '<p><table width="100%"><hr> <tr align="center" valign="top">';
+		echo '<td><a href="'.$this->config->site_url().'id'.$item->second_user.'"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="100"/></a></td>';
+		echo '<td><a href="'.$this->config->site_url().'id'.$item->second_user.'">'.$name.'</a>
+		<br>'.$last_activity.'</td>';
+		echo '<td><a href="'.$this->config->site_url().'id'.$item->first_user,'/friends'.$item->second_user.'">Переписка</a><br>
+		<a href="'.$this->config->site_url().'id'.$item->first_user,'/friends/contacts_delete?second_user='.$item->second_user.'">Удалить контакт</a></td>';
+		echo '</tr></table></p>';
+		# code...
+	}
+}else{
+		echo 'У вас пока нет ни одного контакта!';
+	}
+
+
+}
+
+
+function contacts_delete(){
+	$first_user = $this->session->userdata('user_id');
+	$second_user = $_GET['second_user'];
+	$this->db_module->contacts_delete($first_user, $second_user);
+	header ("Location:". $this->config->site_url().'id'.$first_user.'/friends/contacts');
+}
 
 
 

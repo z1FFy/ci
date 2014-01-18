@@ -21,6 +21,7 @@
 
 	function index() {
 			$subscribe_user ='';
+			$contacts_user='';
 			$time='';
 			$visit_date='';
 		$url_id= $this->_get_url_id();
@@ -61,8 +62,8 @@
 						$this->db_module->visit_insert($url_id, $user_id, $session_id);	//Добавляем посещение гостя
 					}
 				}
+
 		$subscribe_data = $this->db_module->subscribe_user($user_id, $url_id); 
-		//var_dump($subscribe_data);
 		foreach ($subscribe_data as $item) {
 			if($item->second_user == $url_id && $item->user_id == $user_id){
 				$subscribe_user = 'subscribe';
@@ -70,6 +71,15 @@
 				$subscribe_user = 'not_subscribe';
 			}
 		}
+
+		$contacts_data = $this->db_module->get_contacts_by_id($url_id, $user_id); 
+		if(count($contacts_data) == 0){
+			$contacts_user = 'not_send';
+		}else{
+			$contacts_user = 'send';
+		}
+		//var_dump($contacts_user );
+
 		$photo_data = $this->db_module->get_user_photos($url_id);
 		$video_data = $this->db_module->get_user_videos($url_id);
 		$albom_data = $this->db_module->get_albom_photos($url_id);
@@ -104,6 +114,7 @@ $i=0;
 	               'unread' => $unread,
 	               'last_activity' => $last_activity,
 	               'subscribe_user' => $subscribe_user,
+	               'contacts_user'=>$contacts_user,
 	                       );
 				$page_content = $this->load->view('userpage', $data, true);
 				$data['page_content'] = $page_content;
@@ -178,6 +189,7 @@ $i=0;
 
 		function profile_update_send(){
 			$fon='';
+			$colortext='';
 		$famil = $_POST['famil'];
 		$name = $_POST['name'];
 		$otchestvo = $_POST['otchestvo'];
@@ -209,6 +221,7 @@ $i=0;
 		$skype = $_POST['skype'];
 		$website = $_POST['website'];
 		$interests = $_POST['interests'];
+		if (isset($_POST['colortext'])) {$colortext = $_POST['colortext'];}
 		if (isset($_POST['fon'])) {$fon = $_POST['fon'];}
 		if (isset($_POST['fon'])) {if ($_POST['bg']!='0') {
 		$fon = $_POST['bg'];
@@ -216,7 +229,7 @@ $i=0;
 		
 		$this->db_module->send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex, $education_level,
 		 $education_basic, $facultet, $education_end, $language, 
-		 $sity, $telephone, $dop_telephone, $skype, $website, $interests,$fon);
+		 $sity, $telephone, $dop_telephone, $skype, $website, $interests,$fon, $colortext);
 		$user_id=$this->session->userdata('user_id');
 		header ('Location:'.$this->config->site_url() .'id'.$user_id.'/profile');
 
