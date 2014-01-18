@@ -43,7 +43,7 @@ foreach ($user_data as $item) {
     echo "Мое ";
   } ?>Редактирование профиля</p> <br>
 	
-<form action="<?php echo $this->config->site_url() ?>id/profile_update_send" method="post" accept-charset="utf-8">
+<form id="user_text_color" action="<?php echo $this->config->site_url() ?>id/profile_update_send" method="post" accept-charset="utf-8">
 	
 
 <?php foreach ($user_data as $item):?>
@@ -233,6 +233,20 @@ foreach ($acc_data as $item) {
 }
 if($acc=='pro'){
 ?>
+
+</li><li>Фон: <br></li>
+<select style="width:160px" id="colortext" name="colortext" class="styler">
+	<option value="white">Белый</option>
+	<option value="grey">Серый</option>
+	<option value="black">Черный</option>
+	<option value="blue">Синий</option>
+	<option value="red">Красный</option>
+	</select>
+
+
+
+	
+
 </li><li>Фон: <br></li>
 <select style="width:160px" id="typefon" name="typefon" class="styler">
 	<option value="color">Сплошной цвет</option>

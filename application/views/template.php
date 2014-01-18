@@ -1,9 +1,12 @@
 <?php 
 $fon='';
+$colortext='';
 if (!empty($user_data)){
     foreach ($user_data as $item) {
       $fon=$item->fon;
       $acc=$item->account;
+      $colortext=$item->colortext;
+
   }
 }
 ?>
@@ -69,6 +72,31 @@ if ($acc!='pro') {
   if ($fon=='img1' || $fon=='img2' || $fon=='img3' || $fon=='img4' || $fon=='img5') {
         echo '#simplemodal-data {color:#000;}.text_msg {color:#000;';}
         ?>
+  #user_text_color,.name{
+<?php
+if ($colortext=='red'){
+
+        echo 'color: red;';
+      }
+if ($colortext=='white'){
+
+        echo 'color: white;';
+      }
+if ($colortext=='black'){
+
+        echo 'color: black;';
+      }
+if ($colortext=='blue'){
+
+        echo 'color: blue;';
+      }
+if ($colortext=='grey'){
+
+        echo 'color: gray;';
+      }
+?>
+
+  }
 </style>
 </head>
 <body>

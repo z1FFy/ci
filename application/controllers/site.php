@@ -23,14 +23,14 @@ class Site extends CI_Controller {
 		 	$user_id=$this->session->userdata('user_id');
 		 }
 		$title='PortfoliOnline DEV / BETA';
-		$page_content = $this->load->view('welcome_message', '', true);
+		// $page_content = $this->load->view('welcome_message', '', true);
 		$page = array(
        'title' => $title,
-       'page_content' => $page_content,
+       // 'page_content' => $page_content,
        'logged' => $logged,
        'user_id' => $user_id
        );
-		$this->load->view('template',$page);
+		$this->load->view('welcome_message2',$page);
 	}
 
 	

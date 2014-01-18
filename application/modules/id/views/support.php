@@ -46,13 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
   $message=$_POST['support_message'];
   $mail = $_POST['support_mail'];
-  $message = $message.'  '.$mail;
+  $name = $_POST['support_name'];
+  $message = $message.' // Email-  '.$mail.' // Имя Пользователя-'.$name;
 
 echo "Ваше сообщение отправлено, мы обязательно Вам ответим";
-   send_mime_mail('PortfoliOnline.ru',
+    send_mime_mail('PortfoliOnline.ru',
                'about@portfolionline.ru',
                'Получатель',
-               'tailz440@mail.ru',
+               'ziffyweb@gmail.com',
                // $email,
                'UTF-8',"CP1251", // кодировка, в которой будет отправлено письмо
                "PortfoliOnline.ru / Служба поддержки",
@@ -65,7 +66,8 @@ echo "Ваше сообщение отправлено, мы обязатель�
 
 
 
-<form  action="<?php echo $this->config->site_url() ?>id/support" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+<!-- <form  action="<?php echo $this->config->site_url() ?>id/support" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+<input class="styler" type="text" name="support_name" maxlength="40" placeholder="Введите свое имя " />
 <input class="styler" type="text" name="support_mail" maxlength="40" placeholder="Введите свою почту" />
 <br><br>
 <textarea class="styler" name="support_message" placeholder="Опишите проблему"></textarea>
@@ -73,7 +75,7 @@ echo "Ваше сообщение отправлено, мы обязатель�
 
 <input class="styler" type="submit" value="Отправить" />
 
-</form>
+</form> -->
 
 </body>
 </html>

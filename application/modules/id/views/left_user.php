@@ -61,6 +61,7 @@ echo '<p style="padding-left:45px">';
     }
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."'>Мои работы</a>";
+    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/contacts">Мои Контакты</a>';
    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/friends_view">Мои сообщения</a>';
    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/albom/view_audio">Мои аудиозаписи</a>';
     // echo '<br><a class="upload_foto">Загрузить работу</a>';
@@ -76,7 +77,7 @@ echo '<p style="padding-left:45px">';
       echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
       if ($logged == TRUE) {
         echo "<br><a  href='".$this->config->site_url() ."id".$my_id."/friends".$url_id."'>Отправить сообщение</a>";
-        
+        //подписка
         if (isset($subscribe_user)) {
         if($subscribe_user == 'subscribe'){
          echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends/dell_subscribe?friend_id=".$url_id."'>Отписаться</a>";
@@ -85,6 +86,15 @@ echo '<p style="padding-left:45px">';
           echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends/subscribe?friend_id=".$url_id."'>Подписаться</a>";
         }
         }
+        //мои контакты
+        if (isset($contacts_user)) {
+        if($contacts_user == 'not_send'){
+          echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/friends/contacts_send?contacts_id=".$url_id."'>Добавить в Мои контакты</a>";
+        }
+        }
+
+
+
       }
 echo '</p>';
 
