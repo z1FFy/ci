@@ -4,6 +4,7 @@
 	<meta charset="utf-8" />
 		<title>PortfoliOnline BETA</title>
 	<link href="images/new/style.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="images/new/slider.css">
 	  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>jquery.formstyler.css" type="text/css" />
 <link rel="shortcut icon" href="<?php echo $this->config->site_url() ?>favicon.ico">
    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> 
@@ -20,10 +21,12 @@
 </head>
 
 <body>
-<div id="bg_h">
+<!-- <div id="bg_h"> -->
+
 <font id="v_text">ОНЛАЙН СЕРВИС ДЛЯ СОЗДАНИЯ ПЕРСОНАЛЬНОГО БЕСПЛАТНОГО ПОРТФОЛИО</font>
 	<div id="v_head">
-	<img src="images/new/logo.png" id="logo">
+<a href="<?php echo $this->config->site_url() ?>"><img src="<?php echo $this->config->site_url() ?>images/new/logo.png" id="logo"></a>
+
 	</div>
 	<div class="wrapper">
 
@@ -42,6 +45,23 @@
 		</div>
 	</div>
 </header><!-- .header-->
+<!-- <div style="background-color: #404c53;
+height: 330px;
+position: absolute;
+top: 0px;
+width: 950px;"> -->
+<div class="slider-wrapper" >
+<ul id="pagi" class="s-thumbs">
+			<li><a href="#slide-1"><img src="images/new/sl_pag.png"></a></li>
+			<li><a href="#slide-2"><img src="images/new/sl_pag.png"></a></li>
+		</ul>
+
+<ul class="s-slides">
+    <li id="slide-1" class="slideRight first"><div id="slider1"> </div></li>
+    <li id="slide-2" class="slideRight"><div id="slider2"> </div></li>
+</ul>
+</div>
+<!-- </div> -->
 	<main class="content">
 	<div id="m_a_bl">
 		<div id="m_t_bl">ПОРТФОЛИО ОНЛАЙН?</div>
@@ -77,7 +97,7 @@
 		</main><!-- .content -->
 
 </div><!-- .wrapper -->
-</div>
+<!-- BGH </div> -->
 <footer class="footer">
 	<div class="rekl">
 		<p class="f_title">Реклама на сайте</p>
@@ -87,10 +107,10 @@
 			электронный адрес: <br>
 			E-mail: pr@portfolionline.ru</p>
 	</div>	
-	<div style="margin-left:70px;" class="rekl">
+	<div id="prav" style="margin-left:70px;" class="rekl">
 	<p class="f_title">Информация для
 правообладателей</p>
-<a style="color:#fff;margin-left:110px;font-size:15px;" href="#">Подробнее</a>
+<a style="color:#fff;margin-left:110px;font-size:15px;" href="/id/info">Подробнее</a>
 </div>
 	<div style="margin-left:70px;" class="rekl">
 		<p class="f_title">Служба технической поддержки</p>

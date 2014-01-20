@@ -62,7 +62,7 @@ $body2);
 <!DOCTYPE html>
 <html>
 <head>
-  <title><?php echo $title; ?></title>
+  <title>Восстановление пароля</title>
     <meta charset="utf-8">
   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css?v=2" type="text/css" />
   <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>jquery.formstyler.css" type="text/css" />

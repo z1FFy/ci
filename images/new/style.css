@@ -28,7 +28,7 @@ body {
 	line-height: 1;
 /*	font-family: Verdana;*/
 	min-width: 450px;
-	background-image: url('main_bg.png');
+	background-image:url('ph_bg.png');
 }
 ol, ul {
 	list-style: none;
@@ -63,9 +63,10 @@ body {
 position: absolute;
 margin-top: 30px;
 text-align: right;
-padding-left:400px;
+margin-left:400px;
 padding-right: 10px;
 font-size: 110%;
+z-index: 330;
 }
 
 .wrapper {
@@ -85,6 +86,18 @@ font-size: 110%;
 	height: 250px;
 	margin-top: 10px;
 	padding-left: 10%;
+}
+#slider1 {
+			background-image: url('h_bg.png');
+	background-size: 100% 330px;
+	background-repeat: no-repeat;
+	width: 100%;height: 330px;max-width:950px
+}
+#slider2 {
+			background-image: url('h_bg2.png');
+	background-size: 100% 330px;
+	background-repeat: no-repeat;
+	width: 100%;height: 330px;max-width:950px
 }
 #bg_h {
 		background-image: url('h_bg.png');
@@ -109,6 +122,8 @@ font-size: 110%;
 	width: 80%;
 	height:70px;
 	background-color: rgba(62, 62, 62, 0.52);
+	position: relative;
+	z-index: 300;
 }
 
 #logo {
@@ -119,6 +134,8 @@ font-size: 110%;
 	width: 270px;
 	/*height: 300px;*/
 	background-color:rgba(250, 250, 250, 0.66);
+	position: relative;
+	z-index: 300;
 }
 #v_auth {
 	height: 20px;
@@ -233,6 +250,51 @@ float: left;
 	text-shadow: 1px 1px 2px rgb(53, 53, 53);
 	width: 240px;
 }
+
+#simplemodal-overlay {background-color:#000;}
+#simplemodal-container {box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+   background-color:#333; border:8px solid #444; padding:12px;/*width:60%;height:100%;*/}
+#simplemodal-data {height: 99%}
+.modal-close {
+	background-image: url('../images/close_n.png');
+	width: 31px;
+	height: 32px;
+	display: inline;
+	z-index: 3200;
+	position: absolute;
+	top: -26px;
+	right: -21px;
+	cursor: pointer
+
+}
+.modal-close:hover {
+	background-size: 120%;
+}
+.iptotop {
+position: fixed;
+right: 20px;
+bottom: 20px;
+width: 48px;
+height: 48px;
+display: block;
+background: url("images/top.png") 0 0 no-repeat;
+z-index: 99999999;
+-webkit-transition: all .7s ease-in-out;
+-moz-transition: all .7s ease-in-out;
+-o-transition: all .7s ease-in-out;
+-ms-transition: all .7s ease-in-out;
+transition: all .7s ease-in-out
+}
+.iptotop:hover {
+background: url("images/top_hov.png") 0 0 no-repeat;
+}
+.iptotop.hidden {
+bottom: -100px
+}
+
+
+
+
 @media screen and (min-width: 950px) {
 	body {
 		width: 950px;
@@ -251,3 +313,8 @@ float: left;
 		font-size: 12px;
 	}
 	}
+@media screen and (max-width: 900px) {
+			#prav {
+		display: none;
+	}
+}

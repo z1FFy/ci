@@ -149,17 +149,10 @@ background-color: #336aa8;"><a href="<?php echo $this->config->site_url() ?>"><i
 </div>
 <div id="footer">
 
-
-
-
   <?php echo '<div id="teh"> <img style="margin-top: -5px;
 position: absolute;" src="'.$this->config->site_url().'/images/help.png"><a style="color:#fff;padding-left:40px">Техническая Поддержка</a></div>';
 
-
-
 echo '<div id="inf"> <a href="'.$this->config->site_url().'id'.$user_id.'/info" style="color:#fff;padding-left:1px">Информация для правообладателей</a></div>';
-
-
 
 ?><p style="text-align:center">copyright 2013 PortfoliOnline.ru<br>
 <small>Авторские права на все материалы опубликованные

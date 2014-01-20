@@ -36,7 +36,6 @@ class Site extends CI_Controller {
 	
 	function reg() {
 		$title='Регистрация';
-		$page_content = $this->load->view('reg', '', true);
 		$logged = $this->session->userdata('logged_in');
 		$user_id='';
 		if ($logged == TRUE) {
@@ -44,11 +43,10 @@ class Site extends CI_Controller {
 		 }
 		$page = array(
            'title' => $title,
-           'page_content' => $page_content,
            'logged' => $logged,
            'user_id' => $user_id
          );
-		$this->load->view('template',$page);	
+		$this->load->view('reg',$page);	
 	}
 	function licension () {
 		$this->load->view('licension');

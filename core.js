@@ -127,6 +127,8 @@ $('#auth').show('fast');
 $('#entry').hide('fast');
   });
 
+
+
           //Auth
 $('.btn_entry').click(function() { 
   login = $("input[name='login-entry']").val();
@@ -188,7 +190,7 @@ $('.btn_entry').click(function() {
        }); 
             $('#sogl').click(function() { 
         var src = site_full+"/site/licension";
-        upload(src,'',440,600);
+        upload(src,'nof',440,600);
        }); 
 
        $('.photo_up').click(function() { 
