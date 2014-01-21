@@ -1,5 +1,5 @@
 
-<div style="width:940px;" id="right_user">
+<div  id="right_user">
 
 	<p class="titl">Мои работы  
 <?php 
@@ -37,9 +37,9 @@ $acc='';
 foreach ($acc_data as $item) {
 	$acc = $item->account;
 }
-if($acc != 'pro'){
-	echo '<a class="banner"><img style="position: absolute; top: 65px;" src="'.$this->config->site_url().'uploads/banners/900x70.gif" width="900" height="70"></a><br><br>';
-}
+// if($acc != 'pro'){
+// 	echo '<a class="banner"><img style="position: absolute; top: 65px;" src="'.$this->config->site_url().'uploads/banners/900x70.gif" width="900" height="70"></a><br><br>';
+// }
 	
 	?>
 

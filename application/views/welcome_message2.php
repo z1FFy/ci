@@ -70,15 +70,24 @@ body {
 	<div id="a_auth">
 	<div id="v_auth">Вход / Регистрация</div>
 		<div id="c_auth">
-			 <div >
-				  <input style="width: 230px;" type="text" name="login-entry"  onkeypress='validate(event)' class="auth styler" maxlength="20" placeholder="Логин">
-				  <div id="login_entry"></div>
-				  <input style="width: 230px;" type="password" name ="password-entry"  onkeypress='validate(event)' class="auth styler"maxlength="20" placeholder="Пароль">
+
+			<?php if ($logged == TRUE) {
+				echo '<p align="center">Вы уже авторизированны</p>';
+				echo '<div style="float:right; width: 100px; " id="user_exit"  style="padding: 4px 11px;margin-top: 10px;" class="baatn">Выйти</div>
+					  <div style=" width: 100px;" id="user_page" link='.$user_id.' style="padding: 4px 11px;margin-top: 10px;" class="baatn">Войти</div>';
+			}else{
+			 echo '
+				  <input style="width: 230px;" type="text" name="login-entry"  onkeypress="validate(event)" class="auth styler" maxlength="20" placeholder="Логин">
+  				<div id="login_entry"></div>
+				  <input style="width: 230px;" type="password" name ="password-entry"  onkeypress="validate(event)" class="auth styler"maxlength="20" placeholder="Пароль">
 				 <div id="pass_entry"></div>
-				 <br> <div    class="btn_entry baatn">Войти</div>
-				<font style="color:#fff;font-size:14px;"><a id="loss_pass" href="<?php echo $this->config->site_url(); ?>site/lose_pass">Забыли пароль?</a></font>
+				 <br> <div    class="btn_entry baatn">Войти</div>';
+				echo '<font style="color:#fff;font-size:14px;"><a id="loss_pass" href="'.$this->config->site_url().'site/lose_pass">Забыли пароль?</a></font>';
+				} ?>
+
 				<br><div style="width: 157px;padding-left: 80px" onclick="location.href='<?php echo $this->config->site_url(); ?>site/reg'"  style="padding: 4px 11px;margin-top: 10px;" class="baatn">Регистрация</div>
-				  </div>
+				  
+
 		</div>
 	</div>
 </header><!-- .header-->

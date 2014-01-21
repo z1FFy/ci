@@ -1,15 +1,5 @@
 <style>
-    #middle-pol {
-    padding-top: 0px;
-    width: 100%;
-    height: 0px;
-    visibility: hidden;
 
-  }
-  #content {
-
-	display: table;
-  }
 
 .block_msg {
 background-color: #D7DBDD;
@@ -21,12 +11,11 @@ margin-bottom: -5px;
 height: 80px;
 }
   </style>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
 
        <?php
 
         $this->load->view('left_user',$user_data); ?>
-        <div id="polosa"></div>
+
 <div id="right_user">
 <p class="titl">Мои сообщения:</p><br>
 <?php

@@ -160,26 +160,7 @@ if ($key == $podtvr) {
 
 ?>
 
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-
 <style>
-body{
-background-color:#fff;
-}
-
-
-    #middle-pol {
-    padding-top: 0px;
-    width: 100%;
-    height: 0px;
-    visibility: hidden;
-
-  }
-  #content {
-    padding-left: 0%;
-    padding-right: 0%;
-    display: table;
-  }
 
     .tbl {
       border: 0px solid #bbb;
@@ -220,7 +201,6 @@ background-color:#fff;
        $this->load->view('left_user',$user_data); 
    ?>
 
-<div id="polosa"></div>
 <div id="right_user">
 
  
@@ -229,7 +209,6 @@ background-color:#fff;
   <p class="titl"><?php if ($whopage=='my') {
     echo "Мой ";
   } ?>Профиль</p>
-    <div style="float:left">
 
 <?php
 if ($whopage == 'my') {
@@ -315,7 +294,7 @@ if ($whopage == 'my') {
      <?php if($item->website != ''){ ?>
                    <tr class="item">
   <td class="name">Личный сайт:</td><td class="val"> <?php echo '<a href="'.$text = htmlspecialchars($item->website, ENT_QUOTES).'">'.$text = htmlspecialchars($item->website, ENT_QUOTES).'</a>'; ?></td></tr> 
-</table>
+
   <?php } ?>
 
   Образование:
@@ -340,7 +319,7 @@ if ($whopage == 'my') {
  </table>
     <?php if($item->interests != ''){ ?>
 
-    <div style="float:left">
+
 Интересы:<br>
             
    <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled"><?php echo $item->interests;?><?php } ?></textarea>
@@ -348,10 +327,7 @@ if ($whopage == 'my') {
        <tr class="item">
   <td class="name">Специализация: </td><td class="val"> <?php echo $item->spec_user;?></td></tr></table>
 
- </div>
-  
 
-</div>
 
 </div>
 

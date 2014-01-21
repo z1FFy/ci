@@ -1,9 +1,6 @@
 
 <style>
-  #content {
 
-    display: table;
-  }
     .spi{
     margin: 4px;
   }
@@ -66,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       $this->load->view('left_user',$user_data); 
   ?>
 
-<div id="polosa"></div>
 <div id="right_user">
 
   <p class="titl">Статистика</p> <br>

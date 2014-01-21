@@ -9,9 +9,7 @@ float: left;
   padding-bottom: 8px;
 }
 
-  .block_photo {
-    width:13%;
-  }
+
 
 </style>
 

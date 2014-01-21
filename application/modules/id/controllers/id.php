@@ -86,7 +86,7 @@
 		$profile_data = $this->db_module->get_user_by_id($url_id);
 		$unread = $this->db_module->get_unread($url_id);
 		$last_activity =$this->db_module->get_last_activity($url_id);
-		
+		$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
 		$title='userpage';
 $i=0;
 
@@ -99,6 +99,7 @@ $i=0;
 
 
 				$data = array(
+					'contacts_not_pod'=> $contacts_not_pod,
 	               'user_data' => $data_user,
 	               'acc_data' => $acc_user,
 	               'whopage' => $whopage,
@@ -138,7 +139,8 @@ $i=0;
 		$logged = $this->session->userdata('logged_in');
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
-		$user_data_arr = array( 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
+		$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+		$user_data_arr = array('contacts_not_pod'=> $contacts_not_pod, 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
 		$page_content = $this->load->view('profile', $user_data_arr, true);
 		$user_id='';
 		if ($logged == TRUE) {
@@ -166,7 +168,8 @@ $i=0;
 		$logged = $this->session->userdata('logged_in');
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
-		$user_data_arr = array( 'user_data' => $user_data, 'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
+		$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+		$user_data_arr = array('contacts_not_pod'=> $contacts_not_pod, 'user_data' => $user_data, 'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged,'unread' => $unread);
 		$page_content = $this->load->view('profile_update_form', $user_data_arr, true);
 		$user_id='';
 		if ($logged == TRUE) {
@@ -327,8 +330,8 @@ $i=0;
 		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$user_data = $this->db_module->get_user_by_id($url_id);$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
-
-		$user_data_arr = array( 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
+		$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+		$user_data_arr = array('contacts_not_pod'=> $contacts_not_pod, 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
 		$page_content = $this->load->view('seach', $user_data_arr, true);
 		$page = array(
            'title' => $title,
@@ -384,7 +387,8 @@ $i=0;
 		
 		//
 		$unread = $this->db_module->get_unread($url_id);$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
-		$user_data_arr = array( 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'seach_data' => $seach_data, 'text' => $text, 'unread' => $unread,);
+		$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+		$user_data_arr = array( 'contacts_not_pod'=> $contacts_not_pod,'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'seach_data' => $seach_data, 'text' => $text, 'unread' => $unread,);
 	 $this->load->view('seach', $user_data_arr);
 
 		$user_id='';
@@ -426,8 +430,8 @@ $i=0;
 		$unread = $this->db_module->get_unread($url_id);
 		$whopage= $this->_get_whopage($url_id,$user_id);
 		$user_data = $this->db_module->get_user_by_id($url_id);$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
-
-		$user_data_arr = array( 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
+		$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+		$user_data_arr = array('contacts_not_pod'=> $contacts_not_pod, 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread,);
 		$page_content = $this->load->view('pass_update', $user_data_arr, true);
 
 		$page = array(

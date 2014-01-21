@@ -1,36 +1,5 @@
 <style>
 
-    #middle-pol {
-    padding-top: 0px;
-    width: 100%;
-    height: 0px;
-    visibility: hidden;
-
-  }
-  #content {
- padding-left: 0px;
-padding-right: 0px;
-width: 100%;
-
-  }
-
-body {
-	background-color: #fff;
-}
-#polosa {
-  background-color: #fff;
-}
-#left_user{
-float: left;
-}
-
-#right_user {
-  padding-top: 10px;
-height: 100%;
-min-height: 500px;
-margin-bottom: 0px;
-margin-left: 280px;
-}
 .frame_com {
   height: 50px;
   width: 50px;
@@ -47,48 +16,13 @@ margin-left: 280px;
 </style>
 <script>
   $(document).ready(function() {
-     //$('#left_user').hide();
 
-    // $('#showmenu').click(function() { 
-    //   $('#left_user').slideDown("slow");
-    //   }); 
-//  $('#left_user').mouseleave(function() { 
-
-// $('#left_user').slideUp("fast");
-
-
-//        }); 
-
-  // $('#showmenu').hover(function() { 
-
-  // $('#left_user').slideDown("slow");
-  //      }); 
-  // });
-  // window.onload = function() {
-  //       var photo = $("#photo");
-  //     photo_w=parseInt(photo.width());
-  //     r_photo_w=$('#photo').attr('r_width');
-  //     photo_h=parseInt(photo.height());
-  //     // p_ph_h=-photo_h/100*50;
-  //     // $('#ph_prev,#ph_next').css({'top': p_ph_h});
-  //     r_photo_h=$('#photo').attr('r_height');
-  //     if (photo_w>r_photo_w) {
-  //       $('#photo').attr('width', r_photo_w);
-  //     }
-  // }
 </script>
 <?php
 foreach ($user_data as $item){ 
       $name=$item->name;
       $famil=$item->famil;
     }
-      ?>
-<!-- <div id="showmenu"> -->
-<?php //echo $name.' '.$famil; ?>
-<!-- <br><img style="position: absolute;margin-top: 4px;" width="15px" src=" -->
-<?php //echo $this->config->site_url().'images/down.png' ?>
-<!-- "> </div> -->
-	<?php 
 
     $id=$this->uri->segment(4);
        $id_orig=preg_replace("/[^0-9]/", '', $this->uri->segment(3));

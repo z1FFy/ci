@@ -11,11 +11,7 @@
     visibility: hidden;
 
   }
-  #content {
-    padding-left: 0%;
-    padding-right: 0%;
-    display: table;
-  }
+
 
  .styler {
  	margin: 4px;
@@ -37,7 +33,6 @@ foreach ($user_data as $item) {
        $this->load->view('left_user',$user_data); 
    ?>
 
-<div id="polosa"></div>
 <div id="right_user">
   <p class="titl"><?php if ($whopage=='my') {
     echo "Мое ";

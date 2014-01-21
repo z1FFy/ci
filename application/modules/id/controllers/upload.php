@@ -48,7 +48,7 @@ $user_data = $this->db_module->get_user_by_id($user_id);
 			$config['upload_path'] = './uploads/audios/';
 			$audios_name = $_POST['photos_name'];
 			$config['allowed_types'] = 'mp3';
-			$config['max_size']	= '8000';
+			$config['max_size']	= '20000';
 			$config['encrypt_name'] = 'TRUE';
 			$this->load->library('upload', $config);
 			if ( ! $this->upload->do_upload())
@@ -75,7 +75,7 @@ $user_data = $this->db_module->get_user_by_id($user_id);
 			$config['upload_path'] = './uploads/avatars/';
 		}
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
-		$config['max_size']	= '5000';
+		$config['max_size']	= '20000';
 		$config['max_width']  = '3024';
 		$config['max_height']  = '3068';
 		$config['encrypt_name'] = 'TRUE';

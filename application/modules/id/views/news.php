@@ -1,18 +1,5 @@
 <style>
-    body{
-    background-color:#fff;
-    }
 
-    #middle-pol {
-    padding-top: 0px;
-    width: 100%;
-    height: 0px;
-    visibility: hidden;
-
-  }
-  #content {
-    display: table;
-  }
 
   .spi{
     margin: 4px;
@@ -23,7 +10,6 @@
 
   <?php $this->load->view('left_user',$user_data);  ?>
 
-<div id="polosa"></div>
 <div id="right_user">
 <p class="titl"> Лента новостей</p>
 <!-- <form> -->
@@ -35,9 +21,7 @@ if (empty($subscribe_users_data)) {
 
    
   
-      echo '<div style="
-width: 240px;
-" class="block">Подписчики:<br>';
+      echo '<div >Подписчики:<br>';
 foreach ($subscribe_users_data as $item) {
   echo '<a href="'.$this->config->site_url().'id'.$item->second_user.'">';
   echo '<img style="width:50px;height:50px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'">';

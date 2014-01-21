@@ -1,20 +1,3 @@
-<style>
-    #middle-pol {
-    padding-top: 0px;
-    width: 100%;
-    height: 0px;
-    visibility: hidden;
-
-  }
-  #content {
-    padding-left: 0%;
-    padding-right: 0%;
-    display: table;
-  }
-
-
-  </style>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <script>
 $(document).ready(function() {
@@ -49,7 +32,7 @@ function onAjaxSuccess(data)
 
 <?php 
   $this->load->view('left_user',$user_data); 
-          ?><div id="polosa"></div>
+          ?>
 <div id="right_user">
 <?php
   foreach ($messages_data as $item){ 
