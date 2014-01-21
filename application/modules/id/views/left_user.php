@@ -37,7 +37,8 @@
       echo '<div style="background-color:rgba(219, 219, 219, 0.72)" class="block"  id="left_user">';
       echo '<br><div style="margin-top: -20px;margin-left:23px" class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
             if ($whopage=='my') {
-          echo ' <input type="button" id="upload_ava" class="styler" style="margin-left:57px;" value="Изменить аватар">';
+          echo ' <input type="button" id="upload_ava" class="styler" style="position: absolute;margin-left: 57px;margin-top: -108px;
+" value="Изменить аватар">';
       }
  $t = time() - $lastactivity;
       if($t > 300){

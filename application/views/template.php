@@ -47,21 +47,8 @@ if ($acc!='pro') {
       }
       $fon= preg_replace("/[^0-9]/", '', $fon);
       if ($fon!=''){
-        echo 'background-image: url("'.$this->config->site_url().'/images/bg/'.$fon.'.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
+        echo 'background-image: url("'.$this->config->site_url().'/images/bg/'.$fon.'.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed';
       }
-
-                  /*if ($fon=='img1'){
-        echo 'background-image: url("'.$this->config->site_url().'/images/bg/1.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
-      }
-                  if ($fon=='img2'){
-        echo 'background-image: url("'.$this->config->site_url().'/images/bg/2.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff;';
-      }
-                        if ($fon=='img3'){
-        echo 'background-image: url("'.$this->config->site_url().'/images/bg/3.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
-      }
-                        if ($fon=='img4'){
-        echo 'background-image: url("'.$this->config->site_url().'/images/bg/4.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed;color:#fff';
-      }*/
                         
 
       ?>
@@ -107,13 +94,8 @@ if ($colortext=='grey'){
 </div>
 </header>
  -->
- <div style="padding-left: 32px;
-height: 53px;
-width: 200px;
-position: absolute;
-padding-right: 38px;
-background-color: #336aa8;"><a href="<?php echo $this->config->site_url() ?>"><img id="logo" src="
-<?php echo $this->config->site_url() ?>images/logo.png"></a></div>  
+ <a href="<?php echo $this->config->site_url() ?>"><img width="240" id="logo" src="
+<?php echo $this->config->site_url() ?>images/new/logo.png"></a> 
  <div align="left" id="menu">
    <?php if ($logged != TRUE) { ?>
    <div id="entry">
@@ -147,20 +129,37 @@ background-color: #336aa8;"><a href="<?php echo $this->config->site_url() ?>"><i
 </div>
      
 </div>
-<div id="footer">
+<footer class="footer">
+  <div class="rekl">
+    <p class="f_title">Реклама на сайте</p>
+    <br><img src="<?php echo $this->config->site_url() ?>images/new/adress.png">
+      <p class="f_text">По всем вопросам размещения
+      рекламы на сайте пишите на наш
+      электронный адрес: <br>
+      E-mail: <a style="color:#fff" href="mailto:pr@portfolionline.ru">pr@portfolionline.ru</a></p>
+  </div>  
+  <div id="prav" style="margin-left:70px;" class="rekl">
+  <p class="f_title">Информация для
+правообладателей</p>
+<a style="color:#fff;margin-left:110px;font-size:15px;" href="/id/info">Подробнее</a>
+</div>
+  <div style="margin-left:70px;" class="rekl">
+    <p class="f_title">Служба технической поддержки</p>
+    <form  action="<?php echo $this->config->site_url() ?>id/support" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+  <br>  <input style="width:70px" class="styler" type="text" name="support_name" maxlength="40" placeholder="Ваше имя" />
+    <input style="width:80px" class="styler" type="text" name="support_mail" maxlength="40" placeholder="Email" />
+    <br>
+    <textarea style="width:174px;" class="styler" name="support_message" placeholder="Ваше сообщение"></textarea>
+    <br>
+    <input style="margin-left: 104px" class="styler" type="submit" value="Отправить" />
 
-  <?php echo '<div id="teh"> <img style="margin-top: -5px;
-position: absolute;" src="'.$this->config->site_url().'/images/help.png"><a style="color:#fff;padding-left:40px">Техническая Поддержка</a></div>';
-
-echo '<div id="inf"> <a href="'.$this->config->site_url().'id'.$user_id.'/info" style="color:#fff;padding-left:1px">Информация для правообладателей</a></div>';
-
-?><p style="text-align:center">copyright 2013 PortfoliOnline.ru<br>
-<small>Авторские права на все материалы опубликованные
-на сайте принадлежат их авторам.</small>
-<div align="right">
-<a class=' iptotop' href='#'>
-<span></span>
-</a>
+</form>
+  </div>
+</footer><!-- .footer -->
+  <div id="m_footer">Copyright 2013  portfolionline.ru. All rights reserved.</div>
+  <div style="position: absolute;
+margin-top: -40px;
+margin-left: 820px;">
 <!-- Yandex.Metrika informer -->
 <a href="http://metrika.yandex.ru/stat/?id=23092057&amp;from=informer"
 target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/23092057/3_0_2067FFFF_0047FFFF_1_pageviews"
@@ -190,9 +189,6 @@ style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" tit
 </script>
 <noscript><div><img src="//mc.yandex.ru/watch/23092057" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-</div>
-
-</p>
- </div>
+  </div>
 </body>
 </html>

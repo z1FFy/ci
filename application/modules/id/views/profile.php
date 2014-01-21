@@ -288,7 +288,7 @@ if ($whopage == 'my') {
    <tr class="item">
   <td class="name">Город на карте:</td>  <td class="val">
 <?php echo '<input type="hidden" id="sity_map" value="'.htmlspecialchars($item->sity, ENT_QUOTES).'">' ?> 
-<div id="map" style="width: 600px; height: 400px"></div> 
+<div id="map" style="width: 500px; height: 400px"></div> 
   <?php 
   // echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?>
 

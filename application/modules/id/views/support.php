@@ -66,7 +66,7 @@ echo "Ваше сообщение отправлено, мы обязатель�
 
 
 
-<!-- <form  action="<?php echo $this->config->site_url() ?>id/support" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+<form  action="<?php echo $this->config->site_url() ?>id/support" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <input class="styler" type="text" name="support_name" maxlength="40" placeholder="Введите свое имя " />
 <input class="styler" type="text" name="support_mail" maxlength="40" placeholder="Введите свою почту" />
 <br><br>
@@ -75,7 +75,7 @@ echo "Ваше сообщение отправлено, мы обязатель�
 
 <input class="styler" type="submit" value="Отправить" />
 
-</form> -->
+</form> 
 
 </body>
 </html>

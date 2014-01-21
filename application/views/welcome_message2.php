@@ -19,14 +19,49 @@
       <![endif]-->
 
 </head>
+<style>
+body {
+	background-image: none;
+}
 
+
+</style>
+<script type="text/javascript">
+  $(document).ready(function() {
+	i=0;
+	function move() {
+		attr=$('.one').attr('src');
+		if (attr=='images/new/sl_pag.png'){
+			$('#slider1').animate({opacity: '0'}, 500);
+			$('#slider2').animate({opacity: '1'}, 500);
+			$('.one').attr('src', 'images/new/sl_pag_n.png');
+			$('.two').attr('src', 'images/new/sl_pag.png');
+		}
+			if (attr=='images/new/sl_pag_n.png'){
+			$('#slider2').animate({opacity: '0'}, 500);
+			$('#slider1').animate({opacity: '1'}, 500);
+			$('.one').attr('src', 'images/new/sl_pag.png');
+			$('.two').attr('src', 'images/new/sl_pag_n.png');
+		}
+}
+    $('.one').click(function() { 
+    	i=1;
+    	move(i);
+    	});
+        $('.two').click(function() { 
+    	i=2;
+    	move(i);
+    	});
+
+	setInterval(move, 6000);
+});
+</script>
 <body>
 <!-- <div id="bg_h"> -->
-
-<font id="v_text">ОНЛАЙН СЕРВИС ДЛЯ СОЗДАНИЯ ПЕРСОНАЛЬНОГО БЕСПЛАТНОГО ПОРТФОЛИО</font>
+<div id="v_polosa"></div>
 	<div id="v_head">
 <a href="<?php echo $this->config->site_url() ?>"><img src="<?php echo $this->config->site_url() ?>images/new/logo.png" id="logo"></a>
-
+<font id="v_text">ОНЛАЙН СЕРВИС ДЛЯ СОЗДАНИЯ ПЕРСОНАЛЬНОГО БЕСПЛАТНОГО ПОРТФОЛИО</font>
 	</div>
 	<div class="wrapper">
 
@@ -37,9 +72,11 @@
 		<div id="c_auth">
 			 <div >
 				  <input style="width: 230px;" type="text" name="login-entry"  onkeypress='validate(event)' class="auth styler" maxlength="20" placeholder="Логин">
+				  <div id="login_entry"></div>
 				  <input style="width: 230px;" type="password" name ="password-entry"  onkeypress='validate(event)' class="auth styler"maxlength="20" placeholder="Пароль">
+				 <div id="pass_entry"></div>
 				 <br> <div    class="btn_entry baatn">Войти</div>
-				<font style="color:#fff;font-size:14px;"><a id="loss_pass" href="<?php echo $this->config->site_url(); ?>site/lose_pass">Забыли пароль?<img alt="Восстановление пароля" title="Восстановление пароля" src="<?php echo $this->config->site_url().'/images/pass.png'; ?>"></a></font>
+				<font style="color:#fff;font-size:14px;"><a id="loss_pass" href="<?php echo $this->config->site_url(); ?>site/lose_pass">Забыли пароль?</a></font>
 				<br><div style="width: 157px;padding-left: 80px" onclick="location.href='<?php echo $this->config->site_url(); ?>site/reg'"  style="padding: 4px 11px;margin-top: 10px;" class="baatn">Регистрация</div>
 				  </div>
 		</div>
@@ -52,19 +89,19 @@ top: 0px;
 width: 950px;"> -->
 <div class="slider-wrapper" >
 <ul id="pagi" class="s-thumbs">
-			<li><a href="#slide-1"><img src="images/new/sl_pag.png"></a></li>
-			<li><a href="#slide-2"><img src="images/new/sl_pag.png"></a></li>
+			<li><img class="one" width="14" src="images/new/sl_pag.png"></li>
+			<li> <img class="two"  width="14" src="images/new/sl_pag_n.png"></li>
 		</ul>
 
 <ul class="s-slides">
-    <li id="slide-1" class="slideRight first"><div id="slider1"> </div></li>
     <li id="slide-2" class="slideRight"><div id="slider2"> </div></li>
+    <li id="slide-1" class="slideRight first"><div  id="slider1"> </div></li>
 </ul>
 </div>
 <!-- </div> -->
 	<main class="content">
 	<div id="m_a_bl">
-		<div id="m_t_bl">ПОРТФОЛИО ОНЛАЙН?</div>
+		<div id="m_t_bl">ПОРТФОЛИО ОНЛАЙН...?</div>
 		<div id="m_c_bl">В России на стартапе низкие доходы начинающего фрилансера могут окончательно убить желание заниматься любимым
 делом. <br>Особенно если причины неудачи не понятны, что же можно придумать в этой не легкой ситуации, чтобы исправить
 положение текущих дел? <br>Причин и ошибок в этой области может быть очень много, заметим, что одной из самых часто
@@ -74,7 +111,7 @@ width: 950px;"> -->
 нужно начинать Вашу карьеру молодого или опытного фрилансера. <br>Неважно в какой именно области вы работаете:
 дизайн сайтов, графический дизайн, музыка или фотография.<br>
 Причин завести портфолио много. Остановимся на некоторых из них. <br>
-<a class="banner"><img alt="Реклама" class="banner" src="images/new/728.png"></a>
+<a class="banner"><img alt="Реклама" class="banner" src="images/ban_ind.gif"></a>
 	</div>
 	</div>
 	<div id="m_bg">
@@ -105,7 +142,7 @@ width: 950px;"> -->
 			<p class="f_text">По всем вопросам размещения
 			рекламы на сайте пишите на наш
 			электронный адрес: <br>
-			E-mail: pr@portfolionline.ru</p>
+			E-mail: <a style="color:#fff" href="mailto:pr@portfolionline.ru">pr@portfolionline.ru</a></p>
 	</div>	
 	<div id="prav" style="margin-left:70px;" class="rekl">
 	<p class="f_title">Информация для
@@ -126,5 +163,38 @@ width: 950px;"> -->
 	</div>
 </footer><!-- .footer -->
 	<div id="m_footer">Copyright 2013  portfolionline.ru. All rights reserved.</div>
+	<div style="position: absolute;
+margin-top: -40px;
+margin-left: 820px;">
+<!-- Yandex.Metrika informer -->
+<a href="http://metrika.yandex.ru/stat/?id=23092057&amp;from=informer"
+target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/23092057/3_0_2067FFFF_0047FFFF_1_pageviews"
+style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" /></a>
+<!-- /Yandex.Metrika informer -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter23092057 = new Ya.Metrika({id:23092057});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/23092057" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+	</div>
 </body>
 </html>

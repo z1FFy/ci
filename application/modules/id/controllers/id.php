@@ -188,7 +188,7 @@ $i=0;
 
 
 		function profile_update_send(){
-			$fon='';
+			$fon='black';
 			$colortext='';
 		$famil = $_POST['famil'];
 		$name = $_POST['name'];

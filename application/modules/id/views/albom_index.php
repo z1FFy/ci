@@ -1,6 +1,5 @@
 
-<!-- <div id="polosa"></div> -->
-<div id="right_user">
+<div style="width:940px;" id="right_user">
 
 	<p class="titl">Мои работы  
 <?php 

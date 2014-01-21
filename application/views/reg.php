@@ -38,14 +38,16 @@
 </head>
 
 <body>
-<font id="v_text">ОНЛАЙН СЕРВИС ДЛЯ СОЗДАНИЯ ПЕРСОНАЛЬНОГО БЕСПЛАТНОГО ПОРТФОЛИО</font>
+<div id="v_polosa"></div>
 	<div id="v_head">
 	<a href="<?php echo $this->config->site_url() ?>"><img src="<?php echo $this->config->site_url() ?>images/new/logo.png" id="logo"></a>
+	<font id="v_text">ОНЛАЙН СЕРВИС ДЛЯ СОЗДАНИЯ ПЕРСОНАЛЬНОГО БЕСПЛАТНОГО ПОРТФОЛИО</font>
 	</div>
 	<div class="wrapper">
 
 	<main  style="min-height:500px;" class="content">
 <div align="center">
+<br><a class="banner"><img alt="Реклама" class="banner" src="<?php echo $this->config->site_url() ?>images/ban_ind.gif"></a><br>
   <br><p style="font-size:30px;color:#404c53">Регистрация </p>
 <br>
 
@@ -117,7 +119,8 @@ height: 20px;
 width:  170px;" id="pad">  </label> 
 <br> <div><a  href="/site/licension" target="_blank">Пользовательское соглашение</a><br></div><input  class="soglchek styler" type="checkbox">С правилами ознакомлен(а)
  <br> <button class="styler" disabled="true" id="reg"  class="btn">Зарегистрироваться</button>
-</div>
+<br><a class="banner"><img alt="Реклама" class="banner" src="<?php echo $this->config->site_url() ?>images/ban300.gif"></a>
+<br><br><br><br><br><br></div>
 	</main><!-- .content -->
 
 </div><!-- .wrapper -->
@@ -129,7 +132,7 @@ width:  170px;" id="pad">  </label>
 			<p class="f_text">По всем вопросам размещения
 			рекламы на сайте пишите на наш
 			электронный адрес: <br>
-			E-mail: pr@portfolionline.ru</p>
+			E-mail: <a style="color:#fff" href="mailto:pr@portfolionline.ru">pr@portfolionline.ru</a></p>
 	</div>	
 	<div style="margin-left:70px;" class="rekl">
 	<p class="f_title">Информация для
@@ -150,5 +153,38 @@ width:  170px;" id="pad">  </label>
 	</div>
 </footer><!-- .footer -->
 	<div id="m_footer">Copyright 2013  portfolionline.ru. All rights reserved.</div>
+	<div style="position: absolute;
+margin-top: -40px;
+margin-left: 820px;">
+<!-- Yandex.Metrika informer -->
+<a href="http://metrika.yandex.ru/stat/?id=23092057&amp;from=informer"
+target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/23092057/3_0_2067FFFF_0047FFFF_1_pageviews"
+style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" /></a>
+<!-- /Yandex.Metrika informer -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter23092057 = new Ya.Metrika({id:23092057});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/23092057" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+	</div>
 </body>
 </html>
