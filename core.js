@@ -306,6 +306,16 @@ $('.like_photos').click(function() {
 //     };
 //   });
 
+
+$('#user_page').click(function() { 
+  user_id = $(this).attr("link");
+  location.href=site_full+"/id"+user_id;
+});
+
+$('#user_exit').click(function() { 
+  location.href=site_full+"/site/vyhod";
+});
+
      $('#show_com').click(function() { 
       if ($('#show_com').hasClass('hide')) {
             $('#comments').css('display' , 'none');

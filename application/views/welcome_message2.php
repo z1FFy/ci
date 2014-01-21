@@ -35,13 +35,20 @@
 	<div id="a_auth">
 	<div id="v_auth">Вход / Регистрация</div>
 		<div id="c_auth">
-			 <div >
-				  <input style="width: 230px;" type="text" name="login-entry"  onkeypress='validate(event)' class="auth styler" maxlength="20" placeholder="Логин">
-				  <input style="width: 230px;" type="password" name ="password-entry"  onkeypress='validate(event)' class="auth styler"maxlength="20" placeholder="Пароль">
-				 <br> <div    class="btn_entry baatn">Войти</div>
-				<font style="color:#fff;font-size:14px;"><a id="loss_pass" href="<?php echo $this->config->site_url(); ?>site/lose_pass">Забыли пароль?<img alt="Восстановление пароля" title="Восстановление пароля" src="<?php echo $this->config->site_url().'/images/pass.png'; ?>"></a></font>
+			<?php if ($logged == TRUE) {
+				echo '<p align="center">Вы уже авторизированны</p>';
+				echo '<div style="float:right; width: 100px; " id="user_exit"  style="padding: 4px 11px;margin-top: 10px;" class="baatn">Выйти</div>
+					  <div style=" width: 100px;" id="user_page" link='.$user_id.' style="padding: 4px 11px;margin-top: 10px;" class="baatn">Войти</div>';
+			}else{
+			 echo '
+				  <input style="width: 230px;" type="text" name="login-entry"  onkeypress="validate(event)" class="auth styler" maxlength="20" placeholder="Логин">
+				  <input style="width: 230px;" type="password" name ="password-entry"  onkeypress="validate(event)" class="auth styler"maxlength="20" placeholder="Пароль">
+				 <br> <div    class="btn_entry baatn">Войти</div>';
+				echo '<font style="color:#fff;font-size:14px;"><a id="loss_pass" href="'.$this->config->site_url().'site/lose_pass">Забыли пароль?</a></font>';
+				} ?>
 				<br><div style="width: 157px;padding-left: 80px" onclick="location.href='<?php echo $this->config->site_url(); ?>site/reg'"  style="padding: 4px 11px;margin-top: 10px;" class="baatn">Регистрация</div>
-				  </div>
+				  
+
 		</div>
 	</div>
 </header><!-- .header-->
@@ -52,8 +59,8 @@ top: 0px;
 width: 950px;"> -->
 <div class="slider-wrapper" >
 <ul id="pagi" class="s-thumbs">
-			<li><a href="#slide-1"><img src="images/new/sl_pag.png"></a></li>
-			<li><a href="#slide-2"><img src="images/new/sl_pag.png"></a></li>
+			<li><a href="#slide-1"><img src="images/new/sl_pag.png" width="15"></a></li>
+			<li><a href="#slide-2"><img src="images/new/sl_pag.png" width="15"></a></li>
 		</ul>
 
 <ul class="s-slides">
@@ -105,7 +112,7 @@ width: 950px;"> -->
 			<p class="f_text">По всем вопросам размещения
 			рекламы на сайте пишите на наш
 			электронный адрес: <br>
-			E-mail: pr@portfolionline.ru</p>
+			E-mail: <a  style="color:#fff;" href="mailto:pr@portfolionline.ru">pr@portfolionline.ru</a></p>
 	</div>	
 	<div id="prav" style="margin-left:70px;" class="rekl">
 	<p class="f_title">Информация для

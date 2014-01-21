@@ -48,7 +48,8 @@ $messages_data = $this->db_module->view_friend_message1($friend_id, $user_id, $c
 		$user_data = $this->db_module->get_user_by_id($user_id);
 		$this->db_module->dell_unread($user_id, $friend_id);
 		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
-		$messages_data_arr = array( 'messages_data' => $messages_data ,'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id ,'logged' => $logged);
+		$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+		$messages_data_arr = array('contacts_not_pod'=> $contacts_not_pod, 'messages_data' => $messages_data ,'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id ,'logged' => $logged);
  		$page_content = $this->load->view('chat_friends_form',$messages_data_arr,true);
 		$title= 'Сообщения / PortfolioOnline';
 		$logged = $this->session->userdata('logged_in');
@@ -95,7 +96,8 @@ $mess_data = $this->db_module->get_all_user_messages($user_id);
 $friends_data_friend = $this->db_module->get_users_by_id($friend_id);
 $unread = $this->db_module->get_unread($url_id);
 $acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
-$friends_data_arr = array('friends_data_friend' => $friends_data_friend, 'user_data' => $user_data,'acc_data' => $acc_user, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data, 'last_activity' => $last_activity, 'mess_data' => $mess_data);
+$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+$friends_data_arr = array('contacts_not_pod'=> $contacts_not_pod, 'friends_data_friend' => $friends_data_friend, 'user_data' => $user_data,'acc_data' => $acc_user, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data, 'last_activity' => $last_activity, 'mess_data' => $mess_data);
 
 $page_content = $this->load->view('friends_view_form',$friends_data_arr,true);
 $title= 'Сообщения / PortfolioOnline';
@@ -252,8 +254,8 @@ $unread = $this->db_module->get_unread($url_id);
 $acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
 //$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
 $contacts_pod = $this->db_module->get_contacts_pod($user_id);
-
-$contacts_data_arr = array('user_data' => $user_data,'acc_data' => $acc_user, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data,'contacts_pod'=> $contacts_pod);
+$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+$contacts_data_arr = array('user_data' => $user_data,'acc_data' => $acc_user, 'url_id' => $url_id, 'whopage' => $whopage , 'logged' => $logged, 'unread' => $unread, 'unread_data' => $unread_data,'contacts_pod'=> $contacts_pod, 'contacts_not_pod'=> $contacts_not_pod);
 
 $page_content = $this->load->view('contacts',$contacts_data_arr,true);
 $title= 'Мои Контакты / PortfolioOnline';

@@ -28,6 +28,9 @@
       $whostring='Я';
       $whostring_title="Моя";
       $exit='<a href="'.$this->config->site_url().'site/vyhod">выйти</a>';
+      if(count($contacts_not_pod) > 0){
+      $contacts_podtvr = ' '.count($contacts_not_pod);
+    }else{$contacts_podtvr = '';}
 
     } else {
        $whostring='';
@@ -61,7 +64,7 @@ echo '<p style="padding-left:45px">';
     }
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
     echo "<br><a  href='".$this->config->site_url() ."id".$url_id."'>Мои работы</a>";
-    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/contacts">Мои Контакты</a>';
+    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/contacts">Мои Контакты'.$contacts_podtvr.'</a>';
    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/friends_view">Мои сообщения</a>';
    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/albom/view_audio">Мои аудиозаписи</a>';
     // echo '<br><a class="upload_foto">Загрузить работу</a>';
@@ -99,9 +102,9 @@ echo '<p style="padding-left:45px">';
 echo '</p>';
 
 }
-  if ($acc!='pro') {
-      echo '<br><hr><br><a class="banner"><img src="'.$this->config->site_url().'uploads/banners/250x400.gif"></a>';
-    }
+  // if ($acc!='pro') {
+  //     echo '<br><hr><br><a class="banner"><img src="'.$this->config->site_url().'uploads/banners/250x400.gif"></a>';
+  //   }
 
 echo '</div>';
 

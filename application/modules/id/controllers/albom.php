@@ -164,7 +164,8 @@ $message_data = $this->db_module->view_message($id_orig, $config['per_page'], $o
 
 		$unread = $this->db_module->get_unread($url_id);
 		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
-		$message_data_arr = array( 'message_data' => $message_data, 'user_data' => $user_data,'acc_data' => $acc_user, 'photos_data' => $photos_data, 'video_data' => $video_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
+		$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+		$message_data_arr = array('contacts_not_pod'=> $contacts_not_pod, 'message_data' => $message_data, 'user_data' => $user_data,'acc_data' => $acc_user, 'photos_data' => $photos_data, 'video_data' => $video_data, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread);
 		$page_content=$this->load->view('view_photo',$message_data_arr,true);
 		$title="Просмотр фото";
 		$data['page_content'] = $page_content;
@@ -207,7 +208,8 @@ $message_data = $this->db_module->view_message($id_orig, $config['per_page'], $o
 
 		$unread = $this->db_module->get_unread($url_id);
 $acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
-	$data_arr = array('user_data' => $user_data,
+$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+	$data_arr = array('contacts_not_pod'=> $contacts_not_pod,'user_data' => $user_data,
 		'audio_data' => $audio_data,'acc_data' => $acc_user, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread, 'albom_data'=> $albom_data);
 
 	$page_content=$this->load->view('view_audio',$data_arr,true);

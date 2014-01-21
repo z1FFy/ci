@@ -51,7 +51,8 @@
 		$guests_data = $this->db_module->get_users_by_id($guests);
 		//var_dump($guests_data);
 		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
-		$user_data_arr = array( 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'visit_data' => $visit_data, 'guests_data' => $guests_data, 'like_data' => $like_data,
+		$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+		$user_data_arr = array('contacts_not_pod'=> $contacts_not_pod, 'user_data' => $user_data,'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'logged' => $logged, 'unread' => $unread, 'visit_data' => $visit_data, 'guests_data' => $guests_data, 'like_data' => $like_data,
 			'kol_user_photos' => $kol_user_photos, 'kol_user_videos' => $kol_user_videos, 'kol_user_audios' => $kol_user_audios);
 		$page_content = $this->load->view('statistic', $user_data_arr, true);
 		$this ->db_module->last_activity($user_id);
