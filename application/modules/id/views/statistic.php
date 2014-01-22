@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <div id="right_user">
 
-  <p class="titl">Статистика</p> <br>
+  <p class="titl" id="user_text_color">Статистика</p> <br>
 
 <?php 
 $day = time() - 86400;
@@ -76,7 +76,7 @@ $month = time() - 86400*30;
 $m=0;
   echo '<div style="
 width: 240px;
-" class="block">Просматривали:<br>';
+" class="block"><p id="user_text_color">Просматривали:</p>';
 foreach ($guests_data as $item) {
    echo '<img style="width:50px;height:50px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'"> ';
 }
@@ -100,9 +100,9 @@ foreach ($visit_data as $item) {
 </a>
 <ul id="v-menu" class="v-menu" style="display:none;">
 <?php
-echo '<li>За месяц: '.$m.'<br>';
-echo '<li>За неделю: '.$w.'<br>';
-echo '<li>За сутки: '.$d.'<br>';
+echo '<li id="user_text_color">За месяц: '.$m.'<br>';
+echo '<li id="user_text_color">За неделю: '.$w.'<br>';
+echo '<li id="user_text_color">За сутки: '.$d.'<br>';
 echo '</ul>';
 ?>
 <a href="#" class="button" onclick="javascript:showElement1('v-menu1')">
@@ -110,11 +110,11 @@ echo '</ul>';
 </a>
 <ul id="v-menu1" class="v-menu1" style="display:none;">
 <?php
-echo '<li>Изображений: '.count($kol_user_photos).'<br>';
-echo '<li>Видеозаписей: '.count($kol_user_videos).'<br>';
-echo '<li>Аудиозаписей: '.count($kol_user_audios).'<br>';
+echo '<li id="user_text_color">Изображений: '.count($kol_user_photos).'<br>';
+echo '<li id="user_text_color">Видеозаписей: '.count($kol_user_videos).'<br>';
+echo '<li id="user_text_color">Аудиозаписей: '.count($kol_user_audios).'<br>';
 echo '</ul>';
-echo 'Колличество поставленных вами лайков(за все время): '.$like_data.'<br>';
+echo '<p id="user_text_color">Колличество поставленных вами лайков(за все время): '.$like_data.'</p>';
 $kol_photos_like='';
 $kol_audios_like='';
 $kol_videos_like='';
@@ -135,7 +135,7 @@ foreach ($kol_user_audios as $item) {
 <!-- <a href="#" class="button" onclick="javascript:showElement1('v-menu2')"> -->
 <?php
 $kol_all_like = $kol_photos_like+$kol_videos_like+$kol_audios_like;
-echo 'Колличество полученных лайков(за все время): '.$kol_photos_like.'<br>';
+echo '<p id="user_text_color">Колличество полученных лайков(за все время): '.$kol_photos_like.'</p>';
 
 ?>
 <!-- </a> -->

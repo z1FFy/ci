@@ -248,5 +248,17 @@ $contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
 		$this->load->view('red_audio',$data);
 	}
 
+	function add_fon(){
+		$photo_id=$_POST['add_fon'];
+		$user_id=$this->session->userdata('user_id');
+		$fon_data = $this->db_module->get_photos_by_id($photo_id);
+		foreach ($fon_data as $item) {
+			$url_photo=$item->url_photo;
+		}
+		
+		$data = $this->db_module->fon_update($url_photo, $user_id);
+		echo $data;
+	}
+
 
 }

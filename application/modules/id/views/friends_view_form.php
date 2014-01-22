@@ -17,7 +17,7 @@ height: 80px;
         $this->load->view('left_user',$user_data); ?>
 
 <div id="right_user">
-<p class="titl">Мои сообщения:</p><br>
+<p class="titl" id="user_text_color">Мои сообщения:</p><br>
 <?php
 //$i=0;
 		if(!$friends_data_friend){

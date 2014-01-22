@@ -235,6 +235,8 @@ $('.btn_entry').click(function() {
       });
 
 
+
+
    $('#friends').click(function() { 
         friend_id = $(this).attr("link");
         //alert(friend_id);

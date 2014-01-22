@@ -364,8 +364,8 @@ function send_profile($famil,$name,$otchestvo,$mail,$birthday, $spec_user, $sex,
 		$this->skype = $skype;
 		$this->website = $website;
 		$this->interests = $interests;
-		$this->fon = $fon;
-		$this->colortext=$colortext;
+		if($fon != 'none'){$this->fon = $fon;}
+		if($colortext != 'none'){$this->colortext=$colortext;}
 		$user_id = $this->session->userdata('user_id');
 		$this->db->where('user_id', $user_id);
 		$this->db->update('users', $this);
@@ -879,6 +879,24 @@ function contacts_delete($first_user, $second_user){
 	$this->db->delete('contacts', array('first_user' => $first_user, 'second_user'=>$second_user));
 	$this->db->delete('contacts', array('first_user' => $second_user, 'second_user'=>$first_user));
 }
+
+
+
+
+
+function fon_update($url_photo, $user_id){
+	$data = array('fon' => $url_photo);
+	$this->db->where('user_id',$user_id);
+	$this->db->update('users',$data);
+	return 'Фон изменен';
+
+}
+
+
+
+
+
+
 //   function view_news_photos($subscribe_users_id,  $num, $offset){
 // 	$this->db->select('users.user_id, users.login, users.name,users.famil, photos.url_photo, photos.photos_name, photos.photos_date, photos.id_photos, photos.id_user');
 // 	$this->db->from('photos','users');

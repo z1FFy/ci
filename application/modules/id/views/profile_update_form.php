@@ -34,7 +34,7 @@ foreach ($user_data as $item) {
    ?>
 
 <div id="right_user">
-  <p class="titl"><?php if ($whopage=='my') {
+  <p id="user_text_color" class="titl"><?php if ($whopage=='my') {
     echo "Мое ";
   } ?>Редактирование профиля</p> <br>
 	
@@ -201,8 +201,8 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 </select>
 
 
-<br></li><li>Наименование учебного заведения <input class="styler" type="text" name="education_basic" size="20" maxlength="80" value="<?php echo $text = htmlspecialchars($item->education_basic, ENT_QUOTES);?>"/> 
-<br></li><li>Факультет <input class="styler" type="text" name="facultet" size="20"  value="<?php echo $text = htmlspecialchars($item->telephone, ENT_QUOTES);echo $text = htmlspecialchars($item->facultet, ENT_QUOTES);?>"/> 
+<br></li><li>Наименование учебного заведения <input class="styler" type="text" name="education_basic" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->education_basic, ENT_QUOTES);?>"/> 
+<br></li><li>Факультет <input class="styler" type="text" name="facultet" size="20" maxlength="20" value="<?php echo $text = htmlspecialchars($item->telephone, ENT_QUOTES);echo $text = htmlspecialchars($item->facultet, ENT_QUOTES);?>"/> 
 
 <br></li><li>Год окончания 
 <select name="education_end" style="width: 100px;">
@@ -218,7 +218,7 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
 	</select>
 
 
-<br></li><li>Знание языков <input class="styler" type="text" name="language" size="20" maxlength="80" value="<?php echo $item->language;?>"/> 
+<br></li><li>Знание языков <input class="styler" type="text" name="language" size="20" maxlength="20" value="<?php echo $item->language;?>"/> 
 </li></ul>
 <li><b>Интересы:</b> <br>
 <textarea class="styler" name="interests" cols="40" rows = "10" maxlength = "250"> <?php echo $item->interests; ?> </textarea> <br>
@@ -229,11 +229,12 @@ foreach ($acc_data as $item) {
 if($acc=='pro'){
 ?>
 
-</li><li>Фон: <br></li>
+</li><li>Цвет текста: <br></li>
 <select style="width:160px" id="colortext" name="colortext" class="styler">
+	<option value="none">Выберите цвет</option>
+	<option value="black">Черный</option>
 	<option value="white">Белый</option>
 	<option value="grey">Серый</option>
-	<option value="black">Черный</option>
 	<option value="blue">Синий</option>
 	<option value="red">Красный</option>
 	</select>
@@ -249,6 +250,7 @@ if($acc=='pro'){
 	</select>
 	<div id="color_t">
 Цвет:<select style="width:100px" id="fon" name="fon" class="styler">
+	<option value="none">Выберите цвет</option>
 	<option value="white">Белый</option>
 	<option value="grey">Серый</option>
 
