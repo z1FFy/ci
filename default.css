@@ -107,8 +107,8 @@ margin-right: -5px;
 		padding-right: 0%;
 /*		padding-bottom: 30px;*/
 		text-align: left;
-		background: #fff;
-
+		/*background: #fff;
+*/
 	}
 
 	#left_user {
@@ -336,7 +336,7 @@ white-space: nowrap;
 }
 #wrapper {
 	width: 100%;
-	min-height: 100%;
+	min-height: 640px;
 	height: auto !important;
 }
 

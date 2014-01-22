@@ -36,7 +36,7 @@ if ($acc!='pro') {
   }';
 }
  ?>
-  body,#content,#wrapper {
+ #content,#right_user{
     <?php 
       if ($fon=='grey'){
 
