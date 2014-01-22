@@ -65,7 +65,7 @@ $('#contacts_pod').click(function() {
        <?php
  	$this->load->view('left_user',$user_data); ?>
 	<div id="right_user">
-	<p class="titl">Мои контакты:</p><br>
+	<p class="titl" id="user_text_color">Мои контакты:</p><br>
 <?php
 ?> 
 <form method="post" accept-charset="utf-8" enctype="multipart/form-data">

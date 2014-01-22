@@ -45,11 +45,18 @@ if ($acc!='pro') {
             if ($fon=='white'){
         echo 'background-color: #fff;';
       }
+      
+      
+      if ($fon!='' && strlen($fon)>5){
+  
+        echo 'background-image: url("'.$this->config->site_url().'uploads/photos/'.$fon.'");background-size: cover;background-repeat:no-repeat;background-attachment:fixed';
+      }else{
       $fon= preg_replace("/[^0-9]/", '', $fon);
-      if ($fon!=''){
+      if ($fon!='' && strlen($fon)<5){
+
         echo 'background-image: url("'.$this->config->site_url().'/images/bg/'.$fon.'.jpg");background-size: cover;background-repeat:no-repeat;background-attachment:fixed';
       }
-                        
+      }                  
 
       ?>
 

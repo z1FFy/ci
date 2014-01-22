@@ -24,6 +24,22 @@ $(function() {
 
       };
       });
+
+$(".add_fon").on("click", function(){   
+         add_fon= $(this).attr("link");
+      $.post(site_full+"/id/albom/add_fon",
+         { add_fon : add_fon,
+              },
+         onAjaxSuccess
+         );
+      function onAjaxSuccess(data)
+      {
+        // alert(data);
+  window.location.replace(site_full+"/id");
+      };
+      });   
+
+
  </script>
 <!-- Добавление в альбом -->
 Редактирование <br><br>
@@ -56,5 +72,8 @@ echo '<option value="all">Все</a> </option> ';
 </form> 
 </div>
  <div class="block" style="background-color:#82b1cc;margin-top:-20px;">
-	 <input type="button" style="color:red" class="delete_photos styler" value="Удалить" link='<?php echo $id_photo; ?>'> 
+	 <input type="button" class="add_fon styler" value="Сделать фоном" link='<?php echo $id_photo; ?>'> 
+   <input type="button" style="color:red" class="delete_photos styler" value="Удалить" link='<?php echo $id_photo; ?>'> 
+
 </div>
+

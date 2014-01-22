@@ -1,7 +1,7 @@
 
 <div  id="right_user">
 
-	<p class="titl">Мои работы  
+	<p class="titl" id='user_text_color'>Мои работы  
 <?php 
 
 $id_al='';

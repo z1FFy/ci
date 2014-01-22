@@ -206,16 +206,16 @@ if ($key == $podtvr) {
  
 
 
-  <p class="titl"><?php if ($whopage=='my') {
+  <p class="titl" id='user_text_color'><?php if ($whopage=='my') {
     echo "Мой ";
   } ?>Профиль</p>
 
 <?php
 if ($whopage == 'my') {
       if($podtvr == 'okay') {
-        echo '<br>Ваш Email подтвержден';
+        echo '<br><p id="user_text_color">Ваш Email подтвержден</p>';
       } else {
-        echo "<br>Ваш email не подтвержден";
+        echo '<br><p id="user_text_color">Ваш email не подтвержден</p>';
 ?>
   <form action="profile" method="post" >
       <input type="hidden" id="send_key" value="1" name="send_key" />
@@ -230,7 +230,7 @@ if ($whopage == 'my') {
 ?>
 
 
-  <br>Личная Информация:
+  <br><h2 id='user_text_color'>Личная Информация:</h2>
 <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
   <?php if($item->famil != ''){ ?>
     <tr class="item">
@@ -275,7 +275,7 @@ if ($whopage == 'my') {
 <!-- ######################################### -->
 </table>
   <?php if(($item->telephone != '') || ($item->dop_telephone != '') || ($item->skype != '') || ($item->website != '')){ ?>  
-  Контакты: 
+  <p id="user_text_color">Контакты: </p>
     <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
   <?php } ?>
 
@@ -297,8 +297,8 @@ if ($whopage == 'my') {
 
   <?php } ?>
 
-  Образование:
-    <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
+  
+    <table  cellspacing="1" cellpadding="0" class="tbl" border="1"><p id="user_text_color">Образование:</p>
                        <tr class="item">
   <td class="name">Уровень образования: </td><td class="val"> <?php echo $text = htmlspecialchars($item->education_level, ENT_QUOTES);?></td></tr>
     
@@ -320,7 +320,7 @@ if ($whopage == 'my') {
     <?php if($item->interests != ''){ ?>
 
 
-Интересы:<br>
+<p id="user_text_color">Интересы:</p><br>
             
    <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled"><?php echo $item->interests;?><?php } ?></textarea>
          <table  cellspacing="1" cellpadding="0" class="tbl" border="1"> 

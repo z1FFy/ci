@@ -11,7 +11,7 @@
   <?php $this->load->view('left_user',$user_data);  ?>
 
 <div id="right_user">
-<p class="titl"> Лента новостей</p>
+<p class="titl" id="user_text_color"> Лента новостей</p>
 <!-- <form> -->
  <?php
 if (empty($subscribe_users_data)) {
@@ -21,7 +21,7 @@ if (empty($subscribe_users_data)) {
 
    
   
-      echo '<div >Подписчики:<br>';
+      echo '<div ><p id="user_text_color">Подписчики:<p>';
 foreach ($subscribe_users_data as $item) {
   echo '<a href="'.$this->config->site_url().'id'.$item->second_user.'">';
   echo '<img style="width:50px;height:50px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'">';

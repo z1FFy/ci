@@ -83,11 +83,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <div id="right_user">
 
-  <p class="titl">Поиск людей</p> <br>
+  <p class="titl" id="user_text_color">Поиск людей</p> <br>
 
 <form action="<?php echo $this->config->site_url() ?>id<?php echo $user_id ?>/seach_user" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <tr>
-Дата рождения:
+<p id="user_text_color">Дата рождения:</p>
 <select class="spi" style="width:90px" name="birthday1" size="1">
   <option value="day">день</option>
   <?php for ($i = 1; $i <= 31; $i++){
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <?php
   echo '
-  Специализация:
+  <p id="user_text_color">Специализация:</p>
 
 <select class="batn spi" id="regsel" name="spec_user" onChange="selChange(this.form)">
 <option selected="selected" value="">Не выбрано</option>
