@@ -1,31 +1,6 @@
 
-<html>
-<head>
-<title>Изменение пароля</title>
-<link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css" type="text/css" />
-<script type="text/javascript" src="<?php echo $this->config->site_url() ?>jquery-1.7.2.js"></script>
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 <style>
-body{
-background-color:#fff;
-}
 
-
-    #middle-pol {
-    padding-top: 0px;
-    width: 100%;
-    height: 0px;
-    visibility: hidden;
-
-  }
-  #content {
-    padding-left: 10%;
-    padding-right: 10%;
-    display: table;
-  }
-  #menu {
-    height: 39px;
-  }
     .spi{
     margin: 4px;
   }
@@ -47,7 +22,6 @@ foreach ($user_data as $item) {
 
    ?>
 
-  <?php $this->load->view('left_user',$user_data);  ?>
 
 <script language ="JavaScript"> 
   $(document).ready(function() {
@@ -75,14 +49,14 @@ $('.pass_update').click(function() {
 });
 
 </script>
-<div id="polosa"></div>
+  <?php $this->load->view('left_user',$user_data);  ?>
 <div id="right_user">
 <!-- <form> -->
-      <input type="password" name="old_pass" placeholder="Старый пароль" /><br>
-      <input type="password" name="new_pass" placeholder="Новый пароль" /><br>
-      <input type="password" name="new_pass1" placeholder="Повторите пароль" /><br>
-      <input type="submit" class='pass_update' value="Изменить"  />
+      <input class="styler" type="password" name="old_pass" placeholder="Старый пароль" /><br>
+      <input  class="styler" type="password" name="new_pass" placeholder="Новый пароль" /><br>
+      <input  class="styler"type="password" name="new_pass1" placeholder="Повторите пароль" /><br>
+      <input class="styler" type="submit" class='pass_update' value="Изменить"  />
  <!-- </form> -->
 </div>
-</body>
+
 </html>

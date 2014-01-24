@@ -1,26 +1,7 @@
- <style>
-
-    #middle-pol {
-    padding-top: 0px;
-    width: 100%;
-    height: 0px;
-    visibility: hidden;
-
-  }
- #left_user{
-float: left;
-
-}
-  #content {
- padding-left: 0px;
-padding-right: 0px;
-width: 100%;
-
-  }</style>
   <?php     $this->load->view('left_user',$user_data); 
-echo '<div  id="right_user">
+echo '<div  id="right_user">';
 
-<div style="margin-right: 20%;">';
+
 
 $id_al='';
   $sel='';
@@ -98,7 +79,6 @@ if ($whopage=='my') {
 }
 
 ?>
-
 
 
 

@@ -63,9 +63,8 @@ $body2);
 <html>
 <head>
   <title>Восстановление пароля</title>
-    <meta charset="utf-8">
-  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>default.css?v=2" type="text/css" />
-  <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>jquery.formstyler.css" type="text/css" />
+  <link href="<?php echo $this->config->site_url() ?>images/new/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo $this->config->site_url() ?>jquery.formstyler.css" type="text/css" />
 <link rel="shortcut icon" href="<?php echo $this->config->site_url() ?>favicon.ico">
    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> 
    <script type="text/javascript" src="<?php echo $this->config->site_url() ?>core.js"></script>
@@ -77,79 +76,90 @@ $body2);
    <!--[if IE]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
+
+<style>
+#v_head {
+  background-color: #404c53;
+}
+  .w  {
+    width: 200px;
+    margin: 4px;
+  }
+body {
+  background-color: #336aa8;
+  background-image: none;
+  color:#000;
+}
+
+</style>  
 </head>
+
 <body>
-<div id="wrapper">
-<!-- <header>
-<div align="center" >
-
-</div>
-</header>
- -->
- <div style="padding-left: 32px;
-height: 53px;
-width: 200px;
-position: absolute;
-padding-right: 38px;
-background-color: #336aa8;"><a href="<?php echo $this->config->site_url() ?>"><img id="logo" src="
-<?php echo $this->config->site_url() ?>images/logo.png"></a></div>  
- <div align="left" id="menu">
-   <div id="entry">
-   <button   style="padding: 4px 11px;" class="styler">Войти</button>
-   <button onclick="location.href='<?php echo $this->config->site_url(); ?>site/reg'"  style="padding: 4px 11px;" class="styler">Регистрация</button>
-   </div>
- <div id="auth">
-  <input style="width: 120px;" type="text" name="login-entry"  onkeypress='validate(event)' class="auth styler" maxlength="20" placeholder="Логин">
-  <input style="width: 120px;" type="password" name ="password-entry"  onkeypress='validate(event)' class="auth styler"maxlength="20" placeholder="Пароль">
-  <button  type="submit" style="padding: 4px 11px;" class="btn_entry styler">Войти</button>
-  <font style="color:#fff;font-size:14px"><a href="<?php echo $this->config->site_url(); ?>site/lose_pass"><img alt="Восстановление пароля" title="Восстановление пароля" src="<?php echo $this->config->site_url().'/images/pass.png'; ?>"></a></font>
-  <button onclick="location.href='<?php echo $this->config->site_url(); ?>site/reg'"  style="padding: 4px 11px;" class="styler">Регистрация</button>
-
+<div id="v_polosa"></div>
+  <div id="v_head">
+  <a href="<?php echo $this->config->site_url() ?>"><img src="<?php echo $this->config->site_url() ?>images/new/logo.png" id="logo"></a>
+<font id="v_text">ОНЛАЙН СЕРВИС ДЛЯ СОЗДАНИЯ ПЕРСОНАЛЬНОГО БЕСПЛАТНОГО ПОРТФОЛИО</font>
   </div>
+  <div class="wrapper">
 
-
-</div>
-
-<div  id="content">
-
+  <main  class="content"><div id="info">
 
 <div align="center">
 
 <?php 
-echo '<h3>Восстановление пароля:</h3><br>Введите email<br>
+echo '<p style="font-size: 24px;
+height: 40px;
+padding-top: 20px;
+background-color: #fff;
+color: #336aa8;
+margin-bottom: 20px;" align="center">Восстановление пароля:</p><br>Введите email<br>
 <form action="lose_pass" >
 <input type="text" name="email" class="styler">
 <input type="hidden" name="send" value="1">
 <input type="submit" class="styler" value="Отправить">
-</form>
+</form><br>
+<p style="font-size:12px"><i>
+*Письмо с паролем придет на вашу почту</i></p>
 ';
 ?>
 </div>
 
+
+</main><!-- .content -->
+
+</div><!-- .wrapper -->
 </div>
-     
+<footer class="footer">
+  <div class="rekl">
+    <p class="f_title">Реклама на сайте</p>
+    <br><img src="<?php echo $this->config->site_url() ?>images/new/adress.png">
+      <p class="f_text">По всем вопросам размещения
+      рекламы на сайте пишите на наш
+      электронный адрес: <br>
+      E-mail: <a style="color:#fff" href="mailto:pr@portfolionline.ru">pr@portfolionline.ru</a></p>
+  </div>  
+  <div style="margin-left:70px;" class="rekl">
+  <p class="f_title">Информация для
+правообладателей</p>
+<a style="color:#fff;margin-left:110px;font-size:15px;" href="/id/info">Подробнее</a>
 </div>
-<div id="footer">
+  <div style="margin-left:70px;" class="rekl">
+    <p class="f_title">Служба технической поддержки</p>
+    <form  action="<?php echo $this->config->site_url() ?>id/support" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+  <br>  <input style="width:70px" class="styler" type="text" name="support_name" maxlength="40" placeholder="Ваше имя" />
+    <input style="width:80px" class="styler" type="text" name="support_mail" maxlength="40" placeholder="Email" />
+    <br>
+    <textarea style="width:174px;" class="styler" name="support_message" placeholder="Ваше сообщение"></textarea>
+    <br>
+    <input style="margin-left: 104px" class="styler" type="submit" value="Отправить" />
 
-
-
-
-  <?php echo '<div id="teh"> <img style="margin-top: -5px;
-position: absolute;" src="'.$this->config->site_url().'/images/help.png"><a style="color:#fff;padding-left:40px">Техническая Поддержка</a></div>';
-
-
-
-echo '<div id="inf"> <a href="'.$this->config->site_url().'id'.$user_id.'/info" style="color:#fff;padding-left:1px">Информация для правообладателей</a></div>';
-
-
-
-?><p style="text-align:center">copyright 2013 PortfoliOnline.ru<br>
-<small>Авторские права на все материалы опубликованные
-на сайте принадлежат их авторам.</small>
-<div align="right">
-<a class=' iptotop' href='#'>
-<span></span>
-</a>
+</form>
+  </div>
+</footer><!-- .footer -->
+  <div id="m_footer">Copyright 2013  portfolionline.ru. All rights reserved.</div>
+  <div style="position: absolute;
+margin-top: -40px;
+margin-left: 820px;">
 <!-- Yandex.Metrika informer -->
 <a href="http://metrika.yandex.ru/stat/?id=23092057&amp;from=informer"
 target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/23092057/3_0_2067FFFF_0047FFFF_1_pageviews"
@@ -179,14 +189,7 @@ style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" tit
 </script>
 <noscript><div><img src="//mc.yandex.ru/watch/23092057" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-</div>
-
-</p>
- </div>
+  </div>
 </body>
 </html>
-<?php
-   
-   }
-
-    ?>
+<?php } ?>

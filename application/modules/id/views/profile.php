@@ -212,25 +212,27 @@ if ($key == $podtvr) {
 
 <?php
 if ($whopage == 'my') {
+   echo "<br><a href='".$this->config->site_url() ."id".$user_id."/profile_update_form' ><input type='button' class='styler' value='Редактировать профиль'></a>";
+
       if($podtvr == 'okay') {
-        echo '<br><p id="user_text_color">Ваш Email подтвержден</p>';
+        $podtvr_str='<br>Ваш Email подтвержден';
       } else {
-        echo '<br><p id="user_text_color">Ваш email не подтвержден</p>';
+        $podtvr_str='<br>Ваш email не подтвержден';
 ?>
   <form action="profile" method="post" >
       <input type="hidden" id="send_key" value="1" name="send_key" />
       <input type="hidden" id="key" value="0" name="key" />
-      <input class="styler" type="submit" value="Выслать код подтверждения на Email"  />
+      <div >
+      <?php echo $podtvr_str;?><br>
+      <input  class="styler" type="submit" value="Выслать код подтверждения на Email"  />
+      </div>
     </form>
 <?php }
- echo "<br><a href='".$this->config->site_url() ."id".$user_id."/profile_update_form' >Редактировать профиль</a>";
- echo "<br><a href='".$this->config->site_url() ."id".$user_id."/pass_update_form' >Изменить пароль</a>";
- echo "<br><a href='".$this->config->site_url() ."id".$user_id."/dell_form' >Удалить страницу</a>";
   }
 ?>
 
 
-  <br><h2 id='user_text_color'>Личная Информация:</h2>
+  <br><h3 id='user_text_color'>Личная Информация:</h3>
 <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
   <?php if($item->famil != ''){ ?>
     <tr class="item">
@@ -262,17 +264,7 @@ if ($whopage == 'my') {
    <?php if($item->sity != ''){ ?>
    <tr class="item">
   <td class="name">Родной город:</td>  <td class="val"> <?php echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?></td></tr><?php } ?>
-<!-- ######################################### -->
-<?php if($item->sity != ''){ ?>
-   <tr class="item">
-  <td class="name">Город на карте:</td>  <td class="val">
-<?php echo '<input type="hidden" id="sity_map" value="'.htmlspecialchars($item->sity, ENT_QUOTES).'">' ?> 
-<div id="map" style="width: 500px; height: 400px"></div> 
-  <?php 
-  // echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?>
 
-</td></tr><?php } ?>
-<!-- ######################################### -->
 </table>
   <?php if(($item->telephone != '') || ($item->dop_telephone != '') || ($item->skype != '') || ($item->website != '')){ ?>  
   <p id="user_text_color">Контакты: </p>
@@ -319,15 +311,31 @@ if ($whopage == 'my') {
  </table>
     <?php if($item->interests != ''){ ?>
 
-
+<div  style="float: left;
+position: absolute;
+margin-left: 300px;
+top: 285px;">
 <p id="user_text_color">Интересы:</p><br>
             
-   <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled"><?php echo $item->interests;?><?php } ?></textarea>
+   <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled">
+   <?php echo $item->interests;?> </textarea><?php } ?>
          <table  cellspacing="1" cellpadding="0" class="tbl" border="1"> 
        <tr class="item">
   <td class="name">Специализация: </td><td class="val"> <?php echo $item->spec_user;?></td></tr></table>
-
-
-
 </div>
+
+<!-- ######################################### -->
+
+<?php if($item->sity != ''){ ?>
+  <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
+   <tr class="item">
+  <td class="name">Город на карте:</td>  <td class="val">
+<?php echo '<input type="hidden" id="sity_map" value="'.htmlspecialchars($item->sity, ENT_QUOTES).'">' ?> 
+<div id="map" style="width: 350px; height: 300px"></div> 
+</td>
+</tr></table>
+</td></tr><?php } ?>
+<!-- ######################################### -->
+</div>
+
 

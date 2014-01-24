@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <form action="<?php echo $this->config->site_url() ?>id<?php echo $user_id ?>/seach_user" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 <tr>
 <p id="user_text_color">Дата рождения:</p>
-<select class="spi" style="width:90px" name="birthday1" size="1">
+<select class="styler spi" style="width:90px" name="birthday1" size="1">
   <option value="day">день</option>
   <?php for ($i = 1; $i <= 31; $i++){
   if ($i<10){
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   }?>
   </select>
 
-  <select class="spi" style="width:90px" name="birthday2" size="1">
+  <select class="styler spi" style="width:90px" name="birthday2" size="1">
     <option value="month">месяц</option>
   <?php for ($i = 1; $i <= 12; $i++){
   if ($i<10){
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   </select>
 
 
-  <select class="spi" style="width:90px" name="birthday3" size="1">
+  <select class="styler spi" style="width:90px" name="birthday3" size="1">
     <option value="year">год</option>
   <?php for ($i = 1800; $i <= 2015; $i++){
   echo '<option value="'.$i.'">' .$i.' </option>';

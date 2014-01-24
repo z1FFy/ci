@@ -101,7 +101,7 @@ if ($colortext=='grey'){
 </div>
 </header>
  -->
- <a href="<?php echo $this->config->site_url() ?>"><img width="240" id="logo" src="
+ <a href="<?php echo $this->config->site_url() ?>"><img style="width:220px;height:40px" id="logo" src="
 <?php echo $this->config->site_url() ?>images/new/logo.png"></a> 
  <div align="left" id="menu">
    <?php if ($logged != TRUE) { ?>

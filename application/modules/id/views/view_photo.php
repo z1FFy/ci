@@ -94,7 +94,7 @@ $photo =$item->url_photo;
 //<a style="margin-left: 435px" href="'.$this->config->site_url().'id'.$url_id.'/albom/view_photo?id='.$idnext.'&id_orig='.$id_photos_n.'"><img src="'.$this->config->site_url().'images/next.png"></a>
  $this->load->view('left_user',$user_data); 
 echo '<div align="center" id="right_user">
-<div style="margin-right: 20%;">
+<div >
 ';
 
 //<img class="pn_photo" src="'.$img_path_p.'" width="150px"  height="150px">

@@ -28,7 +28,6 @@ body {
 	line-height: 1;
 /*	font-family: Verdana;*/
 	min-width: 450px;
-	background-image:url('ph_bg.png');
 }
 ol, ul {
 	list-style: none;
@@ -121,8 +120,8 @@ z-index: 330;
 	background-repeat: no-repeat;
 /*	max-width: 1200px;*/
 	width: 100%;
-	height: 400px;
 	padding-top:50px;
+	height: 345px;
 }
 #v_head {
 	padding-left: 10%;
@@ -197,7 +196,8 @@ color: #fff;
 /* Middle
 -----------------------------------------------------------------------------*/
 .content {
-	padding: 0 0 240px;
+	padding: 0 0 300px;
+		background-image:url('ph_bg.png');
 }
 
 #m_a_bl {
@@ -280,7 +280,7 @@ float: left;
    background-color:#333; border:8px solid #444; padding:12px;/*width:60%;height:100%;*/}
 #simplemodal-data {height: 99%}
 .modal-close {
-	background-image: url('../images/close_n.png');
+	background-image: url('../../images/close_n.png');
 	width: 31px;
 	height: 32px;
 	display: inline;

@@ -37,7 +37,12 @@ foreach ($user_data as $item) {
   <p id="user_text_color" class="titl"><?php if ($whopage=='my') {
     echo "Мое ";
   } ?>Редактирование профиля</p> <br>
-	
+	<input type="button" class="upload_ava styler" style="margin:0px;position:relative" value="Изменить аватар">
+ <?php echo "<a href='".$this->config->site_url() ."id".$user_id."/pass_update_form' >
+ <input type='button' class='styler' value='Изменить пароль'></a>";?>
+ <a href='".$this->config->site_url() ."id".$user_id."/dell_form' ><input type="button" 
+class="styler" value="Удалить страницу"></a>
+
 <form id="user_text_color" action="<?php echo $this->config->site_url() ?>id/profile_update_send" method="post" accept-charset="utf-8">
 	
 

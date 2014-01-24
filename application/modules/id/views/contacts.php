@@ -74,7 +74,7 @@ $('#contacts_pod').click(function() {
 <input id="contacts_not_pod"  class="styler spi" type="button" value="Заявки на добавление<?php echo ' '.count($contacts_not_pod);?>" />
 </form>
 
-<div style="background-color:#EDF7FD;box-shadow: 0 0 1px rgba(0,0,0,0.5);" id="res"> </div>
+<div class="block" id="res"> </div>
 </div> 
 
 		</div> 

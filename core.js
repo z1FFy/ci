@@ -174,7 +174,7 @@ $('.btn_entry').click(function() {
         var src = site_full+"/id/upload?who=audios";
         upload(src,'nof',330,330);
        }); 
-      $('#upload_ava').click(function() { 
+      $('.upload_ava').click(function() { 
         var src = site_full+"/id/upload?who=avatars";
         upload(src,'nof',350,330);
        }); 
