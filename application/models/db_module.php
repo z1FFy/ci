@@ -615,7 +615,7 @@ function view_friend_message1($friend_id, $user_id, $num, $offset){
 	$this->db->join('chat_friends', 'chat_friends.user_id = users.user_id');
 	$this->db->where('chat_friends.adresat', $friend_id); 
 	$this->db->where('chat_friends.user_id', $user_id);
-	//$this->db->order_by('chat_friends.message_date', 'desc');
+	$this->db->order_by('chat_friends.message_date', 'desc');
 	$this->db->or_where('chat_friends.adresat', $user_id); 
 	$this->db->where('chat_friends.user_id', $friend_id);
 	$this->db->limit($num, $offset);

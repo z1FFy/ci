@@ -126,13 +126,14 @@ if ($colortext=='grey'){
              $exit='<a href="'.$this->config->site_url().'site/vyhod">выйти</a>';
     echo ' '.$exit;
 
+
   }
   ?>
 
 </div>
 
 <div  id="content">
-<?php echo $page_content; ?>
+<?php echo $page_content;?>
 </div>
      
 </div>

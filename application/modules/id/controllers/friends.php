@@ -326,7 +326,7 @@ if(count($contacts_pod) != 0){
 		}
 		echo '<p><table width="100%"><hr> <tr align="center" valign="top">';
 		echo '<td><a href="'.$this->config->site_url().'id'.$item->second_user.'"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="100"/></a></td>';
-		echo '<td><a href="'.$this->config->site_url().'id'.$item->second_user.'">'.$name.'</a>
+		echo '<td><a href="'.$this->config->site_url().'id'.$item->second_user.'">'.htmlspecialchars($name, ENT_QUOTES).'</a>
 		<br>'.$last_activity.'</td>';
 		echo '<td><a href="'.$this->config->site_url().'id'.$item->first_user,'/friends'.$item->second_user.'">Переписка</a><br>
 		<a href="'.$this->config->site_url().'id'.$item->first_user,'/friends/contacts_delete?second_user='.$item->second_user.'">Удалить контакт</a></td>';

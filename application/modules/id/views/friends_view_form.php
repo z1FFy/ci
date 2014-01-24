@@ -34,7 +34,7 @@ height: 80px;
 			}
 			$avatar = $item->avatar;
 			$friend = $item->user_id;
-
+			
 			$user_id = $item->user_id;
 			$t = time() - $item->lastactivity;
 			if($t > 300){
@@ -68,7 +68,7 @@ height: 80px;
 			<img style="width:80px;height:80px;border-radius: 10px 0 0 10px;" class="frame" src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar.'" /></a>			
 		  	 <p style="position: absolute;
 margin-top: -81px;
-margin-left: 90px;">'.$name.'   '.$kol.' '.$last_activity.'</p> <a href="'.$this->config->site_url().'id'.$url_id.'/friends'.$friend.'"><p class="friend_text"><br> '.$last_mess.'</p><br></a>
+margin-left: 90px;"><a href="'.$this->config->site_url().'id'.$user_id.'">'.htmlspecialchars($name, ENT_QUOTES).'</a>   '.$kol.' '.$last_activity.'</p> <a href="'.$this->config->site_url().'id'.$url_id.'/friends'.$friend.'"><p class="friend_text"><br> '.$last_mess.'</p><br></a>
 		  <br>';
 			//echo '<div style="padding:10px;"><i>'.$msg[$i].'</i></div>';
 			?> </div><br> 
