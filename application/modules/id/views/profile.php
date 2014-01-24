@@ -233,6 +233,20 @@ if ($whopage == 'my') {
 
 
   <br><h3 id='user_text_color'>Личная Информация:</h3>
+      <?php if($item->interests != ''){ ?>
+
+<div  style="position: absolute;
+margin-left: 374px;
+margin-top: 12px
+">
+<p id="user_text_color">Интересы:</p><br>
+            
+   <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled">
+   <?php echo $item->interests;?> </textarea><?php } ?>
+         <table  cellspacing="1" cellpadding="0" class="tbl" border="1"> 
+       <tr class="item">
+  <td class="name">Специализация: </td><td class="val"> <?php echo $item->spec_user;?></td></tr></table>
+</div>
 <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
   <?php if($item->famil != ''){ ?>
     <tr class="item">
@@ -309,20 +323,7 @@ if ($whopage == 'my') {
                <tr class="item">
   <td class="name">Знание языков:</td><td class="val"> <?php echo $text = htmlspecialchars($item->language, ENT_QUOTES);?></td></tr><?php } ?>
  </table>
-    <?php if($item->interests != ''){ ?>
 
-<div  style="float: left;
-position: absolute;
-margin-left: 300px;
-top: 285px;">
-<p id="user_text_color">Интересы:</p><br>
-            
-   <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled">
-   <?php echo $item->interests;?> </textarea><?php } ?>
-         <table  cellspacing="1" cellpadding="0" class="tbl" border="1"> 
-       <tr class="item">
-  <td class="name">Специализация: </td><td class="val"> <?php echo $item->spec_user;?></td></tr></table>
-</div>
 
 <!-- ######################################### -->
 

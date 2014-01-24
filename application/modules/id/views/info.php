@@ -26,7 +26,7 @@
 		margin: 4px;
 	}
 body {
-	background-color: #336aa8;
+	background-color: #fff;
 	background-image: none;
 	color:#000;
 }
@@ -38,11 +38,11 @@ body {
 <div id="v_polosa"></div>
 	<div id="v_head">
 	<a href="<?php echo $this->config->site_url() ?>"><img src="<?php echo $this->config->site_url() ?>images/new/logo.png" id="logo"></a>
-<font id="v_text">ОНЛАЙН СЕРВИС ДЛЯ СОЗДАНИЯ ПЕРСОНАЛЬНОГО БЕСПЛАТНОГО ПОРТФОЛИО</font>
+	<font id="v_text">ОНЛАЙН СЕРВИС ДЛЯ СОЗДАНИЯ ПЕРСОНАЛЬНОГО БЕСПЛАТНОГО ПОРТФОЛИО</font>
 	</div>
 	<div class="wrapper">
 
-	<main  class="content"><div id="info">
+	<main style="	background-color: #fff;background-image:none;" class="content"><div id="info">
 
 <p style="font-size: 24px;
 height: 40px;

@@ -190,7 +190,7 @@ $('.btn_entry').click(function() {
        }); 
             $('#sogl').click(function() { 
         var src = site_full+"/site/licension";
-        upload(src,'nof',440,600);
+        upload(src,'nof',640,600);
        }); 
 
        $('.photo_up').click(function() { 

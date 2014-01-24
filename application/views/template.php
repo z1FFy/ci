@@ -30,13 +30,9 @@ if (!empty($user_data)){
       <![endif]-->
 <style>
 <?php
-if ($acc!='pro') {
-  echo '#right_user {
-    min-height: 700px;
-  }';
-}
+
  ?>
- #content,#right_user{
+ #content{
     <?php 
       if ($fon=='grey'){
 
@@ -119,13 +115,12 @@ if ($colortext=='grey'){
   </div>
 <?php } else {
       // echo '<a href="'.$this->config->site_url().'"">Главная</a>   ';
-    echo '<a href="'.$this->config->site_url().'id'.$user_id.'"">Моя страница</a> ';
-     echo '<a href="'.$this->config->site_url().'id'.$user_id.'/news"">Лента новостей</a> ';
-       echo '<a href="'.$this->config->site_url().'id'.$user_id.'/profile"">Настройки</a>';
-       echo ' <a href="'.$this->config->site_url().'id'.$user_id.'/seach"">Поиск</a>';
-             $exit='<a href="'.$this->config->site_url().'site/vyhod">выйти</a>';
-    echo ' '.$exit;
-
+    echo '<ul><a href="'.$this->config->site_url().'id'.$user_id.'""><li>Моя страница</li></a>';
+     echo '<a href="'.$this->config->site_url().'id'.$user_id.'/news""><li>Моя книга новостей</li></a>';
+       echo '<a href="'.$this->config->site_url().'id'.$user_id.'/profile""><li>Настройки</li></a>';
+       echo '<a href="'.$this->config->site_url().'id'.$user_id.'/seach""><li>Поиск</li></a>';
+             echo '<a href="'.$this->config->site_url().'site/vyhod"><li>выйти</li></a>';
+echo'</ul>';
 
   }
   ?>

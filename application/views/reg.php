@@ -117,9 +117,9 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
  <br> <label style="margin-left: 30px;
 height: 20px;
 width:  170px;" id="pad">  </label> 
-<br> <div><a  href="/site/licension" target="_blank">Пользовательское соглашение</a><br></div><input  class="soglchek styler" type="checkbox">С правилами ознакомлен(а)
+<br> <div><a href="#" id="sogl" style="color: #293F6D;">Пользовательское соглашение</a><br></div><input  class="soglchek styler" type="checkbox">С правилами ознакомлен(а)
  <br> <button class="styler" disabled="true" id="reg"  class="btn">Зарегистрироваться</button>
-<br><a class="banner"><img alt="Реклама" class="banner" src="<?php echo $this->config->site_url() ?>images/ban300.gif"></a>
+<br><br><br><br><br><a class="banner"><img alt="Реклама" class="banner" src="<?php echo $this->config->site_url() ?>images/ban300.gif"></a>
 <br><br><br><br><br><br></div>
 	</main><!-- .content -->
 

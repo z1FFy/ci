@@ -5,7 +5,7 @@ body {
  	font-family: Myriad Pro,Verdana;
  	background-color: #fff;
  	height: 100%;
- 	font-size: 15px;
+ 	font-size: 16px;
  	width: 950px;
 	margin: 0 auto;
  	}
@@ -71,26 +71,35 @@ padding: 5px;
 	}
 
 	#menu {
-		padding-left: 250px;
+		padding-left: 210px;
 		padding-top: 18px;
-
 		height: 35px;
-			background-color: #404c53;
+		background-color: #404c53;
 		margin-top: 4px;
+	}
+	#menu ul {
+		margin: 0px;
+	}
+	#menu li {
+		list-style-type: none;
+		display: inline;
+		padding-bottom: 18px;
+		padding-top: 21px;
+		padding-left: 8px;
+		/*margin-right: -3px;*/
+		padding-right: 8px;
 	}
 	#menu a {
 color: #fff;
 /*background-color: rgba(255, 255, 255, 0.07);*/
-padding: 5px;
-color: #fff;
-padding-bottom: 18px;
-padding-top: 21px;
+
 text-shadow: 0px 0px 1px rgb(31, 55, 85);
-margin-right: -5px;
 
 	}
-	#menu a:hover {
+	#menu li:hover {
 		background-color: rgba(255, 255, 255, 0.12);
+	}
+	#menu  a:hover {
 		text-decoration: none;
 	}
 
@@ -109,6 +118,7 @@ margin-right: -5px;
 		text-align: left;
 		/*background: #fff;
 */
+
 	}
 
 	#left_user {
@@ -231,8 +241,7 @@ padding-top: 10px;
 height: 100%;
 min-height: 670px;
 width: 670px;
-background-color: #fff;
-padding-left: 265px;
+margin-left: 265px;
 padding-bottom: 20px;
 
 	}
@@ -519,6 +528,7 @@ bottom: -100px
 
 #entry,#auth {
 	margin-top: -7px;
+	margin-left: 40px;
 }
 
 

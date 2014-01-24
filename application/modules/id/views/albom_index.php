@@ -1,5 +1,5 @@
 
-<div  id="right_user">
+<div style="display:table"  id="right_user">
 
 	<p class="titl" id='user_text_color'>Мои работы  
 <?php 

@@ -39,7 +39,7 @@
 
       echo '<div   id="left_user">
       <div id="ava_n_spec">'.$acc_t;
-      echo '<br><div style="margin-top: -20px;margin-left:23px" class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
+      echo '<br><div style="margin-left:23px" class="frame"><img id="ava" width="200"  src="'.$this->config->site_url().'uploads/avatars/small/'.$avatar_url.'" ></div>';
             if ($whopage=='my') {
           echo ' <input type="button" id="upload_ava" class="upload_ava styler" value="Изменить аватар">';
       }
