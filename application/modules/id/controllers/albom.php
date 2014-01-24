@@ -199,10 +199,11 @@ $message_data = $this->db_module->view_message($id_orig, $config['per_page'], $o
 	}
 
 	function view_audio() {
-				$url_id= $this->_get_url_id();
+		$url_id= $this->_get_url_id();
 	 	$user_id=$this->session->userdata('user_id');
 	 	$logged = $this->session->userdata('logged_in');
 		$whopage= $this->_get_whopage($url_id,$user_id);	
+		// var_dump($whopage);
 		$user_data = $this->db_module->get_user_by_id($url_id);
 		$albom_data = $this->db_module->get_albom_audios($url_id);
 				$audio_data = $this->db_module->get_user_audios($url_id);
@@ -212,7 +213,7 @@ $acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про
 $contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
 	$data_arr = array('contacts_not_pod'=> $contacts_not_pod,'user_data' => $user_data,
 		'audio_data' => $audio_data,'acc_data' => $acc_user, 'whopage' => $whopage,'logged' => $logged,'user_id' => $user_id, 'url_id' => $url_id, 'unread' => $unread, 'albom_data'=> $albom_data);
-
+// var_dump($data_arr);
 	$page_content=$this->load->view('view_audio',$data_arr,true);
 		$title="Просмотр аудио";
 		$data['page_content'] = $page_content;

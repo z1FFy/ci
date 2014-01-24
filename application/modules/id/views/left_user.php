@@ -76,7 +76,9 @@ echo '<p style="padding-left:45px">';
    // echo '<br>'.$exit;
     echo '<p style="font-size:12px;text-align:center"><br><br>Ссылка на портфолио:<br><i><a href="'.$this->config->site_url() .'id'.$url_id.'">'.$this->config->site_url() ."id".$url_id.'</i></a></p>';
 
-    }else{    
+    }else{  
+    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/albom/view_audio">Мои аудиозаписи</a>';  
+    echo '<br><a href="'.$this->config->site_url() .'id'.$url_id.'/friends/contacts">Мои Контакты</a>';
    echo "<br><a  href='".$this->config->site_url() ."id".$url_id."'>Мои работы</a>";
       echo "<br><a  href='".$this->config->site_url() ."id".$url_id."/profile'>Обо мне</a>";
       if ($logged == TRUE) {
