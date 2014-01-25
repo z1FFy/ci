@@ -498,6 +498,24 @@ $('#ava').hover(function() {
 //subscribe
 
   
+
+
+    
+$(".delete_message").on("click", function(){
+message_id = $(this).attr("link");
+//alert(message_id);
+$.post(site_full+"/id/friends/delete_message",
+{ message_id : message_id,
+},
+onAjaxSuccess
+);
+function onAjaxSuccess(data)
+{
+location.reload();
+//window.location.replace(site_full+"/id");
+//alert(data);
+};
+});
   //$(".block_msg").next().css("backgroundColor", "#000");
       
 

@@ -185,6 +185,15 @@ $this->load->view('template',$page);
 	}
 
 
+	function delete_message(){
+		$message_id=$_POST['message_id'];
+		$user_id=$this->session->userdata('user_id');
+		$this->db_module->delete_message($user_id, $message_id);
+
+	}
+
+
+
 	function subscribe(){
 						$logged = $this->session->userdata('logged_in');
 		if ($logged == TRUE) {
@@ -224,8 +233,22 @@ $logged = $this->session->userdata('logged_in');
 		if ($logged == TRUE) {
 			$second_user = $_GET['contacts_id'];
 			$user_id=$this->session->userdata('user_id');
+			$mail_data = $this->db_module->get_user_by_id($second_user);
+			foreach ($mail_data as $item) {
+				$mail=$item->mail;
+				if($item->name == ''){
+					$name=$item->login;
+				}else{$name=$item->name.' '.$item->famil;}
+			}
+			$user_data = $this->db_module->get_user_by_id($user_id);
+			foreach ($user_data as $item) {
+				if($item->name == ''){
+					$user_name=$item->login;
+				}else{$user_name=$item->name.' '.$item->famil;}
+			}
+			//var_dump($mail);
 			$this->db_module->contacts_insert($user_id, $second_user);
-			header ("Location:". $this->config->site_url().'id'.$user_id);
+			header ("Location:". $this->config->site_url().'id'.$user_id.'?mail_contacts='.$mail.'&name='.$name.'&user_name='.$name);
 		}else {
 			header ("Location:". $this->config->site_url());
 		}

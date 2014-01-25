@@ -66,10 +66,11 @@ echo '<p class="titl">Переписка  </p><br>';
          $style_bl= "bbackground-color: #D7DBDD;";
       }
 			//var_dump($item);
-  echo '<div style="'.$style_bl.'" class="block_msg"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/>'
-      .htmlspecialchars($name, ENT_QUOTES);
+  echo '<div style="'.$style_bl.'" class="block_msg"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/><a href="'.$this->config->site_url().'id'.$item->user_id.'">'
+      .htmlspecialchars($name, ENT_QUOTES).'</a>';
       echo '<div class="date_msg">Дата/Время: ';
       echo date("d.m.y H:i:s" ,$item->message_date);
+      echo '<br><a class="delete_message" link="'.$item->id_chat_friends.'">Удалить сообщение</a>';
       echo '</div>';
       echo '<div class="text_msg">'.htmlspecialchars($item->messages, ENT_QUOTES).'</div>';
       //$friend_id = $item->adresat;
