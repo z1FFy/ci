@@ -25,6 +25,7 @@ function get_user_by_id($user_id){
 	     return $query->result();
 }
 
+
 function get_acc_by_id($user_id){
 	$this->db->select('account');
 	$query = $this->db->get_where('users', array('user_id' => $user_id));
@@ -484,6 +485,21 @@ function delete_audio($delete_audio){
 	$this->db->delete('audios', array('id_audios' => $delete_audio));
 }
 
+function delete_message($user_id, $message_id){
+	$this->adresat_dell = 'dell';
+	$this->db->where('adresat', $user_id);
+	$this->db->where('id_chat_friends', $message_id);
+	$this->db->update('chat_friends', $this);
+
+	$this->adresat_dell = '';
+	$this->user_id_dell = 'dell';
+	$this->db->where('user_id', $user_id);
+	$this->db->where('id_chat_friends', $message_id);
+	$this->db->update('chat_friends', $this);
+	return 'root';
+
+}
+
 	function friends_insert($friend_id, $user_id){
 	$this1->friend_id = $friend_id;
 	$this1->user_id = $user_id;
@@ -597,9 +613,12 @@ function view_friend_message($friend_id, $user_id){
 	$this->db->join('chat_friends', 'chat_friends.user_id = users.user_id');
 	$this->db->where('chat_friends.adresat', $friend_id); 
 	$this->db->where('chat_friends.user_id', $user_id);
+	$this->db->where('chat_friends.user_id_dell <>', 'dell');
+	
 	//$this->db->order_by('chat_friends.message_date', 'desc');
 	$this->db->or_where('chat_friends.adresat', $user_id); 
 	$this->db->where('chat_friends.user_id', $friend_id);
+	$this->db->where('chat_friends.adresat_dell <>', 'dell');
 	$query = $this->db->get();
 
 
@@ -615,9 +634,12 @@ function view_friend_message1($friend_id, $user_id, $num, $offset){
 	$this->db->join('chat_friends', 'chat_friends.user_id = users.user_id');
 	$this->db->where('chat_friends.adresat', $friend_id); 
 	$this->db->where('chat_friends.user_id', $user_id);
+	$this->db->where('chat_friends.user_id_dell <>', 'dell');
+
 	$this->db->order_by('chat_friends.message_date', 'desc');
 	$this->db->or_where('chat_friends.adresat', $user_id); 
 	$this->db->where('chat_friends.user_id', $friend_id);
+	$this->db->where('chat_friends.adresat_dell <>', 'dell');
 	$this->db->limit($num, $offset);
 	$query = $this->db->get();
 

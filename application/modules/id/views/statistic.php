@@ -96,7 +96,7 @@ foreach ($visit_data as $item) {
 }
 ?>
 <a href="#" class="button" onclick="javascript:showElement('v-menu')">
- <span><?php echo 'Колличество просмотров(за все время): '.count($visit_data).'<br>';  ?></span>
+ <span id="user_text_color"><?php echo 'Колличество просмотров(за все время): '.count($visit_data).'<br>';  ?></span>
 </a>
 <ul id="v-menu" class="v-menu" style="display:none;">
 <?php
@@ -106,7 +106,7 @@ echo '<li id="user_text_color">За сутки: '.$d.'<br>';
 echo '</ul>';
 ?>
 <a href="#" class="button" onclick="javascript:showElement1('v-menu1')">
- <span><?php echo 'Всего работ: '.$kol_works = count($kol_user_photos)+count($kol_user_videos)+count($kol_user_audios).'/30<br>';  ?></span>
+ <span id="user_text_color"><?php echo 'Всего работ: '.$kol_works = count($kol_user_photos)+count($kol_user_videos)+count($kol_user_audios).'/30<br>';  ?></span>
 </a>
 <ul id="v-menu1" class="v-menu1" style="display:none;">
 <?php

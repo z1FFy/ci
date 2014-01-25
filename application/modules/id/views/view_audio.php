@@ -146,12 +146,12 @@ foreach ($audio_data as $item) {
   if (empty($id_al)) {
 
 
-        echo '<br><p>'.$item->audio_name.'</p><audio preload="none" controls >
+        echo '<br><p id="user_text_color">'.$item->audio_name.'</p><audio preload="none" controls >
         <source src="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" type="audio/mp3; codecs=vorbis">
         <source src="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" type="audio/ogg; codecs=vorbis"; codecs=vorbis">
         Тег audio не поддерживается вашим браузером. 
         <a href="upload/audios/'.$item->url_audio.'">Скачайте музыку</a>.  
-        </audio><a href="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" download="'.$item->url_audio.'"> Скачайте музыку</a>';
+        </audio><input type="button"  class="save_audio styler" value="Скачать" link='.$this->config->site_url().'uploads/audios/'.$item->url_audio.'>';
 
 
 ?>
@@ -167,7 +167,7 @@ foreach ($audio_data as $item) {
 } else {
 
   if ($id_al==$id_albom) {
-    echo '<br><p>'.$item->audio_name.'</p><audio preload="none" controls >
+    echo '<br><p id="user_text_color">'.$item->audio_name.'</p><audio preload="none" controls >
         <source src="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" type="audio/mp3; codecs=vorbis">
         <source src="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" type="audio/ogg; codecs=vorbis"; codecs=vorbis">
         Тег audio не поддерживается вашим браузером. 

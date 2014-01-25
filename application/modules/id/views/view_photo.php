@@ -119,7 +119,7 @@ echo '<small>Название:</small><br> '.$photos_name.'
  echo "<button class='batn styler' onclick=";
  echo "location.href='";
  echo $img_path."' >на полный экран</button>";
-
+$like_photos='';
 
  foreach ($photos_data  as $item){ 
   if($item->id_photos == $id_orig){
