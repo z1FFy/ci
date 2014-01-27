@@ -23,28 +23,17 @@
 
 	function index() {	
 			$friend_id = preg_replace("/[^0-9]/", '', $this->uri->segment(2));
-
 		$user_id=$this->session->userdata('user_id');
-		$messages_data = $this->db_module->view_friend_message($friend_id, $user_id);
-$row_count = $messages_data;
+		$logged = $this->session->userdata('logged_in');
 
-$config['base_url'] = $this->config->site_url().'id'.$user_id.'/friends'.$friend_id.'/index/';
-$config['total_rows'] = $row_count;
-$config['per_page'] = 10; // кол-во фоток на 1 странице
-$config['uri_segment'] = 4;
-$config['num_links'] = 2;
-$config['next_link'] = '>>';
-$offset= preg_replace("/[^0-9]/", '', $this->uri->segment(4));
-//var_dump($config['uri_segment']);
+$limit=10;
+$offset=0;
+// $messages_data = $this->db_module->view_friend_message($friend_id, $user_id);
+$messages_data = $this->db_module->view_friend_message($friend_id, $user_id, $limit, $offset);
 
-$this->pagination->initialize($config); 
-
-$messages_data = $this->db_module->view_friend_message1($friend_id, $user_id, $config['per_page'], $offset);
-
-		$this->db_module->dell_unread($user_id, $friend_id);
 		$url_id= $this->_get_url_id();
 		$whopage= $this->_get_whopage($url_id,$user_id);
-		$logged = $this->session->userdata('logged_in');
+		
 		$user_data = $this->db_module->get_user_by_id($user_id);
 		$this->db_module->dell_unread($user_id, $friend_id);
 		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
@@ -67,6 +56,43 @@ $messages_data = $this->db_module->view_friend_message1($friend_id, $user_id, $c
 
 
 	}
+
+
+function friends_scroll(){
+	$limit = $_POST['count'];
+	$offset = $_POST['begin'];
+	$friend_id = $_POST['friend_id'];
+	$user_id=$this->session->userdata('user_id');
+	$messages_data = $this->db_module->view_friend_message($friend_id, $user_id, $limit, $offset);
+
+	    foreach ($messages_data as $item){ 
+			if($item->name == ''){
+				$name = $item->login;
+			}else{
+				$name = $item->name.' '.$item->famil;
+			}
+      if ($item->adresat==$user_id) {
+        $style_bl= "background-color:#B4D1E2";
+      } else {
+         $style_bl= "bbackground-color: #D7DBDD;";
+      }
+			//var_dump($item);
+  echo '<div style="'.$style_bl.'" class="block_msg"><img src="'.$this->config->site_url().'uploads/avatars/small/'.$item->avatar.'" width="50"/><a href="'.$this->config->site_url().'id'.$item->user_id.'">'
+      .htmlspecialchars($name, ENT_QUOTES).'</a>';
+      echo '<div class="date_msg">Дата/Время: ';
+      echo date("d.m.y H:i:s" ,$item->message_date);
+      echo '<br><a class="delete_message" link="'.$item->id_chat_friends.'">Удалить сообщение</a>';
+      echo '</div>';
+      echo '<div class="text_msg">'.htmlspecialchars($item->messages, ENT_QUOTES).'</div></div> <br>  ';
+      //$friend_id = $item->adresat;
+      
+
+		
+		}
+
+}
+
+
 function friends_view()
 {
 	$logged = $this->session->userdata('logged_in');

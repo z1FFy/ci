@@ -1,4 +1,65 @@
 
+<script language ="JavaScript"> 
+  $(document).ready(function() {
+
+$(window).on("scroll", scrolling);
+
+function scrolling(){
+//считывание текущей высоты контейнера
+//alert($(window).scrollTop());
+var currentHeight = $(window).height();
+//проверка достежения конца прокрутки
+if($(window).scrollTop() >= $("#wrapper").height()-currentHeight){
+/*отключение вызова функции прокрутки
+во избежание неоднократного вызова функции */
+$(this).unbind("scroll");
+//функция реализующая следующие два этапа
+
+loader();
+}}
+
+//количество подгружаемых записей из бд
+var count = 10;
+//начиная с
+var begin = 1;
+
+function loader(){   
+friend_id = $("input[name='friend_id']").val();      
+// «теневой» запрос к серверу
+$.ajax({
+
+type:"POST",
+
+url:site_full+"/id/friends/friends_scroll",
+
+data:{
+//передаем параметры
+count: count,
+begin: begin*count,
+friend_id: friend_id
+},
+success:onAjaxSuccess
+});
+ 
+function onAjaxSuccess(data){
+//добавляем полученные данные
+//в конец контейнера
+$("#right_user").append(data);
+//$('#res').html(data);
+//возвращение вызова функции при прокрутке
+$(window).on("scroll", scrolling);
+}
+//увеличение тоски отсчета записей
+begin++;
+} 
+
+});
+
+
+ 
+</script> 
+
+
 <script>
 $(document).ready(function() {
  
@@ -35,6 +96,7 @@ function onAjaxSuccess(data)
           ?>
 <div id="right_user">
 <?php
+$friend_id = preg_replace("/[^0-9]/", '', $this->uri->segment(2));
   foreach ($messages_data as $item){ 
  $name_f='';
  // if ($item->user_id==$url_id) {
@@ -50,8 +112,15 @@ function onAjaxSuccess(data)
     
   }
 echo '<p class="titl">Переписка  </p><br>';
+?><input  type="hidden" name="friend_id" value="<?php echo $friend_id ?>" />
+<input  type="hidden" name="site_url" value="<?php echo $this->config->site_url() ?>" />
+<textarea  style="width: 82%; height:100px;" class="styler" placeholder="Сообщение" name="messages" maxlength="140"></textarea>
 
-  $friend_id = preg_replace("/[^0-9]/", '', $this->uri->segment(2));
+<br />
+
+
+<input  type="submit" class="btn styler"  value="Отправить" /><?php
+  
   date_default_timezone_set('Europe/Moscow');
     $user_id=$this->session->userdata('user_id');
     foreach ($messages_data as $item){ 
@@ -78,17 +147,10 @@ echo '<p class="titl">Переписка  </p><br>';
       <?php
 
 		
-		}echo $this->pagination->create_links();?>
-<br>
+		}?>
+
 
 
 <!-- <form action="<?php echo $this->config->site_url() ?>id/chat/send_messages" method="post" accept-charset="utf-8"> -->
-<input  type="hidden" name="friend_id" value="<?php echo $friend_id ?>" />
-<input  type="hidden" name="site_url" value="<?php echo $this->config->site_url() ?>" />
-<textarea class="styler" placeholder="Сообщение" name="messages" size="20"></textarea>
 
-<br /><br />
-
-
-<input  type="submit" class="btn styler"  value="Отправить" />
 </div>

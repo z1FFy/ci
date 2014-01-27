@@ -6,7 +6,65 @@
   }
 
 </style>
+<script language ="JavaScript"> 
+  $(document).ready(function() {
 
+$(window).on("scroll", scrolling);
+
+function scrolling(){
+//считывание текущей высоты контейнера
+//alert($(window).scrollTop());
+var currentHeight = $(window).height();
+//проверка достежения конца прокрутки
+if($(window).scrollTop() >= $("#wrapper").height()-currentHeight){
+/*отключение вызова функции прокрутки
+во избежание неоднократного вызова функции */
+$(this).unbind("scroll");
+//функция реализующая следующие два этапа
+
+loader();
+}}
+
+//количество подгружаемых записей из бд
+var count = 10;
+//начиная с
+var begin = 1;
+
+function loader(){   
+vies = $("input[name='vies']").val();      
+// «теневой» запрос к серверу
+$.ajax({
+
+type:"POST",
+
+url:site_full+"/id/news/news_photo",
+
+data:{
+//передаем параметры
+count: count,
+begin: begin*count,
+vies: vies
+},
+success:onAjaxSuccess
+});
+ 
+function onAjaxSuccess(data){
+//добавляем полученные данные
+//в конец контейнера
+$("#right_user").append(data);
+//$('#res').html(data);
+//возвращение вызова функции при прокрутке
+$(window).on("scroll", scrolling);
+}
+//увеличение тоски отсчета записей
+begin++;
+} 
+
+});
+
+
+ 
+</script> 
 
   <?php $this->load->view('left_user',$user_data);  ?>
 
@@ -72,6 +130,9 @@ if($vies==0){
 
 }
 
+
+
+
 if($vies==1){
  foreach ($video_data as $item) {
     $kod=$item->kod;
@@ -93,7 +154,7 @@ if($vies==1){
                 echo '<div class="block">';
                 echo htmlspecialchars($name, ENT_QUOTES).'  <div style="margin-top:-18px" class="date_msg">'.date("d.m.y H:i:s" ,htmlspecialchars($video_date, ENT_QUOTES)).'</div>';
                 echo '<div><iframe width="100%" height="400" src="//www.youtube.com/embed/'.$kod.'" frameborder="0" allowfullscreen></iframe>
-                <div>'.$text = htmlspecialchars($video_name, ENT_QUOTES).'</div></div><br>';
+                <div>'.$text = htmlspecialchars($video_name, ENT_QUOTES).'</div></div></div><br>';
                 $i++;
             }
           }
@@ -120,7 +181,7 @@ if($vies==1){
 // echo $this->pagination->create_links();
 ?>
 
-
+<input type="hidden" name="vies" value="<?php echo $vies; ?>">
  <!-- </form> -->
 </div>
 
