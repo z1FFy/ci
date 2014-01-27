@@ -605,28 +605,28 @@ function view_friends1($friend_id, $user_id){
 	return $query->result();
 }
 
-function view_friend_message($friend_id, $user_id){
+// function view_friend_message($friend_id, $user_id){
 
-	$this->db->select('chat_friends.id_chat_friends, chat_friends.user_id, chat_friends.adresat, chat_friends.messages, chat_friends.message_date, chat_friends.unread,
-	    users.user_id ,  users.login , users.famil ,  users.name , users.avatar');
-	$this->db->from('users','chat_friends');
-	$this->db->join('chat_friends', 'chat_friends.user_id = users.user_id');
-	$this->db->where('chat_friends.adresat', $friend_id); 
-	$this->db->where('chat_friends.user_id', $user_id);
-	$this->db->where('chat_friends.user_id_dell <>', 'dell');
+// 	$this->db->select('chat_friends.id_chat_friends, chat_friends.user_id, chat_friends.adresat, chat_friends.messages, chat_friends.message_date, chat_friends.unread,
+// 	    users.user_id ,  users.login , users.famil ,  users.name , users.avatar');
+// 	$this->db->from('users','chat_friends');
+// 	$this->db->join('chat_friends', 'chat_friends.user_id = users.user_id');
+// 	$this->db->where('chat_friends.adresat', $friend_id); 
+// 	$this->db->where('chat_friends.user_id', $user_id);
+// 	$this->db->where('chat_friends.user_id_dell <>', 'dell');
 	
-	//$this->db->order_by('chat_friends.message_date', 'desc');
-	$this->db->or_where('chat_friends.adresat', $user_id); 
-	$this->db->where('chat_friends.user_id', $friend_id);
-	$this->db->where('chat_friends.adresat_dell <>', 'dell');
-	$query = $this->db->get();
+// 	//$this->db->order_by('chat_friends.message_date', 'desc');
+// 	$this->db->or_where('chat_friends.adresat', $user_id); 
+// 	$this->db->where('chat_friends.user_id', $friend_id);
+// 	$this->db->where('chat_friends.adresat_dell <>', 'dell');
+// 	$query = $this->db->get();
 
 
-	 return $query->num_rows();
+// 	 return $query->num_rows();
 
-}
+// }
 
-function view_friend_message1($friend_id, $user_id, $num, $offset){
+function view_friend_message($friend_id, $user_id, $num, $offset){
 
 	$this->db->select('chat_friends.id_chat_friends, chat_friends.user_id, chat_friends.adresat, chat_friends.messages, chat_friends.message_date, chat_friends.unread,
 	    users.user_id ,  users.login , users.famil ,  users.name , users.avatar');
@@ -732,23 +732,26 @@ function friends_view_id($user_id){
 
 
 
-function view_news_photos($subscribe_users_id){
+function view_news_photos($subscribe_users_id, $limit,$offset){
 	$this->db->select('*');
 	$query = $this->db->from('photos');
 	$this->db->where_in('id_user', $subscribe_users_id);
 	$this->db->order_by("photos_date", "desc"); 
+	$this->db->limit($limit, $offset);
 	//$this->db->where_in('photos_date =', $subscribe_users_date);
 	$query = $this->db->get();
     return $query->result();
 }
 
 
-function get_users_videos($subscribe_users_id) {
+
+function get_users_videos($subscribe_users_id, $limit,$offset) {
 	$this->db->select('*');
 	$query = $this->db->from('videos');
 	//$this->db->join('photos', 'videos.id_user = photos.id_user');
 	$this->db->where_in('id_user', $subscribe_users_id);
 	$this->db->order_by("video_date", "desc"); 
+	$this->db->limit($limit, $offset);
 	$query = $this->db->get();
     return $query->result();
 
