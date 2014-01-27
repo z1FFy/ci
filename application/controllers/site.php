@@ -33,7 +33,13 @@ class Site extends CI_Controller {
 		$this->load->view('welcome_message2',$page);
 	}
 
-	
+	function pay() {
+		$logged = $this->session->userdata('logged_in');
+		 	$user_id=$this->session->userdata('user_id');
+		 	$page = array(
+           'user_id' => $user_id);
+		 		$this->load->view('pay',$page);	
+	}
 	function reg() {
 		$title='Регистрация';
 		$logged = $this->session->userdata('logged_in');
