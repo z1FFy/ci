@@ -73,6 +73,7 @@ begin++;
  <?php
 if (empty($subscribe_users_data)) {
   echo "Подписывайтесь под другим пользователем, что бы видеть сдесь последние обновления";
+  echo '<input type="button" class="styler" id="news_create" link='.$url_id.' value="Создать новость">';
 }else{
 
 
