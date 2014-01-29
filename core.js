@@ -272,6 +272,12 @@ $('.btn_entry').click(function() {
         var src = site_full+"/id/albom?url_id="+url_id+"&albom=1";
         upload(src,'nof',300,300);
        }); 
+
+    $('#news_create').click(function() { 
+       url_id = $(this).attr("link");
+        var src = site_full+"/id/news/news_create?url_id="+url_id;
+        upload(src,'nof',600,600);
+       }); 
     
     $('#delete_albom').click(function() { 
     albom_name = $(this).attr("link");
