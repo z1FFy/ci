@@ -65,6 +65,7 @@ $('#reg').click(function() {
   email = $("input[name='email']").val();
   pass = $("input[name='pass']").val();
   pass2 = $("input[name='password2']").val();
+      acc = $("input[name='acc']").val();
     spec_user = $("select[name='spec_user']").val();
   if (spec_user == 'Другое'){
     //alert(spec_user);
@@ -77,7 +78,7 @@ if (spec_user !== ''){
   if (pass == pass2) {
   $.post("sendreg",
      {
-     famil : famil, name : name, login : login, email : email, pass : pass, spec_user : spec_user, },
+     famil : famil, name : name, login : login, email : email, pass : pass, spec_user : spec_user,acc : acc },
      onAjaxSuccess
    );
    } else {
@@ -118,8 +119,22 @@ $('#pad').html('минимальное значение любого поля - 
    
 }); 
 
-
+$('#acc_pro').click(function() { 
+$('#ok_pro').css('visibility', 'visible');
+$('#ok_free').css('visibility', 'hidden');
+$('#acc_pro').css('opacity', '1');
+$('#acc_free').css('opacity', '0.6');
+$('#acca').val('pra');
+});
  
+
+ $('#acc_free').click(function() { 
+$('#ok_free').css('visibility', 'visible');
+$('#ok_pro').css('visibility', 'hidden');
+$('#acc_free').css('opacity', '1');
+$('#acc_pro').css('opacity', '0.6');
+$('#acca').val('free');
+});
 
 $('#auth').hide();
 $('#entry').click(function() { 
@@ -273,7 +288,7 @@ $('.btn_entry').click(function() {
         upload(src,'nof',300,300);
        }); 
 
-    $('#news_create').click(function() { 
+    $('.news_create').click(function() { 
        url_id = $(this).attr("link");
         var src = site_full+"/id/news/news_create?url_id="+url_id;
         upload(src,'nof',600,600);

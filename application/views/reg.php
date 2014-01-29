@@ -117,6 +117,13 @@ document.getElementById('div1').innerHTML='<input type="text" name ="spec_user1"
  <br> <label style="margin-left: 30px;
 height: 20px;
 width:  170px;" id="pad">  </label> 
+<p style="font-size:22px;color:#246eb6">Выберите аккаунт</p>
+<img id="acc_pro" src="<?php echo $this->config->site_url().'images/acc_pro.png';?>" width="350">
+<img id="acc_free"  src="<?php echo $this->config->site_url().'images/acc_free.png';?>" width="350">
+<div id="ok_pro"></div>
+<div id="ok_free"></div>
+<input id="acca" type="hidden" name="acc" value="free">
+<div></div>
 <br> <div><a href="#" id="sogl" style="color: #293F6D;">Пользовательское соглашение</a><br></div><input  class="soglchek styler" type="checkbox">С правилами ознакомлен(а)
  <br> <button class="styler" disabled="true" id="reg"  class="btn">Зарегистрироваться</button>
 <br><br><br><br><br><a class="banner"><img alt="Реклама" class="banner" src="<?php echo $this->config->site_url() ?>images/ban300.gif"></a>

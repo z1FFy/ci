@@ -116,6 +116,7 @@ function pay_pro() {
         $this->mail = $_POST['email'];
 		$this->password = $_POST['pass'];
 		$this->spec_user = $_POST['spec_user'];
+		$this->account = $_POST['acc'];
 		$this->avatar  = '17b37d165723990a8e74914ac7bb42f4.jpeg';
 		$this->date  = time();
 		$data = $this->db_module->get_user($this->login);
@@ -763,9 +764,9 @@ function view_news_photos1($subscribe_users_id, $limit,$offset){
 }
 
 function view_news_photos($subscribe_users_id, $limit,$offset){
-	$query = $this->db->query('SELECT * FROM ( SELECT id_photos, id_user, url_photo, photos_date, photos_name FROM photos UNION SELECT id_videos, id_user, kod, video_date, video_name FROM videos 
-		UNION SELECT id_news, id_user, news_url, news_date, news_message FROM news ) tables
-	WHERE `id_user` IN ('.$subscribe_users_id.') ORDER by photos_date desc LIMIT '.$offset.', '.$limit.'');
+	$query = $this->db->query('SELECT * FROM ( SELECT `id_photos`, `id_user`, `url_photo`, `photos_date`, `photos_name` FROM `photos`  UNION SELECT `id_videos`, `id_user`, `kod`, `video_date`, `video_name` FROM `videos` 
+		UNION SELECT `id_news`, `id_user`, `news_url`, `news_date`, `news_message` FROM `news` ) `tables`
+	WHERE `id_user` IN ('.$subscribe_users_id.')  ORDER by `photos_date` desc LIMIT '.$offset.', '.$limit.'');
     return $query->result();
 }
 

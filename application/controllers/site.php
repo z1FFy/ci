@@ -15,6 +15,18 @@ class Site extends CI_Controller {
     	$this->load->library('session');
     	$this->load->model('db_module');
 	}
+		private function _get_url_id() {
+	  	$url_id = $this->uri->segment(1);
+		$url_id = trim($url_id, " \id.");
+		return $url_id;
+	}
+	private function _get_whopage($url_id,$user_id) {
+		$whopage='none';
+			if ($user_id == $url_id) {
+				$whopage='my';
+			}
+			return $whopage;
+	}
 
 	function index() {
 		$logged = $this->session->userdata('logged_in');
@@ -33,22 +45,6 @@ class Site extends CI_Controller {
 		$this->load->view('welcome_message2',$page);
 	}
 
-	function pay() {
-		$logged = $this->session->userdata('logged_in');
-		 	$user_id=$this->session->userdata('user_id');
-		 	$page = array(
-           'user_id' => $user_id);
-		 		$this->load->view('pay',$page);	
-	}
-	function pay_ok() {
-		$suc=$_POST['ik_inv_st'];
-		if ($suc=='success') {
-		 echo $this->db_module->pay_pro();
-		 $this->load->view('ok');	
-		} else {
-			echo 'Произошла ошибка, не пришли данные';
-		}
-	}
 	function reg() {
 		$title='Регистрация';
 		$logged = $this->session->userdata('logged_in');
@@ -91,6 +87,7 @@ class Site extends CI_Controller {
 			$body = $item->podtvr;
 			$user_id = $item->user_id;
 			$pass = $item->password;
+			$acc=$item->account;
 			
 		}
 		$name_from = 'PortfoliOnline.ru';
@@ -118,6 +115,9 @@ class Site extends CI_Controller {
 
 
 		$this->load->view('reg_sucess', $regmail_data);
+		// if ($acc == 'pra') {
+		// 		header ("Location:". $this->config->site_url().'id'.$user_id.'/pay');	
+		// } 
 	} else {
 		echo "You not a reg";
 	}

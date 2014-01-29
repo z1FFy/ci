@@ -316,7 +316,24 @@ background: url("images/top_hov.png") 0 0 no-repeat;
 bottom: -100px
 }
 
-
+	#ok_pro {
+		background-image:url('../../images/ok.png');
+		width: 65px;
+		height: 60px;
+		position: absolute;
+		margin-top: -500px;
+		margin-left: 140px;
+		visibility: hidden;
+	}
+		#ok_free {
+		background-image:url('../../images/ok.png');
+		width: 65px;
+		height: 60px;
+		position: absolute;
+		margin-top: -500px;
+		margin-left: 500px;
+		visibility: hidden;
+	}
 
 
 @media screen and (min-width: 950px) {

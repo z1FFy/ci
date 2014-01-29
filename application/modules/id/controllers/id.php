@@ -475,5 +475,45 @@ function sity_map(){
 	$sity_map = $_POST['sity_map'];
 }
  
+	function pay() {
+		$logged = $this->session->userdata('logged_in');
+		$title='Улучшение аккаунта';
+		$user_id=$this->session->userdata('user_id');
+		$this ->db_module->last_activity($user_id);
+		$url_id= $this->_get_url_id();
+		$unread = $this->db_module->get_unread($url_id);
+		$whopage= $this->_get_whopage($url_id,$user_id);
+		$logged = $this->session->userdata('logged_in');
+		$user_data = $this->db_module->get_user_by_id($url_id);
+		$acc_user = $this->db_module->get_acc_by_id($user_id);//выводим про 
+		$contacts_not_pod = $this->db_module->get_contacts_not_pod($user_id);
+		$user_data_arr = array('contacts_not_pod'=> $contacts_not_pod, 'user_data' => $user_data, 'acc_data' => $acc_user, 'whopage' => $whopage,'url_id' => $url_id,'user_id'=>$user_id,'logged' => $logged,'unread' => $unread);
+		$page_content = $this->load->view('pay', $user_data_arr, true);
+		$user_id='';
+		if ($logged == TRUE) {
+		 	$user_id=$this->session->userdata('user_id');
+		 }
+		$page = array(
+           'title' => $title,
+           'page_content' => $page_content,
+           'logged' => $logged,
+           'user_id' => $user_id,
+           'url_id' => $url_id,
+         );
+		$this->load->view('template',$page);	
+
+
+	}
+	function pay_ok() {
+		$suc=$_POST['ik_inv_st'];
+		if ($suc=='success') {
+		 echo $this->db_module->pay_pro();
+		 $this->load->view('ok');	
+		} else {
+			echo 'Произошла ошибка, не пришли данные';
+		}
+	}
+
+ 
 }
 ?>
