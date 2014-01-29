@@ -732,7 +732,7 @@ function friends_view_id($user_id){
 
 
 
-function view_news_photos($subscribe_users_id, $limit,$offset){
+function view_news_photos1($subscribe_users_id, $limit,$offset){
 	$this->db->select('*');
 	$query = $this->db->from('photos');
 	$this->db->where_in('id_user', $subscribe_users_id);
@@ -743,19 +743,21 @@ function view_news_photos($subscribe_users_id, $limit,$offset){
     return $query->result();
 }
 
-
-
-function get_users_videos($subscribe_users_id, $limit,$offset) {
-	$this->db->select('*');
-	$query = $this->db->from('videos');
-	//$this->db->join('photos', 'videos.id_user = photos.id_user');
-	$this->db->where_in('id_user', $subscribe_users_id);
-	$this->db->order_by("video_date", "desc"); 
-	$this->db->limit($limit, $offset);
-	$query = $this->db->get();
+function view_news_photos($subscribe_users_id, $limit,$offset){
+	$query = $this->db->query('SELECT * FROM ( SELECT id_photos, id_user, url_photo, photos_date, photos_name FROM photos UNION SELECT id_videos, id_user, kod, video_date, video_name FROM videos 
+		UNION SELECT id_news, id_user, news_url, news_date, news_message FROM news ) tables
+	WHERE `id_user` IN ('.$subscribe_users_id.') ORDER by photos_date desc LIMIT '.$offset.', '.$limit.'');
     return $query->result();
+}
 
-	}
+function news_insert($url_id, $url, $messages){
+	$this->id_user = $url_id;
+	$this->news_message = $messages;
+	$this->news_url = $url;
+	$this->news_date = time();
+	$query = $this->db->insert('news', $this); 	
+
+}
 
 
 function view_subscribe_users($user_id, $second_user){

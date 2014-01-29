@@ -30,8 +30,7 @@ var count = 10;
 //начиная с
 var begin = 1;
 
-function loader(){   
-vies = $("input[name='vies']").val();      
+function loader(){        
 // «теневой» запрос к серверу
 $.ajax({
 
@@ -43,7 +42,6 @@ data:{
 //передаем параметры
 count: count,
 begin: begin*count,
-vies: vies
 },
 success:onAjaxSuccess
 });
@@ -66,7 +64,8 @@ begin++;
  
 </script> 
 
-  <?php $this->load->view('left_user',$user_data);  ?>
+  <?php $this->load->view('left_user',$user_data);  
+  date_default_timezone_set('Europe/Moscow');?>
 
 <div id="right_user">
 <p class="titl" id="user_text_color"> Лента новостей</p>
@@ -86,15 +85,9 @@ foreach ($subscribe_users_data as $item) {
   echo '</a>  ';
 }
 
-echo '</div>';
-echo '<a href="'.$this->config->site_url().'id'.$item->user_id.'/news?vies=0">Фото</a>'.'  '.'<a href="'.$this->config->site_url().'id'.$item->user_id.'/news?vies=1">Видео</a>';
+echo '</div><br>';
 
-if (isset($_GET['vies'])) {
-  $vies = $_GET['vies'];
-}else{$vies = '';}
-
-if($vies==0){
-
+echo '<input type="button" class="styler" id="news_create" link='.$url_id.' value="Создать новость">';
   foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
     $url_photo = $item->url_photo;
     $name_photo = $item->photos_name;
@@ -102,7 +95,7 @@ if($vies==0){
     $id_photos = $item->id_photos;
     $id_user = $item->id_user;
     $i=0;        
-                   // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
+            // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
     foreach ($subscribe_users_data as $item) {
       if($i==0){
           if($item->second_user == $id_user){
@@ -112,10 +105,19 @@ if($vies==0){
                 }else{
                   $name = $item->name.' '.$item->famil;
                 }
+                 if(stristr($url_photo, '.') === FALSE) {
+                echo '<div class="block">';
+                echo '<a href="'.$this->config->site_url().'id'.$id_user.'">'.htmlspecialchars($name, ENT_QUOTES).'</a><div style="margin-top:-18px" class="date_msg">'.date("d.m.y H:i:s" ,htmlspecialchars($photos_date, ENT_QUOTES)).'</div>
+                <div>';
+                if($url_photo != '1'){
+                echo '<iframe width="100%" height="400" src="//www.youtube.com/embed/'.$url_photo.'" frameborder="0" allowfullscreen></iframe>';
+                }
+                echo '<div>'.$text = htmlspecialchars($name_photo, ENT_QUOTES).'</div></div></div><br>';
+                 }else{
                 echo '<div class="block" >';
                 echo '<a href="'.$this->config->site_url().'id'.$id_user.'">'.htmlspecialchars($name, ENT_QUOTES).'  </a><div style="margin-top:-18px" class="date_msg">'.date("d.m.y H:i:s" ,htmlspecialchars($photos_date, ENT_QUOTES)).'</div>';
                 echo '<img width="400" src="'.$this->config->site_url().'uploads/photos/'.$url_photo.'"/">';
-                echo '</div><br>';
+                echo '</div><br>';}
                 $i++;
             } 
           }
@@ -126,48 +128,9 @@ if($vies==0){
 
 
    }
-  echo $this->pagination->create_links();
-
-}
 
 
 
-
-if($vies==1){
- foreach ($video_data as $item) {
-    $kod=$item->kod;
-    $thumbUrl = "http://img.youtube.com/vi/".$kod."/0.jpg";
-    $video_date = $item->video_date;
-    $video_name = $item->video_name;
-    $id_user = $item->id_user;
-    $i=0;        
-    // что бы вложенный форич не выкладывал несколько раз одну и ту же фотку
-    foreach ($subscribe_users_data as $item) {
-      if($i==0){
-          if($item->second_user == $id_user){
-            if($video_date >= $item->subscribe_date ){ // если дата добавления фотки больше даты создания подписи эхаем все говно
-                if($item->name == ''){
-                $name = $item->login;
-                }else{
-                  $name = $item->name.' '.$item->famil;
-                }
-                echo '<div class="block">';
-                echo htmlspecialchars($name, ENT_QUOTES).'  <div style="margin-top:-18px" class="date_msg">'.date("d.m.y H:i:s" ,htmlspecialchars($video_date, ENT_QUOTES)).'</div>';
-                echo '<div><iframe width="100%" height="400" src="//www.youtube.com/embed/'.$kod.'" frameborder="0" allowfullscreen></iframe>
-                <div>'.$text = htmlspecialchars($video_name, ENT_QUOTES).'</div></div></div><br>';
-                $i++;
-            }
-          }
-        
-      }
-      
-    }
-
-}
-
-
-
-}
 }
 
 
@@ -176,12 +139,7 @@ if($vies==1){
 
  ?>
 <br>
-<?php
-// var_dump($news_photos_data);
-// echo $this->pagination->create_links();
-?>
 
-<input type="hidden" name="vies" value="<?php echo $vies; ?>">
  <!-- </form> -->
 </div>
 
