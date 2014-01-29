@@ -43,7 +43,9 @@
 			$subscribe_users_id = $subscribe_users_id.','.$item->second_user;
 			//$subscribe_date[$i] = $item->subscribe_date;
 		}
-		$news_photos_data = $this->db_module->view_news_photos(trim($subscribe_users_id, ','), $limit,$offset);	// извлекаем все фотки подписаных лузеров
+		$news_photos_data='';
+		if($news_photos_data !=''){
+		$news_photos_data = $this->db_module->view_news_photos(trim($subscribe_users_id, ','), $limit,$offset);}	// извлекаем все фотки подписаных лузеров
 		$friend_id = '';
 		$friends_data = $this->db_module->subscribe_view($user_id);
 		foreach ($friends_data as $item) {
@@ -81,7 +83,7 @@ function news_photo(){
 
 
 $user_id=$this->session->userdata('user_id');
-$i=0;
+$i=0;	$news_photos_data='';
 		$subscribe_users_id='';
 		$second_user='';
 		$subscribe_users_data = $this->db_module->friends_view_id($user_id); //извлекаем все подписи с id пользователя
@@ -91,7 +93,9 @@ $i=0;
 			$i++;
 		}
 		//var_dump($subscribe_users_id);
+		if($news_photos_data !=''){
 	$news_photos_data = $this->db_module->view_news_photos(trim($subscribe_users_id, ','), $limit,$offset);	// извлекаем все фотки подписаных лузеров	
+ 	
  foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
     $url_photo = $item->url_photo;
     $name_photo = $item->photos_name;
@@ -130,7 +134,7 @@ $i=0;
 
    }
 
-
+}
 
 
 }
