@@ -273,7 +273,7 @@ $('.btn_entry').click(function() {
         upload(src,'nof',300,300);
        }); 
 
-    $('#news_create').click(function() { 
+    $('.news_create').click(function() { 
        url_id = $(this).attr("link");
         var src = site_full+"/id/news/news_create?url_id="+url_id;
         upload(src,'nof',600,600);

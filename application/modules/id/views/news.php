@@ -73,7 +73,7 @@ begin++;
  <?php
 if (empty($subscribe_users_data)) {
   echo "Подписывайтесь под другим пользователем, что бы видеть сдесь последние обновления";
-  echo '<input type="button" class="styler" id="news_create" link='.$url_id.' value="Создать новость">';
+  echo '<input type="button" class="styler news_create" id="news_create" link='.$url_id.' value="Создать новость">';
 }else{
 
 
@@ -88,7 +88,7 @@ foreach ($subscribe_users_data as $item) {
 
 echo '</div><br>';
 
-echo '<input type="button" class="styler" id="news_create" link='.$url_id.' value="Создать новость">';
+echo '<input type="button" class="styler news_create" id="news_create" link='.$url_id.' value="Создать новость">';
 if ($news_photos_data!='') {
 
   foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
@@ -120,6 +120,7 @@ if ($news_photos_data!='') {
                 echo '<div class="block" >';
                 echo '<a href="'.$this->config->site_url().'id'.$id_user.'">'.htmlspecialchars($name, ENT_QUOTES).'  </a><div style="margin-top:-18px" class="date_msg">'.date("d.m.y H:i:s" ,htmlspecialchars($photos_date, ENT_QUOTES)).'</div>';
                 echo '<img width="400" src="'.$this->config->site_url().'uploads/photos/'.$url_photo.'"/">';
+                echo '<div>'.$text = htmlspecialchars($name_photo, ENT_QUOTES).'</div>';
                 echo '</div><br>';}
                 $i++;
             } 
