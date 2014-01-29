@@ -75,7 +75,7 @@ if(!empty($unread)){
   }
     echo ' <a  href="'.$this->config->site_url() .'id'.$url_id.'/news"><li><img class="pad_rig" src="'.$this->config->site_url().'images/news_m.png">Моя книга новостей</li></a>';
     echo ' <a  href="'.$this->config->site_url() .'id'.$url_id.'/profile_update_form"><li><img class="pad_rig" src="'.$this->config->site_url().'images/set_m.png">Мои настройки</li></a>';
-
+echo ' <a  href="'.$this->config->site_url() .'site/pay"><li><img class="pad_rig" src="'.$this->config->site_url().'images/star.png">Улучшить аккаунт</li></a>';
     echo '<p style="font-size:12px;text-align:center"><br><br>Ссылка на портфолио:<br><i><a href="'.$this->config->site_url() .'id'.$url_id.'">'.$this->config->site_url() ."id".$url_id.'</i></a></li></p>';
 
     }else{    

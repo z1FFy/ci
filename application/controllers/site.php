@@ -40,6 +40,15 @@ class Site extends CI_Controller {
            'user_id' => $user_id);
 		 		$this->load->view('pay',$page);	
 	}
+	function pay_ok() {
+		$suc=$_POST['ik_inv_st'];
+		if ($suc=='success') {
+		 echo $this->db_module->pay_pro();
+		 $this->load->view('ok');	
+		} else {
+			echo 'Произошла ошибка, не пришли данные';
+		}
+	}
 	function reg() {
 		$title='Регистрация';
 		$logged = $this->session->userdata('logged_in');

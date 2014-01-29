@@ -122,7 +122,16 @@ width: 950px;"> -->
 нужно начинать Вашу карьеру молодого или опытного фрилансера. Неважно в какой именно области вы работаете:
 дизайн сайтов, графический дизайн, музыка или фотография.
 Причин завести портфолио много. Остановимся на некоторых из них. <br>
-<a class="banner"><img alt="Реклама" class="banner" src="images/ban_ind.gif"></a>
+<!-- <a class="banner"><img alt="Реклама" class="banner" src="images/ban_ind.gif"></a> -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- новости -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-7261592488509626"
+     data-ad-slot="7089279592"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 	</div>
 	</div>
 	<div id="m_bg">

@@ -82,6 +82,25 @@ function up_podtvr($user_id) {
 	}
 		return $result;
 }
+
+function pay_pro() {
+		$logged = $this->session->userdata('logged_in');
+			$user_id=$this->session->userdata('user_id');
+	$result='';
+	if ($logged=TRUE) {
+		$data = array(
+     'account' => 'pro',
+   );
+		$this->db->where('user_id', $user_id);
+		$this->db->update('users',$data);
+		} else {
+		$result=' Ошибка , не авторизирован ';
+
+	}
+		return $result;
+}
+
+
 	 function registration()
     {
 
