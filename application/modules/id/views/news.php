@@ -89,6 +89,8 @@ foreach ($subscribe_users_data as $item) {
 echo '</div><br>';
 
 echo '<input type="button" class="styler" id="news_create" link='.$url_id.' value="Создать новость">';
+if ($news_photos_data!='') {
+
   foreach ($news_photos_data as $item) { //в переменные заносим все нужные данные для вложенного форича
     $url_photo = $item->url_photo;
     $name_photo = $item->photos_name;
@@ -129,7 +131,7 @@ echo '<input type="button" class="styler" id="news_create" link='.$url_id.' valu
 
 
    }
-
+}
 
 
 }
