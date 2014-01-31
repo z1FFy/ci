@@ -151,7 +151,7 @@ foreach ($audio_data as $item) {
         <source src="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" type="audio/ogg; codecs=vorbis"; codecs=vorbis">
         Тег audio не поддерживается вашим браузером. 
         <a href="upload/audios/'.$item->url_audio.'">Скачайте музыку</a>.  
-        </audio><input type="button"  class="save_audio styler" value="Скачать" link='.$this->config->site_url().'uploads/audios/'.$item->url_audio.'>';
+        </audio><a href="'.$this->config->site_url().'uploads/audios/'.$item->url_audio.'" download><input type="button"  class="save_audio styler" value="Скачать" link='.$this->config->site_url().'uploads/audios/'.$item->url_audio.'></a>';
 
 
 ?>

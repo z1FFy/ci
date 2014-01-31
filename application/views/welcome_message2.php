@@ -182,17 +182,23 @@ width: 950px;"> -->
 </form>
 	</div>
 </footer><!-- .footer -->
-	<div id="m_footer">Copyright 2013  portfolionline.ru. All rights reserved.</div>
+	<div id="m_footer">Copyright 2013  portfolionline.ru. All rights reserved. 
+	</div>
 	<div style="position: absolute;
 margin-top: -40px;
-margin-left: 820px;">
+margin-left: 644px;">
 <!-- Yandex.Metrika informer -->
 <a href="http://metrika.yandex.ru/stat/?id=23092057&amp;from=informer"
 target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/23092057/3_0_2067FFFF_0047FFFF_1_pageviews"
 style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" /></a>
+
+<a href="http://www.vsego.ru" title="Каталог сайтов Всего.RU" target="_blank">
+<img src="http://www.vsego.ru/images/bkat8831.gif" alt="Каталог сайтов Всего.RU" border="0" width="88" height="31"></a>
+<a href="http://www.openlinks.ru/" target="_blank"><img src="http://www.openlinks.ru/images/openlinks.gif" alt="Каталог сайтов OpenLinks.RU" border="0" width="88" height="31"></a>
 <!-- /Yandex.Metrika informer -->
 
 <!-- Yandex.Metrika counter -->
+
 <script type="text/javascript">
 (function (d, w, c) {
     (w[c] = w[c] || []).push(function() {
