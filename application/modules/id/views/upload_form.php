@@ -74,8 +74,8 @@ echo '	<br>Тип файла: <select name="type" class="styler" style="width:14
 
 
 echo '<br><br><input  class="styler" type="file" name="userfile" size="20" />
- <textarea name="kod" class="styler" cols="40" rows = "5" placeholder="Ссылка на видео с YouTube"></textarea>
-<br><br><input class="styler" type="text" name="photos_name" maxlength="20" placeholder="Имя" />
+ <textarea name="kod" class="styler" cols="40" rows = "5" maxlength="70" placeholder="Ссылка на видео с YouTube"></textarea>
+<br><br><input class="styler" type="text" name="photos_name" maxlength="70" placeholder="Имя" />
  <input type="hidden" name="who" value="'.$who.'">
 <br /><br />
 

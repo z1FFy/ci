@@ -242,11 +242,11 @@ margin-top: 12px
 <p id="user_text_color">Интересы:</p><br>
             
    <textarea class="styler" cols="40" rows = "10" readonly = "readonly" maxlength = "4" disabled = "disabled">
-   <?php echo $item->interests;?> </textarea><?php } ?>
+   <?php echo $item->interests;?> </textarea></div><?php } ?>
          <table  cellspacing="1" cellpadding="0" class="tbl" border="1"> 
        <tr class="item">
   <td class="name">Специализация: </td><td class="val"> <?php echo $item->spec_user;?></td></tr></table>
-</div>
+
 <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
   <?php if($item->famil != ''){ ?>
     <tr class="item">
@@ -280,6 +280,7 @@ margin-top: 12px
   <td class="name">Родной город:</td>  <td class="val"> <?php echo $text = htmlspecialchars($item->sity, ENT_QUOTES);?></td></tr><?php } ?>
 
 </table>
+
   <?php if(($item->telephone != '') || ($item->dop_telephone != '') || ($item->skype != '') || ($item->website != '')){ ?>  
   <p id="user_text_color">Контакты: </p>
     <table  cellspacing="1" cellpadding="0" class="tbl" border="1">
