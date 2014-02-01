@@ -503,17 +503,17 @@ function sity_map(){
 		$this->load->view('template',$page);	
 
 
-	}
-	function pay_ok() {
-		$suc=$_POST['ik_inv_st'];
-		if ($suc=='success') {
-		 echo $this->db_module->pay_pro();
-		 $this->load->view('ok');	
-		} else {
-			echo 'Произошла ошибка, не пришли данные';
 		}
-	}
+		function pay_ok() {
+			$suc=$_POST['ik_inv_st'];
+			if (($suc=='success') || ($suc=='waitAccept')) {
+			 echo $this->db_module->pay_pro();
+			 $this->load->view('ok');	
+			} else {
+				echo 'Произошла ошибка, не пришли данные';
+			}
+		}
 
- 
+
 }
 ?>
