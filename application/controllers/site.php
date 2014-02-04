@@ -79,14 +79,15 @@ class Site extends CI_Controller {
  //           'page_content' => $page_content
  //                     , 'logged' => $logged);
 			if (isset($_GET['login'])) {
+				if (isset($_GET['login'])) {
 					$login = $_GET['login'];
+					$pass= $_GET['pass'];
 		$user_data = $this->db_module->get_user($login);
 		foreach ($user_data as $item) {
 			$email_to = $item->mail;
 			$name_to = $item->login;
 			$body = $item->podtvr;
 			$user_id = $item->user_id;
-			$pass = $item->password;
 			$acc=$item->account;
 			
 		}
@@ -118,6 +119,9 @@ class Site extends CI_Controller {
 		// if ($acc == 'pra') {
 		// 		header ("Location:". $this->config->site_url().'id'.$user_id.'/pay');	
 		// } 
+	} else {
+		echo "You not a reg";
+	}
 	} else {
 		echo "You not a reg";
 	}

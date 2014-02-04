@@ -110,7 +110,7 @@ $('#pad').html('минимальное значение любого поля - 
         if (data=='pass') {
             $('#pad').html('Вы используете запрещенные символы в поле Пароль, разрешены: 0-9 A-Z a-z');
         }else{
-     location.href=site_full+'/site/reg_sucess?login='+login;
+     location.href=site_full+'/site/reg_sucess?login='+login+'&pass='+pass;
 
 }}}
  }
